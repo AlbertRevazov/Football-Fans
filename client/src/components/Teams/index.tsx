@@ -10,6 +10,7 @@ import { styles } from "./styles";
 import { Squad } from "./sections/squad/Index";
 import Typography from "@mui/material/Typography";
 import { errorsData } from "../../utils/constants";
+import Image from "next/image";
 
 export const TeamsPage: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -50,9 +51,11 @@ export const TeamsPage: React.FC = () => {
       ) : toogle ? (
         isLoading ? (
           <Box sx={styles.loading}>
-            <img
-              style={{ width: "300px", height: "300px" }}
+            <Image
               src="/gif/loading.gif"
+              alt="avatar"
+              width={300}
+              height={300}
             />
           </Box>
         ) : (

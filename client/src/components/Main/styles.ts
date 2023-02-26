@@ -120,7 +120,7 @@ export const styles = {
   }),
   imgpub: (theme: Theme) => ({
     width: "100%",
-    maxWidth:'700px',
+    maxWidth: "700px",
     height: "450px",
     backgroundImage: "url(/images/pub.jpg)",
     backgroundSize: "cover",
@@ -164,7 +164,7 @@ export const styles = {
       borderRadius: "16px",
     },
   }),
-  mapTitle:(theme: Theme) => ({
+  mapTitle: (theme: Theme) => ({
     width: "500px",
     textAlign: "center",
     fontFamily: "Montserrat Alternates",
@@ -172,14 +172,14 @@ export const styles = {
     color: "#FFFFFF",
     fontWeight: "300",
     lineHeight: "50px",
-    [theme.breakpoints.down('md')]:{
+    [theme.breakpoints.down("md")]: {
       width: "90%",
       fontSize: "30px",
       padding: "20px",
       textAlign: "center",
       lineHeight: "40px",
       marginBottom: "16px",
-    }
+    },
   }),
   mapButton: {
     color: "#FFFFFF",

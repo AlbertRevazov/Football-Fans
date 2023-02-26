@@ -41,7 +41,7 @@ export const styles = {
     fontSize: "16px",
     color: "#202020",
   },
-  error:{
+  error: {
     fontFamily: "Montserrat Alternates",
     fontSize: "26px",
     color: "red",
@@ -62,6 +62,17 @@ export const styles = {
     ":hover": {
       backgroundColor: "darkseagreen",
       color: "#FFFFFF",
+    },
+  },
+  buttonActive: {
+    width: "280px",
+    height: "48px",
+    fontFamily: "Montserrat Alternates",
+    fontSize: "16px",
+    color: "#202020",
+    borderRadius: "10px",
+    ":hover": {
+      backgroundColor: "#FFFFFF",
     },
   },
 } as any;

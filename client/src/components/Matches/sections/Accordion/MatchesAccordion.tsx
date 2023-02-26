@@ -12,6 +12,7 @@ import Link from "next/link";
 export const MatchesAccordion: React.FC = () => {
   const { competionsTodayNames, competitionsNames } = useMatchesHook();
   const { games, errorMessage } = useAppSelector((state) => state.matches);
+  console.log(competitionsNames);
 
   return (
     <>
@@ -31,129 +32,123 @@ export const MatchesAccordion: React.FC = () => {
       ) : (
         competitionsNames.map((item: string, index) => {
           return (
-            <Accordion key={index}>
-              <AccordionSummary
-                expandIcon={<ExpandMoreIcon />}
-                aria-controls="panel1a-content"
-                id="panel1a-header"
+            <>
+              <Accordion
+                sx={{
+                  margin: "15px",
+                  borderRadius: "8px",
+                  background: "floralwhite",
+                }}
+                key={index}
               >
-                <Typography sx={styles.font}>
-                  <img src={competionsTodayNames[item]} style={styles.emblem} />
-                  {item}
-                </Typography>
-              </AccordionSummary>
-              <AccordionDetails>
-                {games?.map((game: Matches) => {
-                  return (
-                    <Box key={game.id}>
-                      {item === game?.competition?.name && (
-                        <Box sx={styles.match} key={game.id}>
-                          <Box
-                            sx={{
-                              display: "flex",
-                              justifyContent: "center",
-                              alignItems: "center",
-                              width: "auto",
-                            }}
-                          >
-                            <Typography
-                              sx={[styles.font, { fontSize: "20px" }]}
-                            >
-                              Тур {game.season.currentMatchday}
-                            </Typography>
-
-                            <img
-                              style={{ width: "40px", height: "40px" }}
-                              src={game.competition.emblem}
-                            />
-                          </Box>
-
-                          <Box>
-                            <Box
-                              sx={[styles.refereeBox, { marginTop: "10px" }]}
-                            >
+                <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+                  <Typography sx={styles.font}>
+                    <img
+                      src={competionsTodayNames[item]}
+                      style={styles.emblem}
+                    />
+                    {item}
+                  </Typography>
+                </AccordionSummary>
+                <AccordionDetails>
+                  {games?.map((game: Matches) => {
+                    return (
+                      <Box key={game.id}>
+                        {item === game?.competition?.name && (
+                          <Box sx={styles.match} key={game.id}>
+                            <Box sx={styles.accordionRoot}>
                               <Typography
-                                sx={[
-                                  styles.font,
-                                  { ":hover": { color: "darkseagreen" } },
-                                ]}
+                                sx={[styles.font, { fontSize: "20px" }]}
                               >
-                                <img
-                                  style={styles.emblem}
-                                  src={game.homeTeam.crest}
-                                />
-                                <Link
-                              href={{
-                                pathname: "/teams/[slug]",
-                                query: { slug: `${game.homeTeam.id}` },
-                              }}
-                            >
-                            {game.homeTeam.name} :
-                            </Link>
-                               
+                                Тур {game.season.currentMatchday}
                               </Typography>
 
-                              <Typography
-                                sx={[
-                                  styles.font,
-                                  {
-                                    marginLeft: "5px",
-                                    ":hover": { color: "#d28188" },
-                                  },
-                                ]}
-                              >
-                                {game.awayTeam.name}{" "}
-                                <img
-                                  style={styles.emblem}
-                                  src={game.awayTeam.crest}
-                                />
-                              </Typography>
+                              <img
+                                style={{
+                                  width: "40px",
+                                  height: "40px",
+                                  marginLeft: "8px",
+                                }}
+                                src={game.competition.emblem}
+                              />
                             </Box>
-                            {!!game.referees.length && (
+
+                            <Box>
                               <Box
                                 sx={[styles.refereeBox, { marginTop: "10px" }]}
                               >
-                                <img
-                                  style={{ width: "20px", height: "20px" }}
-                                  src="/images/referee.png"
-                                />
-                                <Typography sx={styles.refereeTitle}>
-                                  {game.referees[0]?.name}
-                                </Typography>
-                                <Typography sx={styles.refereeTitle}>
-                                  {game.referees[0]?.nationality}
-                                </Typography>
+                                <Link
+                                  style={styles.nextLink}
+                                  href={{
+                                    pathname: "/teams/[slug]",
+                                    query: { slug: `${game.homeTeam.id}` },
+                                  }}
+                                >
+                                  <Typography
+                                    sx={[
+                                      styles.font,
+                                      { ":hover": { color: "darkseagreen" } },
+                                    ]}
+                                  >
+                                    <img
+                                      style={styles.emblem}
+                                      src={game.homeTeam.crest}
+                                    />
+                                    {game.homeTeam.name} :
+                                  </Typography>
+                                </Link>
+                                <Link
+                                  style={styles.nextLink}
+                                  href={{
+                                    pathname: "/teams/[slug]",
+                                    query: { slug: `${game.awayTeam.id}` },
+                                  }}
+                                >
+                                  <Typography
+                                    sx={[
+                                      styles.font,
+                                      {
+                                        marginLeft: "8px",
+                                        ":hover": { color: "#d28188" },
+                                      },
+                                    ]}
+                                  >
+                                    {game.awayTeam.name}{" "}
+                                    <img
+                                      style={styles.emblem}
+                                      src={game.awayTeam.crest}
+                                    />
+                                  </Typography>
+                                </Link>
                               </Box>
-                            )}
+                              {!!game.referees.length && (
+                                <Box
+                                  sx={[
+                                    styles.refereeBox,
+                                    { marginTop: "10px" },
+                                  ]}
+                                >
+                                  <img
+                                    style={{ width: "20px", height: "20px" }}
+                                    src="/images/referee.png"
+                                  />
+                                  <Typography sx={styles.refereeTitle}>
+                                    {game.referees[0]?.name}
+                                  </Typography>
+                                  <Typography sx={styles.refereeTitle}>
+                                    {game.referees[0]?.nationality}
+                                  </Typography>
+                                </Box>
+                              )}
+                            </Box>
                           </Box>
-
-                          <Typography
-                            sx={[
-                              styles.font,
-                              {
-                                fontSize: "22px",
-                                marginTop: "10px",
-                                color: "#202020",
-                                ":hover": { color: "#0fabe7" },
-                              },
-                            ]}
-                          >
-                            <Link
-                              href={{
-                                pathname: "/competitions/[slug]",
-                                query: { slug: `${game.competition.code}` },
-                              }}
-                            >
-                              Посмотреть таблицу
-                            </Link>
-                          </Typography>
-                        </Box>
-                      )}
-                    </Box>
-                  );
-                })}
-              </AccordionDetails>
-            </Accordion>
+                        )}
+                      </Box>
+                    );
+                  })}
+                </AccordionDetails>
+              </Accordion>
+            </>
           );
         })
       )}

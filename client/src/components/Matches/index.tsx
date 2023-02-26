@@ -6,8 +6,6 @@ import { useMatchesHook } from "./hooks";
 import { MatchesAccordion } from "./sections/Accordion/MatchesAccordion";
 import { styles } from "./styles";
 
-// it makes sense to finish the accordions for the competition
-
 export const MatchesPage: React.FC = () => {
   const dispatch = useAppDispatch();
   const { isLoading } = useMatchesHook();
@@ -17,7 +15,7 @@ export const MatchesPage: React.FC = () => {
   }, []);
 
   return (
-    <>
+    <Box>
       {isLoading ? (
         <Box sx={styles.loading}>
           <img
@@ -26,10 +24,10 @@ export const MatchesPage: React.FC = () => {
           />
         </Box>
       ) : (
-        <Box sx={{ marginTop: "40px" }}>
+        <Box sx={{ margin: "150px" }}>
           <MatchesAccordion />
         </Box>
       )}
-    </>
+    </Box>
   );
 };

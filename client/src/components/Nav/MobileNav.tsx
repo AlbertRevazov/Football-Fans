@@ -4,25 +4,19 @@ import { Box } from "@mui/material";
 import MenuItem from "@mui/material/MenuItem";
 import PopupState, { bindTrigger, bindMenu } from "material-ui-popup-state";
 import { styles } from "./styles";
-import { Link, useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../hooks/hooks";
 import { checkIsAuth, logout } from "../../redux/features/auth/authSlice";
 import { toast } from "react-toastify";
 import Divider from "@mui/material/Divider";
 
-type Anchor = "Menu";
-
 export const MobileNav: React.FC = () => {
   const dispatch = useAppDispatch();
   const isAuth = useAppSelector(checkIsAuth);
-  // const { user }: any = useAppSelector((state) => state.users);
-  // const navigate = useNavigate();
 
   const logoutHandle = () => {
     dispatch(logout());
     window.localStorage.removeItem("token");
     toast("Вы вышли из системы.");
-    // navigate("/");
   };
 
   return (
@@ -38,7 +32,7 @@ export const MobileNav: React.FC = () => {
               <Box
                 sx={[styles.icon, { backgroundImage: "url(/images/user.png)" }]}
               />
-                Личный Кабинет
+              Личный Кабинет
             </MenuItem>
             <MenuItem
               sx={{ width: "400px", margin: "20px" }}
@@ -50,7 +44,7 @@ export const MobileNav: React.FC = () => {
                   { backgroundImage: "url(/images/option.png)" },
                 ]}
               />
-                Настройки
+              Настройки
             </MenuItem>
             {isAuth ? (
               <MenuItem
@@ -78,7 +72,7 @@ export const MobileNav: React.FC = () => {
                     { backgroundImage: "url(/images/login.png)" },
                   ]}
                 />
-                  Войти
+                Войти
               </MenuItem>
             )}
             <Divider />
@@ -86,19 +80,19 @@ export const MobileNav: React.FC = () => {
               sx={{ width: "400px", margin: "20px" }}
               onClick={popupState.close}
             >
-                Главная
+              Главная
             </MenuItem>
             <MenuItem
               sx={{ width: "400px", margin: "20px" }}
               onClick={popupState.close}
             >
-                Карта
+              Карта
             </MenuItem>
             <MenuItem
               sx={{ width: "400px", margin: "20px" }}
               onClick={popupState.close}
             >
-                Матчи
+              Матчи
             </MenuItem>
           </Menu>
         </>

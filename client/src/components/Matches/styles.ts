@@ -17,6 +17,10 @@ export const styles = {
     cursor: "pointer",
     color: "#202020",
   },
+  nextLink: {
+    textDecoration: "none",
+    color: "#202020",
+  },
   refereeBox: {
     display: "flex",
     justifyContent: "center",
@@ -55,5 +59,11 @@ export const styles = {
     width: "20px",
     height: "20px",
     marginRight: "5px",
+  },
+  accordionRoot: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    width: "auto",
   },
 } as any;

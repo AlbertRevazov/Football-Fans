@@ -5,11 +5,9 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import { styles } from "../../styles";
-import { Link } from "react-router-dom";
 import { Standings } from "../../../../types";
 import Typography from "@mui/material/Typography";
-import { useRouter } from "next/router";
-
+import Link from "next/link";
 interface CompetitionTableProps {
   data: Standings[] | undefined;
 }
@@ -64,8 +62,15 @@ export const CompetitionTable: React.FC<CompetitionTableProps> = ({ data }) => {
                           }}
                           src={row.team.crest}
                         />
-
-                        {row.team.name}
+                        <Link
+                          style={{ textDecoration: "none", color: "#202020" }}
+                          href={{
+                            pathname: "/teams/[slug]",
+                            query: { slug: `${row.team.id}` },
+                          }}
+                        >
+                          {row.team.name}
+                        </Link>
                       </TableCell>
                       <TableCell sx={styles.darkTableCell}>
                         {row.playedGames}

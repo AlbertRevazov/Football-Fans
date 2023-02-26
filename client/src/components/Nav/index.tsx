@@ -18,7 +18,6 @@ export const Nav: React.FC = () => {
   const isMobile = useMediaQuery("(max-width:900px)");
   const isAuth = useAppSelector(checkIsAuth);
   const dispatch = useAppDispatch();
-  // const navigate = useNavigate();
   const { user } = useAppSelector((state) => state.users);
 
   const links = [
@@ -33,7 +32,6 @@ export const Nav: React.FC = () => {
     dispatch(logout());
     window.localStorage.removeItem("token");
     toast("Вы вышли из системы.");
-    // navigate("/");
   };
 
   useEffect(() => {
@@ -52,7 +50,9 @@ export const Nav: React.FC = () => {
                 hidden={item.hide}
                 sx={styles.link}
               >
-                <Link href={item.to}>{item.title}</Link>
+                <Link style={{ textDecoration: "none" }} href={item.to}>
+                  <Typography sx={styles.font}>{item.title}</Typography>
+                </Link>
               </Box>
             ))}
           </Box>
@@ -64,18 +64,23 @@ export const Nav: React.FC = () => {
                 alignItems: "center",
               }}
             >
-              <Typography
-                sx={[
-                  styles.font,
-                  {
-                    ":hover": {
-                      borderBottom: "3px solid darkseagreen",
-                    },
-                  },
-                ]}
+              <Link
+                href={"/user"}
+                style={{ textDecoration: "none", color: "#202020" }}
               >
-                Личный Кабинет
-              </Typography>
+                <Typography
+                  sx={[
+                    styles.font,
+                    {
+                      ":hover": {
+                        borderBottom: "3px solid darkseagreen",
+                      },
+                    },
+                  ]}
+                >
+                  Личный Кабинет
+                </Typography>
+              </Link>
               <Avatar
                 sx={{ marginLeft: "12px" }}
                 alt={user?.name}

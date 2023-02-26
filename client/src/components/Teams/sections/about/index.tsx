@@ -1,5 +1,6 @@
 import { Box, Typography } from "@mui/material";
-import { Link } from "react-router-dom";
+import Image from "next/image";
+import Link from "next/link";
 import { AboutProps } from "../../../../types";
 import { styles } from "../../styles";
 
@@ -25,7 +26,29 @@ export const AboutTeam: React.FC<AboutProps> = ({ data }) => {
         <Typography sx={styles.font}>
           Принимает участие -
           {runningCompetitions?.map((tool) => (
-            <li>{tool.name}</li>
+            <Box display={"flex"} alignItems={"center"}>
+              <Image src="/images/dot.png" width={30} height={30} alt={""} />
+              <Link
+                style={{ textDecoration: "none" }}
+                href={{
+                  pathname: "/competitions/[slug]",
+                  query: { slug: `${tool.code}` },
+                }}
+              >
+                <Typography
+                  sx={[
+                    styles.font,
+                    {
+                      fontSize: "16px",
+                      color: "#202020",
+                      ":hover": { color: "#0fabe7" },
+                    },
+                  ]}
+                >
+                  {tool.name}
+                </Typography>
+              </Link>
+            </Box>
           ))}
         </Typography>
       </Box>

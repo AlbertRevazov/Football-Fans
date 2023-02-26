@@ -244,7 +244,7 @@ export type Scorers = {
 };
 
 // calendar & Team
-export type caledarMatches = {
+export type calendarMatches = {
   area: {
     id: number;
     name: string;
@@ -315,7 +315,7 @@ export type Calendar = {
     permission: string;
     limit: number;
   };
-  matches: caledarMatches[];
+  matches: calendarMatches[];
   resultSet: {
     competitions: string;
     count: number;

@@ -1,5 +1,4 @@
 import { useAppSelector } from "../../../../hooks/hooks";
-import React, { useMemo } from "react";
 export const useCalendarHook = () => {
   const { calendar } = useAppSelector((state) => state.teams);
 

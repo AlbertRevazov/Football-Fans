@@ -1,4 +1,4 @@
-import { Box, Button, Container, Link, Typography } from "@mui/material";
+import { Box, Button, Container, Typography } from "@mui/material";
 import { styles } from "./styles";
 
 export const MainPage: React.FC = () => {
@@ -37,7 +37,7 @@ export const MainPage: React.FC = () => {
         <Typography sx={styles.mapTitle}>
           Посмотреть стадионы и пабы в вашем городе на карте
         </Typography>
-          <Button sx={styles.mapButton}>Открыть карту</Button>
+        <Button sx={styles.mapButton}>Открыть карту</Button>
       </Box>
     </>
   );

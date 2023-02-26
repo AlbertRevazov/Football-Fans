@@ -1,27 +1,12 @@
-import {
-  Box,
-  Container,
-  Divider,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
-  Typography,
-} from "@mui/material";
-import React, { Dispatch, SetStateAction } from "react";
-import { Link } from "react-router-dom";
-import { useTeamsHook } from "../../hooks";
+import { Box, Container, Divider, Typography } from "@mui/material";
+import React from "react";
 import { useCalendarHook } from "./hooks";
 import { styles } from "./styles";
 
 export const Calendar: React.FC = () => {
   const { calendar, matchDate } = useCalendarHook();
-  const { id } = useTeamsHook();
-
   return (
-    <>
+    <Container>
       <Box sx={styles.root}>
         <Box
           sx={{
@@ -39,8 +24,10 @@ export const Calendar: React.FC = () => {
             {calendar?.matches.map((match) => (
               <Container key={match.id}>
                 <Box
-                  key={match.id}
-                  sx={{ display: "flex", justifyContent: "start" }}
+                  sx={{
+                    display: "flex",
+                    justifyContent: "start",
+                  }}
                 >
                   <Box
                     sx={{
@@ -71,9 +58,11 @@ export const Calendar: React.FC = () => {
                       justifyContent: "center",
                       alignItems: "start",
                       margin: "20px",
+                      //    backgroundColor: match.status === "FINISHED" ? "red" : "darkseagreen",
                     }}
                   >
                     <Typography>Тур {match.matchday}</Typography>
+
                     <Box
                       sx={{
                         display: "flex",
@@ -95,12 +84,10 @@ export const Calendar: React.FC = () => {
                           ? match.score.fullTime.away
                           : null}
                       </Typography>
-                    
-                        <Typography
-                          sx={[styles.font, { margin: "0 4px 0 4px" }]}
-                        >
-                          {match.awayTeam.name}
-                        </Typography>
+
+                      <Typography sx={[styles.font, { margin: "0 4px 0 4px" }]}>
+                        {match.awayTeam.name}
+                      </Typography>
                     </Box>
                   </Box>
                 </Box>
@@ -110,6 +97,6 @@ export const Calendar: React.FC = () => {
           </Box>
         </Box>
       </Box>
-    </>
+    </Container>
   );
 };
