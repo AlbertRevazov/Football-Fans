@@ -18,6 +18,5 @@ export const styles = {
     fontFamily: "Montserrat Alternates",
     fontSize: "23px",
     color: "#202020",
-    // margin: "8px",
   },
 } as any;

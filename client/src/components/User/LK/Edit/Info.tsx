@@ -1,10 +1,10 @@
 import { Box, Button, TextField, Typography } from "@mui/material";
 import { useFormik } from "formik";
-import React from "react";
+import React, { FC } from "react";
 import * as yup from "yup";
 import { useAppSelector } from "../../../../hooks/hooks";
 
-export const Info: React.FC = () => {
+export const Info: FC = () => {
   const [edit, setEdit] = React.useState(false);
   const { user } = useAppSelector((state) => state.users);
 

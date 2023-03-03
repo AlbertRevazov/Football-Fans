@@ -1,12 +1,12 @@
 import { Box } from "@mui/material";
-import { useEffect } from "react";
+import { useEffect, FC } from "react";
 import { useAppDispatch } from "../../hooks/hooks";
 import { getMatches } from "../../redux/features/matches/matchesSlice";
 import { useMatchesHook } from "./hooks";
 import { MatchesAccordion } from "./sections/Accordion/MatchesAccordion";
 import { styles } from "./styles";
 
-export const MatchesPage: React.FC = () => {
+export const MatchesPage: FC = () => {
   const dispatch = useAppDispatch();
   const { isLoading } = useMatchesHook();
 

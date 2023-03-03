@@ -1,18 +1,14 @@
-import { Box, Link, Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import { styles } from "./styles";
+import { FC } from "react";
+import Image from "next/image";
 
-// add styles.ts for this component
-
-export const Footer: React.FC = () => {
+export const Footer: FC = () => {
   return (
     <Box sx={styles.root}>
       <Box sx={styles.content}>
         <Box sx={styles.links}>
-            {/* I don't like using <img/> I need to think about what will be better */}
-            <img
-              style={{ width: "90px", height: "90px" }}
-              src="/images/juve.png"
-            />
+          <Image src="/images/juve.png" alt="avatar" width={90} height={90} />
           <Box sx={styles.title}>
             <Typography sx={[styles.font, { fontSize: "24px" }]}>
               Revazov
@@ -23,13 +19,17 @@ export const Footer: React.FC = () => {
           </Box>
         </Box>
         <Box sx={{ display: "flex" }}>
-            <Box sx={styles.contacts}>
-              <img style={styles.contactIcon} src="/images/vk.png" />
-            </Box>
-
-            <Box sx={styles.contacts}>
-              <img style={styles.contactIcon} src="/images/github.png" />
-            </Box>
+          <Box sx={styles.contacts}>
+            <Image src="/images/vk.png" alt="avatar" width={60} height={60} />
+          </Box>
+          <Box sx={styles.contacts}>
+            <Image
+              src="/images/github.png"
+              alt="avatar"
+              width={60}
+              height={60}
+            />
+          </Box>
         </Box>
       </Box>
     </Box>

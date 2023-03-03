@@ -3,8 +3,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { AboutProps } from "../../../../types";
 import { styles } from "../../styles";
+import { FC } from "react";
 
-export const AboutTeam: React.FC<AboutProps> = ({ data }) => {
+export const AboutTeam: FC<AboutProps> = ({ data }) => {
   const { area, clubColors, crest, founded, name, runningCompetitions, venue } =
     data;
 

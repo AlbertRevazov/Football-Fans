@@ -1,9 +1,9 @@
 import { Box, Container, Divider, Typography } from "@mui/material";
-import React from "react";
+import React, { FC } from "react";
 import { useCalendarHook } from "./hooks";
 import { styles } from "./styles";
 
-export const Calendar: React.FC = () => {
+export const Calendar: FC = () => {
   const { calendar, matchDate } = useCalendarHook();
   return (
     <Container>
@@ -58,7 +58,6 @@ export const Calendar: React.FC = () => {
                       justifyContent: "center",
                       alignItems: "start",
                       margin: "20px",
-                      //    backgroundColor: match.status === "FINISHED" ? "red" : "darkseagreen",
                     }}
                   >
                     <Typography>Тур {match.matchday}</Typography>

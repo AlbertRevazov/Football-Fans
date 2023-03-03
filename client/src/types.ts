@@ -9,12 +9,21 @@ export type User = {
   createdAt: string;
   updatedAt: string;
 };
+export type Favourite = {
+  id: number;
+  apiId: string;
+  user_id: number;
+  name: string;
+  img: string;
+};
 export type UserState = {
   user: User | null;
+  favourite: Favourite[] | null;
   token: string | null;
   isLoading: boolean;
   status: string | null;
 };
+
 // team section props
 export type ContactProps = {
   data: { website: string; address: string };
@@ -64,6 +73,7 @@ export type AboutProps = {
     };
   };
 };
+
 // nav links
 export type link = {
   id: number;
@@ -72,6 +82,7 @@ export type link = {
   hide: boolean;
   onclick?: boolean;
 };
+
 // matches
 export type Matches = {
   awayTeam: {
@@ -136,6 +147,7 @@ export type GamesState = {
   isLoading: boolean;
   errorMessage: string | undefined | null;
 };
+
 // competition
 export type Tournament = {
   area: {
@@ -379,4 +391,43 @@ export type TeamState = {
   name: string | null;
   errorMessage: string | undefined | null;
   isLoading: boolean;
+};
+
+// favourite
+export type CompetitionsFavourite = {
+  id: number;
+  name: string;
+  code: string;
+  type: string;
+  emblem: string;
+  plan: string;
+  numberOfAvailableSeasons: number;
+  lastUpdated: string;
+  currentSeason: {
+    id: number;
+    startDate: string;
+    endDate: string;
+    currentMatchday: number;
+    winner?: null;
+  };
+  area: {
+    id: number;
+    name: string;
+    code: string;
+    flag: string;
+  };
+};
+
+export type Areas = {
+  count: number;
+  competitions: CompetitionsFavourite[];
+  filters: { client: string };
+  teams?: Team[] | null;
+};
+
+export type FavouriteState = {
+  areas: Areas | null;
+  errorMessage: undefined;
+  isLoading: boolean;
+  message: undefined;
 };

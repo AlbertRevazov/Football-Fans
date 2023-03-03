@@ -17,15 +17,9 @@ export const CompetitionTable: React.FC<CompetitionTableProps> = ({ data }) => {
 
   return (
     <>
+      {}
       {!total ? (
-        <Box
-          sx={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            margin: "140px",
-          }}
-        >
+        <Box sx={styles.notFound}>
           <Typography sx={styles.error}>Ничего не найдено</Typography>
         </Box>
       ) : (
@@ -54,16 +48,9 @@ export const CompetitionTable: React.FC<CompetitionTableProps> = ({ data }) => {
                         {row.position}
                       </TableCell>
                       <TableCell sx={styles.darkTableCell}>
-                        <img
-                          style={{
-                            width: "20px",
-                            height: "20px",
-                            marginRight: "5px",
-                          }}
-                          src={row.team.crest}
-                        />
+                        <img style={styles.img} src={row.team.crest} />
                         <Link
-                          style={{ textDecoration: "none", color: "#202020" }}
+                          style={styles.nextLink}
                           href={{
                             pathname: "/teams/[slug]",
                             query: { slug: `${row.team.id}` },

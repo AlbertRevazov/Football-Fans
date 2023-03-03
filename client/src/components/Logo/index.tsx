@@ -1,9 +1,17 @@
-import { Link } from '@mui/material'
-import React from 'react'
+import Link from "next/link";
+import Image from "next/image";
+import React, { FC } from "react";
 
-export const Logo: React.FC = () => {
+export const Logo: FC = () => {
   return (
-       <img style={{width:'60px', height:'60px', borderRadius:'16px'}} src='/images/stadium.gif'/>
-   
-  )
-}
+    <Link href={"/"}>
+      <Image
+        style={{ borderRadius: "12px" }}
+        src="/images/stadium.gif"
+        alt="avatar"
+        width={60}
+        height={60}
+      />
+    </Link>
+  );
+};

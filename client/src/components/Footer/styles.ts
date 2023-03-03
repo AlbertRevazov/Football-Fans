@@ -9,7 +9,7 @@ export const styles = {
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    flexWrap: 'wrap',
+    flexWrap: "wrap",
     padding: "20px 0 20px 0",
   },
   links: {
@@ -27,14 +27,5 @@ export const styles = {
   },
   contacts: {
     marginLeft: "20px",
-    // ":hover": {
-    // backgroundColor: "#d28188",
-    // borderRadius: "20px",
-    // },
-    contactIcon: {
-      width: "60px",
-      height: "60px",
-      padding: "5px",
-    },
   },
 } as any;

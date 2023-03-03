@@ -1,8 +1,9 @@
-import { Box, Link, Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import { ContactProps } from "../../../../types";
 import { styles } from "../../styles";
+import { FC } from "react";
 
-export const ContactDetails: React.FC<ContactProps> = ({ data }) => {
+export const ContactDetails: FC<ContactProps> = ({ data }) => {
   const { address, website } = data;
 
   return (

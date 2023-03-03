@@ -1,4 +1,3 @@
-import { useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import { toast } from "react-toastify";
 import * as yup from "yup";
@@ -7,7 +6,6 @@ import { loginUser, registerUser } from "../../redux/features/auth/authSlice";
 
 export const useAuthHook = (toogle: boolean) => {
   const dispatch = useAppDispatch();
-  // const navigate = useNavigate();
   const { status } = useAppSelector((state: any) => state?.users);
 
   const validationSchema = yup.object({
@@ -44,9 +42,6 @@ export const useAuthHook = (toogle: boolean) => {
         toogle ? registerUser(formik.values) : loginUser(formik.values)
       );
       toast(status);
-      if (response) {
-        // navigate("/");
-      }
     } catch (error) {
       console.log(error);
     }

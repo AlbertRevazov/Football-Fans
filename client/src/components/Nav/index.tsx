@@ -12,9 +12,9 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 import { MobileNav } from "./MobileNav";
 import { link } from "../../types";
 import Link from "next/link";
-import { useEffect } from "react";
+import { useEffect, FC } from "react";
 
-export const Nav: React.FC = () => {
+export const Nav: FC = () => {
   const isMobile = useMediaQuery("(max-width:900px)");
   const isAuth = useAppSelector(checkIsAuth);
   const dispatch = useAppDispatch();
@@ -26,6 +26,7 @@ export const Nav: React.FC = () => {
     { id: 3, title: "Выйти", to: "/", hide: !isAuth, onclick: true },
     { id: 4, title: "Карта", to: "/map", hide: false },
     { id: 5, title: "Матчи", to: "/matches", hide: false },
+    { id: 6, title: "Избранное", to: "/favourites", hide: false },
   ];
 
   const logoutHandle = () => {

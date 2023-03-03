@@ -7,6 +7,7 @@ const initialState: UserState = {
   token: null,
   isLoading: false,
   status: null,
+  favourite: null,
 };
 
 export const registerUser = createAsyncThunk(
@@ -71,6 +72,7 @@ export const userAvatar = createAsyncThunk(
     }
   }
 );
+
 export const deleteAvatar = createAsyncThunk("users/deleteAvatar", async () => {
   try {
     const { data } = await axios.get("/users/delete", {});
@@ -79,6 +81,47 @@ export const deleteAvatar = createAsyncThunk("users/deleteAvatar", async () => {
     console.log(error);
   }
 });
+
+export const addFavouriteTeam = createAsyncThunk(
+  "/favourites/addFavouriteTeam",
+  async (payload: any) => {
+    try {
+      const { data } = await axios.post(
+        "/favourites/addFavouriteTeam",
+        payload
+      );
+      return data;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+);
+
+export const deleteFavouriteTeam = createAsyncThunk(
+  "/favourites/deleteFavouriteTeam",
+  async (payload: any) => {
+    try {
+      const { data } = await axios.delete(
+        `/favourites/deleteFavouriteTeam/${payload}`
+      );
+      return data;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+);
+
+export const getMyFavouriteTeams = createAsyncThunk(
+  "favourites/getMyFavouriteTeams",
+  async () => {
+    try {
+      const { data } = await axios.get("/favourites/myFavourites");
+      return data;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+);
 
 export const authSlice = createSlice({
   name: "users",
@@ -164,6 +207,44 @@ export const authSlice = createSlice({
     });
     builder.addCase(deleteAvatar.rejected, (state, action) => {
       state.isLoading = false;
+    });
+    // Добавление избранной команды
+    builder.addCase(addFavouriteTeam.pending, (state) => {
+      state.isLoading = true;
+    });
+    builder.addCase(addFavouriteTeam.fulfilled, (state, action) => {
+      state.isLoading = false;
+      state.favourite = action.payload.data;
+    });
+    builder.addCase(addFavouriteTeam.rejected, (state, action) => {
+      state.isLoading = false;
+      //   state.errorMessage = action?.error?.message;
+    });
+
+    // Удаление из избранного
+    builder.addCase(deleteFavouriteTeam.pending, (state) => {
+      state.isLoading = true;
+    });
+    builder.addCase(deleteFavouriteTeam.fulfilled, (state, action) => {
+      state.isLoading = false;
+      // state.favourite = action.payload.data;
+    });
+    builder.addCase(deleteFavouriteTeam.rejected, (state, action) => {
+      state.isLoading = false;
+      //   state.errorMessage = action?.error?.message;
+    });
+
+    //  список избранных
+    builder.addCase(getMyFavouriteTeams.pending, (state) => {
+      state.isLoading = true;
+    });
+    builder.addCase(getMyFavouriteTeams.fulfilled, (state, action) => {
+      state.isLoading = false;
+      state.favourite = action.payload;
+    });
+    builder.addCase(getMyFavouriteTeams.rejected, (state, action) => {
+      state.isLoading = false;
+      //   state.errorMessage = action?.error?.message;
     });
   },
 });

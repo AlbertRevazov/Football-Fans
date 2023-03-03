@@ -1,4 +1,4 @@
-import React from "react";
+import React, { FC } from "react";
 import { Accordion, AccordionSummary, Box, Typography } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import AccordionDetails from "@mui/material/AccordionDetails";
@@ -9,10 +9,9 @@ import { styles } from "../../styles";
 import { errorsData } from "../../../../utils/constants";
 import Link from "next/link";
 
-export const MatchesAccordion: React.FC = () => {
+export const MatchesAccordion: FC = () => {
   const { competionsTodayNames, competitionsNames } = useMatchesHook();
   const { games, errorMessage } = useAppSelector((state) => state.matches);
-  console.log(competitionsNames);
 
   return (
     <>

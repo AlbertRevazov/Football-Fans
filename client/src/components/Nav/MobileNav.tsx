@@ -1,4 +1,4 @@
-import React from "react";
+import React, { FC } from "react";
 import Menu from "@mui/material/Menu";
 import { Box } from "@mui/material";
 import MenuItem from "@mui/material/MenuItem";
@@ -9,7 +9,7 @@ import { checkIsAuth, logout } from "../../redux/features/auth/authSlice";
 import { toast } from "react-toastify";
 import Divider from "@mui/material/Divider";
 
-export const MobileNav: React.FC = () => {
+export const MobileNav: FC = () => {
   const dispatch = useAppDispatch();
   const isAuth = useAppSelector(checkIsAuth);
 

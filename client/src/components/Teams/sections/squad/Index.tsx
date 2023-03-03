@@ -2,8 +2,9 @@ import { Box, Divider, Typography } from "@mui/material";
 import { SquadProps } from "../../../../types";
 import { styles } from "../../styles";
 import { useSquadHook } from "./hook";
+import { FC } from "react";
 
-export const Squad: React.FC<SquadProps> = ({ data }) => {
+export const Squad: FC<SquadProps> = ({ data }) => {
   const { coach, defencers, goalkeepers, midfielders, offencers } =
     useSquadHook({ data });
 

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, FC, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../hooks/hooks";
 import {
   getScorersCompetition,
@@ -11,15 +11,18 @@ import { styles } from "./styles";
 import Typography from "@mui/material/Typography";
 import { errorsData } from "../../utils/constants";
 import { useRouter } from "next/router";
+import { Cleague } from "./sections/Table/Cleague";
+import Image from "next/image";
 
-export const CompetitionPage: React.FC = () => {
+export const CompetitionPage: FC = () => {
   const router = useRouter();
+  const dispatch = useAppDispatch();
   const { id } = router.query;
   const [scorers, setScorers] = useState(false);
+
   const { isLoading, errorsMessage } = useAppSelector(
     (state) => state.competitions
   );
-  const dispatch = useAppDispatch();
   const data = useAppSelector(
     (state) => state?.competitions.tournament?.standings
   );
@@ -35,14 +38,7 @@ export const CompetitionPage: React.FC = () => {
   return (
     <>
       {!!errorsMessage ? (
-        <Box
-          sx={{
-            display: "flex",
-            justifyContent: "center",
-            alighItems: "center",
-            margin: "60px",
-          }}
-        >
+        <Box sx={styles.error}>
           <Typography sx={styles.error}>
             {errorsData[`${errorsMessage}`]}
           </Typography>
@@ -69,13 +65,19 @@ export const CompetitionPage: React.FC = () => {
           </Box>
           {isLoading ? (
             <Box sx={styles.loading}>
-              <img
-                style={{ width: "300px", height: "300px" }}
+              <Image
+                alt="loading"
                 src="/gif/loading.gif"
+                width={300}
+                height={300}
               />
             </Box>
           ) : !scorers ? (
-            <CompetitionTable data={data} />
+            id === "CL" ? (
+              <Cleague data={data} />
+            ) : (
+              <CompetitionTable data={data} />
+            )
           ) : (
             <ScorersPage />
           )}

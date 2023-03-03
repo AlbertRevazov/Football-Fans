@@ -1,8 +1,9 @@
+import { FC } from "react";
 import { YMaps, Map } from "@pbe/react-yandex-maps";
 import { Box } from "@mui/material";
 import { styles } from "./styles";
 
-export const MapPage: React.FC = () => {
+export const MapPage: FC = () => {
   return (
     <Box style={styles.root}>
       <YMaps>

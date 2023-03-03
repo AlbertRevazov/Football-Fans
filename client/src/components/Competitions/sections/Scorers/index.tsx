@@ -4,10 +4,11 @@ import TableCell from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
+import { FC } from "react";
 import { useAppSelector } from "../../../../hooks/hooks";
 import { styles } from "../../styles";
 
-export const ScorersPage: React.FC = () => {
+export const ScorersPage: FC = () => {
   const { topScorers } = useAppSelector((state) => state.competitions);
 
   return (
@@ -27,14 +28,7 @@ export const ScorersPage: React.FC = () => {
             <TableRow key={row.player.id}>
               <TableCell sx={styles.darkTableCell}>{index + 1}</TableCell>
               <TableCell sx={styles.darkTableCell}>
-                <img
-                  style={{
-                    width: "20px",
-                    height: "20px",
-                    marginRight: "5px",
-                  }}
-                  src={row.team.crest}
-                />
+                <img style={styles.img} src={row.team.crest} />
                 {row.player.name} ( {row.player.nationality} )
               </TableCell>
               <TableCell sx={styles.darkTableCell}>
