@@ -1,9 +1,8 @@
-import React from "react";
-import { MatchesPage } from "../../src/components/Matches";
-import { Layout } from "../../src/components/Layout";
-import { Box } from "@mui/material";
+import React, { FC } from "react";
+import { MatchesPage } from "../../src/Site/Matches";
+import { Layout } from "../../src/Site/Layout";
 
-const Index = () => {
+const Index: FC = () => {
   return (
     <>
       {/*  sx={{

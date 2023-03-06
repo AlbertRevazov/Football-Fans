@@ -1,14 +1,14 @@
-import React from "react";
-import { Sign } from "../../src/components/Sign";
-import { Layout } from "../../src/components/Layout";
+import React, { FC } from "react";
+import { Sign } from "../../src/Site/Sign";
+import { Layout } from "../../src/Site/Layout";
 
-const Index = () => {
+const Index: FC = () => {
   return (
-    <div>
+    <>
       <Layout>
         <Sign />
       </Layout>
-    </div>
+    </>
   );
 };
 export default Index;

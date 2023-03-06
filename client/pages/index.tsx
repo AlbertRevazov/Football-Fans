@@ -1,9 +1,8 @@
-import React from "react";
-import { MainPage } from "../src/components/Main";
-import { Layout } from "../src/components/Layout";
-import Head from "next/head";
+import React, { FC } from "react";
+import { MainPage } from "../src/Site/Main";
+import { Layout } from "../src/Site/Layout";
 
-const Index = () => {
+const Index: FC = () => {
   return (
     <>
       <Layout>

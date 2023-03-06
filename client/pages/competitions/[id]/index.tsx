@@ -1,14 +1,14 @@
-import React from "react";
-import { CompetitionPage } from "../../../src/components/Competitions";
-import { Layout } from "../../../src/components/Layout";
+import React, { FC } from "react";
+import { CompetitionPage } from "../../../src/Site/Competitions";
+import { Layout } from "../../../src/Site/Layout";
 
-const CompetitionIdPage = () => {
+const CompetitionIdPage: FC = () => {
   return (
-    <div>
+    <>
       <Layout>
         <CompetitionPage />
       </Layout>
-    </div>
+    </>
   );
 };
 export default CompetitionIdPage;

@@ -3,6 +3,7 @@ import authSlice from "./features/auth/authSlice";
 import matchesSlice from "./features/matches/matchesSlice";
 import teamsSlice from "./features/teams/teamsSlice";
 import competitionsSlice from "./features/competitions/competitionsSlice";
+import favouriteSlice from "./features/favourites/favouriteSlice";
 
 export const store = configureStore({
   reducer: {
@@ -10,6 +11,7 @@ export const store = configureStore({
     matches: matchesSlice,
     teams: teamsSlice,
     competitions: competitionsSlice,
+    favourites: favouriteSlice,
   },
 });
 
