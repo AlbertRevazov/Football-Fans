@@ -1,8 +1,8 @@
-import React from "react";
-import { FavouritePage } from "../../src/components/Favourites";
-import { Layout } from "../../src/components/Layout";
+import React, { FC } from "react";
+import { FavouritePage } from "../../src/Site/Favourites";
+import { Layout } from "../../src/Site/Layout";
 
-const Index = () => {
+const Index: FC = () => {
   return (
     <>
       <Layout>

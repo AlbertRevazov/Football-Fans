@@ -17,18 +17,23 @@ router.get("/myFavourites", checkAuth, async (req, res) => {
 router.post("/addFavouriteTeam", async (req, res) => {
   try {
     const { userId, apiId, name, img } = req.body;
-    const favourite = await Favourites.create({
-      apiId,
-      user_id: userId,
-      name,
-      img,
-      isFavourite: true,
-    });
+    const addFavourite = await Favourites.findOne({ where: { name } });
+    if (addFavourite) {
+      res.json({ message: "Команда уже в избранном" });
+    } else {
+      const favourite = await Favourites.create({
+        apiId,
+        user_id: userId,
+        name,
+        img,
+        isFavourite: true,
+      });
 
-    return res.json({
-      favourite,
-      message: "Добавлено в избранное",
-    });
+      return res.json({
+        favourite,
+        message: "Добавлено в избранное",
+      });
+    }
   } catch (error) {
     console.log(error);
     res.json({ message: "Ошибка при добавлении" });

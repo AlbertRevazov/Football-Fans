@@ -1,8 +1,8 @@
-import React from "react";
-import { MapPage } from "../../src/components/Map";
-import { Layout } from "../../src/components/Layout";
+import React, { FC } from "react";
+import { MapPage } from "../../src/Site/Map";
+import { Layout } from "../../src/Site/Layout";
 
-const Index = () => {
+const Index: FC = () => {
   return (
     <>
       <Layout>

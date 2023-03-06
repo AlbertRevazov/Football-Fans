@@ -1,14 +1,14 @@
-import React from "react";
-import { TeamsPage } from "../../../src/components/Teams";
-import { Layout } from "../../../src/components/Layout";
+import React, { FC } from "react";
+import { TeamsPage } from "../../../src/Site/Teams";
+import { Layout } from "../../../src/Site/Layout";
 
-const teamsPage = () => {
+const index: FC = () => {
   return (
-    <div>
+    <>
       <Layout>
         <TeamsPage />
       </Layout>
-    </div>
+    </>
   );
 };
-export default teamsPage;
+export default index;

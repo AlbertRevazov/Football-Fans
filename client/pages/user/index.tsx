@@ -1,8 +1,8 @@
-import React from "react";
-import { UserPage } from "../../src/components/User";
-import { Layout } from "../../src/components/Layout";
+import React, { FC } from "react";
+import { UserPage } from "../../src/Site/User";
+import { Layout } from "../../src/Site/Layout";
 
-const Index = () => {
+const Index: FC = () => {
   return (
     <>
       <Layout>
