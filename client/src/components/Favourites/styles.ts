@@ -2,9 +2,8 @@ export const styles = {
   root: {
     margin: "60px",
     display: "flex",
-    flexDirection: "column",
-    justifyContent: "center",
     alignItems: "center",
+    justifyContent: "center",
   },
   title: {
     margin: "30px",
@@ -13,10 +12,11 @@ export const styles = {
     lineHeight: "24px",
     color: "#202020",
   },
-  button: {
-    width: "290px",
+  nextLink: {
+    textDecoration: "none",
     color: "#202020",
-    borderRadius: "16px",
-    ":hover": { backgroundColor: "#202020", color: "#FFFFFF" },
+  },
+  button: {
+    ":hover": { background: "none" },
   },
 } as any;

@@ -5,7 +5,6 @@ const { Favourites } = require("../db/models");
 
 router.get("/myFavourites", checkAuth, async (req, res) => {
   try {
-    console.log(req.userId);
     const favourite = await Favourites.findAll({
       where: { user_id: req.userId },
     });
@@ -23,8 +22,8 @@ router.post("/addFavouriteTeam", async (req, res) => {
       user_id: userId,
       name,
       img,
+      isFavourite: true,
     });
-    console.log(JSON.parse(JSON.stringify(favourite)));
 
     return res.json({
       favourite,
@@ -41,8 +40,9 @@ router.delete("/deleteFavouriteTeam/:id", async (req, res) => {
     const favourite = await Favourites.destroy({
       where: { id: req.params.id },
     });
-    res.json({message:'Удалено!'})
+    res.json({ message: "Удалено!" });
   } catch (error) {
+    console.log(error);
     res.json({ message: "Ошибка при удалении" });
   }
 });

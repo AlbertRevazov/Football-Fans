@@ -19,8 +19,9 @@ module.exports = {
         },
         onDelete: "CASCADE",
       },
-      name: { allowNull: false, type: Sequelize.STRING },
+      name: { allowNull: false, type: Sequelize.STRING, unique: true },
       img: { allowNull: false, type: Sequelize.STRING },
+      isFavourite: { allowNull: false, type: Sequelize.BOOLEAN },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,

@@ -36,14 +36,7 @@ export const TeamsPage: React.FC = () => {
   return (
     <>
       {!!errorMessage ? (
-        <Box
-          sx={{
-            display: "flex",
-            margin: "140px",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
+        <Box sx={styles.errorMessage}>
           <Typography sx={styles.error}>
             {errorsData[`${errorMessage}`]}
           </Typography>

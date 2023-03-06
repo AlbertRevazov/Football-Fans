@@ -1,8 +1,6 @@
 import { useRouter } from "next/router";
-import { useParams } from "react-router-dom";
 import { useAppSelector } from "../../hooks/hooks";
 
-// todo typed thix component
 export const useTeamsHook = () => {
   const { club, isLoading, errorMessage } = useAppSelector(
     (state) => state.teams
@@ -36,10 +34,11 @@ export const useTeamsHook = () => {
     shortName,
     tla,
     runningCompetitions,
+    id,
   };
   const contactData = { website, address };
   const squadData = { squad, coach };
-  
+
   return {
     isLoading,
     id,

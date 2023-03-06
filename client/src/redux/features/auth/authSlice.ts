@@ -227,7 +227,7 @@ export const authSlice = createSlice({
     });
     builder.addCase(deleteFavouriteTeam.fulfilled, (state, action) => {
       state.isLoading = false;
-      // state.favourite = action.payload.data;
+      state.favourite = [];
     });
     builder.addCase(deleteFavouriteTeam.rejected, (state, action) => {
       state.isLoading = false;

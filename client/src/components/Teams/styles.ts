@@ -75,4 +75,10 @@ export const styles = {
       backgroundColor: "#FFFFFF",
     },
   },
+  errorMessage: {
+    display: "flex",
+    margin: "140px",
+    justifyContent: "center",
+    alignItems: "center",
+  },
 } as any;
