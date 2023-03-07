@@ -21,12 +21,12 @@ export const Nav: FC = () => {
   const { user } = useAppSelector((state) => state.users);
 
   const links = [
-    { id: 1, title: "Главная", to: "/", hide: !isAuth },
+    { id: 1, title: "Главная", to: "/", hide: isAuth },
     { id: 2, title: "Войти", to: "/sign", hide: isAuth },
     { id: 3, title: "Выйти", to: "/", hide: !isAuth, onclick: true },
-    { id: 4, title: "Карта", to: "/map", hide: !isAuth },
-    { id: 5, title: "Матчи", to: "/matches", hide: !isAuth },
-    { id: 6, title: "Избранное", to: "/favourites", hide: !isAuth },
+    { id: 4, title: "Карта", to: "/map", hide: isAuth },
+    { id: 5, title: "Матчи", to: "/matches", hide: isAuth },
+    { id: 6, title: "Избранное", to: "/favourites", hide: isAuth },
   ];
 
   const logoutHandle = () => {

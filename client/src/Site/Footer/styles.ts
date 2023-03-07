@@ -2,7 +2,6 @@ export const styles = {
   root: {
     width: "100%",
     height: "auto",
-    marginTop: "80px",
     backgroundColor: "floralwhite",
   },
   content: {

@@ -1,15 +1,21 @@
-import { Box, Button, TextField, Checkbox, Typography } from "@mui/material";
+import { Box, Button, TextField, Input, Typography } from "@mui/material";
+import IconButton from "@mui/material/IconButton";
+import InputAdornment from "@mui/material/InputAdornment";
 import React, { useEffect, FC } from "react";
 import { toast } from "react-toastify";
 import { useAppSelector } from "../../hooks/hooks";
 import { MainPage } from "../Main";
 import { useAuthHook } from "./hooks";
 import { styles } from "./styles";
+import Visibility from "@mui/icons-material/Visibility";
+import VisibilityOff from "@mui/icons-material/VisibilityOff";
 
 export const Sign: FC = () => {
   const [toogle, setToogle] = React.useState(false);
   const { token } = useAppSelector((state) => state.users);
   const { formik, handleSubmit, status } = useAuthHook(toogle);
+  const [showPassword, setShowPassword] = React.useState(false);
+
   const label = { inputProps: { "aria-label": "Checkbox demo" } };
 
   useEffect(() => {
@@ -18,23 +24,39 @@ export const Sign: FC = () => {
       <MainPage />;
     }
   }, [status]);
+  const handleClickShowPassword = () => setShowPassword((show) => !show);
 
+  const handleMouseDownPassword = (
+    event: React.MouseEvent<HTMLButtonElement>
+  ) => {
+    event.preventDefault();
+  };
   return (
-    <>
+    <Box
+      sx={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        minHeight: "800px",
+      }}
+    >
       {token ? (
         <MainPage />
       ) : (
         <form
+          // style={{ padding: "40px" }}
           onSubmit={(e) => {
             e.preventDefault();
           }}
         >
-          <Box sx={styles.root}>
+          <Box sx={[styles.root, { minHeight: toogle ? "600px" : "400px" }]}>
             <TextField
               sx={styles.textField}
+              color="warning"
               id="email"
               name="email"
               label="Email"
+              type="tel"
               required
               value={formik.values.email}
               onChange={formik.handleChange}
@@ -43,10 +65,11 @@ export const Sign: FC = () => {
             />
             <TextField
               sx={styles.textField}
+              color="warning"
               id="password"
               name="password"
               label="Password"
-              type="password"
+              type={"password"}
               required
               value={formik.values.password}
               onChange={formik.handleChange}
@@ -58,10 +81,11 @@ export const Sign: FC = () => {
               <>
                 <TextField
                   sx={styles.textField}
+                  color="warning"
                   id="phone"
                   name="phone"
                   label="Phone"
-                  type="phone"
+                  type="tel"
                   required
                   value={formik.values.phone || ""}
                   onChange={formik.handleChange}
@@ -70,6 +94,7 @@ export const Sign: FC = () => {
                 />
                 <TextField
                   sx={styles.textField}
+                  color="warning"
                   id="name"
                   name="name"
                   label="name"
@@ -82,35 +107,25 @@ export const Sign: FC = () => {
                 />
               </>
             )}
-          </Box>
-          <Box sx={styles.toogleBox}>
-            <Checkbox
-              {...label}
-              name="checkbox"
-              onClick={() => setToogle(!toogle)}
-              sx={{ "& .MuiSvgIcon-root": { fontSize: 28 } }}
-            />
-            <Typography sx={styles.font}>Зарегистрироваться</Typography>
-          </Box>
-          <Box
-            sx={{
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-          >
-            <Button
-              color="inherit"
-              variant="outlined"
-              sx={styles.button}
-              type="submit"
-              onClick={handleSubmit}
-            >
-              Submit
-            </Button>
+            <Box sx={styles.toogleBox}>
+              <Typography onClick={() => setToogle(!toogle)} sx={styles.font}>
+                {toogle ? "войти" : "зарегистрироваться"}
+              </Typography>
+            </Box>
+            <Box>
+              <Button
+                color="warning"
+                variant="outlined"
+                sx={styles.button}
+                type="submit"
+                onClick={handleSubmit}
+              >
+                {toogle ? "зарегистрироваться" : "войти"}
+              </Button>
+            </Box>
           </Box>
         </form>
       )}
-    </>
+    </Box>
   );
 };

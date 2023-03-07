@@ -25,8 +25,8 @@ export const AboutTeam: FC<AboutProps> = ({ data }) => {
   const active = !isActive?.isFavourite;
 
   useEffect(() => {
-    dispatch(getMyFavouriteTeams());
-  }, []);
+    setTimeout(() => dispatch(getMyFavouriteTeams()), 3000);
+  }, [favourite]);
 
   return (
     <Box sx={styles.sectionBox}>
