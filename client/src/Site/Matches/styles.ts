@@ -15,7 +15,7 @@ export const styles = {
     fontFamily: "Montserrat Alternates",
     fontSize: "26px",
     cursor: "pointer",
-    color: "#202020",
+    color: "#FFFFFF",
   },
   nextLink: {
     textDecoration: "none",
@@ -53,7 +53,7 @@ export const styles = {
     paddingLeft: "15px",
     fontFamily: "Montserrat Alternates",
     fontSize: "16px",
-    color: "#202020",
+    color: "#FFFFFF",
   },
   emblem: {
     width: "20px",

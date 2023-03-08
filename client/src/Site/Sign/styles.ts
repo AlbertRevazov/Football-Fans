@@ -1,4 +1,10 @@
 export const styles = {
+  container: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    minHeight: "800px",
+  },
   root: {
     width: "500px",
     display: "flex",
@@ -31,7 +37,7 @@ export const styles = {
     borderBottom: "1px solid rgb(237 108 2 / 0%)",
     ":hover": {
       borderBottom: "1px solid rgb(237 108 2 / 80%)",
-      color: "#FFFFFF",
+      // color: "#FFFFFF",
     },
   },
   button: {

@@ -9,19 +9,21 @@ import {
 } from "../../redux/features/auth/authSlice";
 //
 import { styles } from "./styles";
-
+import { useRouter } from "next/router";
 
 export const FavouritePage: FC = () => {
   const dispatch = useAppDispatch();
-  const { favourite } = useAppSelector((state) => state.users);
+  const router = useRouter();
+  const { favourite, token } = useAppSelector((state) => state.users);
 
   useEffect(() => {
     dispatch(getMyFavouriteTeams());
-  }, [favourite]);
+  }, []);
 
   return (
     <>
-      {!!favourite?.length &&
+      {!!token &&
+        !!favourite?.length &&
         favourite.map((team) => (
           <Box key={team.id} sx={styles.root}>
             <Link

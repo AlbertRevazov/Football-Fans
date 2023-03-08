@@ -12,7 +12,6 @@ module.exports = (sequelize, DataTypes) => {
       user_id: DataTypes.INTEGER,
       name: DataTypes.STRING,
       img: DataTypes.STRING,
-      isFavourite: DataTypes.BOOLEAN,
     },
     {
       sequelize,

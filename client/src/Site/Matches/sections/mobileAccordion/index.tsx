@@ -19,7 +19,17 @@ export const MobileAccordion: FC = () => {
   const { games, errorMessage } = useAppSelector((state) => state.matches);
 
   return (
-    <>
+    <Box
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        margin: "40px",
+        position: "relative",
+
+        // justifyContent: "",
+      }}
+    >
       {!!errorMessage ? (
         <Error errorMessage={errorMessage} />
       ) : (
@@ -27,7 +37,9 @@ export const MobileAccordion: FC = () => {
           return (
             <>
               <Accordion sx={styles.accordion} key={index}>
-                <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+                <AccordionSummary
+                  expandIcon={<ExpandMoreIcon sx={{ color: "#FFFFFF" }} />}
+                >
                   <Typography sx={styles.font}>
                     <img
                       src={competionsTodayNames[item]}
@@ -61,7 +73,7 @@ export const MobileAccordion: FC = () => {
                                       style={styles.emblem}
                                       src={game.homeTeam.crest}
                                     />
-                                    {game.homeTeam.name}
+                                    {game.homeTeam.shortName}
                                   </Typography>
                                 </Link>
                                 <Link
@@ -83,7 +95,7 @@ export const MobileAccordion: FC = () => {
                                       style={styles.emblem}
                                       src={game.awayTeam.crest}
                                     />
-                                    {game.awayTeam.name}
+                                    {game.awayTeam.shortName}
                                   </Typography>
                                 </Link>
                               </Box>
@@ -115,6 +127,6 @@ export const MobileAccordion: FC = () => {
           );
         })
       )}
-    </>
+    </Box>
   );
 };

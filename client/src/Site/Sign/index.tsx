@@ -1,46 +1,29 @@
 import { Box, Button, TextField, Input, Typography } from "@mui/material";
-import IconButton from "@mui/material/IconButton";
-import InputAdornment from "@mui/material/InputAdornment";
 import React, { useEffect, FC } from "react";
 import { toast } from "react-toastify";
 import { useAppSelector } from "../../hooks/hooks";
 import { MainPage } from "../Main";
 import { useAuthHook } from "./hooks";
 import { styles } from "./styles";
-import Visibility from "@mui/icons-material/Visibility";
-import VisibilityOff from "@mui/icons-material/VisibilityOff";
 
 export const Sign: FC = () => {
   const [toogle, setToogle] = React.useState(false);
-  const { token } = useAppSelector((state) => state.users);
+  const { user, token } = useAppSelector((state) => state.users);
   const { formik, handleSubmit, status } = useAuthHook(toogle);
-  const [showPassword, setShowPassword] = React.useState(false);
-
-  const label = { inputProps: { "aria-label": "Checkbox demo" } };
 
   useEffect(() => {
     if (status) {
       toast(status);
       <MainPage />;
     }
+    if (status === "Регистрация успешна!") {
+      setToogle(false);
+    }
   }, [status]);
-  const handleClickShowPassword = () => setShowPassword((show) => !show);
 
-  const handleMouseDownPassword = (
-    event: React.MouseEvent<HTMLButtonElement>
-  ) => {
-    event.preventDefault();
-  };
   return (
-    <Box
-      sx={{
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        minHeight: "800px",
-      }}
-    >
-      {token ? (
+    <Box sx={styles.container}>
+      {user?.id ? (
         <MainPage />
       ) : (
         <form

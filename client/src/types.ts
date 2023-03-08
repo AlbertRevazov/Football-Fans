@@ -80,7 +80,7 @@ export type link = {
   id: number;
   title: string;
   to: string;
-  hide: boolean;
+  hide?: boolean;
   onclick?: boolean;
 };
 

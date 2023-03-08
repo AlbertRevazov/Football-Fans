@@ -20,16 +20,18 @@ export const MatchesAccordion: FC = () => {
       ) : (
         competitionsNames.map((item: string, index) => {
           return (
-            <>
+            <Box sx={{ background: "none", backdropFilter: "blur(19px)" }}>
               <Accordion
                 sx={{
                   margin: "15px",
                   borderRadius: "8px",
-                  background: "floralwhite",
+                  background: "none",
                 }}
                 key={index}
               >
-                <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+                <AccordionSummary
+                  expandIcon={<ExpandMoreIcon sx={{ color: "#FFFFFF" }} />}
+                >
                   <Typography sx={styles.font}>
                     <img
                       src={competionsTodayNames[item]}
@@ -82,7 +84,7 @@ export const MatchesAccordion: FC = () => {
                                       style={styles.emblem}
                                       src={game.homeTeam.crest}
                                     />
-                                    {game.homeTeam.name} :
+                                    {game.homeTeam.shortName} :
                                   </Typography>
                                 </Link>
                                 <Link
@@ -101,7 +103,7 @@ export const MatchesAccordion: FC = () => {
                                       },
                                     ]}
                                   >
-                                    {game.awayTeam.name}{" "}
+                                    {game.awayTeam.shortName}
                                     <img
                                       style={styles.emblem}
                                       src={game.awayTeam.crest}
@@ -136,7 +138,7 @@ export const MatchesAccordion: FC = () => {
                   })}
                 </AccordionDetails>
               </Accordion>
-            </>
+            </Box>
           );
         })
       )}

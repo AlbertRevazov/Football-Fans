@@ -18,7 +18,7 @@ export const MatchesPage: FC = () => {
   }, []);
 
   return (
-    <Box>
+    <Box sx={{ minHeight: "800px" }}>
       {isLoading ? (
         <Loading />
       ) : !isMobile ? (
@@ -26,9 +26,9 @@ export const MatchesPage: FC = () => {
           <MatchesAccordion />
         </Box>
       ) : (
-        <Box sx={{ marginTop: "80px" }}>
+        <>
           <MobileAccordion />
-        </Box>
+        </>
       )}
     </Box>
   );

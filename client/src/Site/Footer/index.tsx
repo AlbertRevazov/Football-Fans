@@ -8,7 +8,7 @@ export const Footer: FC = () => {
     <Box sx={styles.root}>
       <Box sx={styles.content}>
         <Box sx={styles.links}>
-          <Image src="/images/juve.png" alt="avatar" width={90} height={90} />
+          {/* <Image src="/images/juve.png" alt="avatar" width={90} height={90} /> */}
           <Box sx={styles.title}>
             <Typography sx={[styles.font, { fontSize: "24px" }]}>
               Revazov

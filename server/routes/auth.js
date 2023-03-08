@@ -6,23 +6,25 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const upload = require("../utils/multer");
 
+//Ркгистрация в системе
 router.post("/signUp", async (req, res) => {
   try {
-    const { email, password, name, phone } = req.body; /// / запрашиваем информацию с фронта о юзере и пароле
+    const { email, password, name, phone } = req.body;
+    const isUsed = await Users.findOne({ where: { email } });
 
-    const isUsed = await Users.findOne({ where: { email } }); /// / ищем в базе данных по email
     if (isUsed) {
       // если такой пользователь существует то отправляем сообщение и статус
       return res.json({
         message: "Такой пользователь уже существует!",
+        status: 202,
       });
     }
+
     if (!isUsed) {
-      const salt = bcrypt.genSaltSync(10); /// / хэшируем пароль
+      const salt = bcrypt.genSaltSync(10); // хэшируем пароль
       const hash = bcrypt.hashSync(password, salt);
 
       const newUser = await Users.create({
-        /// / создаем нового юзера
         email,
         password: hash,
         name,
@@ -34,16 +36,17 @@ router.post("/signUp", async (req, res) => {
           // создаем JWT токен для авторизации и шифруем его по id юзера
           id: newUser.id,
         },
-        "efdfdsgfdff6gdfg77fdgdfg", /// /секретная фраза
-        { expiresIn: "30d" } /// / срок действия токена
+        "efdfdsgfdff6gdfg77fdgdfg", //секретная фраза
+        { expiresIn: "30d" } // срок действия токена
       );
 
-      await newUser.save(); /// / записываем в БД
+      await newUser.save(); // записываем в БД
 
       return res.json({
         newUser,
         token,
         message: "Регистрация успешна!",
+        status: 222,
       });
     }
   } catch (error) {
@@ -52,7 +55,7 @@ router.post("/signUp", async (req, res) => {
     });
   }
 });
-
+//Вход в систему
 router.post("/signIn", async (req, res) => {
   try {
     const { email, password } = req.body;

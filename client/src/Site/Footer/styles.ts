@@ -2,12 +2,13 @@ export const styles = {
   root: {
     width: "100%",
     height: "auto",
-    backgroundColor: "floralwhite",
+    // backgroundColor: "rgb(63 78 97)",
   },
   content: {
+    backdropFilter: "blur(3px)",
     display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
+    justifyContent: "start",
+    alignItems: "end",
     flexWrap: "wrap",
     padding: "20px 0 20px 0",
   },
@@ -23,6 +24,7 @@ export const styles = {
   },
   font: {
     fontFamily: "Montserrat Alternates",
+    color: "#FFFFFF",
   },
   contacts: {
     marginLeft: "20px",
