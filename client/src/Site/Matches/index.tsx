@@ -15,7 +15,7 @@ export const MatchesPage: FC = () => {
 
   useEffect(() => {
     dispatch(getMatches());
-  }, []);
+  }, [dispatch]);
 
   return (
     <Box sx={{ minHeight: "800px" }}>
@@ -26,9 +26,7 @@ export const MatchesPage: FC = () => {
           <MatchesAccordion />
         </Box>
       ) : (
-        <>
-          <MobileAccordion />
-        </>
+        <MobileAccordion />
       )}
     </Box>
   );

@@ -1,8 +1,11 @@
 import { Box, Typography } from "@mui/material";
-import { ContactProps } from "../../../../types";
-import { styles } from "../../styles";
-import { FC } from "react";
 
+import { FC } from "react";
+import { styles } from "../../../styles";
+import { Club } from "../../../types";
+interface ContactProps {
+  data: Club;
+}
 export const ContactDetails: FC<ContactProps> = ({ data }) => {
   const { address, website } = data;
 

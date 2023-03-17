@@ -1,33 +1,24 @@
 import React, { FC } from "react";
-import { useTeamsHook } from "../../hooks";
 import { useEffect, useState } from "react";
-import { useAppDispatch } from "../../../../hooks/hooks";
-import {
-  getCalendar,
-  getTeams,
-} from "../../../../redux/features/teams/teamsSlice";
 import { Container, Box, Button } from "@mui/material";
-import { Loading } from "../../../../Common/Loading";
-import { styles } from "../../styles";
-import { AboutTeam } from "../about";
-import { Calendar } from "../calendar";
-import { ContactDetails } from "../contact";
-import { Squad } from "../squad/Index";
-import { Error } from "../../../../Common/Error";
+import { AboutTeam } from "./sections/about";
+import { ContactDetails } from "./sections/contact";
+import { Squad } from "./sections/squad/Index";
+import { useRouter } from "next/dist/client/router";
+import { useAppDispatch, useAppSelector } from "../../../hooks/hooks";
+import { getCalendar, getTeams } from "../../../redux/features/teams/teamsSlice";
+import { Error } from "../../../Common/Error";
+import { Loading } from "../../../Common/Loading";
+import { styles } from "../styles";
+import { Calendar } from "../../../Common/Calendar";
 
 export const TeamDesktop: FC = () => {
   const dispatch = useAppDispatch();
   const [toogle, setToogle] = useState(true);
-
-  const {
-    aboutData,
-    contactData,
-    errorMessage,
-    id,
-    squadData,
-    club,
-    isLoading,
-  } = useTeamsHook();
+  const { club, errorMessage, isLoading } = useAppSelector(
+    (state) => state.teams
+  );
+  const { id } = useRouter().query;
 
   useEffect(() => {
     if (!!id) {
@@ -54,10 +45,10 @@ export const TeamDesktop: FC = () => {
             {club && (
               <Box sx={styles.root}>
                 <Box sx={styles.content}>
-                  {aboutData && <AboutTeam data={aboutData} />}
-                  {contactData && <ContactDetails data={contactData} />}
+                  {club && <AboutTeam data={club} />}
+                  {club && <ContactDetails data={club} />}
                 </Box>
-                {squadData && <Squad data={squadData} />}
+                {club && <Squad data={club} />}
               </Box>
             )}
           </Container>

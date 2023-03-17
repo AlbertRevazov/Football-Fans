@@ -1,4 +1,5 @@
-import { useAppSelector } from "../../../../hooks/hooks";
+import { useAppSelector } from "../../hooks/hooks";
+
 export const useCalendarHook = () => {
   const { calendar } = useAppSelector((state) => state.teams);
 

@@ -1,6 +1,5 @@
 import { useFormik } from "formik";
 import { useRouter } from "next/router";
-import { toast } from "react-toastify";
 import * as yup from "yup";
 import { useAppDispatch, useAppSelector } from "../../hooks/hooks";
 import { loginUser, registerUser } from "../../redux/features/auth/authSlice";
@@ -40,7 +39,6 @@ export const useAuthHook = (toogle: boolean) => {
   const handleSubmit = async () => {
     try {
       const response = await dispatch(
-        // if toogle === true to send fetch register
         toogle ? registerUser(formik.values) : loginUser(formik.values)
       );
       if (response.payload?.status === 222) {

@@ -1,5 +1,8 @@
-import { SquadProps } from "../../../../types";
+import { Club } from "../../../types";
 
+interface SquadProps {
+  data: Club;
+}
 export const useSquadHook = ({ data }: SquadProps) => {
   const { coach, squad } = data;
   const goalkeepers = squad?.filter((item) => item.position === "Goalkeeper");

@@ -6,7 +6,7 @@ const initialState: TournamentState = {
   tournament: null,
   topScorers: null,
   isLoading: false,
-  errorsMessage: null,
+  errorMessage: null,
 };
 
 export const getTableCompetition = createAsyncThunk(
@@ -65,7 +65,7 @@ export const competitionsSlice = createSlice({
     });
     builder.addCase(getTableCompetition.rejected, (state, action) => {
       state.isLoading = false;
-      state.errorsMessage = action.error.message;
+      state.errorMessage = action.error.message;
     });
     // Таблица бомбардиров
     builder.addCase(getScorersCompetition.pending, (state) => {
@@ -77,7 +77,7 @@ export const competitionsSlice = createSlice({
     });
     builder.addCase(getScorersCompetition.rejected, (state, action) => {
       state.isLoading = false;
-      state.errorsMessage = action.error.message;
+      state.errorMessage = action.error.message;
     });
   },
 });

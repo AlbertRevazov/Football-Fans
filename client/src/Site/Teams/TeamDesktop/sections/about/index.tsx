@@ -1,26 +1,36 @@
 import { Box, Typography } from "@mui/material";
 import Image from "next/image";
 import Link from "next/link";
-import { AboutProps } from "../../../../types";
-import { styles } from "../../styles";
-import { FC, useEffect } from "react";
-import { useAppDispatch, useAppSelector } from "../../../../hooks/hooks";
-import {
-  addFavouriteTeam,
-  deleteFavouriteTeam,
-  getMyFavouriteTeams,
-} from "../../../../redux/features/auth/authSlice";
-import { useRouter } from "next/dist/client/router";
 
-export const AboutTeam: FC<AboutProps> = ({ data }) => {
+import React, { FC, useEffect } from "react";
+
+import { useRouter } from "next/dist/client/router";
+import { useAppDispatch, useAppSelector } from "../../../../../hooks/hooks";
+import { addFavouriteTeam, deleteFavouriteTeam, getMyFavouriteTeams } from "../../../../../redux/features/auth/authSlice";
+import { styles } from "../../../styles";
+import { Club } from "../../../types";
+
+interface AboutProps {
+  data: Club;
+}
+
+export const AboutTeam: FC<AboutProps> = React.memo(({ data }) => {
   const dispatch = useAppDispatch();
   const router = useRouter();
   const { id } = router.query;
   const { user } = useAppSelector((state) => state.users);
   const { favourite } = useAppSelector((state) => state?.users);
-  const { area, clubColors, crest, founded, name, runningCompetitions, venue } =
-    data;
-
+  const {
+    area,
+    clubColors,
+    founded,
+    name,
+    venue,
+    crest,
+    shortName,
+    tla,
+    runningCompetitions,
+  } = data;
   const isActive = favourite?.find((item) => item.name === name);
   const active = !isActive?.isFavourite;
 
@@ -105,4 +115,4 @@ export const AboutTeam: FC<AboutProps> = ({ data }) => {
       </Box>
     </Box>
   );
-};
+});

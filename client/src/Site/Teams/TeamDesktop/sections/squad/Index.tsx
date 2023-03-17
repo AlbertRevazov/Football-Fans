@@ -1,10 +1,15 @@
 import { Box, Divider, Typography } from "@mui/material";
-import { SquadProps } from "../../../../types";
-import { styles } from "../../styles";
 import { useSquadHook } from "./hook";
-import { FC } from "react";
+import React, { FC } from "react";
+import { styles } from "../../../styles";
+import { Club, SquadType } from "../../../types";
 
-export const Squad: FC<SquadProps> = ({ data }) => {
+interface SquadProps {
+  data: Club;
+}
+export const Squad: FC<SquadProps> = React.memo(({ data }) => {
+  console.log(data?.squad, "dara");
+
   const { coach, defencers, goalkeepers, midfielders, offencers } =
     useSquadHook({ data });
 
@@ -15,7 +20,7 @@ export const Squad: FC<SquadProps> = ({ data }) => {
       <Typography sx={styles.font}>Вратари</Typography>
       <Divider sx={styles.divider} />
       {goalkeepers &&
-        goalkeepers.map((man) => (
+        goalkeepers.map((man: SquadType) => (
           <Typography key={man.id} sx={styles.font}>
             {man.name} ({man.nationality})
           </Typography>
@@ -23,7 +28,7 @@ export const Squad: FC<SquadProps> = ({ data }) => {
       <Typography sx={styles.font}>Защитники</Typography>
       <Divider sx={styles.divider} />
       {defencers &&
-        defencers.map((man) => (
+        defencers.map((man: SquadType) => (
           <Typography key={man.id} sx={styles.font}>
             {man.name} ({man.nationality})
           </Typography>
@@ -31,7 +36,7 @@ export const Squad: FC<SquadProps> = ({ data }) => {
       <Typography sx={styles.font}>Полузащитники</Typography>
       <Divider sx={styles.divider} />
       {midfielders &&
-        midfielders.map((man) => (
+        midfielders.map((man: SquadType) => (
           <Typography key={man.id} sx={styles.font}>
             {man.name} ({man.nationality})
           </Typography>
@@ -39,11 +44,11 @@ export const Squad: FC<SquadProps> = ({ data }) => {
       <Typography sx={styles.font}>Нападающие</Typography>
       <Divider sx={styles.divider} />
       {offencers &&
-        offencers.map((man) => (
+        offencers.map((man: SquadType) => (
           <Typography key={man.id} sx={styles.font}>
             {man.name} ({man.nationality})
           </Typography>
         ))}
     </Box>
   );
-};
+});

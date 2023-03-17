@@ -1,4 +1,10 @@
 export const styles = {
+  root: {
+    display: "flex",
+    flexDirection: "column",
+    margin: "40px",
+    position: "relative",
+  },
   error: {
     display: "flex",
     justifyContent: "center",

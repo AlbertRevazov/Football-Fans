@@ -10,7 +10,9 @@ import { toast } from "react-toastify";
 import Divider from "@mui/material/Divider";
 import Link from "next/link";
 
-export const MobileNav: FC = () => {
+type MobileNavProps = {};
+
+export const MobileNav: FC<MobileNavProps> = () => {
   const dispatch = useAppDispatch();
   const isAuth = useAppSelector(checkIsAuth);
 

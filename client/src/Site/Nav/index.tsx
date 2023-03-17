@@ -9,17 +9,26 @@ import { toast } from "react-toastify";
 import { styles } from "./styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { MobileNav } from "./MobileNav";
-import { link } from "../../types";
 import Link from "next/link";
 import { useEffect, FC } from "react";
 
-export const Nav: FC = () => {
+interface LinkProps {
+  id: number;
+  title: string;
+  to: string;
+  hide?: boolean;
+  onclick?: boolean;
+}
+
+interface Props {}
+
+export const Nav: FC<Props> = () => {
   const isMobile = useMediaQuery("(max-width:900px)");
   const isAuth = useAppSelector(checkIsAuth);
   const dispatch = useAppDispatch();
   const { user } = useAppSelector((state) => state.users);
 
-  const links = [
+  const links: LinkProps[] = [
     { id: 1, title: "Главная", to: "/" },
     { id: 2, title: "Войти", to: "/sign", hide: isAuth },
     { id: 3, title: "Выйти", to: "/", hide: !isAuth, onclick: true },
@@ -44,7 +53,7 @@ export const Nav: FC = () => {
         <Box sx={styles.root}>
           <Box sx={styles.navBar}>
             <Typography sx={styles.font}>LOGO</Typography>
-            {links.map((item: link) => (
+            {links.map((item: LinkProps) => (
               <Box
                 key={item.id}
                 onClick={item.onclick ? logoutHandle : () => {}}

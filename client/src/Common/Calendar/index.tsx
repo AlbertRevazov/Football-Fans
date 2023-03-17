@@ -3,63 +3,27 @@ import React, { FC } from "react";
 import { useCalendarHook } from "./hooks";
 import { styles } from "./styles";
 
-export const Calendar: FC = () => {
+interface CalendarProps {}
+
+export const Calendar: FC<CalendarProps> = React.memo(() => {
   const { calendar, matchDate } = useCalendarHook();
   return (
     <Container>
       <Box sx={styles.root}>
-        <Box
-          sx={{
-            width: "100%",
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "start",
-          }}
-        >
-          <Box
-            sx={{
-              width: "100%",
-            }}
-          >
+        <Box sx={styles.container}>
+          <Box sx={{ width: "100%" }}>
             {calendar?.matches.map((match) => (
               <Container key={match.id}>
-                <Box
-                  sx={{
-                    display: "flex",
-                    justifyContent: "start",
-                  }}
-                >
-                  <Box
-                    sx={{
-                      display: "flex",
-                      flexDirection: "column",
-                      justifyContent: "center",
-                      alignItems: "start",
-                    }}
-                  >
+                <Box sx={{ display: "flex", justifyContent: "start" }}>
+                  <Box sx={styles.calendarWrapper}>
                     <Typography sx={[styles.font, { width: "160px" }]}>
                       {matchDate(match.utcDate).date}
                     </Typography>
-                    <Typography
-                      sx={{
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                      }}
-                    >
+                    <Typography sx={styles.competitionTitle}>
                       {match.competition.name}
                     </Typography>
                   </Box>
-                  <Box
-                    sx={{
-                      display: "flex",
-                      width: "100%",
-                      flexDirection: "column",
-                      justifyContent: "center",
-                      alignItems: "start",
-                      margin: "20px",
-                    }}
-                  >
+                  <Box sx={styles.matchDayTitle}>
                     <Typography>Тур {match.matchday}</Typography>
 
                     <Box
@@ -98,4 +62,4 @@ export const Calendar: FC = () => {
       </Box>
     </Container>
   );
-};
+});

@@ -1,4 +1,12 @@
 export const styles = {
+  container: {
+    background: "blue",
+    margin: "20px",
+    width: "250px",
+    height: "250px",
+    borderRadius: "24px",
+    overflow: "hidden",
+  },
   root: {
     // margin: "60px",
     display: "flex",
@@ -12,6 +20,11 @@ export const styles = {
     fontSize: "24px",
     lineHeight: "24px",
     color: "#202020",
+  },
+  font: {
+    fontFamily: "Montserrat Alternates",
+    fontSize: "24px",
+    color: "blue",
   },
   nextLink: {
     textDecoration: "none",

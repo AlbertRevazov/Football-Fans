@@ -3,7 +3,7 @@ import axios from "axios";
 import { TeamState } from "../../../types";
 
 const initialState: TeamState = {
-  club: [],
+  club: null,
   calendar: null,
   name: null,
   errorMessage: undefined,
@@ -71,7 +71,6 @@ export const teamsSlice = createSlice({
     builder.addCase(getTeams.rejected, (state, action) => {
       state.isLoading = false;
       state.errorMessage = action?.error?.message;
-    
     });
     // Информация о предстоящих матчах
     builder.addCase(getCalendar.pending, (state) => {
