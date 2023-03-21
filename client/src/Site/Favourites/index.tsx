@@ -1,48 +1,38 @@
-import { Box, Button, Typography } from "@mui/material";
-import DeleteIcon from "@mui/icons-material/Delete";
-import Link from "next/link";
-import React, { useEffect, FC } from "react";
+import React, { FC, useEffect } from "react";
+import { Box } from "@mui/material";
 import { useAppDispatch, useAppSelector } from "../../hooks/hooks";
 import {
-  deleteFavouriteTeam,
+  checkIsAuth,
   getMyFavouriteTeams,
 } from "../../redux/features/auth/authSlice";
-//
-import { styles } from "./styles";
+import { Card } from "../../Common/Card";
 
+interface FavouritePageProps {}
 
-export const FavouritePage: FC = () => {
+export const FavouritePage: FC<FavouritePageProps> = React.memo(() => {
   const dispatch = useAppDispatch();
   const { favourite } = useAppSelector((state) => state.users);
+  const isAuth = useAppSelector(checkIsAuth);
 
   useEffect(() => {
-    dispatch(getMyFavouriteTeams());
-  }, [favourite]);
+    if (isAuth) {
+      dispatch(getMyFavouriteTeams());
+    }
+  }, [dispatch, isAuth]);
 
   return (
-    <>
-      {!!favourite?.length &&
-        favourite.map((team) => (
-          <Box key={team.id} sx={styles.root}>
-            <Link
-              style={styles.nextLink}
-              href={{
-                pathname: "/teams/[slug]",
-                query: { slug: `${team.apiId}` },
-              }}
-            >
-              <Typography sx={styles.title}>{team.name}</Typography>
-            </Link>
-            <Button
-              sx={styles.button}
-              onClick={() => {
-                dispatch(deleteFavouriteTeam(team.id));
-              }}
-            >
-              <DeleteIcon color="action" />
-            </Button>
-          </Box>
+    <Box sx={{ minHeight: "650px", display: "flex" }}>
+      {isAuth &&
+        favourite?.map((team) => (
+          <Card
+            key={team.id}
+            id={team.id}
+            apiId={team.apiId}
+            name={team.name}
+            userId={team.user_id}
+            img={team.img}
+          />
         ))}
-    </>
+    </Box>
   );
-};
+});

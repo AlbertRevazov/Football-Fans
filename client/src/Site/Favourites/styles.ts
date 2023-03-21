@@ -1,9 +1,10 @@
 export const styles = {
   root: {
-    margin: "60px",
+    // margin: "60px",
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
+    // minHeight: "650px",
   },
   title: {
     margin: "30px",

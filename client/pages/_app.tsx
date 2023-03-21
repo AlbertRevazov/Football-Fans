@@ -1,7 +1,8 @@
-import React from "react";
+import React, { FC } from "react";
 import Head from "next/head";
+import type { AppProps } from "next/app";
 
-export default function MyApp({ Component, pageProps }) {
+const MyApp: FC<AppProps> = ({ Component, pageProps }) => {
   return (
     <>
       <Head>
@@ -21,4 +22,5 @@ export default function MyApp({ Component, pageProps }) {
       <Component {...pageProps} />
     </>
   );
-}
+};
+export default MyApp;

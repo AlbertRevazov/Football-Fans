@@ -3,12 +3,13 @@ import { styles } from "./styles";
 import { FC } from "react";
 import Image from "next/image";
 
-export const Footer: FC = () => {
+interface FooterProps {}
+
+export const Footer: FC<FooterProps> = () => {
   return (
     <Box sx={styles.root}>
       <Box sx={styles.content}>
         <Box sx={styles.links}>
-          <Image src="/images/juve.png" alt="avatar" width={90} height={90} />
           <Box sx={styles.title}>
             <Typography sx={[styles.font, { fontSize: "24px" }]}>
               Revazov

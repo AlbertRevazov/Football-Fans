@@ -10,7 +10,6 @@ export const Photo: FC = () => {
   const { user } = useAppSelector((state) => state.users);
   // const { handleInputChange, edit, setEdit, error, deletePhoto, sendPhoto } =
   //   useEditUserHooks();
-  // console.log(user?.image);
 
   return (
     <>

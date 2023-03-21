@@ -1,116 +1,40 @@
-import { Box, Button, TextField, Checkbox, Typography } from "@mui/material";
+import { Box } from "@mui/material";
 import React, { useEffect, FC } from "react";
 import { toast } from "react-toastify";
 import { useAppSelector } from "../../hooks/hooks";
 import { MainPage } from "../Main";
 import { useAuthHook } from "./hooks";
+import { Login } from "./Section/Login/Login";
+import { Register } from "./Section/Register/Register";
 import { styles } from "./styles";
 
 export const Sign: FC = () => {
   const [toogle, setToogle] = React.useState(false);
-  const { token } = useAppSelector((state) => state.users);
-  const { formik, handleSubmit, status } = useAuthHook(toogle);
-  const label = { inputProps: { "aria-label": "Checkbox demo" } };
+  const { user } = useAppSelector((state) => state.users);
+  const { status } = useAuthHook(toogle);
 
   useEffect(() => {
     if (status) {
       toast(status);
-      <MainPage />;
+    }
+    if (status === "Регистрация успешна!") {
+      setToogle(false);
     }
   }, [status]);
 
   return (
-    <>
-      {token ? (
+    <Box sx={styles.container}>
+      {user?.id ? (
         <MainPage />
       ) : (
-        <form
-          onSubmit={(e) => {
-            e.preventDefault();
-          }}
-        >
-          <Box sx={styles.root}>
-            <TextField
-              sx={styles.textField}
-              id="email"
-              name="email"
-              label="Email"
-              required
-              value={formik.values.email}
-              onChange={formik.handleChange}
-              error={formik.touched.email && Boolean(formik.errors.email)}
-              helperText={formik.touched.email && formik.errors.email}
-            />
-            <TextField
-              sx={styles.textField}
-              id="password"
-              name="password"
-              label="Password"
-              type="password"
-              required
-              value={formik.values.password}
-              onChange={formik.handleChange}
-              error={formik.touched.password && Boolean(formik.errors.password)}
-              helperText={formik.touched.password && formik.errors.password}
-            />
-
-            {toogle && (
-              <>
-                <TextField
-                  sx={styles.textField}
-                  id="phone"
-                  name="phone"
-                  label="Phone"
-                  type="phone"
-                  required
-                  value={formik.values.phone || ""}
-                  onChange={formik.handleChange}
-                  error={formik.touched.phone && Boolean(formik.errors.phone)}
-                  helperText={formik.touched.phone && formik.errors.phone}
-                />
-                <TextField
-                  sx={styles.textField}
-                  id="name"
-                  name="name"
-                  label="name"
-                  type="name"
-                  required
-                  value={formik.values.name || ""}
-                  onChange={formik.handleChange}
-                  error={formik.touched.name && Boolean(formik.errors.name)}
-                  helperText={formik.touched.name && formik.errors.name}
-                />
-              </>
-            )}
-          </Box>
-          <Box sx={styles.toogleBox}>
-            <Checkbox
-              {...label}
-              name="checkbox"
-              onClick={() => setToogle(!toogle)}
-              sx={{ "& .MuiSvgIcon-root": { fontSize: 28 } }}
-            />
-            <Typography sx={styles.font}>Зарегистрироваться</Typography>
-          </Box>
-          <Box
-            sx={{
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-          >
-            <Button
-              color="inherit"
-              variant="outlined"
-              sx={styles.button}
-              type="submit"
-              onClick={handleSubmit}
-            >
-              Submit
-            </Button>
-          </Box>
-        </form>
+        <>
+          {toogle ? (
+            <Register toogle={toogle} setToogle={setToogle} />
+          ) : (
+            <Login toogle={toogle} setToogle={setToogle} />
+          )}
+        </>
       )}
-    </>
+    </Box>
   );
 };

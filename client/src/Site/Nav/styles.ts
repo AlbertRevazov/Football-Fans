@@ -4,7 +4,6 @@ export const styles = {
   root: (theme: Theme) => ({
     display: "flex",
     justifyContent: "space-around",
-    backgroundColor: "floralwhite",
     width: "100%",
     height: "90px",
     borderRadius: "0 0 16px 16px",
@@ -22,7 +21,7 @@ export const styles = {
   link: {
     marginLeft: "20px",
     ":hover": {
-      borderBottom: "3px solid darkseagreen",
+      borderBottom: "3px solid rgb(237 108 2 / 50%)",
     },
   },
   lk: {

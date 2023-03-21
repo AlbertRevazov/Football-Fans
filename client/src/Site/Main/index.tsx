@@ -3,7 +3,9 @@ import { Box, Button, Container, Typography } from "@mui/material";
 import { styles } from "./styles";
 import Link from "next/link";
 
-export const MainPage: FC = () => {
+interface MainPageProps {}
+
+export const MainPage: FC<MainPageProps> = () => {
   return (
     <>
       <Box sx={styles.root}>
@@ -39,10 +41,7 @@ export const MainPage: FC = () => {
         <Typography sx={styles.mapTitle}>
           Посмотреть стадионы и пабы в вашем городе на карте
         </Typography>
-        <Link
-          href={"/map"}
-          style={{ textDecoration: "none", color: "#202020" }}
-        >
+        <Link href={"/map"} passHref>
           <Button sx={styles.mapButton}>Открыть карту</Button>
         </Link>
       </Box>

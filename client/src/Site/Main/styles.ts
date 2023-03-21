@@ -150,7 +150,7 @@ export const styles = {
     },
   }),
   mapBox: (theme: Theme) => ({
-    backgroundImage: "url(/images/pitch.jpg)",
+    backgroundImage: "url(/images/pitch-main.jpg)",
     backgroundSize: "cover",
     backgroundPosition: "center",
     backgroundRepeat: "no-repeat",

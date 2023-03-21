@@ -1,20 +1,27 @@
 export const styles = {
+  root: {
+    display: "flex",
+    flexDirection: "column",
+    margin: "40px",
+    position: "relative",
+  },
   error: {
     display: "flex",
     justifyContent: "center",
     alighItems: "center",
-    margin: "60px",
   },
   accordion: {
     margin: "15px",
-    borderRadius: "8px",
-    background: "floralwhite",
+    background: "none",
+    backdropFilter: "blur(19px)",
+    // minWidth: "500px",
+    width: "100%",
   },
   font: {
     fontFamily: "Montserrat Alternates",
     fontSize: "20px",
     cursor: "pointer",
-    color: "#202020",
+    color: "#FFFFFF",
   },
   nextLink: {
     textDecoration: "none",
@@ -38,7 +45,7 @@ export const styles = {
     paddingLeft: "5px",
     fontFamily: "Montserrat Alternates",
     fontSize: "16px",
-    color: "#202020",
+    color: "#FFFFFF",
   },
   emblem: {
     width: "20px",
