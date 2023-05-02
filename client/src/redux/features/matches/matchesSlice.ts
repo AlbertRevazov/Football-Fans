@@ -1,6 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import axios from "axios";
-import { GamesState, Matches } from "../../../types";
+import { GamesState } from "../../../types";
 
 const initialState: GamesState = {
   games: null,
@@ -10,16 +9,10 @@ const initialState: GamesState = {
 
 export const getMatches = createAsyncThunk("matches/getMatches", async () => {
   try {
-    const options = {
-      method: "GET",
-      url: "https://api.football-data.org/v4/matches",
-      headers: { "X-Auth-Token": "1bb65d5d077f4ccba1280a3735cb9242" },
-    };
-    const data = axios.request(options).then(function (response) {
-      if (response.data) {
-        return response.data;
-      }
-    });
+    const apiUrl = "http://localhost:3003";
+    const response = await fetch(`${apiUrl}/proxy/matches`);
+    const data = await response.json();
+
     return data;
   } catch (error) {
     console.log(error);

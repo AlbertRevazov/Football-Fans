@@ -1,5 +1,4 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import axios from "axios";
 import { TeamState } from "../../../types";
 
 const initialState: TeamState = {
@@ -11,19 +10,14 @@ const initialState: TeamState = {
 };
 
 export const getTeams = createAsyncThunk(
-  "matches/getTeams",
+  "getTeams",
 
   async (payload: any) => {
     try {
-      const options = {
-        method: "GET",
-        url: `https://api.football-data.org/v4/teams/${payload}`,
-        headers: { "X-Auth-Token": "1bb65d5d077f4ccba1280a3735cb9242" },
-      };
+      const apiUrl = "http://localhost:3003";
+      const response = await fetch(`${apiUrl}/proxy/teams/${payload}`);
+      const data = await response.json();
 
-      const data = axios.request(options).then(function (response) {
-        return response.data;
-      });
       return data;
     } catch (error) {
       console.log(error);
@@ -32,22 +26,15 @@ export const getTeams = createAsyncThunk(
 );
 
 export const getCalendar = createAsyncThunk(
-  "matches/getCalendar",
+  "getCalendar",
 
   async (payload: any) => {
     try {
-      const options = {
-        method: "GET",
-        url: `https://api.football-data.org/v4/teams/${payload}/matches/`,
-        headers: { "X-Auth-Token": "1bb65d5d077f4ccba1280a3735cb9242" },
-      };
+      const apiUrl = "http://localhost:3003";
+      const response = await fetch(`${apiUrl}/proxy/calendar/${payload}`);
+      const data = await response.json();
 
-      const data = axios.request(options).then(function (response) {
-        return response.data;
-      });
-      return data.catch(function (error) {
-        console.error(error);
-      });
+      return data;
     } catch (error) {
       console.log(error);
     }
@@ -55,7 +42,7 @@ export const getCalendar = createAsyncThunk(
 );
 
 export const teamsSlice = createSlice({
-  name: "matches",
+  name: "teams",
   initialState,
   reducers: {},
   extraReducers: (builder) => {

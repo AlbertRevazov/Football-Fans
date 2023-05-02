@@ -1,5 +1,4 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import axios from "axios";
 import { TournamentState } from "../../../types";
 
 const initialState: TournamentState = {
@@ -14,35 +13,26 @@ export const getTableCompetition = createAsyncThunk(
 
   async (payload: any) => {
     try {
-      const options = {
-        method: "GET",
-        url: `https://api.football-data.org/v4/competitions/${payload}/standings`,
-        headers: { "X-Auth-Token": "1bb65d5d077f4ccba1280a3735cb9242" },
-      };
+      const apiUrl = "http://localhost:3003";
+      const response = await fetch(`${apiUrl}/proxy/competitions/${payload}`);
+      const data = await response.json();
 
-      const data = axios.request(options).then(function (response) {
-        return response.data;
-      });
       return data;
     } catch (error) {
       console.log(error);
     }
   }
 );
+
 export const getScorersCompetition = createAsyncThunk(
   "competitions/getScorersCompetition",
 
   async (payload: any) => {
     try {
-      const options = {
-        method: "GET",
-        url: `https://api.football-data.org/v4/competitions/${payload}/scorers`,
-        headers: { "X-Auth-Token": "1bb65d5d077f4ccba1280a3735cb9242" },
-      };
+      const apiUrl = "http://localhost:3003";
+      const response = await fetch(`${apiUrl}/proxy/scorers/${payload}`);
+      const data = await response.json();
 
-      const data = axios.request(options).then(function (response) {
-        return response.data;
-      });
       return data;
     } catch (error) {
       console.log(error);

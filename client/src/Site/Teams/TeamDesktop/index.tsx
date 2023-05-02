@@ -6,7 +6,10 @@ import { ContactDetails } from "./sections/contact";
 import { Squad } from "./sections/squad/Index";
 import { useRouter } from "next/dist/client/router";
 import { useAppDispatch, useAppSelector } from "../../../hooks/hooks";
-import { getCalendar, getTeams } from "../../../redux/features/teams/teamsSlice";
+import {
+  getCalendar,
+  getTeams,
+} from "../../../redux/features/teams/teamsSlice";
 import { Error } from "../../../Common/Error";
 import { Loading } from "../../../Common/Loading";
 import { styles } from "../styles";
@@ -19,9 +22,10 @@ export const TeamDesktop: FC = () => {
     (state) => state.teams
   );
   const { id } = useRouter().query;
+  console.log(id, "sda");
 
   useEffect(() => {
-    if (!!id) {
+    if (id) {
       dispatch(getTeams(id));
       dispatch(getCalendar(id));
     }

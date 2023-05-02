@@ -16,7 +16,7 @@ export const CustomAccordion: FC<CustomAccordionProps> = ({
   children,
 }) => {
   return (
-    <Box sx={{}}>
+    <Box>
       <Accordion
         sx={{
           margin: " 15px 0 15px 0 ",
