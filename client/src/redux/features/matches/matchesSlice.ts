@@ -36,11 +36,11 @@ export const matchesSlice = createSlice({
     });
     builder.addCase(getMatches.fulfilled, (state, action) => {
       state.isLoading = false;
-      state.games = action.payload?.matches;      
+      state.games = action.payload?.matches;
     });
     builder.addCase(getMatches.rejected, (state, action) => {
       state.isLoading = false;
-      state.errorMessage = action.error.message
+      state.errorMessage = action.error.message;
     });
   },
 });

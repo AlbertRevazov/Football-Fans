@@ -8,7 +8,7 @@ import { useRouter } from "next/dist/client/router";
 import { useAppDispatch, useAppSelector } from "../../../../../hooks/hooks";
 import { addFavouriteTeam, deleteFavouriteTeam, getMyFavouriteTeams } from "../../../../../redux/features/auth/authSlice";
 import { styles } from "../../../styles";
-import { Club } from "../../../types";
+import { Club } from "../../../../../types";
 
 interface AboutProps {
   data: Club;

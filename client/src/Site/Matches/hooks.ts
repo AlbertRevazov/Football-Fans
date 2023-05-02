@@ -1,5 +1,5 @@
 import { useAppSelector } from "../../hooks/hooks";
-import { CompetitionsToday, UseMatchesHookReturnType } from "./types";
+import { CompetitionsToday, UseMatchesHookReturnType } from "../../types";
 
 
 

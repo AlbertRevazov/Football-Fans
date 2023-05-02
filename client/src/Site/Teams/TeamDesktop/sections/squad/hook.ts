@@ -1,4 +1,4 @@
-import { Club } from "../../../types";
+import { Club } from "../../../../../types";
 
 interface SquadProps {
   data: Club;

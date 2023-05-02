@@ -5,7 +5,7 @@ import { useAppSelector } from "../../../../hooks/hooks";
 import { Error } from "../../../../Common/Error";
 import { CustomAccordion } from "../../../../Common/Accordion";
 import { Match } from "./Match";
-import { Matches } from "../../types";
+import { Matches } from "../../../../types";
 
 interface MatchesAccordionProps {}
 
@@ -18,7 +18,7 @@ export const MatchesAccordion: FC<MatchesAccordionProps> = () => {
       {!!errorMessage ? (
         <Error errorMessage={errorMessage} />
       ) : (
-        competitionsNames.map((competitionName: string, index) => {
+        competitionsNames.map((competitionName: string, index: number) => {
           return (
             <CustomAccordion
               key={index}

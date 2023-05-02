@@ -11,7 +11,7 @@ import {
 import { styles } from "../../../styles";
 import Typography from "@mui/material/Typography";
 import Link from "next/link";
-import { Standings } from "../../../types";
+import { Standings } from "../../../../../types";
 
 interface CompetitionTableProps {
   data?: Standings[];

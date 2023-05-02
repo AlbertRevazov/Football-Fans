@@ -3,7 +3,7 @@ import React, { FC } from "react";
 import TableCell from "@mui/material/TableCell";
 import { styles } from "../../../styles";
 import Link from "next/link";
-import { TeamTable } from "../../../types";
+import { TeamTable } from "../../../../../types";
 
 export const CLeagueTableRow: FC<{
   team: TeamTable;

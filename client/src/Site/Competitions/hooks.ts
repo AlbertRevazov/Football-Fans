@@ -1,7 +1,7 @@
 import { useState, useCallback } from "react";
 import { useAppSelector } from "../../hooks/hooks";
 import { useRouter } from "next/router";
-import { Standings } from "./types";
+import { Standings } from "../../types";
 
 // интерфейс для ввода возвращаемого значения
 interface UseCompetitionHookProps {

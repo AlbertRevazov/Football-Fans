@@ -12,7 +12,7 @@ import { styles } from "../../../styles";
 import { useAppSelector } from "../../../../../hooks/hooks";
 import { Loading } from "../../../../../Common/Loading";
 import { CLeagueTableRow } from "./CLeagueTableRow";
-import { Standings, TeamTable } from "../../../types";
+import { Standings, TeamTable } from "../../../../../types";
 
 interface CleagueProps {
   data: Standings[] | undefined;

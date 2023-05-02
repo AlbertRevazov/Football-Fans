@@ -2,7 +2,7 @@ import React, { FC } from "react";
 import { Box, Typography } from "@mui/material";
 import { styles } from "../../styles";
 import { Link } from "../../../../Common/Link";
-import { Matches } from "../../types";
+import { Matches } from "../../../../types";
 
 interface MatchProps {
   game: Matches;
