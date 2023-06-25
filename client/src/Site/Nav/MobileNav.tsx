@@ -3,7 +3,7 @@ import Menu from "@mui/material/Menu";
 import { Box } from "@mui/material";
 import MenuItem from "@mui/material/MenuItem";
 import PopupState, { bindTrigger, bindMenu } from "material-ui-popup-state";
-import { styles } from "./styles";
+import styles from "./Nav.module.scss";
 import { useAppDispatch, useAppSelector } from "../../hooks/hooks";
 import { checkIsAuth, logout } from "../../redux/features/auth/authSlice";
 import { toast } from "react-toastify";
@@ -26,7 +26,7 @@ export const MobileNav: FC<MobileNavProps> = () => {
     <PopupState variant="dialog" popupId="demo-popup-menu">
       {(popupState) => (
         <>
-          <Box sx={styles.menu} {...bindTrigger(popupState)} />
+          <Box className={styles.menu} {...bindTrigger(popupState)} />
           <Menu {...bindMenu(popupState)}>
             {isAuth ? (
               <Link
@@ -38,12 +38,14 @@ export const MobileNav: FC<MobileNavProps> = () => {
                   onClick={popupState.close}
                 >
                   <Box
-                    sx={[
-                      styles.icon,
-                      { backgroundImage: "url(/images/logout.png)" },
-                    ]}
+                    className={styles.icon}
+                    sx={{ backgroundImage: "url(/images/logout.png)" }}
                   />
-                  <Box onClick={logoutHandle} color="#202020" sx={styles.font}>
+                  <Box
+                    onClick={logoutHandle}
+                    color="#202020"
+                    className={styles.font}
+                  >
                     Выйти
                   </Box>
                 </MenuItem>
@@ -58,10 +60,8 @@ export const MobileNav: FC<MobileNavProps> = () => {
                   onClick={popupState.close}
                 >
                   <Box
-                    sx={[
-                      styles.icon,
-                      { backgroundImage: "url(/images/login.png)" },
-                    ]}
+                    className={styles.icon}
+                    sx={{ backgroundImage: "url(/images/login.png)" }}
                   />
                   Войти
                 </MenuItem>

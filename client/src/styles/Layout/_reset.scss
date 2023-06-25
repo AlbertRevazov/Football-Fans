@@ -1,0 +1,169 @@
+@import "../core";
+
+* {
+  // box-sizing: border-box;
+  // -webkit-font-smoothing: antialiased;
+  // -moz-osx-font-smoothing: grayscale;
+  // text-rendering: optimizeLegibility;
+
+  &:before,
+  &:after {
+    // box-sizing: border-box;
+  }
+}
+
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+p,
+blockquote,
+pre,
+a,
+button,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+hr,
+var,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  font-size: 100%;
+  font: inherit;
+  border: 0;
+  vertical-align: baseline;
+  padding: 0;
+  margin: 0;
+}
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+
+ol,
+ul {
+  list-style: none;
+}
+
+blockquote,
+q {
+  quotes: none;
+
+  &:before,
+  &:after {
+    content: "";
+    content: none;
+  }
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+a,
+button,
+select,
+option,
+.prev-btn,
+.next-btn {
+  cursor: pointer;
+  outline: none;
+  text-decoration-color: transparent;
+  -webkit-tap-highlight-color: transparent;
+  transition: color 0.3s ease-in-out, text-decoration 0.3s ease-in-out,
+    background-color 0.3s ease-in-out, border-color 0.3s ease-in-out;
+}
+
+input,
+textarea {
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+
+  &::placeholder,
+  &::-webkit-input-placeholder,
+  &::-moz-input-placeholder {
+    line-height: normal !important;
+    transition: color 0.3s ease-in-out;
+  }
+}
+
+.pseudo-link {
+  display: inline-flex;
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  -webkit-tap-highlight-color: transparent;
+  transition: color 0.3s ease-in-out, text-decoration 0.3s ease-in-out,
+    box-shadow 0.3s ease-in-out;
+}

@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
-    "target": "ES6",
+    "target": "es6",
+    "module": "esnext",
     "lib": [
       "dom",
       "dom.iterable",
@@ -12,17 +13,23 @@
     "allowSyntheticDefaultImports": true,
     "strict": true,
     "forceConsistentCasingInFileNames": true,
-    "noFallthroughCasesInSwitch": true,
-    "module": "esnext",
-    "moduleResolution": "node",
+    "moduleResolution": "node", // Node environment
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "preserve",
+    "baseUrl": "src",
+    "paths": {
+      "@/*": [
+        "./*"
+      ]
+    },
+    "experimentalDecorators": true,
     "incremental": true
   },
   "include": [
-    "src"
+    "src",
+    "declaration.d.ts" // Configure .d.ts file
   ],
   "exclude": [
     "node_modules"

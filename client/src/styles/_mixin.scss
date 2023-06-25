@@ -1,0 +1,33 @@
+@mixin media-large-screen {
+  @media screen and (min-width: 1391px) {
+    @content;
+  }
+}
+
+@mixin media-medium($width: "900px") {
+  @media screen and (max-width: $width) {
+    @content;
+  }
+}
+
+@mixin media-desktop($width: "1100px") {
+  @media screen and (min-width: $width) {
+    @content;
+  }
+}
+
+@mixin media-between($minWidth, $maxWidth) {
+  @media screen and (min-width: $minWidth) and (max-width: $maxWidth) {
+    @content;
+  }
+}
+
+@mixin container($param) {
+  max-width: $param;
+  margin: 0 auto;
+  padding: 0px 15px;
+}
+
+@mixin margin-auto($param) {
+  margin: $param auto;
+}

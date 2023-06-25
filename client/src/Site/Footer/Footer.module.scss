@@ -1,0 +1,50 @@
+@import "src/styles/core";
+
+.root {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: $dark;
+  height: 48px;
+  margin-top: 0;
+}
+.links {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 300px;
+}
+
+.title {
+  min-width: 450px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.title p {
+  font-family: $font;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+  text-align: center;
+  letter-spacing: -0.04em;
+  color: #A9A9AA;
+  flex-wrap: nowrap;
+  cursor: default;
+}
+
+.title a {
+  font-weight: 500;
+  color: white;
+  margin: 0 5px;
+}
+
+.font {
+  font-family: $font;
+  color: white;
+}
+.contacts {
+  margin-left: 20px;
+}

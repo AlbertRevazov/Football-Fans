@@ -7,6 +7,7 @@ import { getMatches } from "../../redux/features/matches/matchesSlice";
 import { useMatchesHook } from "./hooks";
 import { MatchesAccordion } from "./sections/Accordion";
 import { MobileAccordion } from "./sections/mobileAccordion";
+import styles from "./Matches.module.scss";
 
 export const MatchesPage: FC = () => {
   const dispatch = useAppDispatch();
@@ -18,11 +19,11 @@ export const MatchesPage: FC = () => {
   }, [dispatch]);
 
   return (
-    <Box sx={{ minHeight: "800px" }}>
+    <Box className={styles.root}>
       {isLoading ? (
         <Loading />
       ) : !isMobile ? (
-        <Box sx={{ margin: "150px" }}>
+        <Box className={styles.accordion__wrapper}>
           <MatchesAccordion />
         </Box>
       ) : (

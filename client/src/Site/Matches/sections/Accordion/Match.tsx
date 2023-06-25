@@ -1,8 +1,9 @@
 import React, { FC } from "react";
 import { Box, Typography } from "@mui/material";
-import { styles } from "../../styles";
 import { Link } from "../../../../Common/Link";
 import { Matches } from "../../../../types";
+import useMediaQuery from "@mui/material/useMediaQuery";
+import styles from "./MatchAccordion.module.scss";
 
 interface MatchProps {
   game: Matches;
@@ -14,57 +15,40 @@ export const Match: FC<MatchProps> = React.memo(
   }: MatchProps): JSX.Element => {
     const referee = !!referees?.length;
     return (
-      <Box sx={styles.match} key={id}>
-        <Box sx={styles.accordionRoot}>
-          <Typography sx={[styles.font, { fontSize: "20px" }]}>
+      <Box className={styles.match} key={id}>
+        <Box className={styles.accordionRoot}>
+          <Typography className={isMobile ? styles.fontMobile : styles.font}>
             Тур {season.currentMatchday}
           </Typography>
 
-          <img
-            style={{
-              width: "40px",
-              height: "40px",
-              marginLeft: "8px",
-            }}
-            src={competition.emblem}
-          />
+          <img className={styles.image} src={competition.emblem} />
         </Box>
 
         <Box>
-          <Box sx={[styles.refereeBox, { marginTop: "10px" }]}>
+          <Box className={styles.refereeBox}>
             <Link slug={homeTeam.id}>
-              <Typography
-                sx={[styles.font, { ":hover": { color: "darkseagreen" } }]}
-              >
-                <img style={styles.emblem} src={homeTeam.crest} />
+              <Typography className={styles.hometeam}>
+                <img className={styles.emblem} src={homeTeam.crest} />
                 {homeTeam.shortName} :
               </Typography>
             </Link>
             <Link slug={awayTeam.id}>
-              <Typography
-                sx={[
-                  styles.font,
-                  {
-                    marginLeft: "8px",
-                    ":hover": { color: "#d28188" },
-                  },
-                ]}
-              >
+              <Typography className={styles.awayteam}>
                 {awayTeam.shortName}
-                <img style={styles.emblem} src={awayTeam.crest} />
+                <img className={styles.emblem} src={awayTeam.crest} />
               </Typography>
             </Link>
           </Box>
           {referee && (
-            <Box sx={[styles.refereeBox, { marginTop: "10px" }]}>
+            <Box className={styles.refereeBox} sx={{ marginTop: "10px" }}>
               <img
                 style={{ width: "20px", height: "20px" }}
                 src="/images/referee.png"
               />
-              <Typography sx={styles.refereeTitle}>
+              <Typography className={styles.refereeTitle}>
                 {referees[0]?.name}
               </Typography>
-              <Typography sx={styles.refereeTitle}>
+              <Typography className={styles.refereeTitle}>
                 {referees[0]?.nationality}
               </Typography>
             </Box>

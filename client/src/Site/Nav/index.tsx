@@ -6,7 +6,7 @@ import {
   logout,
 } from "../../redux/features/auth/authSlice";
 import { toast } from "react-toastify";
-import { styles } from "./styles";
+import styles from "./Nav.module.scss";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { MobileNav } from "./MobileNav";
 import Link from "next/link";
@@ -50,18 +50,18 @@ export const Nav: FC<Props> = () => {
   return (
     <>
       {!isMobile ? (
-        <Box sx={styles.root}>
-          <Box sx={styles.navBar}>
-            <Typography sx={styles.font}>LOGO</Typography>
+        <Box className={styles.root}>
+          <Box className={styles.navBar}>
+            <Typography className={styles.font}>LOGO</Typography>
             {links.map((item: LinkProps) => (
               <Box
                 key={item.id}
                 onClick={item.onclick ? logoutHandle : () => {}}
                 hidden={!!item.hide ? item.hide : false}
-                sx={styles.link}
+                className={styles.link}
               >
                 <Link style={{ textDecoration: "none" }} href={item.to}>
-                  <Typography sx={styles.font}>{item.title}</Typography>
+                  <Typography className={styles.font}>{item.title}</Typography>
                 </Link>
               </Box>
             ))}
@@ -73,37 +73,14 @@ export const Nav: FC<Props> = () => {
                 justifyContent: "space-around",
                 alignItems: "center",
               }}
-            >
-              <Link
-                href={"/user"}
-                style={{ textDecoration: "none", color: "#202020" }}
-              >
-                <Typography
-                  sx={[
-                    styles.font,
-                    {
-                      ":hover": {
-                        borderBottom: "3px solid darkseagreen",
-                      },
-                    },
-                  ]}
-                >
-                  Личный Кабинет
-                </Typography>
-              </Link>
-              <Avatar
-                sx={{ marginLeft: "12px" }}
-                alt={user?.name}
-                src={user?.image}
-              />
-            </Box>
+            ></Box>
           )}
         </Box>
       ) : (
         <>
-          <Box sx={styles.root}>
-            <Box sx={styles.navBar}>
-              <Typography sx={styles.font}>LOGO</Typography>
+          <Box className={styles.root}>
+            <Box className={styles.navBar}>
+              {/* <Typography className=""{styles.font}>LOGO</Typography> */}
               <MobileNav />
             </Box>
           </Box>

@@ -1,25 +1,19 @@
-import {
-  Box,
-  Typography,
-  Accordion,
-  AccordionSummary,
-  AccordionDetails,
-} from "@mui/material";
+import { Box } from "@mui/material";
 import React, { FC } from "react";
 import { useAppSelector } from "../../../../hooks/hooks";
 import { useMatchesHook } from "../../hooks";
 import { Error } from "../../../../Common/Error";
 import { CustomAccordion } from "../../../../Common/Accordion";
 import { Match } from "../Accordion/Match";
-import { Matches } from "../../types";
-import { styles } from "./styles";
+import { Matches } from "../../../../types";
+import styles from "./MobileAccordion.module.scss";
 
 export const MobileAccordion: FC = () => {
   const { competionsTodayNames, competitionsNames } = useMatchesHook();
   const { games, errorMessage } = useAppSelector((state) => state.matches);
 
   return (
-    <Box sx={styles.root}>
+    <Box className={styles.root}>
       {!!errorMessage ? (
         <Error errorMessage={errorMessage} />
       ) : (

@@ -1,0 +1,40 @@
+@import "src/styles/core";
+
+.root__about {
+  width: 100%;
+  height: 650px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 900px 0;
+  @include container(1200px);
+}
+
+.button {
+  width: 250px;
+  height: 48px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px;
+  background-color: $invisible;
+  border: 1px solid $dark;
+  color: #202020;
+  text-align: center;
+  font-size: 16px;
+  font-family: Montserrat;
+  font-weight: 500;
+  transition: all 0.3s ease-in;
+}
+
+.button:hover {
+  width: 250px;
+  height: 48px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px;
+  background-color: $dark;
+  color: white;
+}
