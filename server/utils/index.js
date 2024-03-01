@@ -1,22 +1,22 @@
 require("dotenv").config();
 const jwt = require("jsonwebtoken");
 
-const checkAuth = (req, res, next) => {
+const jwtVerify = (req, res, next) => {
   const token = (req.headers.authorization || "").replace(/Bearer\s?/, "");
   if (token) {
     try {
-      const decoded = jwt.verify(token, "efdfdsgfdff6gdfg77fdgdfg");
+      const decoded = jwt.verify(token, process.env.JWT_SECRET_KEY);
       req.userId = decoded.id;
       next();
     } catch (error) {
       return res.json({
-        message: "У вас нет доступа.",
+        message: "Token error",
       });
     }
   } else {
     return res.json({
-      message: "У вас нет доступа.",
+      message: "Token error",
     });
   }
 };
-module.exports = checkAuth;
+module.exports = jwtVerify;
