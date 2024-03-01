@@ -1,14 +1,11 @@
 import React, { FC } from "react";
-import { Main } from "../src/Site/Main";
-import { Layout } from "../src/Site/Layout";
+import { Layout } from "../src/Layout/Layout";
 
 const Index: FC = () => {
   return (
-    <>
-      <Layout>
-        <Main />
-      </Layout>
-    </>
+    <Layout>
+      <>asdasd</>
+    </Layout>
   );
 };
 export default Index;

@@ -1,6 +1,6 @@
 import React, { FC } from "react";
-import { Layout } from "../../src/Site/Layout";
-import { NotFound } from "../../src/Site/404";
+import { Layout } from "../../src/Layout/Layout";
+import { NotFound } from "../../src/Components/404";
 
 const NotFoundPage: FC = () => {
   return (
