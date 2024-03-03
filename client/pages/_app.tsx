@@ -1,10 +1,12 @@
 import React, { FC } from "react";
 import Head from "next/head";
 import type { AppProps } from "next/app";
+import { Provider } from "react-redux";
+import { store } from "../src/redux/store";
 
 const MyApp: FC<AppProps> = ({ Component, pageProps }) => {
   return (
-    <>
+    <Provider store={store}>
       <Head>
         <title>Football Fans</title>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -15,7 +17,7 @@ const MyApp: FC<AppProps> = ({ Component, pageProps }) => {
         />
       </Head>
       <Component {...pageProps} />
-    </>
+    </Provider>
   );
 };
 export default MyApp;

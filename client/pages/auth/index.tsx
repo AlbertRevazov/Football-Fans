@@ -1,12 +1,13 @@
 import React, { FC } from "react";
-import { NotFound } from "../../src/Components/404";
 import { Layout } from "../../src/Components/Layout";
+import { Auth } from "../../src/Components/Sign";
 
-const NotFoundPage: FC = () => {
+const Index: FC = () => {
   return (
     <Layout>
-      <NotFound />
+      <Auth />
     </Layout>
   );
 };
-export default NotFoundPage;
+
+export default Index;

@@ -1,11 +1,29 @@
-import React, { FC } from "react";
-import { Layout } from "../src/Layout/Layout";
+import React, { useEffect } from "react";
+import { useRouter } from "next/navigation";
+import { Layout } from "../src/Components/Layout";
+import { getMe } from "../src/redux/Auth/UsersSlice";
+import { useAppDispatch, useAppSelector } from "../src/redux/hooks";
+import { Main } from "../src/Components/Main";
 
-const Index: FC = () => {
+const Index = () => {
+  const dispatch = useAppDispatch();
+  const router = useRouter();
+  useEffect(() => {
+    dispatch(getMe());
+  }, []);
+
+  const { user } = useAppSelector((state) => state.auth);
   return (
     <Layout>
-      <>asdasd</>
+      {user ? (
+        <Main />
+      ) : (
+        <span onClick={() => router.push("/auth")}>
+          Необходимо авторизоваться
+        </span>
+      )}
     </Layout>
   );
 };
+
 export default Index;
