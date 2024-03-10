@@ -3,6 +3,7 @@ import Head from "next/head";
 import type { AppProps } from "next/app";
 import { Provider } from "react-redux";
 import { store } from "../src/redux/store";
+import "@/styles/_reset.scss";
 
 const MyApp: FC<AppProps> = ({ Component, pageProps }) => {
   return (

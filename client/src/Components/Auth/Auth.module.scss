@@ -1,0 +1,23 @@
+@import "@/styles/mixin";
+
+.container {
+  @include flex-center();
+  @include container-height();
+  flex-direction: column;
+}
+
+.toogle_title {
+  margin: 20px;
+  cursor: default;
+  font-size: 19px;
+  font-weight: 400;
+  line-height: 29px;
+  letter-spacing: -0.2px;
+  text-align: center;
+}
+
+.toogle_title_span {
+  margin: 0 8px;
+  color: #0075ff;
+  cursor: pointer;
+}

@@ -1,0 +1,27 @@
+@mixin container() {
+  max-width: 1257px;
+  padding: 0px 15px;
+  margin: 0 auto;
+}
+
+@mixin container-height() {
+  max-width: 1257px;
+  padding: 0px 15px;
+  margin: 0 auto;
+  min-height: 800px;
+}
+
+@mixin flex-center() {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin medium-container() {
+  max-width: 900px;
+  padding: 0px 15px;
+}
+
+@mixin small-container() {
+  padding: 0px 15px;
+}

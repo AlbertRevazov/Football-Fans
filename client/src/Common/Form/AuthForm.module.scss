@@ -1,0 +1,46 @@
+@import "@/styles/mixin";
+
+.form {
+  @include flex-center();
+  flex-direction: column;
+  align-items: flex-start;
+  min-width: 350px;
+  min-height: 370px;
+  padding: 25px;
+  border: 1px solid rgb(231, 233, 237);
+  border-radius: 10px;
+  box-shadow: 0px 34px 33px -23px rgba(22, 28, 45, 0.13);
+  box-sizing: content-box;
+}
+
+.invalid {
+  color: red;
+}
+
+.checkbox_label {
+  @include flex-center();
+  font-size: 17px;
+  padding: 13px;
+  padding-left: 0;
+}
+
+.checkbox {
+  width: 19px;
+  height: 19px;
+}
+
+.btn {
+  width: 100%;
+  height: 48px;
+  margin: 8px auto;
+  border-radius: 8px;
+  background-color: #0075ff;
+  color: #fff;
+
+  font-size: 17px;
+  font-weight: 700;
+  line-height: 32px;
+  letter-spacing: 0.6px;
+  text-align: center;
+  cursor: pointer;
+}

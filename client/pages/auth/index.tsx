@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import { Layout } from "../../src/Components/Layout";
-import { Auth } from "../../src/Components/Sign";
+import { Auth } from "../../src/Components/Auth";
 
 const Index: FC = () => {
   return (

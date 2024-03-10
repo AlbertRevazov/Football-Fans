@@ -1,0 +1,38 @@
+@import "@/styles/mixin";
+
+.label {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  text-transform: capitalize;
+  margin: 13px 0;
+}
+
+.label_title {
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 26px;
+  letter-spacing: -0.1px;
+  text-align: left;
+}
+
+.field {
+  height: 48px;
+  padding: 10px;
+  text-transform: lowercase;
+  margin: 10px 0;
+  border-radius: 8px;
+  color: gray;
+  background-color: rgb(255, 255, 255);
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 26px;
+  letter-spacing: -0.1px;
+  text-align: left;
+  border: 1px solid rgb(231, 233, 237);
+}
+
+.invalid {
+  color: red;
+}
