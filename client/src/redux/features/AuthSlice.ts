@@ -6,7 +6,11 @@ const initialState: AuthState = {
   isLoading: false,
   status: "",
 };
-
+type LoginInput = {
+  password: string;
+  email: string;
+  remember: boolean;
+};
 export const getMe = createAsyncThunk("auth/me", async () => {
   try {
     const token = localStorage.getItem("token");
@@ -48,7 +52,9 @@ export const getUserSign = createAsyncThunk(
 
 export const getUserLogin = createAsyncThunk(
   "auth/login",
-  async ({ password, email }: any) => {
+  async ({ password, email, remember }: LoginInput) => {
+    console.log(password, email, remember);
+
     try {
       const response = await fetch(
         "http://localhost:4444/auth/login",
@@ -63,7 +69,7 @@ export const getUserLogin = createAsyncThunk(
       );
       const data = await response.json();
 
-      if (data.token) {
+      if (data.token && remember) {
         window.localStorage.setItem("token", data.token);
       }
       return data;

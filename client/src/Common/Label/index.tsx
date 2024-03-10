@@ -17,7 +17,6 @@ export const Label = ({ title, type, children }: LabelProps) => {
         className={styles.field}
         name={title}
         type={type}
-        autoComplete="off"
         placeholder={labelPlaceholders[title]}
       />
       {title === "password" && children}

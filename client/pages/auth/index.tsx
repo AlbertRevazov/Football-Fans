@@ -1,11 +1,14 @@
 import React, { FC } from "react";
 import { Layout } from "../../src/Components/Layout";
 import { Auth } from "../../src/Components/Auth";
+import { PrivateRouter } from "../../src/utils/PrivateRouter";
 
 const Index: FC = () => {
   return (
     <Layout>
-      <Auth />
+      <PrivateRouter>
+        <Auth />
+      </PrivateRouter>
     </Layout>
   );
 };
