@@ -1,7 +1,8 @@
 @import "@/styles/mixin";
+
 .nav_root {
-  @include flex-center();
-  @include container();
+  @include flex-center;
+  @include container;
   flex-direction: column;
   @media (min-width: 699.98px) {
     flex-direction: row;
@@ -9,8 +10,21 @@
   }
 }
 
+.logo {
+  overflow: hidden;
+}
+
+.logo_img:hover {
+  transform: scale(1);
+  transition: all 3s ease-out;
+}
+
+.logo:hover {
+  animation: logo_rotate 1s linear alternate;
+}
+
 .ul {
-  @include flex-center();
+  @include flex-center;
   flex-direction: column;
   flex-wrap: wrap;
   align-items: unset;
@@ -32,13 +46,13 @@
 }
 
 .li:hover {
-  border-bottom: 3px solid $primary-color;
+  border-bottom: 3px solid $primary-blue;
 }
 
 .btn {
   text-decoration: none;
   color: #fff;
-  background-color: $primary-color;
+  background-color: $primary-blue;
   padding: 10px;
   border-radius: 8px;
   @media (min-width: 699.98px) {
@@ -50,4 +64,16 @@
   width: 100vw;
   height: 2px;
   border-bottom: 22px solid gray;
+}
+
+@keyframes logo_rotate {
+  0% {
+    transform: rotateX(0deg);
+  }
+  50% {
+    transform: rotateX(180deg);
+  }
+  100% {
+    transform: rotateX(0deg);
+  }
 }

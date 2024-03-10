@@ -1,8 +1,8 @@
 @import "@/styles/mixin";
 
 .container {
-  @include flex-center();
-  @include container-height();
+  @include flex-center;
+  @include container-hh;
   flex-direction: column;
 }
 
@@ -18,6 +18,6 @@
 
 .toogle_title_span {
   margin: 0 8px;
-  color: $primary-color;
+  color: $primary-blue;
   cursor: pointer;
 }

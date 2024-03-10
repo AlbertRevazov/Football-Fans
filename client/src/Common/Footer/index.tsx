@@ -1,18 +1,20 @@
 import { FC } from "react";
+import styles from "./Footer.module.scss";
 
 export const Footer: FC = () => {
   return (
-    <footer>
-      <div>
-        <div>
-          <p>
-            Copyright
-            <a href="revaz.vercel.app" target="_blank">
-              A.Revazov
-            </a>
-          </p>
-          <p>2023 All Right Reserved</p>
-        </div>
+    <footer className={styles.footer}>
+      <div className={styles.footer_container}>
+        <p className={styles.title}>
+          © 2024 Copyright Football Fans || All Right Reserved || Powered by
+          <a
+            className={styles.subTitle}
+            href="http://revaz.vercel.app"
+            target="_blank"
+          >
+            A.Revazov
+          </a>
+        </p>
       </div>
     </footer>
   );

@@ -6,8 +6,8 @@ export const Nav: FC = () => {
   return (
     <section style={{ borderBottom: "2px solid #000" }}>
       <nav className={styles.nav_root}>
-        <Link href="/">
-          <img src="/img/logo.png" width={100} height={100} />
+        <Link href="/" className={styles.logo}>
+          <img src="/img/logo.png" width={100} height={100} className={styles.logo_img}/>
         </Link>
         <ul className={styles.ul}>
           <Link href="/matches">

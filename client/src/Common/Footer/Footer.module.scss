@@ -1,0 +1,27 @@
+@import "@/styles/mixin";
+
+.footer {
+  padding: 30px 0px;
+  text-align: center;
+  background-color: #161c2d;
+}
+
+.footer_container {
+  @include container;
+  @include flex-center;
+  min-height: 100px;
+}
+
+.title {
+  color: #fff;
+  cursor: default;
+}
+
+.subTitle {
+  color: #fff;
+  margin: 0 4px;
+}
+
+.subTitle:hover {
+  color: rgb(5, 202, 251);
+}

@@ -3,14 +3,27 @@
   padding: 0px 15px;
   margin: 0 auto;
 }
-
-@mixin container-height() {
+// high height
+@mixin container-hh() {
   max-width: 1257px;
   padding: 0px 15px;
   margin: 0 auto;
   min-height: 800px;
 }
-
+//medium height
+@mixin container-mh() {
+  max-width: 1257px;
+  padding: 0px 15px;
+  margin: 0 auto;
+  min-height: 400px;
+}
+//small height
+@mixin container-sh() {
+  max-width: 1257px;
+  padding: 0px 15px;
+  margin: 0 auto;
+  min-height: 400px;
+}
 @mixin flex-center() {
   display: flex;
   justify-content: center;
@@ -26,4 +39,4 @@
   padding: 0px 15px;
 }
 
-$primary-color: #0075ff;
+$primary-blue: #0075ff;
