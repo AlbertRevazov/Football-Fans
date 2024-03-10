@@ -5,7 +5,7 @@ import { Field, Form, Formik } from "formik";
 import { getUserSign } from "@/redux/features/AuthSlice";
 import { useRouter } from "next/router";
 import { Label } from "../../Label";
-import styles from "../AuthForm.module.scss";
+import styles from "../Form.module.scss";
 
 export const Sign: FC = () => {
   const { initialValues, validationSchema } = useSignFormHook();

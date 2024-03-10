@@ -1,0 +1,53 @@
+@import "@/styles/mixin";
+.nav_root {
+  @include flex-center();
+  @include container();
+  flex-direction: column;
+  @media (min-width: 699.98px) {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+
+.ul {
+  @include flex-center();
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: unset;
+  @media (min-width: 699.98px) {
+    flex-wrap: nowrap;
+    flex-direction: row;
+    justify-content: space-around;
+  }
+}
+
+.li {
+  margin: 10px;
+  padding: 10px 0;
+  border-bottom: 3px solid rgba(128, 128, 128, 0);
+  @media (min-width: 699.98px) {
+    margin: 0 10px;
+    padding: 10px;
+  }
+}
+
+.li:hover {
+  border-bottom: 3px solid $primary-color;
+}
+
+.btn {
+  text-decoration: none;
+  color: #fff;
+  background-color: $primary-color;
+  padding: 10px;
+  border-radius: 8px;
+  @media (min-width: 699.98px) {
+    padding: 10px;
+  }
+}
+
+.divider {
+  width: 100vw;
+  height: 2px;
+  border-bottom: 22px solid gray;
+}

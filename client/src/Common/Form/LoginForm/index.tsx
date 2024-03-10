@@ -5,7 +5,7 @@ import { useRouter } from "next/router";
 import { getUserLogin } from "@/redux/features/AuthSlice";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import { Label } from "../../Label";
-import styles from "../AuthForm.module.scss";
+import styles from "../Form.module.scss";
 
 export const Login: FC = () => {
   const { initialValues, validationSchema } = useLoginFormHook();

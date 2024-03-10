@@ -10,6 +10,7 @@ const MyApp: FC<AppProps> = ({ Component, pageProps }) => {
     <Provider store={store}>
       <Head>
         <title>Football Fans</title>
+        <link rel="shortcut icon" href="/svg/x_logo.svg" type="image/x-icon" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" />
         <link
