@@ -12,7 +12,7 @@ export const Auth = () => {
       <div className={styles.toogle_title}>
         {toogle ? "У меня есть аккаунт" : "У меня нет аккаунта ?"}
         <span
-          className={styles.toogle_title_span}
+          className={styles.toogle_subtitle}
           onClick={() => setToogle(!toogle)}
         >
           {toogle ? "Войти" : "Создать сейчас"}
