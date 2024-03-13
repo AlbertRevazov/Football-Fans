@@ -13,7 +13,7 @@ export const Nav: FC = () => {
   }, []);
 
   return (
-    <section style={{ borderBottom: "2px solid #000" }}>
+    <section style={{ borderBottom: "2px solid #000"}}>
       <nav className={styles.nav_root}>
         <Link href="/" className={styles.logo}>
           <img

@@ -1,0 +1,63 @@
+@import "@/styles/mixin";
+
+.slider_root {
+  position: relative;
+  overflow: hidden;
+  width: 70vw;
+  // height: 600px;
+  margin: 0;
+  @media (min-width: 599.98px) {
+    margin: 0 auto;
+    padding: 0 15px;
+  }
+}
+
+.slide {
+  height: 0;
+  width: 0;
+}
+
+.slide_active {
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.slide_story {
+  background-color: rgba(255, 3, 3, 0.359);
+  color: black;
+  @media (min-width: 699.98px) {
+    top: 20%;
+  }
+}
+
+.slider_actions_left,
+.slider_actions_right {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  position: absolute;
+  z-index: 44;
+  cursor: pointer;
+}
+
+.slider_actions_left {
+  top: 30vh;
+  left: 0vw;
+}
+
+.slider_actions_right {
+  top: 30vh;
+  right: 0vw;
+}
+.slide_image {
+  display: block;
+
+  width: auto;
+  height: auto;
+  @media (min-width: 599.98px) {
+    max-width: 100vw;
+    max-height: 65vh;
+  }
+}

@@ -20,7 +20,10 @@
 }
 
 .logo:hover {
-  animation: logo_rotate 1s linear alternate;
+  animation-delay: 2s;
+  animation-name: logo_rotate;
+  animation-duration: 1s;
+  animation-direction: alternate;
 }
 
 .ul {
