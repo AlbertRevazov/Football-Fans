@@ -1,24 +1,29 @@
-*:where(
-    :not(html, iframe, canvas, img, svg, video, audio):not(svg *, symbol *)
-  ) {
+*:where( :not(html, iframe, canvas, img, svg, video, audio):not(svg *, symbol *)) {
   display: revert;
 }
 
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
 body {
   font-family: Inter;
 }
+
+a,
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: #000;
+}
+
 a,
 button {
   cursor: revert;
 }
+
 a {
   text-decoration: none;
-  color: #000;
 }
 
 ol,
