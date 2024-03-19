@@ -3,7 +3,7 @@ import { Layout } from "../../src/Components/Layout";
 import { Auth } from "../../src/Components/Auth";
 import { PrivateRouter } from "../../src/utils/PrivateRouter";
 
-const Index: FC = () => {
+const AuthPage: FC = () => {
   return (
     <Layout>
       <PrivateRouter>
@@ -13,4 +13,4 @@ const Index: FC = () => {
   );
 };
 
-export default Index;
+export default AuthPage;

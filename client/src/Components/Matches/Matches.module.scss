@@ -1,0 +1,9 @@
+@import '@/styles/mixin';
+
+.root {
+}
+
+.container {
+	@include container-hh;
+	@include flex-center;
+}
