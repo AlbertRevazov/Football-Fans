@@ -1,6 +1,6 @@
 import React, { FC, useEffect } from 'react'
 import { useAppDispatch, useAppSelector } from '@/redux/hooks'
-import { getCompetitionsList } from '@/redux/features/CompetitionsSlice'
+import { getCompetitionsList } from '@/redux/Slices/Competitions'
 import styles from './Competitions.module.scss'
 import Link from 'next/link'
 
@@ -11,6 +11,7 @@ export const Competitions: FC = () => {
 	useEffect(() => {
 		dispatch(getCompetitionsList())
 	}, [])
+	
 	return (
 		<div className={styles.container}>
 			{data?.map(competition => {

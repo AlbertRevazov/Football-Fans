@@ -1,6 +1,6 @@
 import React, { FC, useEffect } from 'react'
 import { useRouter } from 'next/router'
-import { getCompetitionById } from '@/redux/features/CompetitionsSlice'
+import { getCompetitionById } from '@/redux/Slices/Competitions'
 import { useAppDispatch } from '@/redux/hooks'
 import styles from './CompetitionsDetail.module.scss'
 

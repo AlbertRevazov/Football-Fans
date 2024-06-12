@@ -1,47 +1,60 @@
-import React, { FC, ReactNode } from "react";
-import { useRouter } from "next/navigation";
-import { useAppSelector } from "@/redux/hooks";
+import React, { FC, ReactNode } from 'react'
+import { useRouter } from 'next/navigation'
+import { useAppSelector } from '@/redux/hooks'
 
-interface IRouterProps {
-  children: ReactNode;
+interface ProtectedRouteProps {
+	children: ReactNode
 }
 
-export const PrivateAuthRouter: FC<IRouterProps> = React.memo(
-  ({ children }) => {
-    const router = useRouter();
-    const { user, isLoading } = useAppSelector((s) => s.auth);
-    const isLoad = isLoading ? <h3>Loading...</h3> : children;
+export const AuthUsersRouter: FC<ProtectedRouteProps> = React.memo(
+	({ children }) => {
+		const router = useRouter()
+		const { user, isLoading } = useAppSelector(state => state.auth)
 
-    return user ? (
-      isLoad
-    ) : (
-      <span onClick={() => router.push("/auth")}>
-        Необходимо авторизоваться
-      </span>
-    );
-  }
-);
+		if (isLoading) {
+			return <h3>Loading...</h3>
+		}
 
-export const PrivateRouter: FC<IRouterProps> = React.memo(({ children }) => {
-  const router = useRouter();
-  const { user, isLoading } = useAppSelector((s) => s.auth);
-  const isLoad = isLoading ? (
-    <h3>Loading...</h3>
-  ) : (
-    <span onClick={() => router.push("/")}>Страница недоступна</span>
-  );
+		if (!user) {
+			router.push('/auth') // Предполагаем, что '/login' - это страница аутентификации
+			return null
+		}
 
-  return user ? isLoad : children;
-});
+		return <>{children}</>
+	}
+)
+export const GuestRouter: FC<ProtectedRouteProps> = React.memo(
+	({ children }) => {
+		const router = useRouter()
+		const { user, isLoading } = useAppSelector(state => state.auth)
 
-export const AdminRouter: FC<IRouterProps> = React.memo(({ children }) => {
-  const router = useRouter();
-  const { user, isLoading } = useAppSelector((s) => s.auth);
-  const isLoad = isLoading ? <h3>Loading...</h3> : children;
+		if (isLoading) {
+			return <h3>Loading...</h3>
+		}
 
-  return user?.role === "admin" ? (
-    isLoad
-  ) : (
-    <span onClick={() => router.push("/auth")}>У вас нет доступа</span>
-  );
-});
+		if (user) {
+			router.push('/') // Предполагаем, что '/' - это главная страница
+			return null
+		}
+
+		return <>{children}</>
+	}
+)
+
+export const AdminRouter: FC<ProtectedRouteProps> = React.memo(
+	({ children }) => {
+		const router = useRouter()
+		const { user, isLoading } = useAppSelector(s => s.auth)
+
+		if (isLoading) {
+			return <h3>Loading...</h3>
+		}
+
+		if (!user || user.role !== 'admin') {
+			router.push('/auth')
+			return null
+		}
+
+		return <>{children}</>
+	}
+)

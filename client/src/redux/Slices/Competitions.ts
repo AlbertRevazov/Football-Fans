@@ -1,5 +1,6 @@
-import { CompetitionsState } from '@/redux/types'
+import { CompetitionsState } from '@/types/Competitions'
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
+
 
 const initialState: CompetitionsState = {
 	competitionsList: null,
@@ -15,6 +16,11 @@ export const getCompetitionsList = createAsyncThunk(
 				'http://localhost:4444/proxy/competitions/list'
 			)
 			const data = await response.json()
+
+			if (!response.ok) {
+				throw new Error('Network response was not ok')
+			}
+
 			return data.competitions
 		} catch (error) {}
 	}
@@ -27,12 +33,18 @@ export const getCompetitionById = createAsyncThunk(
 			const response = await fetch(
 				`http://localhost:4444/proxy/competitions/${payload}`
 			)
-			const data = await response.json()
 
 			const scorersResponse = await fetch(
 				`http://localhost:4444/proxy/competitions/scorers/${payload}`
 			)
+
+			if (!response.ok) {
+				throw new Error('Network response was not ok')
+			}
+
+			const data = await response.json()
 			const scorersData = await scorersResponse.json()
+
 			return { data, scorersData }
 		} catch (error) {}
 	}
@@ -59,7 +71,7 @@ export const CompetitionsSlice = createSlice({
 		builder.addCase(getCompetitionById.fulfilled, (state, action) => {
 			state.isLoading = false
 			state.standing = {
-				 ...action.payload?.data,
+				...action.payload?.data,
 				scorers: action.payload?.scorersData,
 			}
 		})

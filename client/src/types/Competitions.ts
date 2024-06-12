@@ -1,24 +1,10 @@
-export type User = {
-	message: string
-	id: number
-	name: string
-	lastName: string
-	phone: string
-	email: string
-	password: string
-	role: string
-	image: string
-	favoriteName: string
-	favoriteApiId: string
-}
-
-export type AuthState = {
-	user: User | null
+export type CompetitionsState = {
+	competitionsList: Competitions[] | null
+	standing: Competitions | null
 	isLoading: boolean
-	status: string
 }
 
-export type Competitions = {
+ type Competitions = {
 	id: number
 	name: string
 	code: string
@@ -31,13 +17,7 @@ export type Competitions = {
 	}
 }
 
-export type CompetitionsState = {
-	competitionsList: Competitions[] | null
-	standing: Competitions | null
-	isLoading: boolean
-}
-
-export type TableOnStanding = {
+ type TableOnStanding = {
 	team: {
 		id: number
 		name: string
@@ -57,7 +37,7 @@ export type TableOnStanding = {
 	goalDifference: number
 }
 
-export type Standings = {
+ type Standings = {
 	code: string
 	currentMatchday: number
 	emblem: string
@@ -70,7 +50,7 @@ export type Standings = {
 	winner: null
 }
 
-export type Scorers = {
+ type Scorers = {
 	assists: number
 	goals: number
 	penalties: number

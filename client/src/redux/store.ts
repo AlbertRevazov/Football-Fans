@@ -1,12 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit'
-import authSlice from './features/AuthSlice'
-import gameSlice from './features/MatchesSlice'
-import competitionsSlice from './features/CompetitionsSlice'
+import authSlice from './Slices/Auth'
+import gameSlice from './Slices/Games'
+import competitionsSlice from './Slices/Competitions'
 
 export const store = configureStore({
 	reducer: {
 		auth: authSlice,
-		games: gameSlice,
+		matches: gameSlice,
 		tournament: competitionsSlice,
 	},
 })

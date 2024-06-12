@@ -1,16 +1,13 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-import { AuthState } from '../types'
+import { LoginInput, SignUpData, AuthState } from '@/types/Auth'
 
 const initialState: AuthState = {
 	user: null,
 	isLoading: false,
 	status: '',
+	message: '',
 }
-type LoginInput = {
-	password: string
-	email: string
-	remember: boolean
-}
+
 export const getMe = createAsyncThunk('auth/me', async () => {
 	try {
 		const token = localStorage.getItem('token')
@@ -21,11 +18,15 @@ export const getMe = createAsyncThunk('auth/me', async () => {
 					authorization: token,
 				},
 			})
-			const data = await response.json()
-			return data
+
+			if (!response.ok) {
+				throw new Error('Network response was not ok')
+			}
+
+			return await response.json()
 		}
 
-		return { message: 'Необходимо Авторизоваться' }
+		return null
 	} catch (error) {
 		console.log(error)
 	}
@@ -33,27 +34,28 @@ export const getMe = createAsyncThunk('auth/me', async () => {
 
 export const getUserSign = createAsyncThunk(
 	'auth/sign',
-	async ({ name, lastName, password, email, phone }: any) => {
-		try {
-			const response = await fetch('http://localhost:4444/auth/sign', {
-				method: 'POST',
-				headers: {
-					'Content-Type': 'application/json',
-				},
-				body: JSON.stringify({ name, lastName, password, email, phone }),
-			})
-			const data = await response.json()
-			return data
-		} catch (error) {
-			console.log(error)
+	async (userData: SignUpData) => {
+		const response = await fetch('http://localhost:4444/auth/sign', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify(userData),
+		})
+
+		if (!response.ok) {
+			throw new Error('Network response was not ok')
 		}
+
+		return await response.json()
 	}
 )
 
 export const getUserLogin = createAsyncThunk(
 	'auth/login',
-	async ({ password, email, remember }: LoginInput) => {
+	async (userData: LoginInput) => {
 		try {
+			const { email, password, remember } = userData
 			const response = await fetch(
 				'http://localhost:4444/auth/login',
 
@@ -69,6 +71,9 @@ export const getUserLogin = createAsyncThunk(
 
 			if (data.token && remember) {
 				window.localStorage.setItem('token', data.token)
+			}
+			if (!response.ok) {
+				throw new Error('Network response was not ok')
 			}
 			return data
 		} catch (error) {
@@ -96,7 +101,8 @@ export const AuthSlice = createSlice({
 		builder.addCase(getMe.fulfilled, (state, action) => {
 			state.isLoading = false
 			state.user = action.payload?.user
-			state.status = action.payload?.message
+			state.status = action.payload?.status
+			state.message = action.payload?.message
 		})
 		builder.addCase(getMe.rejected, state => {
 			state.isLoading = false
@@ -108,10 +114,12 @@ export const AuthSlice = createSlice({
 		builder.addCase(getUserSign.fulfilled, (state, action) => {
 			state.isLoading = false
 			state.user = action.payload?.user
-			state.status = action.payload?.message
+			state.status = action.payload?.status
+			state.message = action.payload?.message
 		})
 		builder.addCase(getUserSign.rejected, state => {
 			state.isLoading = false
+			console.log(state.message)
 		})
 
 		builder.addCase(getUserLogin.pending, state => {
@@ -120,7 +128,8 @@ export const AuthSlice = createSlice({
 		builder.addCase(getUserLogin.fulfilled, (state, action) => {
 			state.isLoading = false
 			state.user = action.payload?.user
-			state.status = action.payload?.message
+			state.status = action.payload?.status
+			state.message = action.payload?.message
 		})
 		builder.addCase(getUserLogin.rejected, state => {
 			state.isLoading = false

@@ -1,7 +1,8 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
+import { GamesState } from './../../types/Games'
 
-const initialState = {
-	Games: [] || null,
+const initialState: GamesState = {
+	games: [],
 	isLoading: false,
 	status: '',
 }
@@ -9,8 +10,12 @@ const initialState = {
 export const getMatchesList = createAsyncThunk('matches/list', async () => {
 	try {
 		const response = await fetch('http://localhost:4444/proxy/games/list')
-		const data = await response.json()
-		return data
+
+		if (!response.ok) {
+			throw new Error('Network response was not ok')
+		}
+
+		return await response.json()
 	} catch (error) {
 		console.log(error)
 	}
@@ -26,7 +31,7 @@ export const MatchesSlice = createSlice({
 		})
 		builder.addCase(getMatchesList.fulfilled, (state, action) => {
 			state.isLoading = false
-			state.Games = action.payload
+			state.games = action.payload
 			state.status = action.payload?.message
 		})
 		builder.addCase(getMatchesList.rejected, state => {

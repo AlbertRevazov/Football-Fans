@@ -1,23 +1,24 @@
-@import "@/styles/mixin";
+@import '@/styles/mixin';
 
 .container {
-  @include flex-center;
-  @include container-hh;
-  flex-direction: column;
+	@include flex-center;
+	@include container-hh;
+	min-height: 950px;
+	flex-direction: column;
 }
 
 .toogle_title {
-  margin: 20px;
-  cursor: default;
-  font-size: 19px;
-  font-weight: 400;
-  line-height: 29px;
-  letter-spacing: -0.2px;
-  text-align: center;
+	margin: 20px;
+	cursor: default;
+	font-size: 19px;
+	font-weight: 400;
+	line-height: 29px;
+	letter-spacing: -0.2px;
+	text-align: center;
 }
 
 .toogle_subtitle {
-  margin: 0 8px;
-  color: $primary-blue;
-  cursor: pointer;
+	margin: 0 8px;
+	color: $primary-blue;
+	cursor: pointer;
 }
