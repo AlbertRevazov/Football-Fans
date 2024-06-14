@@ -6,9 +6,9 @@ import { GuestRouter } from "../../src/utils/PrivateRouter";
 const AuthPage: FC = () => {
   return (
     <Layout>
-      <GuestRouter>
+      {/* <GuestRouter> */}
         <Auth />
-      </GuestRouter>
+      {/* </GuestRouter> */}
     </Layout>
   );
 };

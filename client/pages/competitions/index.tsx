@@ -6,9 +6,9 @@ import { AuthUsersRouter} from '../../src/utils/PrivateRouter'
 const CompetitionsPage: FC = () => {
 	return (
 		<Layout>
-			<AuthUsersRouter>
+			{/* <AuthUsersRouter> */}
 				<Competitions />
-			</AuthUsersRouter>
+			{/* </AuthUsersRouter> */}
 		</Layout>
 	)
 }
