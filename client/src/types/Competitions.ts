@@ -4,20 +4,20 @@ export type CompetitionsState = {
 	isLoading: boolean
 }
 
- type Competitions = {
+type Competitions = {
 	id: number
 	name: string
 	code: string
 	emblem: string
+	startDate: string
+	endDate: string
 	currentSeason: {
-		startDate: string
-		endDate: string
 		currentMatchday: number
 		winner: null
 	}
 }
 
- type TableOnStanding = {
+type TableOnStanding = {
 	team: {
 		id: number
 		name: string
@@ -37,7 +37,7 @@ export type CompetitionsState = {
 	goalDifference: number
 }
 
- type Standings = {
+type Standings = {
 	code: string
 	currentMatchday: number
 	emblem: string
@@ -50,7 +50,7 @@ export type CompetitionsState = {
 	winner: null
 }
 
- type Scorers = {
+type Scorers = {
 	assists: number
 	goals: number
 	penalties: number

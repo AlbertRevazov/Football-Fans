@@ -2,6 +2,7 @@ import React, { FC, useEffect } from 'react'
 import { useAppDispatch, useAppSelector } from '@/redux/hooks'
 import { getMatchesList } from '@/redux/Slices/Games'
 import styles from './Matches.module.scss'
+import Link from 'next/link'
 
 export const Matches: FC = () => {
 	const dispatch = useAppDispatch()
@@ -9,7 +10,6 @@ export const Matches: FC = () => {
 	useEffect(() => {
 		dispatch(getMatchesList())
 	}, [])
-	console.log(games, '=')
 	return (
 		<div className={styles.root}>
 			<div className={styles.container}>
@@ -22,35 +22,53 @@ export const Matches: FC = () => {
 							const hours = Number(utcDate.getUTCHours()) + 3
 							const minutes = utcDate.getUTCMinutes()
 							const formattedTime = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}`
-							// console.log(formattedTime)
+							const slug = e.competition.code
 							return (
-								<>
-									<div key={e.id} className={styles.card}>
-										<div className={styles.tournament}>
+								<div key={e.id} className={styles.card}>
+									<div className={styles.tournament}>
+										<Link
+											href={{
+												pathname: `competitions/${e.competition.code}`,
+											}}
+										>
 											{e.competition.name}
-											<img
-												className={styles.img}
-												src={e.competition.emblem}
-												alt='competition crest'
-											/>
-										</div>
-										Тур {e.matchday} {formattedTime} - MSK
-										<div className={styles.teams}>
-											{' '}
-											<img
-												className={styles.img}
-												src={e.homeTeam.crest}
-												alt='competition crest'
-											/>
-											{e.homeTeam.name} - {e.awayTeam.name}
-											<img
-												className={styles.img}
-												src={e.awayTeam.crest}
-												alt='competition crest'
-											/>
-										</div>
+										</Link>
+
+										<img
+											className={styles.img}
+											src={e.competition.emblem}
+											alt='competition crest'
+										/>
 									</div>
-								</>
+									Тур {e.matchday} {formattedTime} - MSK
+									<div className={styles.teams}>
+										{' '}
+										<img
+											className={styles.img}
+											src={e.homeTeam.crest}
+											alt='competition crest'
+										/>
+										<Link
+											href={{
+												pathname: `teams/${e.homeTeam.id}`,
+											}}
+										>
+											{e.homeTeam.name}
+										</Link>
+										<Link
+											href={{
+												pathname: `teams/${e.awayTeam.id}`,
+											}}
+										>
+											{e.awayTeam.name}
+										</Link>
+										<img
+											className={styles.img}
+											src={e.awayTeam.crest}
+											alt='competition crest'
+										/>
+									</div>
+								</div>
 							)
 						})}
 					</>

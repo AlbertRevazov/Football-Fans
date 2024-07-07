@@ -1,57 +1,57 @@
-@import "@/styles/mixin";
+@import '@/styles/mixin';
 
-.main_root {
-  width: 100%;
-  position: relative;
-  overflow: hidden;
-  position: relative;
-  z-index: 2;
+.root {
+	width: 100%;
+	position: relative;
+	overflow: hidden;
+	position: relative;
+	z-index: 2;
 }
 
-.main_container {
-  @include container-hh;
-  @include flex-center;
-  flex-direction: column;
-  overflow: hidden;
-  width: 100%;
+.container {
+	@include container-hh;
+	@include flex-center;
+	flex-direction: column;
+	overflow: hidden;
+	width: 100%;
 }
 
-.main_about {
-  @include flex-center;
-  flex-direction: column;
+.about {
+	@include flex-center;
+	flex-direction: column;
 }
 
-.main_title_wrap {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  max-width: 600px;
-  cursor: default;
-  position: relative;
-  z-index: 1;
+.title_wrap {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	text-align: center;
+	max-width: 600px;
+	cursor: default;
+	position: relative;
+	z-index: 1;
 }
 
-.main_title {
-  font-size: 60px;
-  font-weight: 700;
-  margin: 22px 0;
-  text-align: center;
-  text-transform: capitalize;
+.title {
+	font-size: 60px;
+	font-weight: 700;
+	margin: 22px 0;
+	text-align: center;
+	text-transform: capitalize;
 }
 
-.main_subtitle {
-  color: grey;
-  font-size: 19px;
-  margin: 22px 0;
-  font-weight: 400;
-  line-height: 32px;
-  letter-spacing: -0.2px;
-  text-transform: lowercase;
-  text-align: center;
-  text-wrap: balance;
+.subtitle {
+	color: grey;
+	font-size: 19px;
+	margin: 22px 0;
+	font-weight: 400;
+	line-height: 32px;
+	letter-spacing: -0.2px;
+	text-transform: lowercase;
+	text-align: center;
+	text-wrap: balance;
 
-  @media (min-width: 599.98px) {
-    padding: 40px;
-  }
+	@media (min-width: 599.98px) {
+		padding: 40px;
+	}
 }

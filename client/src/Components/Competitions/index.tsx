@@ -11,25 +11,26 @@ export const Competitions: FC = () => {
 	useEffect(() => {
 		dispatch(getCompetitionsList())
 	}, [])
-	
+
 	return (
-		<div className={styles.container}>
-			{data?.map(competition => {
-				const slug = competition.id
-				return (
-					<Link
-						href={{
-							pathname: 'competitions/[slug]',
-							query: { slug },
-						}}
-					>
-						<div className={styles.card_item}>
-							<img src={competition.emblem} />
-							<p>{competition.name}</p>
-						</div>
-					</Link>
-				)
-			})}
-		</div>
+
+			<div className={styles.container}>
+				{data?.map(competition => {
+					const slug = competition.code	
+					return (
+						<Link
+							href={{
+								pathname: 'competitions/[slug]',
+								query: { slug },
+							}}
+						>
+							<div className={styles.card_item}>
+								<img src={competition.emblem} />
+								<p>{competition.name}</p>
+							</div>
+						</Link>
+					)
+				})}
+			</div>
 	)
 }
