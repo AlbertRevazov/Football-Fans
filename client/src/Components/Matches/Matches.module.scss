@@ -1,15 +1,12 @@
 @import '@/styles/mixin';
 
-.root {
-}
-
 .container {
 	@include container-hh;
 	@include flex-center;
 	flex-direction: column;
 	gap: 20px;
 	overflow: hidden;
-	padding: 0 20px;
+	padding: 20px;
 }
 
 .card {
@@ -22,16 +19,43 @@
 	box-sizing: border-box;
 	cursor: default;
 }
+
 .tournament,
 .teams {
 	display: flex;
 	align-items: center;
-	justify-content: center;
+	justify-content: space-around;
 	text-align: center;
+}
+
+.teams {
+	gap: 10px;
 }
 
 .img {
 	width: 25px;
 	height: 25px;
 	padding: 0 12px;
+}
+
+.competition,
+.awayTeam a,
+.homeTeam a {
+	transition: color 0.3s ease-in;
+}
+.awayTeam,
+.homeTeam {
+	display:flex ;
+	align-items: center;
+}
+.competition:hover {
+	color: rgb(0, 255, 110);
+}
+
+.homeTeam a:hover {
+	color: red;
+}
+
+.awayTeam a:hover {
+	color: blue;
 }

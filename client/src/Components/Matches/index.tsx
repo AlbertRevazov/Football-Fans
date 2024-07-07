@@ -13,7 +13,7 @@ export const Matches: FC = () => {
 	return (
 		<div className={styles.root}>
 			<div className={styles.container}>
-				{isLoading ? (
+				{isLoading || !games ? (
 					<>Loading....</>
 				) : (
 					<>
@@ -27,6 +27,7 @@ export const Matches: FC = () => {
 								<div key={e.id} className={styles.card}>
 									<div className={styles.tournament}>
 										<Link
+											className={styles.competition}
 											href={{
 												pathname: `competitions/${e.competition.code}`,
 											}}
@@ -42,31 +43,34 @@ export const Matches: FC = () => {
 									</div>
 									Тур {e.matchday} {formattedTime} - MSK
 									<div className={styles.teams}>
-										{' '}
-										<img
-											className={styles.img}
-											src={e.homeTeam.crest}
-											alt='competition crest'
-										/>
-										<Link
-											href={{
-												pathname: `teams/${e.homeTeam.id}`,
-											}}
-										>
-											{e.homeTeam.name}
-										</Link>
-										<Link
-											href={{
-												pathname: `teams/${e.awayTeam.id}`,
-											}}
-										>
-											{e.awayTeam.name}
-										</Link>
-										<img
-											className={styles.img}
-											src={e.awayTeam.crest}
-											alt='competition crest'
-										/>
+										<div className={styles.homeTeam}>
+											<img
+												className={styles.img}
+												src={e.homeTeam.crest}
+												alt='homeTeam crest'
+											/>
+											<Link
+												href={{
+													pathname: `teams/${e.homeTeam.id}`,
+												}}
+											>
+												{e.homeTeam.name}
+											</Link>
+										</div>
+										<div className={styles.awayTeam}>
+											<Link
+												href={{
+													pathname: `teams/${e.awayTeam.id}`,
+												}}
+											>
+												{e.awayTeam.name}
+											</Link>
+											<img
+												className={styles.img}
+												src={e.awayTeam.crest}
+												alt='awayTeam crest'
+											/>
+										</div>
 									</div>
 								</div>
 							)

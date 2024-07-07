@@ -1,5 +1,5 @@
 export type GamesState = {
-	games: IGames[] | []
+	games: IGames[] | null
 	isLoading: boolean
 	status: string
 }
@@ -43,7 +43,7 @@ export interface ICompetition {
 	emblem: string
 	id: number
 	name: string
-	type: string 
+	type: string
 }
 export interface IScore {
 	duration: string

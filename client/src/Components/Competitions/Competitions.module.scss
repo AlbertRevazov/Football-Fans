@@ -1,7 +1,6 @@
 @import '@/styles/mixin';
 
-.root {
-}
+.root {}
 
 .container {
 	@include flex-center;
@@ -9,6 +8,7 @@
 	flex-wrap: wrap;
 	margin: 60px auto;
 }
+
 .card_item {
 	@include flex-center;
 	flex-direction: column;
@@ -21,6 +21,7 @@
 	padding: 20px;
 	box-sizing: border-box;
 	cursor: pointer;
+
 	p {
 		text-align: center;
 		text-wrap: balance;
@@ -28,6 +29,7 @@
 		line-height: 20px;
 		font-weight: 400;
 	}
+
 	img {
 		object-fit: cover;
 	}

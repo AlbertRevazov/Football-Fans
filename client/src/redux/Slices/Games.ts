@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import { GamesState } from './../../types/Games'
 
 const initialState: GamesState = {
-	games: [],
+	games: null,
 	isLoading: false,
 	status: '',
 }
