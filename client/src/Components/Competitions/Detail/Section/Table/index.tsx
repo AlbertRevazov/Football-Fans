@@ -1,28 +1,26 @@
-import { Standings } from '@/types/Competitions'
+import React, { FC } from 'react'
+import { Table } from '@/types/Competitions'
 import Link from 'next/link'
-import React, { FC, Fragment, useEffect } from 'react'
-
+import styles from './LeagueTable.module.scss'
 interface ILeagueTableProps {
-	data: Standings[]
+	data: Table[]
 }
 
 export const LeagueTable: FC<ILeagueTableProps> = ({ data }) => {
 	const sortedData = [...data]?.sort((a, b) => a.position - b.position)
 
 	return (
-		<div>
+		<div className={styles.table}>
 			<h1>League Table</h1>
 			<ul>
 				{sortedData.map(el => (
-					<Fragment key={el.team.id}>
-						<li>
-							Position - {el.position}{' '}
-							<Link href={`/teams/${el.team.id}`} as={`/teams/${el.team.id}`}>
-								{el.team.name}
-							</Link>
-							- {el.points} points
-						</li>
-					</Fragment>
+					<li key={el.team.id}>
+						Position - {el.position}{' '}
+						<Link href={`/teams/${el.team.id}`} as={`/teams/${el.team.id}`}>
+							{el.team.name}
+						</Link>
+						- {el.points} points
+					</li>
 				))}
 			</ul>
 		</div>

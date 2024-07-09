@@ -17,10 +17,10 @@ export type Competitions = {
 		winner: null
 	}
 	table: Standings[]
-	scorers: Scorers
+	scorers: Scorers[]
 }
 
-export type TableOnStanding = {
+export type Table = {
 	team: {
 		id: number
 		name: string
@@ -41,22 +41,10 @@ export type TableOnStanding = {
 }
 
 export type Standings = {
-	draw: number
-	form: null
-	goalDifference: number
-	goalsAgainst: number
-	goalsFor: number
-	lost: number
-	playedGames: number
-	points: number
-	position: number
-	team: {
-		crest: string
-		id: number
-		name: string
-		shortName: string
-		tla: string
-	}
+	group: string
+	stage: string
+	table: Table[]
+	type: string
 }
 
 export type Scorers = {

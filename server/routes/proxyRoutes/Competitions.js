@@ -38,7 +38,7 @@ router.get('/:id', (req, res) => {
 	fetch(`${url}/competitions/${req.params.id}/standings`, options)
 		.then(response => response.json())
 		.then(response => {
-			const data = response.standings[0].table
+			const data = response.standings
 			return res.send({
 				table: [...data],
 				...response.competition,

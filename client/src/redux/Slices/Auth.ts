@@ -119,7 +119,6 @@ export const AuthSlice = createSlice({
 		})
 		builder.addCase(getUserSign.rejected, state => {
 			state.isLoading = false
-			console.log(state.message)
 		})
 
 		builder.addCase(getUserLogin.pending, state => {

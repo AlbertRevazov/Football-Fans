@@ -9,7 +9,7 @@ export const TeamsDetail: FC = () => {
 	const { team, isLoading } = useAppSelector(s => s.team)
 	const router = useRouter()
 	const { id } = router.query
-	console.log(id, '', team)
+	
 	useEffect(() => {
 		if (id) {
 			dispatch(getTeamById(id as string))

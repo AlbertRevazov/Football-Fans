@@ -1,0 +1,9 @@
+.scorers {
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+	flex-direction: column;
+}
+.scorers ul {
+	padding: 4px 10px;
+}

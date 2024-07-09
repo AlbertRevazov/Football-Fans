@@ -72,10 +72,9 @@ export const CompetitionsSlice = createSlice({
 		})
 		builder.addCase(getCompetitionById.fulfilled, (state, action) => {
 			state.isLoading = false
-			// console.log(action.payload.data.table[0], '---')
 			state.standing = {
 				...action.payload?.data,
-				scorers: action.payload?.scorersData,
+				scorers: action.payload?.scorersData.scorers,
 			}
 		})
 		builder.addCase(getCompetitionById.rejected, (state, action) => {
