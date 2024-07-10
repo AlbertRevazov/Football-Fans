@@ -20,7 +20,7 @@ export interface ITeam {
 	area: IArea
 	runningCompetitions: IRunningCompetitions[]
 	coach: ICoach
-	squad: ISquad[]
+	squad: IGroupSquad
 }
 
 export interface IRunningCompetitions {
@@ -49,4 +49,8 @@ export interface ISquad {
 	position: string
 	dateOfBirth: string
 	nationality: string
+}
+
+export interface IGroupSquad {
+	[key: string]: ISquad[]
 }
