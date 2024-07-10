@@ -4,6 +4,16 @@
 	justify-content: flex-start;
 	flex-direction: column;
 }
+
 .table ul {
 	padding: 4px 10px;
+}
+
+.team {
+	padding: 4px;
+	transition: 0.3s ease-in;
+}
+
+.team:hover {
+	color: rgb(5, 118, 255);
 }

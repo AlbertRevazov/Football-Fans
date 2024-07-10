@@ -43,11 +43,7 @@
 .homeTeam a {
 	transition: color 0.3s ease-in;
 }
-.awayTeam,
-.homeTeam {
-	display:flex ;
-	align-items: center;
-}
+
 .competition:hover {
 	color: rgb(0, 255, 110);
 }
@@ -58,4 +54,15 @@
 
 .awayTeam a:hover {
 	color: blue;
+}
+
+.awayTeam,
+.homeTeam {
+	display: flex;
+	align-items: center;
+}
+
+.homeTeam {
+	display: flex;
+	flex-direction: row-reverse;
 }

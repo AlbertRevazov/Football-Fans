@@ -15,8 +15,12 @@ export const LeagueTable: FC<ILeagueTableProps> = ({ data }) => {
 			<ul>
 				{sortedData.map(el => (
 					<li key={el.team.id}>
-						Position - {el.position}{' '}
-						<Link href={`/teams/${el.team.id}`} as={`/teams/${el.team.id}`}>
+						{el.position}
+						<Link
+							href={`/teams/${el.team.id}`}
+							as={`/teams/${el.team.id}`}
+							className={styles.team}
+						>
 							{el.team.name}
 						</Link>
 						- {el.points} points

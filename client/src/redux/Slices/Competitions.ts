@@ -42,8 +42,9 @@ export const getCompetitionById = createAsyncThunk(
 			}
 
 			const data = await response.json()
-			const scorersData = await scorersResponse.json()
 
+			const scorersData = await scorersResponse.json()
+			console.log(data, '================', scorersData)
 			return { data, scorersData }
 		} catch (error) {
 			throw new Error('Network response was not ok')

@@ -8,17 +8,14 @@ const initialState: GamesState = {
 }
 
 export const getMatchesList = createAsyncThunk('matches/list', async () => {
-	try {
-		const response = await fetch('http://localhost:4444/proxy/games/list')
+	const response = await fetch('http://localhost:4444/proxy/games/list')
 
-		if (!response.ok) {
-			throw new Error('Network response was not ok')
-		}
-		const data = await response.json()
-		return data
-	} catch (error) {
-		console.log(error)
+	if (!response.ok) {
+		return response.statusText
 	}
+
+	const data = await response.json()
+	return data
 })
 
 export const MatchesSlice = createSlice({
@@ -34,8 +31,10 @@ export const MatchesSlice = createSlice({
 			state.games = action.payload
 			state.status = action.payload?.message
 		})
-		builder.addCase(getMatchesList.rejected, state => {
+		builder.addCase(getMatchesList.rejected, (state, action) => {
 			state.isLoading = false
+			// state.status = action.error.message || ''
+			console.log(action, '===')
 		})
 	},
 })
