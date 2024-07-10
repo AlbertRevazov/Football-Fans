@@ -5,16 +5,13 @@ import { useAppDispatch, useAppSelector } from '@/redux/hooks'
 import { LeagueTable } from './Section/Table'
 import { LeagueScorers } from './Section/Scorers'
 import { GroupTable } from './Section/GroupTable'
-import { Standings, Table } from '@/types/Competitions'
 import styles from './CompetitionsDetail.module.scss'
 
 export const CompetitionsDetail: FC = () => {
 	const dispatch = useAppDispatch()
 	const router = useRouter()
 	const { id } = router.query
-	const { standing, isLoading, error } = useAppSelector(
-		state => state.tournament
-	)
+	const { data, isLoading, error } = useAppSelector(state => state.tournament)
 
 	useEffect(() => {
 		if (id) {
@@ -31,42 +28,33 @@ export const CompetitionsDetail: FC = () => {
 	if (error) {
 		return <div>Error: {error}</div>
 	}
-	if (!standing && isLoading) {
-		return <div>Loading...</div>
-	}
 
-	const currentSeason = standing
-		? getSeason(standing.startDate, standing.endDate)
+	const currentSeason = data
+		? getSeason(data.season.startDate, data.season.endDate)
 		: ''
-
-	const singleTable = standing?.table[0] as Standings
 
 	return (
 		<div className={styles.root}>
 			<div className={styles.container}>
-				{isLoading || !standing ? (
+				{isLoading || !data ? (
 					<div className={styles.loading}>Loading...</div>
 				) : (
 					<div className={styles.content}>
 						<div className={styles.wrap}>
 							<div className={styles.header}>
-								<h1>{standing.name}</h1>
+								<h1>{data.competition.name}</h1>
 								<p>Season: {currentSeason}</p>
 							</div>
 							<img
 								loading='lazy'
-								src={standing?.emblem}
+								src={data.competition.emblem}
 								alt='emblem'
 								className={styles.emblem}
 							/>
 						</div>
 						<div className={styles.leagueStats}>
-							{standing.table.length > 1 ? (
-								<GroupTable data={standing.table} />
-							) : (
-								<LeagueTable data={singleTable.table} />
-							)}
-							<LeagueScorers data={standing?.scorers} />
+							{!data.table ? <GroupTable /> : <LeagueTable />}
+							<LeagueScorers data={data?.scorers} />
 						</div>
 					</div>
 				)}

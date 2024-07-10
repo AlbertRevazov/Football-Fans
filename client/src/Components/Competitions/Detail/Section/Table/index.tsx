@@ -1,32 +1,36 @@
-import React, { FC } from 'react'
-import { Table } from '@/types/Competitions'
+import React, { FC, useEffect } from 'react'
+import { useAppSelector } from '@/redux/hooks'
 import Link from 'next/link'
-import styles from './LeagueTable.module.scss'
-interface ILeagueTableProps {
-	data: Table[]
-}
+import styles from '../../CompetitionsDetail.module.scss'
 
-export const LeagueTable: FC<ILeagueTableProps> = ({ data }) => {
-	const sortedData = [...data]?.sort((a, b) => a.position - b.position)
+export const LeagueTable: FC = () => {
+	const { data, isLoading } = useAppSelector(s => s.tournament)
 
+	useEffect(() => {}, [])
 	return (
-		<div className={styles.table}>
-			<h1>League Table</h1>
-			<ul>
-				{sortedData.map(el => (
-					<li key={el.team.id}>
-						{el.position}
-						<Link
-							href={`/teams/${el.team.id}`}
-							as={`/teams/${el.team.id}`}
-							className={styles.team}
-						>
-							{el.team.name}
-						</Link>
-						- {el.points} points
-					</li>
-				))}
-			</ul>
-		</div>
+		<>
+			{isLoading ? (
+				<div className={styles.loading}>Loading...</div>
+			) : (
+				<div className={styles.table}>
+					<h1>League Table</h1>
+					<ul className={styles.ul}>
+						{data?.table.map(el => (
+							<li key={el.team.id}>
+								{el.position}
+								<Link
+									href={`/teams/${el.team.id}`}
+									as={`/teams/${el.team.id}`}
+									className={styles.team}
+								>
+									{el.team.name}
+								</Link>
+								- {el.points} points
+							</li>
+						))}
+					</ul>
+				</div>
+			)}
+		</>
 	)
 }

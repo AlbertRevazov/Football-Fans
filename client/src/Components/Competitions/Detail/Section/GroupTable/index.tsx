@@ -1,35 +1,40 @@
 import React, { FC } from 'react'
-import { Standings } from '@/types/Competitions'
+import { useAppSelector } from '@/redux/hooks'
 import Link from 'next/link'
-import styles from './GroupTable.module.scss'
+import styles from '../../CompetitionsDetail.module.scss'
 
-export interface IGroupTableProps {
-	data: Standings[]
-}
+export const GroupTable: FC = () => {
+	const { data, isLoading } = useAppSelector(s => s.tournament)
 
-export const GroupTable: FC<IGroupTableProps> = ({ data }) => {
 	return (
-		<div className={styles.table}>
-			<h1>League Table</h1>
-			<ul>
-				{data.map(basket => (
-					<p key={basket.group}>
-						{basket.group}
-						{basket.table.map(team => (
-							<li key={team.team.id}>
-								{team.position}{' '}
-								<Link
-									href={`/teams/${team.team.id}`}
-									as={`/teams/${team.team.id}`}
-								>
-									{team.team.name}
-								</Link>
-								- {team.points} points
-							</li>
+		<>
+			{isLoading ? (
+				<div className={styles.loading}>Loading...</div>
+			) : (
+				<div className={styles.table}>
+					<h1>League Table</h1>
+					<ul className={styles.ul}>
+						{data?.group?.map(basket => (
+							<p key={basket.group}>
+								{basket.group}
+								{basket.table.map(team => (
+									<li key={team.team.id}>
+										{team.position}
+										<Link
+											className={styles.team}
+											href={`/teams/${team.team.id}`}
+											as={`/teams/${team.team.id}`}
+										>
+											{team.team.name}
+										</Link>
+										- {team.points} points
+									</li>
+								))}
+							</p>
 						))}
-					</p>
-				))}
-			</ul>
-		</div>
+					</ul>
+				</div>
+			)}
+		</>
 	)
 }

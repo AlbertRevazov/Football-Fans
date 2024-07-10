@@ -1,10 +1,22 @@
 export type CompetitionsState = {
 	competitionsList: Competitions[] | null
-	standing: Competitions | null
+	data: CompetitionData | null
 	isLoading: boolean
 	error: string | undefined
 }
-
+export type CompetitionData = {
+	competition: Competitions
+	scorers: Scorers[]
+	season: {
+		id: number
+		startDate: string
+		endDate: string
+		currentMatchday: number
+		winner: null
+	}
+	table: Table[]
+	group?: Standings[]
+}
 export type Competitions = {
 	id: number
 	name: string
@@ -16,8 +28,6 @@ export type Competitions = {
 		currentMatchday: number
 		winner: null
 	}
-	table: Standings[]
-	scorers: Scorers[]
 }
 
 export type Table = {
@@ -46,7 +56,9 @@ export type Standings = {
 	table: Table[]
 	type: string
 }
-
+export type GroupStandings = {
+	table: Standings
+}
 export type Scorers = {
 	assists: number
 	goals: number

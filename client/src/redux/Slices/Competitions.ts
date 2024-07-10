@@ -3,7 +3,7 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 
 const initialState: CompetitionsState = {
 	competitionsList: null,
-	standing: null,
+	data: null,
 	isLoading: false,
 	error: undefined,
 }
@@ -34,18 +34,11 @@ export const getCompetitionById = createAsyncThunk(
 				`http://localhost:4444/proxy/competitions/${payload}`
 			)
 
-			const scorersResponse = await fetch(
-				`http://localhost:4444/proxy/competitions/scorers/${payload}`
-			)
-
 			if (!response.ok) {
 			}
 
 			const data = await response.json()
-
-			const scorersData = await scorersResponse.json()
-			console.log(data, '================', scorersData)
-			return { data, scorersData }
+			return { data }
 		} catch (error) {
 			throw new Error('Network response was not ok')
 		}
@@ -73,10 +66,7 @@ export const CompetitionsSlice = createSlice({
 		})
 		builder.addCase(getCompetitionById.fulfilled, (state, action) => {
 			state.isLoading = false
-			state.standing = {
-				...action.payload?.data,
-				scorers: action.payload?.scorersData.scorers,
-			}
+			state.data = action.payload?.data
 		})
 		builder.addCase(getCompetitionById.rejected, (state, action) => {
 			state.isLoading = false
