@@ -5,7 +5,6 @@ import styles from './Squad.module.scss'
 export const Squad: FC = () => {
 	const { isLoading, team } = useAppSelector(s => s.team)
 
-	console.log(typeof team?.squad, 'squad')
 	return (
 		<div>
 			{isLoading || !team ? (

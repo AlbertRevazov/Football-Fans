@@ -3,8 +3,8 @@ import React, { FC } from 'react'
 import styles from './Information.module.scss'
 
 export const TeamInfo: FC = () => {
-	const { team, isLoading } = useAppSelector(s => s.team)
-	console.log(team, '===')
+	const { team } = useAppSelector(s => s.team)
+
 	return (
 		<div className={styles.root}>
 			<h2>Information</h2>

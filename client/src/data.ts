@@ -4,3 +4,9 @@ export const Links = [
 	{ id: 3, url: '/competitions', title: 'Competitions' },
 	// { id: 4, url: "/players", title: "Players" },
 ]
+
+export enum MatchStatuses {
+	'POSTPONED' = 'Перенесён',
+	'FINISHED' = 'Завершён',
+	'TIMED' = 'Не начался',
+}

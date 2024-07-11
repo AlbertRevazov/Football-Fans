@@ -17,6 +17,7 @@
 	padding: 20px;
 	border: 1px solid red;
 	box-sizing: border-box;
+	gap: 5px;
 	cursor: default;
 }
 
@@ -25,7 +26,16 @@
 	display: flex;
 	align-items: center;
 	justify-content: space-around;
+	gap: 5px;
 	text-align: center;
+}
+
+.tournament {
+	flex-direction: column;
+}
+
+.matchday p {
+	margin: 10px 0;
 }
 
 .teams {
@@ -42,6 +52,12 @@
 .awayTeam a,
 .homeTeam a {
 	transition: color 0.3s ease-in;
+}
+
+.competition {
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 .competition:hover {

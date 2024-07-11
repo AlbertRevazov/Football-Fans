@@ -56,6 +56,13 @@ export const CompetitionsDetail: FC = () => {
 							{!data.table ? <GroupTable /> : <LeagueTable />}
 							<LeagueScorers data={data?.scorers} />
 						</div>
+						{!data.table && (
+							<h6 className={styles.ps}>
+								* Данные получены из бесплатного ресурса, который не
+								предоставляет данные о сетке плей офф, в будущем планируем
+								масштабирование в том числе расширенную подписку
+							</h6>
+						)}
 					</div>
 				)}
 			</div>

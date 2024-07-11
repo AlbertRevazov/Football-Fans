@@ -18,6 +18,26 @@ export const getMatchesList = createAsyncThunk('matches/list', async () => {
 	return data
 })
 
+export const getMatchesListByDate = createAsyncThunk(
+	'matches/list/date',
+	async (payload: string) => {
+		const response = await fetch('http://localhost:4444/proxy/games/list', {
+			method: 'POST',
+			headers: {
+				'Content-type': 'application/json',
+			},
+			body: JSON.stringify({ date: payload }),
+		})
+
+		if (!response.ok) {
+			return response.statusText
+		}
+
+		const data = await response.json()
+		return data
+	}
+)
+
 export const MatchesSlice = createSlice({
 	name: 'matches',
 	initialState,
@@ -33,8 +53,17 @@ export const MatchesSlice = createSlice({
 		})
 		builder.addCase(getMatchesList.rejected, (state, action) => {
 			state.isLoading = false
-			// state.status = action.error.message || ''
-			console.log(action, '===')
+		})
+		builder.addCase(getMatchesListByDate.pending, state => {
+			state.isLoading = true
+		})
+		builder.addCase(getMatchesListByDate.fulfilled, (state, action) => {
+			state.isLoading = false
+			state.games = action.payload
+			state.status = action.payload?.message
+		})
+		builder.addCase(getMatchesListByDate.rejected, (state, action) => {
+			state.isLoading = false
 		})
 	},
 })

@@ -3,6 +3,7 @@ import { useAppDispatch, useAppSelector } from '@/redux/hooks'
 import { getMatchesList } from '@/redux/Slices/Games'
 import { MatchesCard } from '@/Components/Matches/Section/Card'
 import { MatchesHeader } from './Section/Header'
+import { MatchStatuses } from '@/data'
 import styles from './Matches.module.scss'
 
 export const Matches: FC = () => {
@@ -34,15 +35,17 @@ export const Matches: FC = () => {
 	return (
 		<div className={styles.root}>
 			<div className={styles.container}>
+				{!isLoading && !games.length ? ' Матчей не найдено' : 'Ближайшие матчи'}
 				{games.length > 0 &&
 					games.map(e => (
 						<div key={e.id} className={styles.card}>
 							<MatchesHeader match={e} />
 							<div className={styles.teams}>
-								<MatchesCard team={e} isAway={false} />
+								<MatchesCard match={e} isAway={false} />
 								-
-								<MatchesCard team={e} isAway={true} />
+								<MatchesCard match={e} isAway={true} />
 							</div>
+							{MatchStatuses[e.status as keyof typeof MatchStatuses]}
 						</div>
 					))}
 			</div>

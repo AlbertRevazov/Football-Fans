@@ -11,7 +11,6 @@ export const TeamsDetail: FC = () => {
 	const router = useRouter()
 	const { id } = router.query
 	const { team, isLoading } = useAppSelector(s => s.team)
-	console.log(team, 'team')
 
 	useEffect(() => {
 		if (id) {

@@ -4,15 +4,19 @@
 	@include flex-center;
 	@include container-hh;
 }
+
 .leagueStats {
 	display: flex;
 }
+
 .emblem {
 }
+
 .wrap {
 	display: flex;
 	justify-content: space-between;
 }
+
 .ul {
 	cursor: default;
 }
@@ -24,4 +28,11 @@
 
 .team:hover {
 	color: rgb(5, 118, 255);
+}
+
+.ps {
+	display: flex;
+	justify-content: center;
+	text-align: center;
+	padding: 0 30px;
 }

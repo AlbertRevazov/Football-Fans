@@ -4,22 +4,34 @@ import Link from 'next/link'
 import styles from '../../Matches.module.scss'
 
 interface IMatchesCardProps {
-	team: IGames
+	match: IGames
 	isAway: boolean
 }
 
-export const MatchesCard: FC<IMatchesCardProps> = ({ team, isAway }) => {
-	const teamArea = isAway ? team.awayTeam : team.homeTeam
+export const MatchesCard: FC<IMatchesCardProps> = ({ match, isAway }) => {
+	const teamArea = isAway ? (
+		<>
+			{match.score.fullTime.away} {match.awayTeam.name}
+		</>
+	) : (
+		<>
+			{match.homeTeam.name} {match.score.fullTime.home}
+		</>
+	)
 	return (
 		<div className={styles[isAway ? 'awayTeam' : 'homeTeam']}>
 			<Link
 				href={{
-					pathname: `teams/${teamArea.id}`,
+					pathname: `teams/${match.id}`,
 				}}
 			>
-				{teamArea.name}
+				{teamArea}
 			</Link>
-			<img className={styles.img} src={teamArea.crest} alt='awayTeam crest' />
+			<img
+				className={styles.img}
+				src={isAway ? match.awayTeam.crest : match.homeTeam.crest}
+				alt='awayTeam crest'
+			/>
 		</div>
 	)
 }
