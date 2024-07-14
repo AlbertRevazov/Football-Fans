@@ -1,22 +1,27 @@
 @import '@/styles/mixin';
 
 .container {
-	@include container-hh;
-	@include flex-center;
-	flex-direction: column;
-	justify-content: flex-start;
-	overflow: hidden;
-	padding: 20px;
+  @include container-hh;
+  @include flex-center;
+  flex-direction: column;
+  justify-content: flex-start;
+  overflow: hidden;
+  padding: 20px;
 }
 
 .wrap {
-	display: flex;
-	justify-content: space-between;
-	gap: 100px;
+  display: flex;
+  justify-content: space-between;
+  gap: 100px;
 }
+
 .content {
-	display: flex;
-	justify-content: space-between;
-	padding: 0 20px;
-	width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 20px;
+  width: 100%;
+}
+
+.emblem {
+  max-width: 300px;
 }

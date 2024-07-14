@@ -33,6 +33,7 @@ router.get('/:id', (req, res) => {
 			'X-Auth-Token': X_API_KEY,
 		},
 	}
+
 	const { id } = req.params
 	const standingsUrl = `${X_API_URL}/competitions/${id}/standings`
 	const scorersUrl = `${X_API_URL}/competitions/${id}/scorers`
@@ -66,4 +67,5 @@ router.get('/:id', (req, res) => {
 			res.sendStatus(500)
 		})
 })
+
 module.exports = router

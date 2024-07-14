@@ -1,0 +1,75 @@
+@import '@/styles/mixin';
+
+.container {
+  @include container-hh;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+  gap: 20px;
+  overflow: hidden;
+  padding: 20px;
+}
+
+.headerRoot {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.competitionInfo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.competitionInfo p {
+  margin: 0;
+  padding: 0;
+}
+
+.teamsWrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.team {
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+  align-items: center;
+}
+
+.img {
+  width: 80px;
+  height: 80px;
+  margin: 0 20px;
+}
+
+.divider {
+  width: 100%;
+  border-bottom: 1px solid grey;
+}
+
+.head2head {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.ul {
+  padding: 0%;
+}
+
+.ul li {
+  max-width: 240px;
+  text-align: center;
+  padding: 0%;
+}

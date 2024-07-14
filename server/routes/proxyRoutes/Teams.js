@@ -4,7 +4,6 @@ const router = new Router()
 
 const { X_API_KEY, X_API_URL } = process.env
 
-// Функция для выполнения запроса и обработки ошибок
 async function fetchData(url) {
 	try {
 		const response = await fetch(url, {
@@ -22,7 +21,6 @@ async function fetchData(url) {
 	}
 }
 
-// Маршрут для получения информации о команде и её составе
 router.get('/:id', async (req, res) => {
 	try {
 		console.log(req.params.id, 'id')
@@ -43,7 +41,6 @@ router.get('/:id', async (req, res) => {
 	}
 })
 
-// Маршрут для получения календаря матчей команды
 router.get('/calendar/:id', async (req, res) => {
 	try {
 		const data = await fetchData(`${X_API_URL}/teams/${req.params.id}/matches`)

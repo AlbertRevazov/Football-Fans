@@ -2,7 +2,6 @@ import React, { FC } from 'react';
 import { IGames } from '@/types/Games';
 import Link from 'next/link';
 import styles from '../../Matches.module.scss';
-
 interface IMatchesCardProps {
   match: IGames;
   isAway: boolean;
