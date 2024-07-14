@@ -2,81 +2,41 @@ require('dotenv').config()
 const { Router } = require('express')
 const router = new Router()
 
-const { X_API_URL, X_API_KEY } = process.env
+const {
+	fetchAndSortMatches,
+	filterMatchesByDate,
+	getMoscowDateString,
+} = require('../../utils/Fetching')
 
 router.get('/list', async (req, res) => {
-	const options = {
-		method: req.method,
-		headers: {
-			'X-Auth-Token': X_API_KEY,
-		},
-	}
+	try {
+		const date = new Date() // Получаем текущую дату
+		const moscowDate = getMoscowDateString(date)
+		const newDate = new Date(date)
+		newDate.setDate(newDate.getDate() + 1) // Увеличиваем дату на один день
+		const newDateString = getMoscowDateString(newDate)
 
-	const date = new Date().toISOString().split('T')[0]
-	const response = await fetch(
-		`${X_API_URL}/matches?dateFrom=${date}&dateTo=${date}`,
-		options
-	)
-
-	if (response.ok) {
-		const games = await response.json()
-
-		const sortedMatches = {}
-
-		games.matches.forEach(g => {
-			const competitionName = g.competition.name
-			if (!sortedMatches[competitionName]) {
-				sortedMatches[competitionName] = []
-			}
-			sortedMatches[competitionName].push(g)
-		})
-
-		return res.send(Object.values(sortedMatches).flat())
-	} else {
-		return res.status(response.status)
+		const matches = await fetchAndSortMatches(moscowDate, newDateString)
+		const filteredMatches = filterMatchesByDate(matches, moscowDate)
+		return res.send(filteredMatches)
+	} catch (error) {
+		return res.status(500).send(error.message)
 	}
 })
 
 router.post('/list', async (req, res) => {
-	const options = {
-		method: 'GET',
-		headers: {
-			'X-Auth-Token': X_API_KEY,
-		},
-	}
+	try {
+		const { date } = req.body
+		const moscowDate = getMoscowDateString(date)
+		const newDate = new Date(date)
+		newDate.setDate(newDate.getDate() + 1)
+		const newDateString = getMoscowDateString(newDate)
 
-	const { date } = req.body
-	const newDate = new Date(date)
-
-	newDate.setDate(newDate.getDate() + 1)
-	const newDateString = newDate.toISOString().split('T')[0]
-
-	const response = await fetch(
-		`${X_API_URL}/matches?dateFrom=${date}&dateTo=${newDateString}`,
-		options
-	)
-
-	if (response.ok) {
-		const games = await response.json()
-		const sortedMatches = {}
-		games.matches.forEach(g => {
-			const competitionName = g.competition.name
-			if (!sortedMatches[competitionName]) {
-				sortedMatches[competitionName] = []
-			}
-			sortedMatches[competitionName].push(g)
-		})
-
-		return res.send(
-			Object.values(sortedMatches)
-				.flat()
-				.filter(el => {
-					const matchDate = new Date(el.utcDate).toISOString().split('T')[0]
-					return matchDate === date
-				})
-		)
-	} else {
-		return res.status(response.status)
+		const matches = await fetchAndSortMatches(moscowDate, newDateString)
+		const filteredMatches = filterMatchesByDate(matches, moscowDate)
+		return res.send(filteredMatches)
+	} catch (error) {
+		return res.status(500).send(error.message)
 	}
 })
 

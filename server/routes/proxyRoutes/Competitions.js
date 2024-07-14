@@ -2,18 +2,17 @@ require('dotenv').config()
 const { Router } = require('express')
 const router = new Router()
 
-const key = process.env.X_API_KEY
-const url = process.env.X_API_URL
+const { X_API_KEY, X_API_URL } = process.env
 
 router.get('/list', (req, res) => {
 	const options = {
-		method: req.method,
+		method: 'GET',
 		headers: {
-			'X-Auth-Token': key,
+			'X-Auth-Token': X_API_KEY,
 		},
 	}
 
-	fetch(`${url}/competitions`, options)
+	fetch(`${X_API_URL}/competitions`, options)
 		.then(response => {
 			res.status(response.status)
 			return response.json()
@@ -29,31 +28,33 @@ router.get('/list', (req, res) => {
 
 router.get('/:id', (req, res) => {
 	const options = {
-		method: req.method,
+		method: 'GET',
 		headers: {
-			'X-Auth-Token': key,
+			'X-Auth-Token': X_API_KEY,
 		},
 	}
 	const { id } = req.params
-	const standingsUrl = `${url}/competitions/${id}/standings`
-	const scorersUrl = `${url}/competitions/${id}/scorers`
+	const standingsUrl = `${X_API_URL}/competitions/${id}/standings`
+	const scorersUrl = `${X_API_URL}/competitions/${id}/scorers`
 
 	Promise.all([
 		fetch(standingsUrl, options).then(response => response.json()),
 		fetch(scorersUrl, options).then(response => response.json()),
 	])
 		.then(([standingsData, scorersData]) => {
-			const red = standingsData.standings.filter(t => t.type === 'TOTAL')
+			const totalStandings = standingsData.standings.filter(
+				t => t.type === 'TOTAL'
+			)
 			const combinedData =
-				red.length > 1
+				totalStandings.length > 1
 					? {
-							group: red,
+							group: totalStandings,
 							competition: standingsData.competition,
 							season: standingsData.season,
 							scorers: scorersData.scorers,
 					  }
 					: {
-							table: red[0].table,
+							table: totalStandings[0].table,
 							competition: standingsData.competition,
 							season: standingsData.season,
 							scorers: scorersData.scorers,
@@ -65,5 +66,4 @@ router.get('/:id', (req, res) => {
 			res.sendStatus(500)
 		})
 })
-
 module.exports = router
