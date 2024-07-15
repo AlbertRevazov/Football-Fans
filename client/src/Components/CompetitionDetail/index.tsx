@@ -6,6 +6,7 @@ import { LeagueTable } from './Section/Table';
 import { LeagueScorers } from './Section/Scorers';
 import { GroupTable } from './Section/GroupTable';
 import styles from './CompetitionsDetail.module.scss';
+import { Loader } from '@/Common/Loading';
 
 export const CompetitionsDetail: FC = () => {
   const dispatch = useAppDispatch();
@@ -26,7 +27,7 @@ export const CompetitionsDetail: FC = () => {
   }, []);
 
   if (error) {
-    return <div>Error: {error}</div>
+    return <div>Error: {error}</div>;
   }
 
   const currentSeason = data ? getSeason(data.season.startDate, data.season.endDate) : '';
@@ -35,7 +36,7 @@ export const CompetitionsDetail: FC = () => {
     <div className={styles.root}>
       <div className={styles.container}>
         {isLoading || !data ? (
-          <div className={styles.loading}>Loading...</div>
+          <Loader />
         ) : (
           <div className={styles.content}>
             <div className={styles.wrap}>

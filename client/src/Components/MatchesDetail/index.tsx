@@ -5,6 +5,7 @@ import { useRouter } from 'next/router';
 import { HeaderDetailMatch } from './Section/Header';
 import { HeadSection } from './Section/Head2HeadSection';
 import styles from './MatchesDetail.module.scss';
+import { Loader } from '@/Common/Loading';
 
 export const MatchesDetail: FC = () => {
   const router = useRouter();
@@ -19,7 +20,7 @@ export const MatchesDetail: FC = () => {
   }, []);
 
   if (!head2head && isLoading) {
-    return <div className={styles.container}>Loading..</div>;
+    return <Loader />;
   }
 
   return (

@@ -14,8 +14,11 @@ interface IUseDateFilterHookReturn {
   handleYear: (id: string) => React.MouseEventHandler<HTMLDivElement>;
 }
 
-export const useDateFilterHook = (): IUseDateFilterHookReturn => {
-  const [selected, setSelected] = useState<string>('');
+export const useDateFilterHook = (isSeason: boolean): IUseDateFilterHookReturn => {
+  const today = new Date().toISOString().split('T')[0];
+  const currentYear = today.split('-')[0];
+  const [selected, setSelected] = useState<string>(isSeason ? currentYear : today);
+  console.log(selected.split('-')[0], 'sel');
   const dispatch = useAppDispatch();
 
   const getDateBlocks = () => {
@@ -53,7 +56,7 @@ export const useDateFilterHook = (): IUseDateFilterHookReturn => {
 
     return yearBlocks;
   };
-  
+
   const years = getYearBlocks();
   const days = getDateBlocks();
 

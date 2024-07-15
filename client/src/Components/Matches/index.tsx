@@ -6,6 +6,7 @@ import { MatchesHeader } from './Section/Header';
 import { MatchStatuses } from '@/data';
 import Link from 'next/link';
 import styles from './Matches.module.scss';
+import { Loader } from '@/Common/Loading';
 
 export const Matches: FC = () => {
   const dispatch = useAppDispatch();
@@ -22,43 +23,39 @@ export const Matches: FC = () => {
       </div>
     );
   }
+
   if (isLoading) {
-    return <div className={styles.container}>Loading...</div>;
+    return <Loader />;
   }
-  if (!games) {
-    return (
-      <div className={styles.container} style={{ color: 'red' }}>
-        Something went wrong
-      </div>
-    );
+
+  if (!games || games.length === 0) {
+    return <div className={styles.container}>Матчей не найдено</div>;
   }
 
   return (
     <div className={styles.root}>
       <div className={styles.container}>
-        {!isLoading && !games.length ? ' Матчей не найдено' : 'Ближайшие матчи'}
-        {games.length > 0 &&
-          games.map((e) => (
-            <Link
-              key={e.id}
-              className={styles.card}
-              href={{
-                pathname: `matches/${e.id}`,
-              }}
-            >
-                <MatchesHeader match={e} />
-                <div className={styles.teams}>
-                  <MatchesCard match={e} isAway={false} />
-                  -
-                  <MatchesCard match={e} isAway={true} />
-                </div>
-                {MatchStatuses[e.status as keyof typeof MatchStatuses]}
-            </Link>
-          ))}
+        <h2>Ближайшие матчи</h2>
+        {games.map((match) => (
+          <Link
+            key={match.id}
+            className={styles.card}
+            href={{
+              pathname: `matches/${match.id}`,
+            }}
+          >
+            <MatchesHeader match={match} />
+            <div className={styles.teams}>
+              <MatchesCard match={match} isAway={false} />
+              -
+              <MatchesCard match={match} isAway={true} />
+            </div>
+            <div>{MatchStatuses[match.status as keyof typeof MatchStatuses]}</div>
+          </Link>
+        ))}
       </div>
-
       <h6 className={styles.ps}>
-        * Не всегда корректно отображается день игры из за часовых поясов
+        * Не всегда корректно отображается день игры из-за часовых поясов
       </h6>
     </div>
   );

@@ -11,7 +11,7 @@ interface IDateFilter {
 export const DateFilter: FC<IDateFilter> = ({ isYear }) => {
   const router = useRouter();
   const { id } = router.query;
-  const { days, years, selected, handleYear, handleDays } = useDateFilterHook();
+  const { days, years, selected, handleYear, handleDays } = useDateFilterHook(isYear as boolean);
 
   const { data } = useAppSelector((s) => s.tournament);
 
