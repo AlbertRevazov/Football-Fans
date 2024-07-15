@@ -1,12 +1,13 @@
 require('dotenv').config()
 const { Router } = require('express')
-const { X_API_URL, X_API_KEY } = process.env
 const router = new Router()
 
+const { X_API_URL } = process.env
+const { getMoscowDateString } = require('../../utils/FormatTime')
 const {
 	fetchAndSortMatches,
 	filterMatchesByDate,
-	getMoscowDateString,
+	fetchData,
 } = require('../../utils/Fetching')
 
 router.get('/list', async (req, res) => {
@@ -28,21 +29,15 @@ router.get('/list', async (req, res) => {
 router.get('/head2head/:id', async (req, res) => {
 	try {
 		const { id } = req.params
-		const headResponse = await fetch(`${X_API_URL}/matches/${id}/head2head`, {
-			method: 'GET',
-			headers: {
-				'X-Auth-Token': X_API_KEY,
-			},
-		}).then(res => res.json())
-		const matchResponse = await fetch(`${X_API_URL}/matches/${id}`, {
-			method: 'GET',
-			headers: {
-				'X-Auth-Token': X_API_KEY,
-			},
-		}).then(res => res.json())
+		const [headResponse, matchResponse] = await Promise.all([
+			fetchData(`${X_API_URL}/matches/${id}/head2head`),
+			fetchData(`${X_API_URL}/matches/${id}`),
+		])
 
 		return res.send({ match: matchResponse, head: headResponse.aggregates })
-	} catch (error) {}
+	} catch (error) {
+		return res.status(500).send(error.message)
+	}
 })
 
 router.post('/list', async (req, res) => {

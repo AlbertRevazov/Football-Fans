@@ -15,14 +15,11 @@ router.get('/list', async (req, res) => {
 })
 
 router.get('/:id', async (req, res) => {
-	const { id } = req.params
-	const standingsUrl = `${X_API_URL}/competitions/${id}/standings`
-	const scorersUrl = `${X_API_URL}/competitions/${id}/scorers`
-
 	try {
+		const { id } = req.params
 		const [standingsData, scorersData] = await Promise.all([
-			fetchData(standingsUrl),
-			fetchData(scorersUrl),
+			fetchData(`${X_API_URL}/competitions/${id}/standings`),
+			fetchData(`${X_API_URL}/competitions/${id}/scorers`),
 		])
 
 		const totalStandings = standingsData.standings.filter(
@@ -50,14 +47,11 @@ router.get('/:id', async (req, res) => {
 })
 
 router.post('/year', async (req, res) => {
-	const { id, date } = req.body
-	const standingsUrl = `${X_API_URL}/competitions/${id}/standings?season=${date}`
-	const scorersUrl = `${X_API_URL}/competitions/${id}/scorers?season=${date}`
-
 	try {
+		const { id, date } = req.body
 		const [standingsData, scorersData] = await Promise.all([
-			fetchData(standingsUrl),
-			fetchData(scorersUrl),
+			fetchData(`${X_API_URL}/competitions/${id}/standings?season=${date}`),
+			fetchData(`${X_API_URL}/competitions/${id}/scorers?season=${date}`),
 		])
 
 		const totalStandings = standingsData.standings.filter(

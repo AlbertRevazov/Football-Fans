@@ -2,24 +2,8 @@ require('dotenv').config()
 const { Router } = require('express')
 const router = new Router()
 
-const { X_API_KEY, X_API_URL } = process.env
-
-async function fetchData(url) {
-	try {
-		const response = await fetch(url, {
-			method: 'GET',
-			headers: {
-				'X-Auth-Token': X_API_KEY,
-			},
-		})
-		if (!response.ok) {
-			throw new Error(`HTTP error! status: ${response.status}`)
-		}
-		return await response.json()
-	} catch (error) {
-		throw new Error(`Fetch error: ${error.message}`)
-	}
-}
+const { X_API_URL } = process.env
+const { fetchData } = require('../../utils/Fetching')
 
 router.get('/:id', async (req, res) => {
 	try {
