@@ -23,7 +23,6 @@ async function fetchData(url) {
 
 router.get('/:id', async (req, res) => {
 	try {
-		console.log(req.params.id, 'id')
 		const data = await fetchData(`${X_API_URL}/teams/${req.params.id}`)
 		const Squad = {}
 		data.squad.forEach(g => {

@@ -1,0 +1,27 @@
+@import '@/styles/mixin';
+
+.container {
+  @include container;
+  @include flex-center;
+  padding: 20px;
+}
+
+.datePicker {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.block,
+.selected {
+  padding: 10px 20px;
+  border: 1px solid #ccc;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+.selected {
+  color: #5bf6a3;
+  border: 1px solid #5bf6a3;
+}

@@ -10,7 +10,7 @@ export const TeamInfo: FC = () => {
       <h2>Information</h2>
       <ul>
         <li>Основан в - {team?.founded}</li>
-        <li>Адрес - {team?.address}</li>
+        <li>Адрес - {team?.address }</li>
         <li>Домашний стадион - {team?.venue}</li>
         <li>
           Вэб сайт -{' '}

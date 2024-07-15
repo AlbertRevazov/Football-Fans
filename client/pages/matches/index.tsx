@@ -1,15 +1,15 @@
-import React, { FC } from 'react'
-import { Layout } from '../../src/Components/Layout'
-import { Matches } from '../../src/Components/Matches'
-import { DataPicker } from '../../src/Common/DatePicker'
+import React, { FC } from 'react';
+import { Layout } from '../../src/Components/Layout';
+import { Matches } from '../../src/Components/Matches';
+import { DateFilter } from '../../src/Common/DateFilter';
 
 const MatchesPage: FC = () => {
-	return (
-		<Layout>
-			<DataPicker />
-			<Matches />
-		</Layout>
-	)
-}
+  return (
+    <Layout>
+      <DateFilter />
+      <Matches />
+    </Layout>
+  );
+};
 
-export default MatchesPage
+export default MatchesPage;

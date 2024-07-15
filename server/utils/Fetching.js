@@ -55,8 +55,28 @@ function getMoscowDateString(date) {
 	)
 	return moscowDate.toISOString().split('T')[0]
 }
+
+async function fetchData(url) {
+	try {
+		const fetchOptions = {
+			method: 'GET',
+			headers: {
+				'X-Auth-Token': X_API_KEY,
+			},
+		}
+		const response = await fetch(url, fetchOptions)
+		if (!response.ok) {
+			throw new Error(`HTTP error! status: ${response.status}`)
+		}
+		return await response.json()
+	} catch (error) {
+		console.error('Fetch error:', error)
+		throw error
+	}
+}
 module.exports = {
 	fetchAndSortMatches,
 	filterMatchesByDate,
 	getMoscowDateString,
+	fetchData,
 }

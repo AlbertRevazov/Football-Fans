@@ -26,7 +26,7 @@ export const CompetitionsDetail: FC = () => {
   }, []);
 
   if (error) {
-    return <div>Error: {error}</div>;
+    return <div>Error: {error}</div>
   }
 
   const currentSeason = data ? getSeason(data.season.startDate, data.season.endDate) : '';

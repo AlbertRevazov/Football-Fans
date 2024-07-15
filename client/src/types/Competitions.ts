@@ -4,6 +4,7 @@ export type CompetitionsState = {
   isLoading: boolean;
   error: string | undefined;
 };
+
 export type CompetitionData = {
   competition: Competitions;
   scorers: Scorers[];
@@ -17,6 +18,7 @@ export type CompetitionData = {
   table: Table[];
   group?: Standings[];
 };
+
 export type Competitions = {
   id: number;
   name: string;
@@ -24,6 +26,7 @@ export type Competitions = {
   emblem: string;
   startDate: string;
   endDate: string;
+  type: string;
   currentSeason: {
     currentMatchday: number;
     winner: null;
@@ -56,9 +59,11 @@ export type Standings = {
   table: Table[];
   type: string;
 };
+
 export type GroupStandings = {
   table: Standings;
 };
+
 export type Scorers = {
   assists: number;
   goals: number;
