@@ -11,11 +11,12 @@ export const Squad: FC = () => {
       {isLoading || !team ? (
         <Loader />
       ) : (
-        <>
+        <div className={styles.squad_root}>
           {!!team &&
             Object.entries(team.squad).map(([position, players]) => (
-              <div key={position}>
+              <div key={position} className={styles.player}>
                 <h2>{position}</h2>
+                <div className={styles.divider} />
                 <ul>
                   {players.map((player, index) => (
                     <li key={index}>{player.name}</li>
@@ -23,7 +24,7 @@ export const Squad: FC = () => {
                 </ul>
               </div>
             ))}
-        </>
+        </div>
       )}
     </div>
   );

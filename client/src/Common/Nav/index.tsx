@@ -19,7 +19,7 @@ export const Nav: FC = () => {
 		<section className={styles.nav_section}>
 			<nav className={styles.nav_root}>
 				<Link href='/' className={styles.logo}>
-					<img src='/svg/logo.svg' width={80} className={styles.logo_img} />
+					<img src='/svg/logo.svg' width={80} className={styles.logo_img} loading='lazy'/>
 				</Link>
 				<ul className={styles.ul}>
 					{Links.map(link => {

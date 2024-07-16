@@ -17,7 +17,7 @@ export const MatchesDetail: FC = () => {
     if (id) {
       dispatch(head2Head(id as string));
     }
-  }, []);
+  }, [id, dispatch]);
 
   if (!head2head && isLoading) {
     return <Loader />;

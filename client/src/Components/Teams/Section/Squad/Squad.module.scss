@@ -1,0 +1,22 @@
+@import '@/styles/mixin';
+
+.squad_root {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start; 
+  flex-wrap: wrap;
+  gap: 40px;
+}
+
+.player {
+  text-align: end;
+}
+
+.player ul {
+  padding: 0;
+}
+
+.divider {
+  width: 100%;
+  border-bottom: 1px solid black;
+}

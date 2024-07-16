@@ -28,13 +28,11 @@ export const TeamsDetail: FC = () => {
           <div className={styles.wrap}>
             <div className={styles.header}>
               <h1>{team.name}</h1>
+              <img loading="lazy" src={team.crest} alt="emblem" className={styles.emblem} />
             </div>
-            <img loading="lazy" src={team.crest} alt="emblem" className={styles.emblem} />
-          </div>
-          <div className={styles.content}>
             <TeamInfo />
-            <Squad />
           </div>
+            <Squad />
         </>
       </div>
     </div>

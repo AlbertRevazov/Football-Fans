@@ -10,6 +10,7 @@ export enum MatchStatuses {
   'FINISHED' = 'Завершён',
   'TIMED' = 'Не начался',
 }
+
 export enum MatchStages {
   'FINAL' = 'ФИНАЛ',
   'THIRD_PLACE' = 'ТРЕТЬЕ МЕСТО',
@@ -33,3 +34,4 @@ export enum MatchStages {
   'REGULAR_SEASON' = 'РЕГУЛЯРНЫЙ СЕЗОН',
   'CHAMPIONSHIP' = 'ЧЕМПИОНАТ',
 }
+

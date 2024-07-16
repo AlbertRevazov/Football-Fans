@@ -11,15 +11,21 @@
 
 .wrap {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   gap: 100px;
+  width: 100%;
+  padding: 20px;
+  border-bottom: 1px solid black;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 40px;
 }
 
 .content {
-  display: flex;
-  justify-content: space-between;
-  padding: 0 20px;
-  width: 100%;
 }
 
 .emblem {

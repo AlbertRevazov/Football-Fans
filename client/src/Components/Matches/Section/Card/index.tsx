@@ -31,6 +31,7 @@ export const MatchesCard: FC<IMatchesCardProps> = ({ match, isAway }) => {
         className={styles.img}
         src={isAway ? match.awayTeam.crest : match.homeTeam.crest}
         alt="awayTeam crest"
+        loading="lazy"
       />
     </div>
   );

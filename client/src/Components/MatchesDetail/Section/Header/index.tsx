@@ -21,13 +21,13 @@ export const HeaderDetailMatch: FC<IHeaderProps> = ({ data }) => {
       </div>
       <div className={styles.teamsWrapper}>
         <div className={styles.team}>
-          <img className={styles.img} src={homeTeam.crest} alt="home team emblem" />{' '}
+          <img className={styles.img} src={homeTeam.crest} alt="home team emblem" loading="lazy" />
           <Link href={`/teams/${homeTeam.id}`}> {homeTeam.name}</Link>
         </div>
         {data.score.fullTime.home || ''} - {data.score.fullTime.away || ''}
         <div className={styles.team}>
           <Link href={`/teams/${awayTeam.id}`}>{awayTeam.name}</Link>
-          <img className={styles.img} src={awayTeam.crest} alt="away team emblem" />
+          <img className={styles.img} src={awayTeam.crest} alt="away team emblem" loading="lazy" />
         </div>
       </div>
       {!!data.venue && <>Stadium - {data.venue}</>}

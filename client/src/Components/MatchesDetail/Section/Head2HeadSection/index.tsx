@@ -15,14 +15,9 @@ export const HeadSection: FC<HeadSectionProps> = ({ data }) => {
         <li>
           {homeTeam.wins} - Побед - {awayTeam.wins}{' '}
         </li>
-        <li>
-          {homeTeam.losses} - Поражений - {awayTeam.losses}
-        </li>
-        <li>
-          {homeTeam.draws} - Ничьи - {awayTeam.draws}
-        </li>
+        <li>Ничьи - {awayTeam.draws}</li>
+        <li>Всего забито голов - {totalGoals}</li>
       </ul>
-      Всего забито голов - {totalGoals}
     </div>
   );
 };
