@@ -8,7 +8,7 @@ export const Squad: FC = () => {
 
   return (
     <div>
-      {isLoading || !team ? (
+      {isLoading || !team?.id ? (
         <Loader />
       ) : (
         <div className={styles.squad_root}>

@@ -50,9 +50,11 @@ async function fetchData(url) {
 	try {
 		const response = await fetch(url, options)
 		if (!response.ok) {
-			throw new Error(`HTTP error! status: ${response.status}`)
+			const error = await response.json() // Предполагаем, что сервер возвращает JSON с описанием ошибки
+			return { status: response.status, error }
 		}
-		return await response.json()
+		const data = await response.json()
+		return { ...data, status: response.status }
 	} catch (error) {
 		console.error('Fetch error:', error)
 		throw error

@@ -6,12 +6,13 @@ import { Squad } from './Section/Squad';
 import { TeamInfo } from './Section/Information';
 import { Loader } from '@/Common/Loading';
 import styles from './TeamsDetail.module.scss';
+import { ApiErrors } from '@/data';
 
 export const TeamsDetail: FC = () => {
   const dispatch = useAppDispatch();
   const router = useRouter();
   const { id } = router.query;
-  const { team, isLoading } = useAppSelector((s) => s.team);
+  const { team, isLoading, status } = useAppSelector((s) => s.team);
 
   useEffect(() => {
     if (id) {
@@ -19,21 +20,26 @@ export const TeamsDetail: FC = () => {
     }
   }, [id]);
 
-  if (!team || isLoading) return <Loader />;
+  if (isLoading) return <Loader />;
 
+  if (!team?.id && !!status && team?.errorCode) {
+    return (
+      <div className={styles.container}>
+        Error: {ApiErrors[team.errorCode]}
+      </div>
+    );
+  }
   return (
     <div className={styles.root}>
       <div className={styles.container}>
-        <>
-          <div className={styles.wrap}>
-            <div className={styles.header}>
-              <h1>{team.name}</h1>
-              <img loading="lazy" src={team.crest} alt="emblem" className={styles.emblem} />
-            </div>
-            <TeamInfo />
+        <div className={styles.wrap}>
+          <div className={styles.header}>
+            <h1>{team?.name}</h1>
+            <img loading="lazy" src={team?.crest} alt="emblem" className={styles.emblem} />
           </div>
-            <Squad />
-        </>
+          <TeamInfo />
+        </div>
+        <Squad />
       </div>
     </div>
   );
