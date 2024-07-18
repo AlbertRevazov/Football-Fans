@@ -6,38 +6,36 @@ const initialState: GamesState = {
   head2head: null,
   isLoading: false,
   status: '',
+  errorCode: 0,
 };
 
 export const getMatchesList = createAsyncThunk('matches/list', async () => {
   const response = await fetch('http://localhost:4444/proxy/games/list');
 
-  if (!response.ok) {
-    return response.statusText;
+  if (response.status !== 200) {
+    const error = await response.json();
+    return error;
   }
 
-  const data = await response.json();
-  return data;
+  return await response.json();
 });
 
-export const getMatchesListByDate = createAsyncThunk(
-  'matches/list/date',
-  async (payload: string) => {
-    const response = await fetch('http://localhost:4444/proxy/games/list', {
-      method: 'POST',
-      headers: {
-        'Content-type': 'application/json',
-      },
-      body: JSON.stringify({ date: payload }),
-    });
+export const getMatchesListByDate = createAsyncThunk('matches/date', async (payload: string) => {
+  const response = await fetch('http://localhost:4444/proxy/games/date', {
+    method: 'POST',
+    headers: {
+      'Content-type': 'application/json',
+    },
+    body: JSON.stringify({ date: payload }),
+  });
 
-    if (!response.ok) {
-      return response.statusText;
-    }
-
-    const data = await response.json();
-    return data;
+  if (response.status !== 200) {
+    const error = await response.json();
+    return error;
   }
-);
+
+  return await response.json();
+});
 
 export const head2Head = createAsyncThunk('matches/head2head', async (payload: string) => {
   const response = await fetch(`http://localhost:4444/proxy/games/head2head/${payload}`, {
@@ -47,12 +45,12 @@ export const head2Head = createAsyncThunk('matches/head2head', async (payload: s
     },
   });
 
-  if (!response.ok) {
-    return response.statusText;
+  if (response.status !== 200) {
+    const error = await response.json();
+    return error;
   }
 
-  const data = await response.json();
-  return data;
+  return await response.json();
 });
 
 export const MatchesSlice = createSlice({
@@ -65,8 +63,9 @@ export const MatchesSlice = createSlice({
     });
     builder.addCase(getMatchesList.fulfilled, (state, action) => {
       state.isLoading = false;
-      state.games = action.payload;
+      state.games = action.payload?.list;
       state.status = action.payload?.message;
+      state.errorCode = action.payload?.errorCode;
     });
     builder.addCase(getMatchesList.rejected, (state, action) => {
       state.isLoading = false;
@@ -76,8 +75,9 @@ export const MatchesSlice = createSlice({
     });
     builder.addCase(getMatchesListByDate.fulfilled, (state, action) => {
       state.isLoading = false;
-      state.games = action.payload;
+      state.games = action.payload?.list;
       state.status = action.payload?.message;
+      state.errorCode = action.payload?.errorCode;
     });
     builder.addCase(getMatchesListByDate.rejected, (state, action) => {
       state.isLoading = false;
@@ -87,8 +87,9 @@ export const MatchesSlice = createSlice({
     });
     builder.addCase(head2Head.fulfilled, (state, action) => {
       state.isLoading = false;
-      state.head2head = action.payload;
+      state.head2head = action.payload?.list;
       state.status = action.payload?.message;
+      state.errorCode = action.payload?.errorCode;
     });
     builder.addCase(head2Head.rejected, (state, action) => {
       state.isLoading = false;

@@ -3,40 +3,32 @@ import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { getMatchesList } from '@/redux/Slices/Games';
 import { MatchesCard } from '@/Components/Matches/Section/Card';
 import { MatchesHeader } from './Section/Header';
-import { MatchStatuses } from '@/data';
-import Link from 'next/link';
+import { ApiErrors, MatchStatuses } from '@/data';
+import { Loader } from '@/Com\mon/Loading';
 import styles from './Matches.module.scss';
-import { Loader } from '@/Common/Loading';
+import Link from 'next/link';
 
 export const Matches: FC = () => {
   const dispatch = useAppDispatch();
-  const { games, isLoading, status } = useAppSelector((s) => s.matches);
+  const { games, isLoading, status, errorCode } = useAppSelector((s) => s.matches);
 
   useEffect(() => {
     dispatch(getMatchesList());
   }, [dispatch]);
 
-  if (status) {
-    return (
-      <div className={styles.container} style={{ color: 'red' }}>
-        {status}
-      </div>
-    );
-  }
-
   if (isLoading) {
     return <Loader />;
   }
 
-  if (!games || games.length === 0) {
-    return <div className={styles.container}>Матчей не найдено</div>;
+  if (!!errorCode && !!status) {
+    return <div className={styles.container}>Ошибка: {ApiErrors[errorCode]}</div>;
   }
 
   return (
     <div className={styles.root}>
       <div className={styles.container}>
         <h2>Ближайшие матчи</h2>
-        {games.map((match) => (
+        {games?.map((match) => (
           <Link
             key={match.id}
             className={styles.card}

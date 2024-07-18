@@ -1,20 +1,30 @@
 import React, { FC, useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { getCompetitionsList } from '@/redux/Slices/Competitions';
-import styles from './Competitions.module.scss';
+import { ApiErrors } from '@/data';
+import { Loader } from '@/Common/Loading';
 import Link from 'next/link';
+import styles from './Competitions.module.scss';
 
 export const Competitions: FC = () => {
   const dispatch = useAppDispatch();
-  const data = useAppSelector((state) => state.tournament.competitionsList);
+  const { competitionsList, status, errorCode, isLoading } = useAppSelector(
+    (state) => state.tournament
+  );
 
   useEffect(() => {
     dispatch(getCompetitionsList());
   }, []);
 
+  if (isLoading) return <Loader />;
+
+  if (!!status && !!errorCode) {
+    return <div className={styles.container}>Error: {ApiErrors[errorCode]}</div>;
+  }
+
   return (
     <div className={styles.container}>
-      {data?.map((competition) => {
+      {competitionsList?.map((competition) => {
         const slug = competition.code;
         return (
           <Link

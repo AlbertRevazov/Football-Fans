@@ -8,26 +8,34 @@ const options = {
 }
 
 async function fetchAndSortMatches(dateFrom, dateTo) {
-	const response = await fetch(
-		`${X_API_URL}/matches?dateFrom=${dateFrom}&dateTo=${dateTo}`,
-		options
-	)
-	if (!response.ok) {
-		throw new Error(`HTTP error! status: ${response.status}`)
-	}
+	try {
+		const response = await fetch(
+			`${X_API_URL}/matches?dateFrom=${dateFrom}&dateTo=${dateTo}`,
+			options
+		)
 
-	const games = await response.json()
-	const sortedMatches = {}
-
-	games.matches.forEach(match => {
-		const competitionName = match.competition.name
-		if (!sortedMatches[competitionName]) {
-			sortedMatches[competitionName] = []
+		const status = response.status
+		if (!response.ok) {
+			const error = await response.json()
+			return { status: response.status, error }
 		}
-		sortedMatches[competitionName].push(match)
-	})
 
-	return Object.values(sortedMatches).flat()
+		const games = await response.json()
+		const sortedMatches = {}
+
+		games.matches.forEach(match => {
+			const competitionName = match.competition.name
+			if (!sortedMatches[competitionName]) {
+				sortedMatches[competitionName] = []
+			}
+			sortedMatches[competitionName].push(match)
+		})
+
+		return { status, data: Object.values(sortedMatches).flat() }
+	} catch (error) {
+		console.error('Fetch error:', error)
+		throw error
+	}
 }
 
 function filterMatchesByDate(matches, date) {
@@ -49,8 +57,9 @@ function filterMatchesByDate(matches, date) {
 async function fetchData(url) {
 	try {
 		const response = await fetch(url, options)
+
 		if (!response.ok) {
-			const error = await response.json() // Предполагаем, что сервер возвращает JSON с описанием ошибки
+			const error = await response.json()
 			return { status: response.status, error }
 		}
 		const data = await response.json()
@@ -61,8 +70,14 @@ async function fetchData(url) {
 	}
 }
 
+const handleError = (res, error) => {
+	console.error('Error:', error)
+	return res.status(500).send({ message: 'Internal Server Error' })
+}
+
 module.exports = {
 	fetchAndSortMatches,
 	filterMatchesByDate,
 	fetchData,
+	handleError,
 }

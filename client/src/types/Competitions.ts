@@ -2,7 +2,8 @@ export type CompetitionsState = {
   competitionsList: Competitions[] | null;
   data: CompetitionData | null;
   isLoading: boolean;
-  error: string | undefined;
+  errorCode: number;
+  status: string;
 };
 
 export type CompetitionData = {

@@ -8,6 +8,7 @@ const {
 	fetchAndSortMatches,
 	filterMatchesByDate,
 	fetchData,
+	handleError,
 } = require('../../utils/Fetching')
 
 router.get('/list', async (req, res) => {
@@ -18,11 +19,37 @@ router.get('/list', async (req, res) => {
 		newDate.setDate(newDate.getDate() + 1)
 		const newDateString = getMoscowDateString(newDate)
 
-		const matches = await fetchAndSortMatches(moscowDate, newDateString)
-		const filteredMatches = filterMatchesByDate(matches, moscowDate)
-		return res.send(filteredMatches)
+		const data = await fetchAndSortMatches(moscowDate, newDateString)
+
+		if (data.status === 200) {
+			const filteredMatches = filterMatchesByDate(data.data, moscowDate)
+			return res.send({ list: filteredMatches, status: data.status })
+		} else {
+			return res.status(data.status).send(data.error)
+		}
 	} catch (error) {
-		return res.status(500).send(error.message)
+		return handleError(res, error)
+	}
+})
+
+router.post('/date', async (req, res) => {
+	try {
+		const { date } = req.body
+		const moscowDate = getMoscowDateString(date)
+		const newDate = new Date(date)
+		newDate.setDate(newDate.getDate() + 1)
+		const newDateString = getMoscowDateString(newDate)
+
+		const data = await fetchAndSortMatches(moscowDate, newDateString)
+
+		if (data.status === 200) {
+			const filteredMatches = filterMatchesByDate(data.data, moscowDate)
+			return res.send({ list: filteredMatches, status: data.status })
+		} else {
+			return res.status(data.status).send(data.error)
+		}
+	} catch (error) {
+		return handleError(res, error)
 	}
 })
 
@@ -34,25 +61,17 @@ router.get('/head2head/:id', async (req, res) => {
 			fetchData(`${X_API_URL}/matches/${id}`),
 		])
 
-		return res.send({ match: matchResponse, head: headResponse.aggregates })
+		const list = { match: matchResponse, head: headResponse.aggregates }
+		if (headResponse.status === 200) {
+			return res.send({
+				list,
+				status: headResponse.status,
+			})
+		} else {
+			return res.status(headResponse.status).send(headResponse.error)
+		}
 	} catch (error) {
-		return res.status(500).send(error.message)
-	}
-})
-
-router.post('/list', async (req, res) => {
-	try {
-		const { date } = req.body
-		const moscowDate = getMoscowDateString(date)
-		const newDate = new Date(date)
-		newDate.setDate(newDate.getDate() + 1)
-		const newDateString = getMoscowDateString(newDate)
-
-		const matches = await fetchAndSortMatches(moscowDate, newDateString)
-		const filteredMatches = filterMatchesByDate(matches, moscowDate)
-		return res.send(filteredMatches)
-	} catch (error) {
-		return res.status(500).send(error.message)
+		return handleError(res, error)
 	}
 })
 

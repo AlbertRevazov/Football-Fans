@@ -4,14 +4,15 @@ import { head2Head } from '@/redux/Slices/Games';
 import { useRouter } from 'next/router';
 import { HeaderDetailMatch } from './Section/Header';
 import { HeadSection } from './Section/Head2HeadSection';
-import styles from './MatchesDetail.module.scss';
 import { Loader } from '@/Common/Loading';
+import { ApiErrors } from '@/data';
+import styles from './MatchesDetail.module.scss';
 
 export const MatchesDetail: FC = () => {
   const router = useRouter();
   const { id } = router.query;
   const dispatch = useAppDispatch();
-  const { head2head, isLoading } = useAppSelector((s) => s?.matches);
+  const { head2head, isLoading, errorCode, status } = useAppSelector((s) => s?.matches);
 
   useEffect(() => {
     if (id) {
@@ -21,6 +22,10 @@ export const MatchesDetail: FC = () => {
 
   if (!head2head && isLoading) {
     return <Loader />;
+  }
+
+  if (!!errorCode && !!status) {
+    return <div className={styles.container}>Ошибка: {ApiErrors[errorCode]}</div>;
   }
 
   return (

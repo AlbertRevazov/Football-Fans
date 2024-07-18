@@ -1,7 +1,8 @@
 export type GamesState = {
   games: IGames[] | null;
   isLoading: boolean;
-  status: string;
+  status: '';
+  errorCode: number;
   head2head: {
     match: IGames;
     head: IHead2Head;
@@ -21,6 +22,7 @@ export interface IGames {
   score: IScore;
   season: ISeason;
   venue?: string;
+  errorCode?: string;
   referees: {
     id: number;
     name: string;

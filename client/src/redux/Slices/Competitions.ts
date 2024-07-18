@@ -5,19 +5,19 @@ const initialState: CompetitionsState = {
   competitionsList: null,
   data: null,
   isLoading: false,
-  error: undefined,
+  errorCode: 0,
+  status: '',
 };
 
 export const getCompetitionsList = createAsyncThunk('competitions/list', async () => {
   try {
     const response = await fetch('http://localhost:4444/proxy/competitions/list');
-    const data = await response.json();
-
-    if (!response.ok) {
-      throw new Error('Network response was not ok');
+    if (response.status !== 200) {
+      const error = await response.json();
+      return error;
     }
 
-    return data.competitions;
+    return await response.json();
   } catch (error) {}
 });
 
@@ -25,11 +25,12 @@ export const getCompetitionById = createAsyncThunk('competitions/id', async (pay
   try {
     const response = await fetch(`http://localhost:4444/proxy/competitions/${payload}`);
 
-    if (!response.ok) {
+    if (response.status !== 200) {
+      const error = await response.json();
+      return error;
     }
 
-    const data = await response.json();
-    return { data };
+    return await response.json();
   } catch (error) {
     throw new Error('Network response was not ok');
   }
@@ -47,11 +48,12 @@ export const getCompetitionByYear = createAsyncThunk(
         body: JSON.stringify(payload),
       });
 
-      if (!response.ok) {
+      if (response.status !== 200) {
+        const error = await response.json();
+        return error;
       }
 
-      const data = await response.json();
-      return { data };
+      return await response.json();
     } catch (error) {
       throw new Error('Network response was not ok');
     }
@@ -68,33 +70,38 @@ export const CompetitionsSlice = createSlice({
     });
     builder.addCase(getCompetitionsList.fulfilled, (state, action) => {
       state.isLoading = false;
-      state.competitionsList = action.payload;
+      state.competitionsList = action.payload?.list?.competitions;
+      state.status = action.payload?.message;
+      state.errorCode = action.payload?.errorCode;
     });
     builder.addCase(getCompetitionsList.rejected, (state, action) => {
       state.isLoading = false;
-      state.error = action.error ? action.error.message : 'An error occurred';
+      // state.error = action.error ? action.error.message : 'An error occurred';
     });
     builder.addCase(getCompetitionById.pending, (state) => {
       state.isLoading = true;
     });
     builder.addCase(getCompetitionById.fulfilled, (state, action) => {
       state.isLoading = false;
-      state.data = action.payload?.data;
+      state.data = action.payload?.list;
+      state.status = action.payload?.message;
+      state.errorCode = action.payload?.errorCode;
     });
     builder.addCase(getCompetitionById.rejected, (state, action) => {
       state.isLoading = false;
-      state.error = action.error ? action.error.message : 'An error occurred';
     });
     builder.addCase(getCompetitionByYear.pending, (state) => {
       state.isLoading = true;
     });
     builder.addCase(getCompetitionByYear.fulfilled, (state, action) => {
       state.isLoading = false;
-      state.data = action.payload?.data;
+
+      state.data = action.payload?.list;
+      state.status = action.payload?.message;
+      state.errorCode = action.payload?.errorCode;
     });
     builder.addCase(getCompetitionByYear.rejected, (state, action) => {
       state.isLoading = false;
-      state.error = action.error ? action.error.message : 'An error occurred';
     });
   },
 });
