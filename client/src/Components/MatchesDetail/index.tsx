@@ -29,10 +29,18 @@ export const MatchesDetail: FC = () => {
   }
 
   return (
-    <div className={styles.container}>
-      {!!head2head?.match && <HeaderDetailMatch data={head2head?.match} />}
+    <main className={styles.main}>
+      {head2head?.match && (
+        <section className={styles.matchSection}>
+          <HeaderDetailMatch data={head2head.match} />
+        </section>
+      )}
       <div className={styles.divider} />
-      {!!head2head?.head && <HeadSection data={head2head?.head} />}
-    </div>
+      {head2head?.head && (
+        <section className={styles.headSection}>
+          <HeadSection data={head2head.head} />
+        </section>
+      )}
+    </main>
   );
 };

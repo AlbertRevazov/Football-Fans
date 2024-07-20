@@ -13,30 +13,76 @@ export const HeaderDetailMatch: FC<IHeaderProps> = ({ data }) => {
   const { awayTeam, homeTeam, competition } = data;
 
   return (
-    <div className={styles.headerRoot}>
-      <div className={styles.competitionInfo}>
+    <main className={styles.headerRoot}>
+      <section className={styles.competitionInfo}>
         <p>{competition.name}</p>
-        <p>{DateFormate(data.utcDate)}</p>
+        <time dateTime={data.utcDate}>{DateFormate(data.utcDate)}</time>
         <p>{MatchStages[data.stage as keyof typeof MatchStages]}</p>
-      </div>
-      <div className={styles.teamsWrapper}>
+      </section>
+
+      <section className={styles.teamsWrapper}>
         <div className={styles.team}>
-          <img className={styles.img} src={homeTeam.crest} alt="home team emblem" loading="lazy" />
-          <Link href={`/teams/${homeTeam.id}`}> {homeTeam.name}</Link>
+          <figure className={styles.figure}>
+            <img
+              className={styles.img}
+              src={homeTeam.crest}
+              alt="home team emblem"
+              loading="lazy"
+            />
+            <figcaption>
+              <Link href={`/teams/${homeTeam.id}`}>{homeTeam.name}</Link>
+            </figcaption>
+          </figure>
         </div>
-        {data.score.fullTime.home || ''} - {data.score.fullTime.away || ''}
+        <span>
+          {data.score.fullTime.home || ''} - {data.score.fullTime.away || ''}
+        </span>
         <div className={styles.team}>
-          <Link href={`/teams/${awayTeam.id}`}>{awayTeam.name}</Link>
-          <img className={styles.img} src={awayTeam.crest} alt="away team emblem" loading="lazy" />
+          <figure className={styles.figure}>
+            <img
+              className={styles.img}
+              src={awayTeam.crest}
+              alt="away team emblem"
+              loading="lazy"
+            />
+            <figcaption>
+              <Link href={`/teams/${awayTeam.id}`}>{awayTeam.name}</Link>
+            </figcaption>
+          </figure>
         </div>
-      </div>
-      {!!data.venue && <>Stadium - {data.venue}</>}
-      <br />
-      {!!data.referees[0]?.id && (
-        <>
-          Referee - {data.referees[0]?.name}({data.referees[0]?.nationality})
-        </>
+      </section>
+
+      {data.venue && <p>Stadium - {data.venue}</p>}
+      {data.referees[0]?.id && (
+        <p>
+          Referee - {data.referees[0]?.name} ({data.referees[0]?.nationality})
+        </p>
       )}
-    </div>
+    </main>
   );
 };
+// <div className={styles.headerRoot}>
+//   <div className={styles.competitionInfo}>
+//     <p>{competition.name}</p>
+//     <p>{DateFormate(data.utcDate)}</p>
+//     <p>{MatchStages[data.stage as keyof typeof MatchStages]}</p>
+//   </div>
+//   <div className={styles.teamsWrapper}>
+//     <div className={styles.team}>
+//       <img className={styles.img} src={homeTeam.crest} alt="home team emblem" loading="lazy" />
+//       <Link href={`/teams/${homeTeam.id}`}> {homeTeam.name}</Link>
+//     </div>
+//     {data.score.fullTime.home || ''} - {data.score.fullTime.away || ''}
+//     <div className={styles.team}>
+//       <Link href={`/teams/${awayTeam.id}`}>{awayTeam.name}</Link>
+//       <img className={styles.img} src={awayTeam.crest} alt="away team emblem" loading="lazy" />
+//     </div>
+//   </div>
+//   {!!data.venue && <>Stadium - {data.venue}</>}
+//   <br />
+//   {!!data.referees[0]?.id && (
+//     <>
+//       Referee - {data.referees[0]?.name}({data.referees[0]?.nationality})
+//     </>
+//   )}
+// </div>;

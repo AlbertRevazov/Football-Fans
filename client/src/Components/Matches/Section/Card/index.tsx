@@ -7,32 +7,18 @@ interface IMatchesCardProps {
   isAway: boolean;
 }
 
-export const MatchesCard: FC<IMatchesCardProps> = ({ match, isAway }) => {
+export const MatchCard: FC<IMatchesCardProps> = ({ match, isAway }) => {
   const team = isAway ? match.awayTeam : match.homeTeam;
-  const teamArea = isAway ? (
-    <>
-      {match.score.fullTime.away} {match.awayTeam.name}
-    </>
-  ) : (
-    <>
-      {match.homeTeam.name} {match.score.fullTime.home}
-    </>
-  );
+  const score = isAway
+    ? `${match.score.fullTime.away || 0} ${team.name}`
+    : `${team.name} ${match.score.fullTime.home || 0}`;
+
   return (
-    <div className={styles[isAway ? 'awayTeam' : 'homeTeam']}>
-      <Link
-        href={{
-          pathname: `teams/${team.id}`,
-        }}
-      >
-        {teamArea}
-      </Link>
-      <img
-        className={styles.img}
-        src={isAway ? match.awayTeam.crest : match.homeTeam.crest}
-        alt="awayTeam crest"
-        loading="lazy"
-      />
-    </div>
+    <article className={styles[`${isAway ? 'away' : 'home'}Team`]}>
+      <Link href={`/teams/${team.id}`}>{score}</Link>
+      <figure className={styles.figure}>
+        <img className={styles.img} src={team.crest} alt={'team emblem'} loading="lazy" />
+      </figure>
+    </article>
   );
 };

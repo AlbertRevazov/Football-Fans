@@ -1,0 +1,63 @@
+@import '@/styles/mixin';
+
+.main {
+  @include container-mh();
+  @include flex-center();
+  padding: 50px 20px;
+}
+
+.content {
+  background-image: url('../../../public/pitch.jpg');
+  background-position: top;
+  background-clip: text;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.heading {
+  font-family: monospace;
+  font-size: 20rem;
+  padding: 0;
+  margin: 0;
+  letter-spacing: 10px;
+  color: transparent;
+  cursor: default;
+}
+
+.message {
+  max-width: 500px;
+  font-size: 2rem;
+  margin: 0 auto;
+  text-align: center;
+  text-wrap: balance;
+  border-bottom: 1px solid grey;
+  border-top: 1px solid grey;
+  padding: 30px 0;
+}
+
+.text {
+  font-size: 2rem;
+  padding: 0;
+  margin: 10px auto;
+}
+
+.subtext {
+  font-size: 0.75rem;
+  padding: 0;
+  margin: 0 auto;
+}
+
+.link {
+  display: flex;
+  justify-content: center;
+}
+
+.button {
+  cursor: pointer;
+  background-color: transparent;
+  border: 1px solid grey;
+  border-radius: 6px;
+  padding: 12px;
+  transition: all 0.3s ease;
+}

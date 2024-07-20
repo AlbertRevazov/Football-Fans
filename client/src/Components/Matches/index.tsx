@@ -1,10 +1,10 @@
 import React, { FC, useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { getMatchesList } from '@/redux/Slices/Games';
-import { MatchesCard } from '@/Components/Matches/Section/Card';
-import { MatchesHeader } from './Section/Header';
+import { MatchCard } from '@/Components/Matches/Section/Card';
+import { TournamentInfo } from './Section/Info';
 import { ApiErrors, MatchStatuses } from '@/data';
-import { Loader } from '@/Com\mon/Loading';
+import { Loader } from '@/Common/Loading';
 import styles from './Matches.module.scss';
 import Link from 'next/link';
 
@@ -25,30 +25,30 @@ export const Matches: FC = () => {
   }
 
   return (
-    <div className={styles.root}>
+    <section className={styles.root}>
       <div className={styles.container}>
-        <h2>Ближайшие матчи</h2>
+        <h2>{games?.length ? 'Ближайшие матчи' : 'Матчей не найдено'}</h2>
+
         {games?.map((match) => (
-          <Link
-            key={match.id}
-            className={styles.card}
-            href={{
-              pathname: `matches/${match.id}`,
-            }}
-          >
-            <MatchesHeader match={match} />
-            <div className={styles.teams}>
-              <MatchesCard match={match} isAway={false} />
-              -
-              <MatchesCard match={match} isAway={true} />
-            </div>
-            <div>{MatchStatuses[match.status as keyof typeof MatchStatuses]}</div>
-          </Link>
+          // линк не на весь блок
+          <article key={match.id} className={styles.card}>
+            <Link href={`/matches/${match.id}`} className={styles.link}>
+              <TournamentInfo match={match} />
+              <div className={styles.teams}>
+                <MatchCard match={match} isAway={false} />
+                -
+                <MatchCard match={match} isAway={true} />
+              </div>
+              <div className={styles.status}>
+                {MatchStatuses[match.status as keyof typeof MatchStatuses]}
+              </div>
+            </Link>
+          </article>
         ))}
       </div>
-      <h6 className={styles.ps}>
+      <p className={styles.note}>
         * Не всегда корректно отображается день игры из-за часовых поясов
-      </h6>
-    </div>
+      </p>
+    </section>
   );
 };

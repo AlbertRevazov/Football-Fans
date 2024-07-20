@@ -1,7 +1,7 @@
 @import '@/styles/mixin';
 
-.container {
-  @include container-hh;
+.main {
+  @include container-mh;
   display: flex;
   justify-content: center;
   align-items: center;

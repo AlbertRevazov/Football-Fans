@@ -1,7 +1,7 @@
 @import '@/styles/mixin';
 
 .container {
-  @include container-hh;
+  @include container-mh;
   @include flex-center;
   flex-direction: column;
   gap: 20px;
@@ -41,6 +41,9 @@
 .teams {
   gap: 10px;
 }
+.status {
+  text-align: center;
+}
 
 .img {
   width: 25px;
@@ -54,10 +57,12 @@
   transition: color 0.3s ease-in;
 }
 
-.competition {
+.figure {
   display: flex;
+  margin: 8px auto;
   justify-content: center;
   align-items: center;
+  flex-wrap: nowrap;
 }
 
 .competition:hover {
@@ -83,7 +88,7 @@
   flex-direction: row-reverse;
 }
 
-.ps {
+.note {
   display: flex;
   justify-content: center;
   text-align: center;
