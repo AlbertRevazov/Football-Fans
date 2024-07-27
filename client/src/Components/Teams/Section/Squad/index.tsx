@@ -2,6 +2,7 @@ import React, { FC } from 'react';
 import { useAppSelector } from '@/redux/hooks';
 import { Loader } from '@/Common/Loading';
 import styles from './Squad.module.scss';
+import Link from 'next/link';
 
 export const Squad: FC = () => {
   const { isLoading, team } = useAppSelector((s) => s.team);
@@ -19,7 +20,9 @@ export const Squad: FC = () => {
                 <div className={styles.divider} />
                 <ul>
                   {players.map((player, index) => (
-                    <li key={index}>{player.name}</li>
+                    <Link href={`/persons/${player.id}`} className={styles.link}>
+                      <li key={index}>{player.name}</li>
+                    </Link>
                   ))}
                 </ul>
               </div>
