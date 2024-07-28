@@ -4,7 +4,7 @@ import { TeamsState } from '@/types/Teams';
 const initialState: TeamsState = {
   team: null,
   isLoading: false,
-  status: '',
+  status: 0,
 };
 
 export const getTeamById = createAsyncThunk('team/id', async (id: string) => {
@@ -33,7 +33,7 @@ export const TeamSlice = createSlice({
     builder.addCase(getTeamById.fulfilled, (state, action) => {
       state.isLoading = false;
       state.team = action.payload;
-      state.status = action.payload?.message;
+      state.status = action.payload?.status;
     });
     builder.addCase(getTeamById.rejected, (state, action) => {
       state.isLoading = false;

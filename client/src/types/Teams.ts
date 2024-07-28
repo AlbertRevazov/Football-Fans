@@ -3,7 +3,7 @@ import { IArea } from './Games';
 export type TeamsState = {
   team: ITeam | null;
   isLoading: boolean;
-  status: string;
+  status: number;
 };
 
 export interface ITeam {

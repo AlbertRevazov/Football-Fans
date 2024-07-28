@@ -5,8 +5,8 @@ import { getTeamById } from '@/redux/Slices/Team';
 import { Squad } from './Section/Squad';
 import { TeamInfo } from './Section/Information';
 import { Loader } from '@/Common/Loading';
-import styles from './TeamsDetail.module.scss';
 import { ApiErrors } from '@/data';
+import styles from './TeamsDetail.module.scss';
 
 export const TeamsDetail: FC = () => {
   const dispatch = useAppDispatch();
@@ -22,24 +22,21 @@ export const TeamsDetail: FC = () => {
 
   if (isLoading) return <Loader />;
 
-  if (!team?.id && !!status && team?.errorCode) {
-    return (
-      <div className={styles.container}>
-        Error: {ApiErrors[team.errorCode]}
-      </div>
-    );
+  if (status !== 200) {
+    return <div className={styles.container}>Error: {ApiErrors[team?.errorCode as string]}</div>;
   }
+
   return (
     <div className={styles.root}>
       <div className={styles.container}>
-        <div className={styles.wrap}>
-          <div className={styles.header}>
-            <h1>{team?.name}</h1>
-            <img loading="lazy" src={team?.crest} alt="emblem" className={styles.emblem} />
-          </div>
+        <header className={styles.header}>
+          <h1>{team?.name}</h1>
+          <img loading="lazy" src={team?.crest} alt="team emblem" className={styles.emblem} />
+        </header>
+        <main className={styles.mainContent}>
           <TeamInfo />
-        </div>
-        <Squad />
+          <Squad />
+        </main>
       </div>
     </div>
   );

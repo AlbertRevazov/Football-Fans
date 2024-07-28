@@ -1,19 +1,26 @@
 .table {
-	display: flex;
-	align-items: center;
-	justify-content: flex-start;
-	flex-direction: column;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: column;
 }
 
-.table ul {
-	padding: 4px 10px;
+.leagueList {
+  padding: 4px 10px;
 }
 
-.team {
-	padding: 4px;
-	transition: 0.3s ease-in;
+.leagueItem {
+  padding: 4px;
+  text-align: left;
+  display: flex;
+  justify-content: space-between;
 }
 
-.team:hover {
-	color: rgb(5, 118, 255);
+.teamLink {
+  transition: 0.2s ease-in;
+  padding: 0 3px;
+}
+
+.teamLink:hover {
+  color: rgb(255, 5, 5);
 }

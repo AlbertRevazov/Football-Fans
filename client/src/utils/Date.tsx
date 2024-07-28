@@ -1,3 +1,4 @@
+
 export const DateFormate = (props: string, withoutHours?: boolean) => {
   // Создание объекта Date из строки UTC
   const date = new Date(props);
@@ -20,4 +21,10 @@ export const DateFormate = (props: string, withoutHours?: boolean) => {
   });
 
   return withoutHours ? withoutTime : formattedDateTime;
+};
+
+export const getSeason = (startDate: string, endDate: string) => {
+  const startYear = startDate?.substring(0, 4);
+  const endYear = endDate?.substring(0, 4);
+  return `${startYear}/${endYear}`;
 };

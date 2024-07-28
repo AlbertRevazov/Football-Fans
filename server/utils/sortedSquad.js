@@ -29,10 +29,6 @@ const sortedSquad = players => {
 			case 'Offence':
 				groupedPlayers.Forwards.push(player)
 				break
-			default:
-				// Обработка случая, если позиция неизвестна
-				console.warn(`Unknown position: ${player.position}`)
-				break
 		}
 	})
 	return groupedPlayers

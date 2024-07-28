@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useCallback } from 'react';
+import React, { FC, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { getCompetitionById } from '@/redux/Slices/Competitions';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
@@ -7,6 +7,7 @@ import { LeagueScorers } from './Section/Scorers';
 import { GroupTable } from './Section/GroupTable';
 import { Loader } from '@/Common/Loading';
 import { ApiErrors } from '@/data';
+import { getSeason } from '@/utils/Date';
 import styles from './CompetitionsDetail.module.scss';
 
 export const CompetitionsDetail: FC = () => {
@@ -21,15 +22,9 @@ export const CompetitionsDetail: FC = () => {
     }
   }, [id, dispatch]);
 
-  const getSeason = useCallback((startDate: string, endDate: string) => {
-    const startYear = startDate?.substring(0, 4);
-    const endYear = endDate?.substring(0, 4);
-    return `${startYear}/${endYear}`;
-  }, []);
-
   if (isLoading) return <Loader />;
 
-  if (status && errorCode) {
+  if (status !== 200) {
     return <div className={styles.container}>Error: {ApiErrors[errorCode]}</div>;
   }
 
@@ -38,32 +33,30 @@ export const CompetitionsDetail: FC = () => {
   return (
     <div className={styles.root}>
       <div className={styles.container}>
-        <div className={styles.content}>
-          <div className={styles.wrap}>
-            <div className={styles.header}>
-              <h1>{data?.competition.name}</h1>
-              <p>Season: {currentSeason}</p>
-            </div>
-            <img
-              loading="lazy"
-              src={data?.competition.emblem}
-              alt="emblem"
-              className={styles.emblem}
-            />
-          </div>
-
-          <div className={styles.leagueStats}>
+        <main className={styles.content}>
+          <header className={styles.header}>
+            <h1>{data?.competition.name}</h1>
+            <p>Season: {currentSeason}</p>
+          </header>
+          <img
+            loading="lazy"
+            src={data?.competition.emblem}
+            alt="competition emblem"
+            className={styles.emblem}
+          />
+          <section className={styles.leagueStats}>
             {!data?.table ? <GroupTable /> : <LeagueTable />}
-            <LeagueScorers data={data?.scorers} />
-          </div>
-
+            {!!data?.scorers.length && <LeagueScorers data={data?.scorers} />}
+          </section>
           {!data?.table && (
-            <h6 className={styles.ps}>
-              * Данные получены из бесплатного ресурса, который не предоставляет данные о сетке плей
-              офф, в будущем планируем масштабирование в том числе расширенную подписку
-            </h6>
+            <footer className={styles.footer}>
+              <h6 className={styles.note}>
+                * Данные получены из бесплатного ресурса, который не предоставляет данные о сетке
+                плей офф, в будущем планируем масштабирование в том числе расширенную подписку
+              </h6>
+            </footer>
           )}
-        </div>
+        </main>
       </div>
     </div>
   );

@@ -1,6 +1,7 @@
 import React, { FC } from 'react';
 import { Scorers } from '@/types/Competitions';
 import styles from './LeagueScorers.module.scss';
+import Link from 'next/link';
 
 interface ILeagueScorersProps {
   data: Scorers[] | undefined;
@@ -8,15 +9,18 @@ interface ILeagueScorersProps {
 
 export const LeagueScorers: FC<ILeagueScorersProps> = ({ data }) => {
   return (
-    <div className={styles.scorers}>
+    <section className={styles.scorers}>
       <h1>League Scorers</h1>
-      <ul>
+      <ul className={styles.scorersList}>
         {data?.map((el) => (
-          <li key={el.player.id}>
-            {el.player.name} {el.goals} - {el.assists || 0}{' '}
+          <li key={el.player.id} className={styles.scorerItem}>
+            <Link href={`/persons/${el.player.id}`} className={styles.scorerLink}>
+              {el.player.name}
+            </Link>
+            {el.goals} - {el.assists || 0}
           </li>
         ))}
       </ul>
-    </div>
+    </section>
   );
 };

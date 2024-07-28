@@ -3,7 +3,7 @@ export type CompetitionsState = {
   data: CompetitionData | null;
   isLoading: boolean;
   errorCode: number;
-  status: string;
+  status: number;
 };
 
 export type CompetitionData = {

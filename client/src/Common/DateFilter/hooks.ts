@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useAppDispatch } from '@/redux/hooks';
 import { getMatchesListByDate } from '@/redux/Slices/Games';
 import { getCompetitionByYear } from '@/redux/Slices/Competitions';
@@ -76,6 +76,11 @@ export const useDateFilterHook = (isSeason: boolean): IUseDateFilterHookReturn =
       setSelected(date);
       dispatch(getCompetitionByYear({ id, date }));
     };
+    
+
+  useEffect(() => {
+    return setSelected(isSeason ? currentYear : today);
+  }, []);
 
   return { days, years, selected, handleDays, handleYear };
 };

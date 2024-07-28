@@ -1,10 +1,17 @@
 .scorers {
-	display: flex;
-	align-items: center;
-	justify-content: flex-start;
-	flex-direction: column;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: column;
 }
 
-.scorers ul {
-	padding: 4px 10px;
+.scorersList {
+  padding: 4px 10px;
+}
+
+.scorerItem {
+  padding: 4px;
+	text-align: end;
+	display: flex;
+	justify-content: space-between;
 }

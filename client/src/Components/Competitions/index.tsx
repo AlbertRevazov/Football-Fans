@@ -18,7 +18,7 @@ export const Competitions: FC = () => {
 
   if (isLoading) return <Loader />;
 
-  if (!!status && !!errorCode) {
+  if (status !== 200) {
     return <div className={styles.container}>Error: {ApiErrors[errorCode]}</div>;
   }
 
@@ -33,11 +33,17 @@ export const Competitions: FC = () => {
               pathname: 'competitions/[slug]',
               query: { slug },
             }}
+            className={styles.cardLink}
           >
-            <div className={styles.card_item}>
-              <img src={competition.emblem} alt="competition emblem" loading="lazy" />
-              <p>{competition.name}</p>
-            </div>
+            <article className={styles.cardItem}>
+              <img
+                src={competition.emblem}
+                alt="competition emblem"
+                loading="lazy"
+                className={styles.emblem}
+              />
+              <p className={styles.competitionName}>{competition.name}</p>
+            </article>
           </Link>
         );
       })}
