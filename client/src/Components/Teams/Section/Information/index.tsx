@@ -3,6 +3,7 @@ import { useAppSelector } from '@/redux/hooks';
 import { Loader } from '@/Common/Loading';
 import { ApiErrors } from '@/data';
 import styles from './Information.module.scss';
+import Link from 'next/link';
 
 export const TeamInfo: FC = () => {
   const { team, isLoading, status } = useAppSelector((s) => s.team);
@@ -39,7 +40,9 @@ export const TeamInfo: FC = () => {
             </div>
           ))}
         </li>
-        <li>Главный тренер - {team?.coach?.name}</li>
+        <li>
+          Главный тренер - <Link href={`/persons/${team?.coach.id}`}>{team?.coach?.name}</Link>
+        </li>
       </ul>
     </section>
   );

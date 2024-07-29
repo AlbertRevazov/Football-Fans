@@ -21,7 +21,6 @@
   cursor: pointer;
 }
 
-.tournament,
 .teams {
   display: flex;
   align-items: center;
@@ -30,62 +29,12 @@
   text-align: center;
 }
 
-.tournament {
-  flex-direction: column;
-}
-
-.matchday p {
-  margin: 10px 0;
-}
-
 .teams {
   gap: 10px;
 }
+
 .status {
   text-align: center;
-}
-
-.img {
-  width: 25px;
-  height: 25px;
-  padding: 0 12px;
-}
-
-.competition,
-.awayTeam a,
-.homeTeam a {
-  transition: color 0.3s ease-in;
-}
-
-.figure {
-  display: flex;
-  margin: 8px auto;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: nowrap;
-}
-
-.competition:hover {
-  color: rgb(0, 255, 110);
-}
-
-.homeTeam a:hover {
-  color: red;
-}
-
-.awayTeam a:hover {
-  color: blue;
-}
-
-.awayTeam,
-.homeTeam {
-  display: flex;
-  align-items: center;
-}
-
-.homeTeam {
-  display: flex;
-  flex-direction: row-reverse;
 }
 
 .note {

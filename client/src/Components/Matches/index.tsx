@@ -25,14 +25,14 @@ export const Matches: FC = () => {
   }
 
   return (
-    <section className={styles.root}>
+    <section>
       <div className={styles.container}>
         <h2>{games?.length ? 'Ближайшие матчи' : 'Матчей не найдено'}</h2>
 
         {games?.map((match) => (
           // линк не на весь блок
           <article key={match.id} className={styles.card}>
-            <Link href={`/matches/${match.id}`} className={styles.link}>
+            <Link href={`/matches/${match.id}`}>
               <TournamentInfo match={match} />
               <div className={styles.teams}>
                 <MatchCard match={match} isAway={false} />

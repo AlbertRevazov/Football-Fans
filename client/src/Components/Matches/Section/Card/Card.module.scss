@@ -1,0 +1,53 @@
+@import '@/styles/mixin';
+
+.homeTeam a:hover {
+  color: red;
+}
+
+.awayTeam a:hover {
+  color: blue;
+}
+
+.awayTeam,
+.homeTeam {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: color 0.3s ease-in;
+}
+
+.homeTeam {
+  flex-direction: row-reverse;
+}
+
+.awayLink {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  flex-direction: row-reverse;
+}
+
+.homeLink {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  padding: 14px 0;
+  text-align: start;
+  gap: 5px;
+}
+
+.figure {
+  display: flex;
+  margin: 8px auto;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: nowrap;
+}
+
+.img {
+  width: 25px;
+  height: 25px;
+  padding: 0 12px;
+}

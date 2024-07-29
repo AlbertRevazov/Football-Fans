@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import { IGames } from '@/types/Games';
 import { DateFormate } from '@/utils/Date';
 import Link from 'next/link';
-import styles from '../../Matches.module.scss';
+import styles from './Info.module.scss';
 
 interface ITournamentInfoPRops {
   match: IGames;

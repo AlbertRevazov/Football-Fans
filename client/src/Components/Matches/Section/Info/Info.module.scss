@@ -1,0 +1,36 @@
+@import '@/styles/mixin';
+
+.tournament {
+  flex-direction: column;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  gap: 5px;
+  text-align: center;
+}
+
+.matchday p {
+  margin: 10px 0;
+}
+
+.competition {
+  transition: color 0.3s ease-in;
+}
+
+.competition:hover {
+  color: rgb(0, 255, 110);
+}
+
+.figure {
+  display: flex;
+  margin: 8px auto;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: nowrap;
+}
+
+.img {
+  width: 25px;
+  height: 25px;
+  padding: 0 12px;
+}
