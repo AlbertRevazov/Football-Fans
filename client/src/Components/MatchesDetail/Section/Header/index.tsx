@@ -10,8 +10,8 @@ interface IHeaderProps {
 }
 
 export const HeaderDetailMatch: FC<IHeaderProps> = ({ data }) => {
-  const { awayTeam, homeTeam, competition } = data;
-
+  const { awayTeam, homeTeam, competition, score } = data;
+  const { fullTime } = score;
   return (
     <main className={styles.headerRoot}>
       <section className={styles.competitionInfo}>
@@ -35,7 +35,7 @@ export const HeaderDetailMatch: FC<IHeaderProps> = ({ data }) => {
           </figure>
         </div>
         <span>
-          {data.score.fullTime.home || ''} - {data.score.fullTime.away || ''}
+          {fullTime.home || 0} - {fullTime.away || 0}
         </span>
         <div className={styles.team}>
           <figure className={styles.figure}>
@@ -61,28 +61,3 @@ export const HeaderDetailMatch: FC<IHeaderProps> = ({ data }) => {
     </main>
   );
 };
-// <div className={styles.headerRoot}>
-//   <div className={styles.competitionInfo}>
-//     <p>{competition.name}</p>
-//     <p>{DateFormate(data.utcDate)}</p>
-//     <p>{MatchStages[data.stage as keyof typeof MatchStages]}</p>
-//   </div>
-//   <div className={styles.teamsWrapper}>
-//     <div className={styles.team}>
-//       <img className={styles.img} src={homeTeam.crest} alt="home team emblem" loading="lazy" />
-//       <Link href={`/teams/${homeTeam.id}`}> {homeTeam.name}</Link>
-//     </div>
-//     {data.score.fullTime.home || ''} - {data.score.fullTime.away || ''}
-//     <div className={styles.team}>
-//       <Link href={`/teams/${awayTeam.id}`}>{awayTeam.name}</Link>
-//       <img className={styles.img} src={awayTeam.crest} alt="away team emblem" loading="lazy" />
-//     </div>
-//   </div>
-//   {!!data.venue && <>Stadium - {data.venue}</>}
-//   <br />
-//   {!!data.referees[0]?.id && (
-//     <>
-//       Referee - {data.referees[0]?.name}({data.referees[0]?.nationality})
-//     </>
-//   )}
-// </div>;

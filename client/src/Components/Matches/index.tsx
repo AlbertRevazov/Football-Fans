@@ -1,26 +1,25 @@
-import React, { FC, useEffect } from 'react';
-import { useAppDispatch, useAppSelector } from '@/redux/hooks';
-import { getMatchesList } from '@/redux/Slices/Games';
-import { MatchCard } from '@/Components/Matches/Section/Card';
-import { TournamentInfo } from './Section/Info';
-import { ApiErrors, MatchStatuses } from '@/data';
+import React, { FC } from 'react';
+import { GamesState } from '@/types/Games';
+import { useAppSelector } from '@/redux/hooks';
 import { Loader } from '@/Common/Loading';
-import styles from './Matches.module.scss';
+import { ApiErrors, MatchStatuses } from '@/data';
+import { TournamentInfo } from './Section/Info';
+import { MatchCard } from './Section/Card';
 import Link from 'next/link';
+import styles from './Matches.module.scss';
 
-export const Matches: FC = () => {
-  const dispatch = useAppDispatch();
-  const { games, isLoading, status, errorCode } = useAppSelector((s) => s.matches);
+interface MatchesProps {
+  initialMatchesState: GamesState;
+}
 
-  useEffect(() => {
-    dispatch(getMatchesList());
-  }, [dispatch]);
+export const Matches: FC<MatchesProps> = ({ initialMatchesState }) => {
+  const { games, isLoading,  errorCode } = useAppSelector((s) => s.matches);
 
   if (isLoading) {
     return <Loader />;
   }
 
-  if (!!errorCode && !!status) {
+  if (!!errorCode ) {
     return <div className={styles.container}>Ошибка: {ApiErrors[errorCode]}</div>;
   }
 
@@ -30,7 +29,6 @@ export const Matches: FC = () => {
         <h2>{games?.length ? 'Ближайшие матчи' : 'Матчей не найдено'}</h2>
 
         {games?.map((match) => (
-          // линк не на весь блок
           <article key={match.id} className={styles.card}>
             <Link href={`/matches/${match.id}`}>
               <TournamentInfo match={match} />

@@ -5,7 +5,7 @@ const initialState: GamesState = {
   games: null,
   head2head: null,
   isLoading: false,
-  status: '',
+  status: null,
   errorCode: 0,
 };
 

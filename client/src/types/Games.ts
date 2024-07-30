@@ -1,7 +1,7 @@
 export type GamesState = {
   games: IGames[] | null;
   isLoading: boolean;
-  status: '';
+  status: string | null;
   errorCode: number;
   head2head: {
     match: IGames;

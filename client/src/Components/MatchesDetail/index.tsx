@@ -1,31 +1,19 @@
-import React, { FC, useEffect } from 'react';
-import { useAppDispatch, useAppSelector } from '@/redux/hooks';
-import { head2Head } from '@/redux/Slices/Games';
-import { useRouter } from 'next/router';
+import React, { FC } from 'react';
 import { HeaderDetailMatch } from './Section/Header';
 import { HeadSection } from './Section/Head2HeadSection';
 import { Loader } from '@/Common/Loading';
 import { ApiErrors } from '@/data';
+import { GamesState } from '@/types/Games';
 import styles from './MatchesDetail.module.scss';
 
-export const MatchesDetail: FC = () => {
-  const router = useRouter();
-  const { id } = router.query;
-  const dispatch = useAppDispatch();
-  const { head2head, isLoading, errorCode, status } = useAppSelector((s) => s?.matches);
-
-  useEffect(() => {
-    if (id) {
-      dispatch(head2Head(id as string));
-    }
-  }, [id, dispatch]);
+export const MatchesDetail: FC<{ initialMatchesState: GamesState }> = ({ initialMatchesState }) => {
+  const { head2head, isLoading, errorCode, status } = initialMatchesState;
 
   if (!head2head && isLoading) {
     return <Loader />;
   }
-
-  if (!!errorCode && !!status) {
-    return <div className={styles.container}>Ошибка: {ApiErrors[errorCode]}</div>;
+  if (!!errorCode && errorCode !== 200) {
+    return <div className={styles.main}>Ошибка: {ApiErrors[errorCode]}</div>;
   }
 
   return (
