@@ -1,13 +1,22 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect } from 'react';
 import { HeaderDetailMatch } from './Section/Header';
 import { HeadSection } from './Section/Head2HeadSection';
 import { Loader } from '@/Common/Loading';
 import { ApiErrors } from '@/data';
-import { GamesState } from '@/types/Games';
+import { useAppDispatch, useAppSelector } from '@/redux/hooks';
+import { useRouter } from 'next/router';
+import { getMatchById } from '@/redux/Slices/Games';
 import styles from './MatchesDetail.module.scss';
 
-export const MatchesDetail: FC<{ initialMatchesState: GamesState }> = ({ initialMatchesState }) => {
-  const { head2head, isLoading, errorCode, status } = initialMatchesState;
+export const MatchesDetail: FC = () => {
+  const { head2head, isLoading, errorCode } = useAppSelector((s) => s.matches);
+  const dispatch = useAppDispatch();
+  const router = useRouter();
+  const { id } = router.query;
+
+  useEffect(() => {
+    dispatch(getMatchById(id as string));
+  }, [dispatch, id]);
 
   if (!head2head && isLoading) {
     return <Loader />;

@@ -37,7 +37,7 @@ export const getMatchesListByDate = createAsyncThunk('matches/date', async (payl
   return await response.json();
 });
 
-export const head2Head = createAsyncThunk('matches/head2head', async (payload: string) => {
+export const getMatchById = createAsyncThunk('matches/head2head', async (payload: string) => {
   const response = await fetch(`http://localhost:4444/proxy/games/head2head/${payload}`, {
     method: 'GET',
     headers: {
@@ -82,16 +82,16 @@ export const MatchesSlice = createSlice({
     builder.addCase(getMatchesListByDate.rejected, (state, action) => {
       state.isLoading = false;
     });
-    builder.addCase(head2Head.pending, (state) => {
+    builder.addCase(getMatchById.pending, (state) => {
       state.isLoading = true;
     });
-    builder.addCase(head2Head.fulfilled, (state, action) => {
+    builder.addCase(getMatchById.fulfilled, (state, action) => {
       state.isLoading = false;
       state.head2head = action.payload?.list;
       state.status = action.payload?.message;
       state.errorCode = action.payload?.errorCode;
     });
-    builder.addCase(head2Head.rejected, (state, action) => {
+    builder.addCase(getMatchById.rejected, (state, action) => {
       state.isLoading = false;
     });
   },

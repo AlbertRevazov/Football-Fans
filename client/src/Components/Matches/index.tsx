@@ -1,25 +1,26 @@
-import React, { FC } from 'react';
-import { GamesState } from '@/types/Games';
-import { useAppSelector } from '@/redux/hooks';
+import React, { FC, useEffect } from 'react';
+import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { Loader } from '@/Common/Loading';
 import { ApiErrors, MatchStatuses } from '@/data';
 import { TournamentInfo } from './Section/Info';
 import { MatchCard } from './Section/Card';
+import { getMatchesList } from '@/redux/Slices/Games';
 import Link from 'next/link';
 import styles from './Matches.module.scss';
 
-interface MatchesProps {
-  initialMatchesState: GamesState;
-}
+export const Matches: FC = () => {
+  const { games, isLoading, errorCode } = useAppSelector((s) => s.matches);
+  const dispatch = useAppDispatch();
 
-export const Matches: FC<MatchesProps> = ({ initialMatchesState }) => {
-  const { games, isLoading,  errorCode } = useAppSelector((s) => s.matches);
-
+  useEffect(() => {
+    dispatch(getMatchesList());
+  }, []);
+  
   if (isLoading) {
     return <Loader />;
   }
 
-  if (!!errorCode ) {
+  if (!!errorCode) {
     return <div className={styles.container}>Ошибка: {ApiErrors[errorCode]}</div>;
   }
 
