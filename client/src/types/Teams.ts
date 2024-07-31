@@ -22,6 +22,7 @@ export interface ITeam {
   coach: ICoach;
   squad: IGroupSquad;
   errorCode?: string;
+  isFavorite: boolean;
 }
 
 export interface IRunningCompetitions {

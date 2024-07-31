@@ -7,20 +7,30 @@ const initialState: TeamsState = {
   status: 0,
 };
 
-export const getTeamById = createAsyncThunk('team/id', async (id: string) => {
-  try {
-    const response = await fetch(`http://localhost:4444/proxy/teams/${id}`);
+export const getTeamById = createAsyncThunk(
+  'team/id',
+  async (payload: { userId: string; id: string }) => {
+    try {
+      console.log(payload, 'slice');
+      const response = await fetch(`http://localhost:4444/proxy/teams/${payload.id}`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${payload.userId}`, 
+        },
+      });
 
-    if (response.status !== 200) {
-      const error = await response.json();
-      return error;
+      if (response.status !== 200) {
+        const error = await response.json();
+        return error;
+      }
+
+      return await response.json();
+    } catch (error) {
+      console.log(error);
     }
-
-    return await response.json();
-  } catch (error) {
-    console.log(error);
   }
-});
+);
 
 export const TeamSlice = createSlice({
   name: 'team',
@@ -35,7 +45,7 @@ export const TeamSlice = createSlice({
       state.team = action.payload;
       state.status = action.payload?.status;
     });
-    builder.addCase(getTeamById.rejected, (state, action) => {
+    builder.addCase(getTeamById.rejected, (state) => {
       state.isLoading = false;
     });
   },
