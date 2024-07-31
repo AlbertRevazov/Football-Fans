@@ -12,6 +12,15 @@ module.exports = {
 			favoriteApiId: {
 				type: Sequelize.STRING,
 				allowNull: false,
+				unique: true,
+			},
+			name: {
+				type: Sequelize.STRING,
+				allowNull: false,
+			},
+			crest: {
+				type: Sequelize.STRING,
+				allowNull: false,
 			},
 			// Другие поля, если они есть
 			createdAt: {

@@ -2,10 +2,10 @@
 const { Model } = require('sequelize')
 
 module.exports = (sequelize, DataTypes) => {
-	class User extends Model {
+	class Users extends Model {
 		static associate(models) {
 			// Определение связи "многие ко многим" через промежуточную таблицу UserFavorites
-			User.belongsToMany(models.Favorite, {
+			Users.belongsToMany(models.Favorite, {
 				through: 'UserFavorites',
 				foreignKey: 'userId',
 				otherKey: 'favoriteId',
@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
 		}
 	}
 
-	User.init(
+	Users.init(
 		{
 			name: DataTypes.STRING,
 			lastName: DataTypes.STRING,
@@ -25,13 +25,12 @@ module.exports = (sequelize, DataTypes) => {
 			password: DataTypes.STRING,
 			role: DataTypes.STRING,
 			image: DataTypes.STRING,
-			favoriteApiId: DataTypes.STRING,
 		},
 		{
 			sequelize,
-			modelName: 'User',
+			modelName: 'Users',
 		}
 	)
 
-	return User
+	return Users
 }
