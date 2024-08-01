@@ -25,7 +25,11 @@ export const CompetitionsDetail: FC = () => {
   if (isLoading) return <Loader />;
 
   if (status !== 200) {
-    return <div className={styles.container}>Error: {ApiErrors[errorCode]}</div>;
+    return (
+      <div className={styles.container}>
+        Error: {ApiErrors[errorCode]} {errorCode}
+      </div>
+    );
   }
 
   const currentSeason = data ? getSeason(data.season.startDate, data.season.endDate) : '';

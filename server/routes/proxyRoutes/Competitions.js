@@ -2,6 +2,7 @@ require('dotenv').config()
 const { Router } = require('express')
 const router = new Router()
 
+const { STATUS_CODES } = require('../../data/ResponseStatuses')
 const { fetchData } = require('../../utils/Fetching')
 const { X_API_URL } = process.env
 
@@ -57,7 +58,7 @@ router.get('/:id', async (req, res) => {
 			return res.status(standingsData.status).send(standingsData.error)
 		}
 	} catch (error) {
-		res.sendStatus(500)
+		res.sendStatus(STATUS_CODES.INTERNAL_SERVER_ERROR)
 	}
 })
 
@@ -95,7 +96,7 @@ router.post('/year', async (req, res) => {
 			return res.status(standingsData.status).send(standingsData.error)
 		}
 	} catch (error) {
-		res.sendStatus(500)
+		res.sendStatus(STATUS_CODES.INTERNAL_SERVER_ERROR)
 	}
 })
 

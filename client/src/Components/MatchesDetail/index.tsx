@@ -22,7 +22,12 @@ export const MatchesDetail: FC = () => {
     return <Loader />;
   }
   if (!!errorCode && errorCode !== 200) {
-    return <div className={styles.main}>Ошибка: {ApiErrors[errorCode]}</div>;
+    return (
+      <div className={styles.main}>
+        Ошибка: {ApiErrors[errorCode]}
+        {errorCode}
+      </div>
+    );
   }
 
   return (

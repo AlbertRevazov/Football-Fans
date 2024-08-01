@@ -1,4 +1,4 @@
-import { FC, useEffect } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { getMe, logout } from '@/redux/Slices/Auth';
 import { Links } from '@/data';
@@ -10,10 +10,14 @@ export const Nav: FC = () => {
   const dispatch = useAppDispatch();
   const { user } = useAppSelector((state) => state.auth);
   const router = useRouter();
+  const [hasFetched, setHasFetched] = useState(false);
 
   useEffect(() => {
-    dispatch(getMe());
-  }, []);
+    if (!hasFetched) {
+      dispatch(getMe());
+      setHasFetched(true);
+    }
+  }, [user?.id, dispatch, hasFetched]);
 
   return (
     <section className={styles.nav_section}>
@@ -36,7 +40,13 @@ export const Nav: FC = () => {
               <Link href="/favorites">
                 <li className={styles.li}>Favorites</li>
               </Link>{' '}
-              <span className={styles.btn} onClick={() => dispatch(logout())}>
+              <span
+                className={styles.btn}
+                onClick={() => {
+                  dispatch(logout());
+                  router.push('/');
+                }}
+              >
                 EXIT
               </span>
             </>

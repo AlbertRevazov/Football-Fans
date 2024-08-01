@@ -1,5 +1,44 @@
 @import '@/styles/mixin';
+
 .main {
   @include container-mh();
-  @include flex-center();
+  text-align: center;
+  box-sizing: border-box;
+  padding: 20px; // Внутренние отступы
+}
+
+.list {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap; // Резиновая верстка
+  gap: 20px; // Отступы между элементами
+  padding: 0;
+}
+
+.links {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 40px;
+  text-align: start;
+  width: 100%; // Резиновая верстка
+  max-width: 300px; // Максимальная ширина
+  padding: 10px; // Внутренние отступы
+  box-sizing: border-box;
+}
+
+.team_name {
+  text-align: start;
+  font-size: 16px;
+  flex-grow: 1; // Растягивание текста
+}
+
+.team_pic {
+  max-width: 50px;
+  width: 100%; // Резиновая верстка
+}
+
+.remove {
+  box-sizing: border-box;
+  cursor: pointer;
 }
