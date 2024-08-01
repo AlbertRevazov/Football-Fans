@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC, useEffect, useMemo, useState } from 'react';
 import { useRouter } from 'next/router';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { getTeamById } from '@/redux/Slices/Team';
@@ -6,7 +6,7 @@ import { Squad } from './Section/Squad';
 import { TeamInfo } from './Section/Information';
 import { Loader } from '@/Common/Loading';
 import { ApiErrors } from '@/data';
-import { addToFavorites, removeFromFavorites } from '@/redux/Slices/Favorites';
+import { addToFavorites, removeFromFavorites } from '@/redux/Slices/Auth';
 import styles from './TeamsDetail.module.scss';
 
 export const TeamsDetail: FC = () => {
@@ -14,26 +14,40 @@ export const TeamsDetail: FC = () => {
   const router = useRouter();
   const teamId = router.query.id as string;
   const { team, isLoading, status } = useAppSelector((s) => s.team);
-  const { user } = useAppSelector((s) => s.auth);
-  const [isFavorite, setIsFavorite] = useState(team?.isFavorite || false);
+  const { user, liked } = useAppSelector((s) => s.auth);
+  const [isFav, setIsFav] = useState(false);
+
   const userId = String(user?.id);
 
   useEffect(() => {
     if (teamId && user?.id) {
-      dispatch(getTeamById({ userId, id: teamId })).then(() => {
-        setIsFavorite(team?.isFavorite || false);
-      });
+      dispatch(getTeamById({ userId, id: teamId }));
     }
-  }, [dispatch, user?.id, teamId]);
+  }, [teamId, user?.id, dispatch]);
+
+  useEffect(() => {
+    if (!!liked?.length) {
+      setIsFav(liked?.some((item) => item.favoriteApiId === teamId) || false);
+    }
+  }, [liked, teamId]);
+
+  const favoriteImage = useMemo(() => {
+    return isFav ? '/svg/bxs-heart.svg' : '/svg/bx-heart.svg';
+  }, [isFav]);
 
   if (isLoading) return <Loader />;
 
   if (status !== 200) {
-    return <div className={styles.container}>Error: {ApiErrors[team?.errorCode as string]}</div>;
+    return (
+      <div className={styles.container}>
+        Error: {ApiErrors[team?.errorCode as string]}
+        {team?.errorCode}
+      </div>
+    );
   }
 
   const handleFavoriteToggle: React.MouseEventHandler<HTMLDivElement> = (e) => {
-    const action = isFavorite ? removeFromFavorites : addToFavorites;
+    const action = isFav ? removeFromFavorites : addToFavorites;
 
     if (team && user?.id && teamId) {
       dispatch(
@@ -41,9 +55,8 @@ export const TeamsDetail: FC = () => {
           userId,
           favorite: { id: teamId, name: team.shortName, crest: team.crest },
         })
-      ).then(() => {
-        setIsFavorite(!isFavorite);
-      });
+      );
+      setIsFav(!isFav);
     }
   };
 
@@ -54,11 +67,7 @@ export const TeamsDetail: FC = () => {
           <h1>{team?.name}</h1>
           <img loading="lazy" src={team?.crest} alt="team emblem" className={styles.emblem} />
           <div onClick={handleFavoriteToggle} style={{ cursor: 'pointer' }}>
-            <img
-              src={isFavorite ? '/svg/bxs-heart.svg' : '/svg/bx-heart.svg'}
-              alt="heart"
-              loading="lazy"
-            />
+            <img src={favoriteImage} alt="heart" loading="lazy" />
           </div>
         </header>
         <main className={styles.mainContent}>

@@ -15,13 +15,18 @@ export const Matches: FC = () => {
   useEffect(() => {
     dispatch(getMatchesList());
   }, []);
-  
+
   if (isLoading) {
     return <Loader />;
   }
 
   if (!!errorCode) {
-    return <div className={styles.container}>Ошибка: {ApiErrors[errorCode]}</div>;
+    return (
+      <div className={styles.container}>
+        Ошибка: {ApiErrors[errorCode]}
+        {errorCode}
+      </div>
+    );
   }
 
   return (

@@ -1,44 +1,20 @@
 require('dotenv').config()
 const { Router } = require('express')
-const { Users, Favorite, UserFavorite } = require('../../db/models')
+const { Favorite, UserFavorite } = require('../../db/models')
+const { getUserFavorites } = require('../../utils/UserFavorites')
+const { STATUS_CODES } = require('../../data/ResponseStatuses')
 const router = new Router()
-
-router.post('/list', async (req, res) => {
-	try {
-		const { userId } = req.body
-		const list = await Users.findByPk(userId, {
-			include: [
-				{
-					model: Favorite,
-					through: {
-						attributes: [], // Исключаем атрибуты промежуточной таблицы из результата
-					},
-				},
-			],
-		})
-		if (!list) {
-			throw new Error('User not found')
-		}
-		return res.status(200).send({
-			msg: 'User favorites retrieved successfully',
-			status: 200,
-			list: list.Favorites,
-		})
-	} catch (error) {
-		console.error('Error retrieving user favorites:', error)
-		return res.status(500).send({
-			msg: 'Internal server error',
-			status: 500,
-		})
-	}
-})
 
 router.post('/add', async (req, res) => {
 	try {
 		const { userId, favorite } = req.body
 		const { name, crest, id } = favorite
+
 		if (!userId || !favorite) {
-			throw new Error('Favorite or User not found')
+			return res.send({
+				msg: 'Favorite or User not found',
+				status: STATUS_CODES.BAD_REQUEST,
+			})
 		}
 
 		const newFavorite = await Favorite.create({
@@ -46,19 +22,24 @@ router.post('/add', async (req, res) => {
 			name,
 			crest,
 		})
+
 		await UserFavorite.create({
 			userId: userId,
 			favoriteId: newFavorite.id,
 		})
+
+		const list = await getUserFavorites(userId)
+
 		return res.status(200).send({
+			list,
 			msg: 'Favorite added successfully',
-			status: 200,
+			status: STATUS_CODES.SUCCESS,
 		})
 	} catch (error) {
 		console.error('Error adding favorite:', error)
 		return res.status(500).send({
 			msg: 'Internal server error',
-			status: 500,
+			status: STATUS_CODES.INTERNAL_SERVER_ERROR,
 		})
 	}
 })
@@ -67,28 +48,37 @@ router.delete('/remove', async (req, res) => {
 	try {
 		const { userId, favorite } = req.body
 
-		const user = await Users.findOne({ where: { id: userId } })
-		await Favorite.findOne({
+		if (!userId || !favorite) {
+			return res.send({
+				msg: 'Favorite or User not found',
+				status: STATUS_CODES.BAD_REQUEST,
+			})
+		}
+
+		const userFavorite = await Favorite.findOne({
 			where: { favoriteApiId: favorite.id },
 		})
 
-		if (!user || !favorite) {
-			throw new Error('Favorite or User not found')
+		if (!userFavorite) {
+			return res.status(404).send({ msg: 'Favorite not found', status: 404 })
 		}
+
 		await Favorite.destroy({
-			where: {
-				favoriteApiId: favorite.id,
-			},
+			where: { favoriteApiId: favorite.id },
 		})
+
+		const list = await getUserFavorites(userId)
+
 		return res.status(200).send({
-			msg: 'favorite removed',
-			status: 200,
+			list,
+			msg: 'Favorite removed',
+			status: STATUS_CODES.SUCCESS,
 		})
 	} catch (error) {
-		console.error('Error retrieving user favorites:', error)
+		console.error('Error removing favorite:', error)
 		return res.status(500).send({
 			msg: 'Internal server error',
-			status: 500,
+			status: STATUS_CODES.INTERNAL_SERVER_ERROR,
 		})
 	}
 })

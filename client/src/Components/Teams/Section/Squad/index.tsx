@@ -11,7 +11,12 @@ export const Squad: FC = () => {
   if (isLoading) return <Loader />;
 
   if (status !== 200) {
-    return <div className={styles.container}>Error: {ApiErrors[team?.errorCode as string]}</div>;
+    return (
+      <div className={styles.container}>
+        Error: {ApiErrors[team?.errorCode as string]}
+        {team?.errorCode}
+      </div>
+    );
   }
 
   return (
