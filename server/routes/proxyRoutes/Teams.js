@@ -1,14 +1,16 @@
 require('dotenv').config()
 const { Router } = require('express')
-const router = new Router()
-
+const { checkIfUserHasFavorite } = require('../../utils/FindFavoriteByUserId')
 const { X_API_URL } = process.env
 const { fetchData, handleError } = require('../../utils/Fetching')
 const sortedSquad = require('../../utils/sortedSquad')
+const router = new Router()
 
 router.get('/:id', async (req, res) => {
 	try {
+		const userId = req.headers['authorization'].slice(-1)
 		const data = await fetchData(`${X_API_URL}/teams/${req.params.id}`)
+		const isFavorite = await checkIfUserHasFavorite(userId, req.params.id)
 
 		if (data.status === 200) {
 			const groupedPlayers = sortedSquad(data.squad)
@@ -17,6 +19,7 @@ router.get('/:id', async (req, res) => {
 				team: data.team,
 				squad: groupedPlayers,
 				status: data.status,
+				isFavorite,
 			})
 		} else {
 			return res.status(data.status).send(data.error)

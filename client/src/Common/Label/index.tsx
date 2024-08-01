@@ -1,25 +1,44 @@
-import React, { ReactNode } from "react";
-import { ErrorMessage, Field } from "formik";
-import { labelPlaceholders } from "../Form/data";
-import styles from "./Label.module.scss";
+import React from 'react';
+import { ErrorMessage, Field, FieldInputProps, FormikProps } from 'formik';
+import { labelPlaceholders } from '../Form/data';
+import InputMask from 'react-input-mask';
+import styles from './Label.module.scss';
 
 type LabelProps = {
   title: string;
   type: string;
-  children?: ReactNode;
+  children?: React.ReactNode;
 };
 
 export const Label = ({ title, type, children }: LabelProps) => {
   return (
     <label className={styles.label}>
       {title}
-      <Field
-        className={styles.field}
-        name={title}
-        type={type}
-        placeholder={labelPlaceholders[title]}
-      />
-      {title === "password" && children}
+      {title === 'password' && children}
+      {title === 'phone' ? (
+        <Field name={title}>
+          {({ field, form }: { field: FieldInputProps<any>; form: FormikProps<any> }) => (
+            <InputMask
+              mask="+7 (999) 999-99-99"
+              maskChar=" "
+              {...field}
+              onChange={(e) => {
+                const value = e.target.value.replace(/[^\d]/g, ''); 
+                form.setFieldValue(field.name, value);
+              }}
+              className={styles.field}
+              placeholder="8 (999) 999-99-99"
+            />
+          )}
+        </Field>
+      ) : (
+        <Field
+          className={styles.field}
+          name={title}
+          type={type}
+          placeholder={labelPlaceholders[title]}
+        />
+      )}
       <ErrorMessage component="div" name={title} className={styles.invalid} />
     </label>
   );

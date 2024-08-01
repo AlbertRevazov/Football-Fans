@@ -17,8 +17,6 @@ module.exports = {
         ),
         role: "admin",
         image: "https://avatars.githubusercontent.com/u/102243637?v=4",
-        favouriteName: "",
-        favouriteApiId: "",
         createdAt: new Date(),
         updatedAt: new Date(),
       },

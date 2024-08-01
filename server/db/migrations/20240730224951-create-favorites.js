@@ -2,41 +2,27 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
 	async up(queryInterface, Sequelize) {
-		await queryInterface.createTable('Users', {
+		await queryInterface.createTable('Favorites', {
 			id: {
 				allowNull: false,
 				autoIncrement: true,
 				primaryKey: true,
 				type: Sequelize.INTEGER,
 			},
-			name: {
-				allowNull: false,
+			favoriteApiId: {
 				type: Sequelize.STRING,
-			},
-			lastName: {
 				allowNull: false,
-				type: Sequelize.STRING,
-			},
-			phone: {
-				allowNull: false,
-				type: Sequelize.STRING,
-			},
-			email: {
-				allowNull: false,
-				type: Sequelize.STRING,
 				unique: true,
 			},
-			password: {
+			name: {
+				type: Sequelize.STRING,
 				allowNull: false,
-				type: Sequelize.STRING,
 			},
-			role: {
+			crest: {
+				type: Sequelize.STRING,
 				allowNull: false,
-				type: Sequelize.STRING,
 			},
-			image: {
-				type: Sequelize.STRING,
-			},
+			// Другие поля, если они есть
 			createdAt: {
 				allowNull: false,
 				type: Sequelize.DATE,
@@ -49,6 +35,6 @@ module.exports = {
 	},
 
 	async down(queryInterface, Sequelize) {
-		await queryInterface.dropTable('Users')
+		await queryInterface.dropTable('Favorites')
 	},
 }

@@ -1,12 +1,14 @@
-@import "@/styles/mixin";
+@import '@/styles/mixin';
 
 .label {
   width: 100%;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   text-align: left;
   text-transform: capitalize;
   margin: 13px 0;
+  position: relative;
 }
 
 .label_title {
@@ -34,5 +36,17 @@
 }
 
 .invalid {
+  position: absolute;
+  bottom: -10px; /* Отступ от нижнего края поля ввода */
   color: red;
+  // font-size: 12px;
+}
+
+.label img {
+  position: absolute;
+  right: 5px; /* Отступ от правого края */
+  top: 50%; /* Выравнивание по вертикали */
+  transform: translateY(-5%); /* Выравнивание по вертикали */
+  cursor: pointer;
+  height: 24px; /* Установите нужную высоту */
 }

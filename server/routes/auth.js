@@ -30,16 +30,7 @@ router.get('/me', jwtVerify, async (req, res) => {
 
 router.post('/sign', async (req, res) => {
 	try {
-		const {
-			email,
-			password,
-			name,
-			lastName,
-			phone,
-			image,
-			favouriteName,
-			favouriteApiId,
-		} = req.body
+		const { email, password, name, lastName, phone, image } = req.body
 
 		const isUsed = await Users.findOne({ where: { email } })
 
@@ -57,9 +48,8 @@ router.post('/sign', async (req, res) => {
 			password: await bcrypt.hash(password, Number(process.env.CRYPT_ROUNDS)),
 			role: 'user',
 			image: image || '',
-			favouriteName: favouriteName || '',
-			favouriteApiId: favouriteApiId || '',
 		})
+
 		const token = jwt.sign(
 			{
 				id: newUser.id,
@@ -84,7 +74,11 @@ router.post('/sign', async (req, res) => {
 router.post('/login', async (req, res) => {
 	try {
 		const { email, password } = req.body
-		const user = await Users.findOne({ where: { email } })
+		const user = await Users.findOne({
+			where: {
+				email,
+			},
+		})
 		if (!user) {
 			return res.json({
 				status: 310,
