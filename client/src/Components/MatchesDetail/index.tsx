@@ -1,11 +1,11 @@
 import React, { FC, useEffect } from 'react';
 import { HeaderDetailMatch } from './Section/Header';
 import { HeadSection } from './Section/Head2HeadSection';
-import { Loader } from '@/Common/Loading';
-import { ApiErrors } from '@/data';
+import { Loader } from '@/common/Loading';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { useRouter } from 'next/router';
-import { getMatchById } from '@/redux/Slices/Games';
+import { getMatchById } from '@/redux/slices/Games';
+import { Error } from '@/common/Error';
 import styles from './MatchesDetail.module.scss';
 
 export const MatchesDetail: FC = () => {
@@ -21,13 +21,9 @@ export const MatchesDetail: FC = () => {
   if (!head2head && isLoading) {
     return <Loader />;
   }
-  if (!!errorCode && errorCode !== 200) {
-    return (
-      <div className={styles.main}>
-        Ошибка: {ApiErrors[errorCode]}
-        {errorCode}
-      </div>
-    );
+
+  if (!!errorCode) {
+    return <Error code={errorCode} />;
   }
 
   return (

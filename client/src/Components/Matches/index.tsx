@@ -1,10 +1,11 @@
 import React, { FC, useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
-import { Loader } from '@/Common/Loading';
-import { ApiErrors, MatchStatuses } from '@/data';
+import { Loader } from '@/common/Loading';
+import { MatchStatuses } from '@/data';
 import { TournamentInfo } from './Section/Info';
 import { MatchCard } from './Section/Card';
-import { getMatchesList } from '@/redux/Slices/Games';
+import { getMatchesList } from '@/redux/slices/Games';
+import { Error } from '@/common/Error';
 import Link from 'next/link';
 import styles from './Matches.module.scss';
 
@@ -21,12 +22,7 @@ export const Matches: FC = () => {
   }
 
   if (!!errorCode) {
-    return (
-      <div className={styles.container}>
-        Ошибка: {ApiErrors[errorCode]}
-        {errorCode}
-      </div>
-    );
+    return <Error code={errorCode} />;
   }
 
   return (

@@ -1,12 +1,12 @@
 import React, { FC, useEffect, useMemo, useState } from 'react';
 import { useRouter } from 'next/router';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
-import { getTeamById } from '@/redux/Slices/Team';
+import { getTeamById } from '@/redux/slices/Team';
 import { Squad } from './Section/Squad';
 import { TeamInfo } from './Section/Information';
-import { Loader } from '@/Common/Loading';
+import { Loader } from '@/common/Loading';
 import { ApiErrors } from '@/data';
-import { addToFavorites, removeFromFavorites } from '@/redux/Slices/Auth';
+import { addToFavorites, removeFromFavorites } from '@/redux/slices/Auth';
 import styles from './TeamsDetail.module.scss';
 
 export const TeamsDetail: FC = () => {

@@ -2,9 +2,9 @@ import React, { FC, useState } from 'react';
 import { initialValues, validationSchema } from './data';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { Field, Form, Formik } from 'formik';
-import { getUserSign } from '@/redux/Slices/Auth';
+import { getUserSign } from '@/redux/slices/Auth';
 import { useRouter } from 'next/router';
-import { Label } from '../../Label';
+import { Label } from '../../../ui/Label';
 import styles from '../Form.module.scss';
 
 export const Sign: FC = () => {

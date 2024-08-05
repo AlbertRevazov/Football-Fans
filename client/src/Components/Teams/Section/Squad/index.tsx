@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { useAppSelector } from '@/redux/hooks';
-import { Loader } from '@/Common/Loading';
+import { Loader } from '@/common/Loading';
 import { ApiErrors } from '@/data';
 import Link from 'next/link';
 import styles from './Squad.module.scss';

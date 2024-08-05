@@ -6,7 +6,6 @@ const initialState: CompetitionsState = {
   data: null,
   isLoading: false,
   errorCode: 0,
-  status: 0,
 };
 
 export const getCompetitionsList = createAsyncThunk('competitions/list', async () => {
@@ -71,8 +70,8 @@ export const CompetitionsSlice = createSlice({
     builder.addCase(getCompetitionsList.fulfilled, (state, action) => {
       state.isLoading = false;
       state.competitionsList = action.payload?.list?.competitions;
-      state.status = action.payload?.status;
       state.errorCode = action.payload?.errorCode;
+      console.log(action.payload, '===');
     });
     builder.addCase(getCompetitionsList.rejected, (state) => {
       state.isLoading = false;
@@ -83,7 +82,6 @@ export const CompetitionsSlice = createSlice({
     builder.addCase(getCompetitionById.fulfilled, (state, action) => {
       state.isLoading = false;
       state.data = action.payload?.list;
-      state.status = action.payload?.status;
       state.errorCode = action.payload?.errorCode;
     });
     builder.addCase(getCompetitionById.rejected, (state) => {
@@ -95,7 +93,6 @@ export const CompetitionsSlice = createSlice({
     builder.addCase(getCompetitionByYear.fulfilled, (state, action) => {
       state.isLoading = false;
       state.data = action.payload?.list;
-      state.status = action.payload?.status;
       state.errorCode = action.payload?.errorCode;
     });
     builder.addCase(getCompetitionByYear.rejected, (state) => {

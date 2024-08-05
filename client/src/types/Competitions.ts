@@ -3,7 +3,6 @@ export type CompetitionsState = {
   data: CompetitionData | null;
   isLoading: boolean;
   errorCode: number;
-  status: number;
 };
 
 export type CompetitionData = {
@@ -59,10 +58,6 @@ export type Standings = {
   stage: string;
   table: Table[];
   type: string;
-};
-
-export type GroupStandings = {
-  table: Standings;
 };
 
 export type Scorers = {

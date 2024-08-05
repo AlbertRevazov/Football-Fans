@@ -2,9 +2,9 @@ import React, { FC, useEffect, useState } from 'react';
 import { initialValues, validationSchema } from './data';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { useRouter } from 'next/router';
-import { getUserLogin } from '@/redux/Slices/Auth';
+import { getUserLogin } from '@/redux/slices/Auth';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
-import { Label } from '../../Label';
+import { Label } from '../../../ui/Label';
 import styles from '../Form.module.scss';
 
 export const Login: FC = () => {

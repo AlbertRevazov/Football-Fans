@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { Layout } from '../../src/Components/Layout';
+import { Layout } from '../../src/UI/Layout';
 import { Matches } from '../../src/Components/Matches';
 import { DateFilter } from '../../src/Common/DateFilter';
 

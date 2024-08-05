@@ -1,10 +1,10 @@
 import React, { FC, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
-import { getPersonById } from '@/redux/Slices/Persons';
+import { getPersonById } from '@/redux/slices/Persons';
 import { ApiErrors, PersonPositions } from '@/data';
 import { DateFormate } from '@/utils/Date';
-import { Loader } from '@/Common/Loading';
+import { Loader } from '@/common/Loading';
 import Link from 'next/link';
 import styles from './Persons.module.scss';
 

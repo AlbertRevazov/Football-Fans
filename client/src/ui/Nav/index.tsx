@@ -1,6 +1,6 @@
 import { FC, useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
-import { getMe, logout } from '@/redux/Slices/Auth';
+import { getMe, logout } from '@/redux/slices/Auth';
 import { Links } from '@/data';
 import { useRouter } from 'next/router';
 import Link from 'next/link';

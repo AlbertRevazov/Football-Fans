@@ -5,6 +5,7 @@ export type AuthState = {
   message: string;
   liked: FavoriteList[] | null;
 };
+
 interface FavoriteList {
   favoriteApiId: string;
   name: string;
@@ -37,13 +38,4 @@ export type SignUpData = {
   password: string;
   email: string;
   phone: string;
-};
-
-export type Favourite = {
-  id: number;
-  apiId: string;
-  user_id: number;
-  name: string;
-  img: string;
-  isFavourite: boolean;
 };

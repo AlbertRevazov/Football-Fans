@@ -1,14 +1,14 @@
 import React, { FC, useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
-import { getCompetitionsList } from '@/redux/Slices/Competitions';
-import { ApiErrors } from '@/data';
-import { Loader } from '@/Common/Loading';
+import { getCompetitionsList } from '@/redux/slices/Competitions';
+import { Loader } from '@/common/Loading';
+import { Error } from '@/common/Error';
 import Link from 'next/link';
 import styles from './Competitions.module.scss';
 
 export const Competitions: FC = () => {
   const dispatch = useAppDispatch();
-  const { competitionsList, status, errorCode, isLoading } = useAppSelector(
+  const { competitionsList, errorCode, isLoading } = useAppSelector(
     (state) => state.tournament
   );
 
@@ -18,13 +18,8 @@ export const Competitions: FC = () => {
 
   if (isLoading) return <Loader />;
 
-  if (status !== 200) {
-    return (
-      <div className={styles.container}>
-        Error: {ApiErrors[errorCode]}
-        {errorCode}
-      </div>
-    );
+  if (!!errorCode) {
+    return <Error code={errorCode} />;
   }
 
   return (

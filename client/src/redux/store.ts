@@ -1,9 +1,9 @@
 import { configureStore } from '@reduxjs/toolkit';
-import authSlice from './Slices/Auth';
-import gameSlice from './Slices/Games';
-import competitionsSlice from './Slices/Competitions';
-import teamSlice from './Slices/Team';
-import personsSlice from './Slices/Persons';
+import authSlice from './slices/Auth';
+import gameSlice from './slices/Games';
+import competitionsSlice from './slices/Competitions';
+import teamSlice from './slices/Team';
+import personsSlice from './slices/Persons';
 
 export const store = configureStore({
   reducer: {

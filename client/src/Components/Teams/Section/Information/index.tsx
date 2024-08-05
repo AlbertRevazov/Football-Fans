@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { useAppSelector } from '@/redux/hooks';
-import { Loader } from '@/Common/Loading';
+import { Loader } from '@/common/Loading';
 import { ApiErrors } from '@/data';
 import styles from './Information.module.scss';
 import Link from 'next/link';

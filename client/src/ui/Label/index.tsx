@@ -1,6 +1,6 @@
 import React from 'react';
 import { ErrorMessage, Field, FieldInputProps, FormikProps } from 'formik';
-import { labelPlaceholders } from '../Form/data';
+import { labelPlaceholders } from '../../common/Form/data';
 import InputMask from 'react-input-mask';
 import styles from './Label.module.scss';
 
@@ -23,7 +23,7 @@ export const Label = ({ title, type, children }: LabelProps) => {
               maskChar=" "
               {...field}
               onChange={(e) => {
-                const value = e.target.value.replace(/[^\d]/g, ''); 
+                const value = e.target.value.replace(/[^\d]/g, '');
                 form.setFieldValue(field.name, value);
               }}
               className={styles.field}
@@ -37,6 +37,7 @@ export const Label = ({ title, type, children }: LabelProps) => {
           name={title}
           type={type}
           placeholder={labelPlaceholders[title]}
+          autoComplete="current-password"
         />
       )}
       <ErrorMessage component="div" name={title} className={styles.invalid} />

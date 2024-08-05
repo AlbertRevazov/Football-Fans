@@ -1,7 +1,7 @@
-import React, { FC, useEffect } from 'react';
+import React, { FC } from 'react';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
-import { Loader } from '@/Common/Loading';
-import { removeFromFavorites } from '@/redux/Slices/Auth';
+import { Loader } from '@/common/Loading';
+import { removeFromFavorites } from '@/redux/slices/Auth';
 
 import styles from './Favorites.module.scss';
 import Link from 'next/link';
