@@ -10,7 +10,7 @@ export const Favorites: FC = () => {
   const dispatch = useAppDispatch();
   const { liked, isLoading, user } = useAppSelector((s) => s.auth);
   const userId = String(user?.id);
-  
+
   if (isLoading) return <Loader />;
 
   if (!liked) return <div className={styles.main}>Something went wrong</div>;
