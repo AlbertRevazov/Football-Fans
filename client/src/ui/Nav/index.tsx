@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from 'react';
+import { FC, useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { getMe, logout } from '@/redux/slices/Auth';
 import { Links } from '@/data';
@@ -10,14 +10,23 @@ export const Nav: FC = () => {
   const dispatch = useAppDispatch();
   const { user } = useAppSelector((state) => state.auth);
   const router = useRouter();
-  const [hasFetched, setHasFetched] = useState(false);
 
   useEffect(() => {
-    if (!hasFetched) {
+    if (!user) {
       dispatch(getMe());
-      setHasFetched(true);
     }
-  }, [user?.id, dispatch, hasFetched]);
+  }, [user, dispatch]);
+
+  const getFilteredLinks = () => {
+    return user ? Links : Links.filter((item) => item.isGuest);
+  };
+
+  const handleLogout = () => {
+    dispatch(logout());
+    router.push('/');
+  };
+
+  const filteredLinks = getFilteredLinks();
 
   return (
     <section className={styles.nav_section}>
@@ -26,7 +35,7 @@ export const Nav: FC = () => {
           <img src="/svg/logo.svg" width={80} className={styles.logo_img} loading="lazy" />
         </Link>
         <ul className={styles.ul}>
-          {Links.map((link) => {
+          {filteredLinks.map((link) => {
             const isActiveUrl = link.url === router.pathname;
             return (
               <Link key={link.id} href={link.url}>
@@ -36,22 +45,11 @@ export const Nav: FC = () => {
           })}
 
           {user ? (
-            <>
-              <Link href="/favorites">
-                <li className={styles.li}>Favorites</li>
-              </Link>{' '}
-              <span
-                className={styles.btn}
-                onClick={() => {
-                  dispatch(logout());
-                  router.push('/');
-                }}
-              >
-                EXIT
-              </span>
-            </>
+            <button type="button" className={styles.btn} onClick={handleLogout}>
+              Logout
+            </button>
           ) : (
-            <Link href="/auth" className={styles.btn}>
+            <Link href="/auth" className={styles.link}>
               Sign Up
             </Link>
           )}

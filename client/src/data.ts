@@ -1,7 +1,8 @@
 export const Links = [
-  { id: 1, url: '/matches', title: 'Matches' },
+  { id: 1, url: '/matches', title: 'Matches', isGuest: true },
   // { id: 2, url: "/teams", title: "Teams" },
-  { id: 3, url: '/competitions', title: 'Competitions' },
+  { id: 2, url: '/competitions', title: 'Competitions', isGuest: true },
+  { id: 3, url: '/favorites', title: 'Favorites', isGuest: false },
   // { id: 4, url: "/players", title: "Players" },
 ];
 

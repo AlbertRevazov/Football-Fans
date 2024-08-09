@@ -63,12 +63,14 @@
   border-bottom: 3px solid $primary-blue;
 }
 
-.btn {
+.btn,
+.link {
   text-decoration: none;
   color: #fff;
   background-color: $primary-blue;
   padding: 10px;
   border-radius: 8px;
+  border: none;
   cursor: pointer;
 
   @media (min-width: 699.98px) {
