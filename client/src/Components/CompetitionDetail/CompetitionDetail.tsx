@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import { getCompetitionById } from '@/redux/slices/Competitions';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { getSeason } from '@/utils/Date';
-import  Loader  from '@/common/Loading/Loading';
+import Loading from '@/common/Loading/Loading';
 import Error from '@/common/Error';
 import styles from './CompetitionsDetail.module.scss';
 import CompetitionDetailGroup from './CompetitionDetailGroup';
@@ -22,7 +22,7 @@ const CompetitionsDetail: FC = () => {
     }
   }, [id, dispatch]);
 
-  if (isLoading) return <Loader />;
+  if (isLoading) return <Loading />;
 
   if (!!errorCode) {
     return <Error code={errorCode} />;

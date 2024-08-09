@@ -1,10 +1,10 @@
 import React, { FC, useEffect } from 'react';
-import HeaderDetailMatch from './MatchesDetailHeader/MatchesDetailHeader';
-import Head2headSection from './Head2HeadSection/Head2HeadSection';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { useRouter } from 'next/router';
 import { getMatchById } from '@/redux/slices/Games';
-import  Loader  from '@/common/Loading/Loading';
+import HeaderDetailMatch from './MatchesDetailHeader/MatchesDetailHeader';
+import Head2headSection from './Head2HeadSection/Head2HeadSection';
+import Loading from '@/common/Loading/Loading';
 import Error from '@/common/Error';
 import styles from './MatchesDetail.module.scss';
 
@@ -19,7 +19,7 @@ const MatchesDetail: FC = () => {
   }, [dispatch, id]);
 
   if (!head2head && isLoading) {
-    return <Loader />;
+    return <Loading />;
   }
 
   if (!!errorCode) {

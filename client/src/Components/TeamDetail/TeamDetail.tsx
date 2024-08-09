@@ -5,7 +5,6 @@ import { getTeamById } from '@/redux/slices/Team';
 import { ApiErrors } from '@/data';
 import { addToFavorites, removeFromFavorites } from '@/redux/slices/Auth';
 import SquadSection from './SquadSection';
-('./SquadSection/SquadSection');
 import InformationSection from './InformationSection';
 import Loading from '@/common/Loading/Loading';
 import styles from './TeamsDetail.module.scss';

@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
-import styles from './Error.module.scss';
 import { ApiErrors } from '@/data';
+import styles from './Error.module.scss';
 
 interface IErrorProps {
   code: number;

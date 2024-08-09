@@ -1,8 +1,7 @@
 import React, { FC } from 'react';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { removeFromFavorites } from '@/redux/slices/Auth';
-
-import  Loader  from '@/common/Loading/Loading';
+import Loading from '@/common/Loading/Loading';
 import styles from './Favorites.module.scss';
 import Link from 'next/link';
 
@@ -11,7 +10,7 @@ const Favorites: FC = () => {
   const { liked, isLoading, user } = useAppSelector((s) => s.auth);
   const userId = String(user?.id);
 
-  if (isLoading) return <Loader />;
+  if (isLoading) return <Loading />;
 
   if (!liked) return <div className={styles.main}>Something went wrong</div>;
 

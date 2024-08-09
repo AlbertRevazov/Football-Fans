@@ -1,7 +1,7 @@
 import React, { FC, useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { getCompetitionsList } from '@/redux/slices/Competitions';
-import  Loader  from '@/common/Loading/Loading';
+import Loading from '@/common/Loading/Loading';
 import Error from '@/common/Error';
 import Link from 'next/link';
 import styles from './Competitions.module.scss';
@@ -14,7 +14,7 @@ const Competitions: FC = () => {
     dispatch(getCompetitionsList());
   }, []);
 
-  if (isLoading) return <Loader />;
+  if (isLoading) return <Loading />;
 
   if (!!errorCode) {
     return <Error code={errorCode} />;
