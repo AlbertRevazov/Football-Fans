@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
-import { Layout } from '../../src/UI/Layout';
-import { Competitions } from '../../src/Components/Competitions';
+import  Layout  from '../../src/UI/Layout';
+import Competitions from '../../src/Components/Competitions';
 
 const CompetitionsPage: FC = () => {
   return (

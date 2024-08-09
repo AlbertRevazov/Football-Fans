@@ -1,12 +1,12 @@
 @mixin container() {
-  max-width: 1257px;
+  max-width: 1057px;
   padding: 0px 15px;
   margin: 0 auto;
 }
 
 // high height
 @mixin container-hh() {
-  max-width: 1257px;
+  max-width: 1057px;
   padding: 20px 15px;
   margin: 0 auto;
   min-height: 800px;
@@ -14,7 +14,7 @@
 
 //medium height
 @mixin container-mh() {
-  max-width: 1257px;
+  max-width: 1057px;
   padding: 0px 15px;
   margin: 0 auto;
   min-height: 650px;
@@ -22,7 +22,7 @@
 
 //small height
 @mixin container-sh() {
-  max-width: 1257px;
+  max-width: 1057px;
   padding: 0px 15px;
   margin: 0 auto;
   min-height: 400px;

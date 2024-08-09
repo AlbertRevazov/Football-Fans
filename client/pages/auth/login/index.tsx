@@ -1,11 +1,11 @@
 import React, { FC } from 'react';
-import { Layout } from '../../../src/UI/Layout';
-import { LogIn } from '../../../src/Components/Auth/LogIn';
+import  Layout  from '../../../src/UI/Layout';
+import LoginAfterSign from '../../../src/components/LoginAfterSign';
 
 const LoginPage: FC = () => {
   return (
     <Layout>
-      <LogIn />
+      <LoginAfterSign />
     </Layout>
   );
 };
