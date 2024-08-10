@@ -1,0 +1,139 @@
+@import '@/styles/mixin';
+
+.root {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  min-height: 44vh;
+  padding: 20px 0;
+  position: relative;
+}
+
+.root::after {
+  content: '';
+  display: block;
+  width: 100%;
+  height: 60vh;
+  background-color: #f6f6f6;
+  position: absolute;
+  z-index: -1;
+
+  @media (min-width: 699.98px) {
+    height: 50vh;
+  }
+}
+
+.content {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  min-width: 300px;
+
+  @media (min-width: 699.98px) {
+    @include container-sh();
+    justify-content: space-between;
+    flex-direction: row;
+  }
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  text-wrap: balance;
+
+  @media (min-width: 699.98px) {
+    text-align: start;
+    align-items: flex-start;
+    text-wrap: balance;
+  }
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  position: relative;
+  max-width: 100%;
+}
+
+.title,
+.subtitle,
+.button {
+  max-width: 350px;
+}
+
+.title {
+  font-weight: 600;
+  font-size: 32px;
+  line-height: 1.2;
+  letter-spacing: 1.5px;
+  text-wrap: balance;
+}
+
+.subtitle {
+  font-family: MontAlter;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.25;
+}
+
+.button {
+  text-decoration: none;
+  color: #fff;
+  background-color: #5bf6a3;
+  padding: 10px;
+  border-radius: 8px;
+  border: none;
+  width: 80%;
+  max-width: 250px;
+  margin: 12px 0 auto;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.figure {
+  position: relative;
+
+  @media (min-width: 699.98px) {
+    &::after,
+    &::before {
+      display: block;
+      background-size: cover;
+      position: absolute;
+    }
+
+    &::after {
+      content: '';
+      background-image: url('../../../../public/img/main/Ellipse.webp');
+      top: 50%;
+      right: 0;
+      width: 340px;
+      height: 340px;
+      transform: translateY(-50%);
+    }
+
+    &::before {
+      content: '';
+      background-image: url('../../../../public/img/main/star.webp');
+      top: 10%;
+      left: -50%;
+      width: 38px;
+      height: 38px;
+      transform: none;
+    }
+  }
+}
+
+.firstImage {
+  width: 255px;
+  position: relative;
+  z-index: 3;
+}
