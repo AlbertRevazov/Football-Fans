@@ -1,0 +1,47 @@
+@import '@/styles/mixin';
+
+.features {
+  @include container-sh();
+  @include flex-center();
+  flex-direction: column;
+  gap: 30px;
+  padding: 80px 20px;
+
+  @media (min-width: 699.98px) {
+    flex-direction: row;
+  }
+}
+
+.feature {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 350px;
+  text-wrap: balance;
+  align-items: center;
+
+  @media (min-width: 699.98px) {
+    align-items: flex-start;
+  }
+}
+
+.title,
+.description {
+  text-align: center;
+}
+
+@media (min-width: 699.98px) {
+  .title {
+    text-align: start;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 19.36px;
+  }
+
+  .description {
+    text-align: start;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 24.5px;
+  }
+}

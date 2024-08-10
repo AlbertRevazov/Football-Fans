@@ -6,6 +6,27 @@ export const Links = [
   // { id: 4, url: "/players", title: "Players" },
 ];
 
+export const Features = [
+  {
+    id: 1,
+    title: 'Instant Match Results',
+    description: `Stay informed without the need for live analysis.`,
+    icon: 'img/main/ball.png',
+  },
+  {
+    id: 2,
+    title: 'Detailed Player Profiles',
+    description: `Dive into comprehensive player profiles, transfer history, and performance data.`,
+    icon: 'img/main/person.png',
+  },
+  {
+    id: 3,
+    title: 'Group & League Tables',
+    description: `Focus on specific teams, divisions, or seasons to track the progress of your favorites.`,
+    icon: 'img/main/table.png',
+  },
+];
+
 export enum MatchStatuses {
   'POSTPONED' = 'Перенесён',
   'FINISHED' = 'Завершён',
