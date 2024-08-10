@@ -1,9 +1,7 @@
 export const Links = [
   { id: 1, url: '/matches', title: 'Matches', isGuest: true },
-  // { id: 2, url: "/teams", title: "Teams" },
   { id: 2, url: '/competitions', title: 'Competitions', isGuest: true },
   { id: 3, url: '/favorites', title: 'Favorites', isGuest: false },
-  // { id: 4, url: "/players", title: "Players" },
 ];
 
 export const Features = [
@@ -25,6 +23,21 @@ export const Features = [
     description: `Focus on specific teams, divisions, or seasons to track the progress of your favorites.`,
     icon: 'img/main/table.png',
   },
+];
+
+export const LeaguesForMain = [
+  {
+    id: 1,
+    crest: 'https://crests.football-data.org/SA.png',
+    title: 'Serie A',
+  },
+  {
+    id: 2,
+    crest: 'https://crests.football-data.org/PD.png',
+    title: 'La Liga',
+  },
+  { id: 3, crest: 'https://crests.football-data.org/PL.png', title: 'Premier League' },
+  { id: 4, crest: 'https://crests.football-data.org/BL1.png', title: 'Bundesliga' },
 ];
 
 export enum MatchStatuses {
