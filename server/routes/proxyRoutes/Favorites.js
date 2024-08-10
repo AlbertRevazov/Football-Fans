@@ -17,16 +17,32 @@ router.post('/add', async (req, res) => {
 			})
 		}
 
-		const newFavorite = await Favorite.create({
-			favoriteApiId: id,
-			name,
-			crest,
+		// Проверка, существует ли уже такой favorite
+		let newFavorite = await Favorite.findOne({
+			where: { favoriteApiId: id },
 		})
 
-		await UserFavorite.create({
-			userId: userId,
-			favoriteId: newFavorite.id,
+		// Если favorite не существует, создаем новый
+		if (!newFavorite) {
+			newFavorite = await Favorite.create({
+				favoriteApiId: id,
+				name,
+				crest,
+			})
+		}
+
+		// Проверка, существует ли уже такая запись в UserFavorites
+		const existingUserFavorite = await UserFavorite.findOne({
+			where: { userId: userId, favoriteId: newFavorite.id },
 		})
+
+		// Если запись не существует, создаем новую
+		if (!existingUserFavorite) {
+			await UserFavorite.create({
+				userId: userId,
+				favoriteId: newFavorite.id,
+			})
+		}
 
 		const list = await getUserFavorites(userId)
 
@@ -43,7 +59,6 @@ router.post('/add', async (req, res) => {
 		})
 	}
 })
-
 router.delete('/remove', async (req, res) => {
 	try {
 		const { userId, favorite } = req.body
