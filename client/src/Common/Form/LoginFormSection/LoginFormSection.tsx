@@ -43,11 +43,12 @@ const LoginFormSection: FC = () => {
               onClick={() => setIsPass(!isPass)}
             />
           </Label>
-          <label htmlFor="remember" className={styles.checkbox_label}>
+          {/* figure out the logic with a checkbox  */}
+          {/* <label htmlFor="remember" className={styles.checkbox_label}>
             <Field type="checkbox" name="remember" className={styles.checkbox} />
             <span className={styles.fe}></span>
             Запомнить меня
-          </label>
+          </label> */}
           <ErrorMessage component="div" name="remember" className={styles.invalid} />
           <Field name="button" type="submit" disabled={isSubmitting} className={styles.btn} />
         </Form>

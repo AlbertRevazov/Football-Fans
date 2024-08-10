@@ -51,7 +51,7 @@ export const getUserSign = createAsyncThunk('auth/sign', async (userData: SignUp
 
 export const getUserLogin = createAsyncThunk('auth/login', async (userData: LoginInput) => {
   try {
-    const { email, password, remember } = userData;
+    const { email, password } = userData;
     const response = await fetch(
       'http://localhost:4444/auth/login',
 
@@ -65,7 +65,7 @@ export const getUserLogin = createAsyncThunk('auth/login', async (userData: Logi
     );
     const data = await response.json();
 
-    if (data.token && remember) {
+    if (data.token) {
       window.localStorage.setItem('token', data.token);
     }
     if (!response.ok) {

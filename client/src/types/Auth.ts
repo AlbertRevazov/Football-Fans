@@ -29,7 +29,7 @@ export type User = {
 export type LoginInput = {
   password: string;
   email: string;
-  remember: boolean;
+  remember?: boolean;
 };
 
 export type SignUpData = {
