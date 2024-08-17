@@ -1,0 +1,47 @@
+@import '@/styles/mixin';
+
+.ul {
+  display: none;
+
+  @media (min-width: 767.98px) {
+    @include flex-center;
+    flex-wrap: wrap;
+    align-items: unset;
+    flex-wrap: nowrap;
+    justify-content: space-around;
+  }
+}
+
+.li,
+.li_active {
+  display: none;
+
+  @media (min-width: 767.98px) {
+    display: block;
+    margin: 0 10px;
+    padding: 10px;
+    border-bottom: 3px solid rgba(128, 128, 128, 0);
+    transition: border 0.3s ease-in;
+  }
+}
+
+.li:hover,
+.li_active {
+  border-bottom: 3px solid $primary-blue;
+}
+
+.btn,
+.link {
+  display: none;
+
+  @media (min-width: 767.98px) {
+    display: block;
+    text-decoration: none;
+    color: #fff;
+    background-color: $primary-blue;
+    padding: 10px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+  }
+}

@@ -1,0 +1,39 @@
+@import '@/styles/mixin';
+
+.ul {
+  position: absolute;
+  right: 0px;
+  top: 73px;
+  z-index: 20;
+  padding: 20px;
+  background-color: black;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  @media (min-width: 767.98px) {
+    display: none;
+  }
+}
+
+.li {
+  color: #fff;
+}
+
+.link,
+.btn {
+  display: block;
+  text-decoration: none;
+  color: #fff;
+  background-color: $primary-blue;
+  padding: 10px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+}
+
+.menu {
+  display: block;
+  @media (min-width: 767.98px) {
+    display: none;
+  }
+}
