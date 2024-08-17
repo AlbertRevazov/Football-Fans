@@ -5,10 +5,12 @@
   @include flex-center();
   flex-direction: column;
   gap: 30px;
-  padding: 80px 20px;
+  padding: 40px 20px;
+  margin: 20px auto;
 
-  @media (min-width: 699.98px) {
+  @media (min-width: 767.98px) {
     padding: 0;
+    justify-content: space-between;
     flex-direction: row;
   }
 }
@@ -20,8 +22,10 @@
   max-width: 350px;
   text-wrap: balance;
   align-items: center;
-
-  @media (min-width: 699.98px) {
+  padding: 0 20px;
+  flex: 1;
+  
+  @media (min-width: 767.98px) {
     align-items: flex-start;
   }
 }
@@ -31,7 +35,7 @@
   text-align: center;
 }
 
-@media (min-width: 699.98px) {
+@media (min-width: 767.98px) {
   .title {
     text-align: start;
     font-weight: 600;

@@ -6,7 +6,7 @@
   align-items: center;
   width: 100%;
   min-height: 44vh;
-  padding: 20px 0;
+  padding: 40px 0;
   position: relative;
 }
 
@@ -28,7 +28,7 @@
   justify-content: flex-end;
   min-width: 300px;
 
-  @media (min-width: 699.98px) {
+  @media (min-width: 767.98px) {
     @include container-sh();
     justify-content: space-between;
     flex-direction: row;
@@ -43,7 +43,7 @@
   text-align: center;
   text-wrap: balance;
 
-  @media (min-width: 699.98px) {
+  @media (min-width: 767.98px) {
     text-align: start;
     align-items: flex-start;
     text-wrap: balance;
@@ -56,6 +56,7 @@
   align-items: center;
   justify-content: center;
   gap: 20px;
+  margin: 20px 0;
   position: relative;
   max-width: 100%;
 }
@@ -98,7 +99,7 @@
 .figure {
   position: relative;
 
-  @media (min-width: 699.98px) {
+  @media (min-width: 767.98px) {
     &::after,
     &::before {
       display: block;

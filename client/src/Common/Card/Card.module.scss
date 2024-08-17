@@ -5,7 +5,6 @@
   flex-direction: column;
   justify-content: space-between;
   max-width: 200px;
-  height: 270px;
   overflow: hidden;
   box-shadow: 5px 2px 10px grey;
   border-radius: 4px;
@@ -13,15 +12,22 @@
   padding: 20px;
   box-sizing: border-box;
   cursor: pointer;
+
+  @media (min-width: 767.98px) {
+    height: 270px;
+  }
 }
 
 .crest {
-  width: 248px;
-  min-width: 100px;
-  object-fit: cover;
-  height: auto;
+  display: none;
+  @media (min-width: 767.98px) {
+    display: block;
+    width: 248px;
+    min-width: 100px;
+    object-fit: cover;
+    height: auto;
+  }
 }
-
 .title {
   font-weight: 400;
   font-size: 20px;

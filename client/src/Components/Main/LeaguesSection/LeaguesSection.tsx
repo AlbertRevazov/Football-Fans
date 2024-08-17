@@ -9,13 +9,13 @@ const LeaguesSection: FC = () => {
     <div className={styles.container}>
       <div className={styles.header}>
         <p className={styles.subtitle}>
-          <Link href="/competitions">Browse Now</Link>
+          <Link href="/competitions">Kick Off</Link>
         </p>
         <h2 className={styles.title}>Top Leagues</h2>
       </div>
       <div className={styles.leaguesList}>
         {LeaguesForMain.map((league) => (
-          <Card league={league} link="/competitions" key={league.id} />
+          <Card league={league} link={`/competitions/${league.apiId}`} key={league.id} />
         ))}
       </div>
     </div>

@@ -12,7 +12,7 @@ const WelcomeSection: FC = () => {
               From match highlights to player stats, we've got all the action covered.
             </h4>
           </header>
-          <button className={styles.button}>Dive In</button>
+          <button className={styles.button}>Go To Favorites</button>
         </section>
         <figure className={styles.figure}>
           <img

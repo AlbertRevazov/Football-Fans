@@ -8,7 +8,7 @@ export const Features = [
   {
     id: 1,
     title: 'Instant Match Results',
-    description: `Stay informed without the need for live analysis.`,
+    description: `Get immediate access to the latest scores and outcomes from your favorite football matches.`,
     icon: 'img/main/ball.png',
   },
   {
@@ -30,14 +30,16 @@ export const LeaguesForMain = [
     id: 1,
     crest: 'https://crests.football-data.org/SA.png',
     title: 'Serie A',
+    apiId: 'SA',
   },
   {
     id: 2,
     crest: 'https://crests.football-data.org/PD.png',
     title: 'La Liga',
+    apiId: 'PD',
   },
-  { id: 3, crest: 'https://crests.football-data.org/PL.png', title: 'Premier League' },
-  { id: 4, crest: 'https://crests.football-data.org/BL1.png', title: 'Bundesliga' },
+  { id: 3, crest: 'https://crests.football-data.org/PL.png', title: 'Premier League', apiId: 'PL' },
+  { id: 4, crest: 'https://crests.football-data.org/BL1.png', title: 'Bundesliga', apiId: 'BL1' },
 ];
 
 export enum MatchStatuses {
