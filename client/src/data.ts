@@ -25,7 +25,7 @@ export const Features = [
   },
 ];
 
-export const LeaguesForMain = [
+export const Leagues = [
   {
     id: 1,
     crest: 'https://crests.football-data.org/SA.png',
@@ -40,6 +40,22 @@ export const LeaguesForMain = [
   },
   { id: 3, crest: 'https://crests.football-data.org/PL.png', title: 'Premier League', apiId: 'PL' },
   { id: 4, crest: 'https://crests.football-data.org/BL1.png', title: 'Bundesliga', apiId: 'BL1' },
+];
+export const TeamsForMain = [
+  {
+    id: 1,
+    crest: '/img/main/juve.png',
+    title: 'Juventus',
+    apiId: '109',
+  },
+  {
+    id: 2,
+    crest: '/img/main/barca.png',
+    title: 'Barça',
+    apiId: '81',
+  },
+  { id: 3, crest: '/img/main/city.png', title: 'Man City', apiId: '65' },
+  { id: 4, crest: '/img/main/bayern.png', title: 'Bayern', apiId: '5' },
 ];
 
 export enum MatchStatuses {

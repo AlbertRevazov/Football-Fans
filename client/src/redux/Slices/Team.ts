@@ -15,7 +15,7 @@ export const getTeamById = createAsyncThunk(
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: `Bearer ${payload.userId}`, 
+          Authorization: `Bearer ${payload.userId}`,
         },
       });
 
@@ -43,6 +43,7 @@ export const TeamSlice = createSlice({
       state.isLoading = false;
       state.team = action.payload;
       state.status = action.payload?.status;
+      console.log(action.payload, '--');
     });
     builder.addCase(getTeamById.rejected, (state) => {
       state.isLoading = false;

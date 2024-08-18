@@ -11,7 +11,7 @@ const Favorites: FC = () => {
   const userId = String(user?.id);
 
   if (isLoading) return <Loading />;
-
+  if (!user) return <div className={styles.main}>First you need to register</div>;
   if (!liked) return <div className={styles.main}>Something went wrong</div>;
 
   const handleRemoveFromFavorites = (teamId: string, teamName: string, teamCrest: string) => {

@@ -1,0 +1,31 @@
+@import '@/styles/mixin';
+
+.rootCalendar {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+
+.list {
+  
+}
+
+.match {
+  gap: 10px;
+  text-align: end;
+  display: flex;
+  // flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  // width: 100%;
+  // flex: 1;
+}
+.teams {
+  display: flex;
+  justify-content: flex-start;
+  gap: 10px;
+  flex: 1;
+}

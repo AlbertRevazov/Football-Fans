@@ -1,5 +1,6 @@
 import React, { FC } from 'react';
 import styles from './WelcomeSection.module.scss';
+import Link from 'next/link';
 
 const WelcomeSection: FC = () => {
   return (
@@ -12,7 +13,9 @@ const WelcomeSection: FC = () => {
               From match highlights to player stats, we've got all the action covered.
             </h4>
           </header>
-          <button className={styles.button}>Go To Favorites</button>
+            <Link className={styles.button} href="/favorites">
+              Go To Favorites
+            </Link>
         </section>
         <figure className={styles.figure}>
           <img

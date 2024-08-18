@@ -1,4 +1,4 @@
-import { IArea } from './Games';
+import { IArea, IGames } from './Games';
 
 export type TeamsState = {
   team: ITeam | null;
@@ -23,6 +23,7 @@ export interface ITeam {
   squad: IGroupSquad;
   errorCode?: string;
   isFavorite: boolean;
+  calendar: IGames[];
 }
 
 export interface IRunningCompetitions {

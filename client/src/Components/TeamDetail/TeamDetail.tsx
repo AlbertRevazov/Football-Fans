@@ -8,7 +8,9 @@ import SquadSection from './SquadSection';
 import InformationSection from './InformationSection';
 import Loading from '@/common/Loading/Loading';
 import styles from './TeamsDetail.module.scss';
-
+// import CalendarSection from './CalendarSection';
+import dynamic from 'next/dynamic';
+const CalendarSection = dynamic(() => import('./CalendarSection'));
 const TeamsDetail: FC = () => {
   const dispatch = useAppDispatch();
   const router = useRouter();
@@ -73,6 +75,7 @@ const TeamsDetail: FC = () => {
         <main className={styles.mainContent}>
           <InformationSection />
           <SquadSection />
+          <CalendarSection />
         </main>
       </div>
     </div>
