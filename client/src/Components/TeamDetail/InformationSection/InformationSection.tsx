@@ -37,11 +37,11 @@ const InformationSection: FC = () => {
             {team?.website}
           </a>
         </li>
-        <li>
+        <li className={styles.runningCompetition}>
           Участвует в -
           {team?.runningCompetitions?.map((el) => (
             <div key={el.id} className={styles.competition}>
-              {el.name}
+              <h5>{el.name}</h5>,
             </div>
           ))}
         </li>
