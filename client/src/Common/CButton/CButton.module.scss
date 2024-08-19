@@ -1,6 +1,7 @@
 @import '@/styles/mixin';
 
-.button {
+.button,
+.disabled {
   font-size: 14px;
   background-color: black;
   color: #fff;
@@ -11,12 +12,15 @@
   cursor: pointer;
 }
 
+.button:hover {
+  background-color: $primary-blue;
+}
+
+.disabled{
+  background-color:  darkgrey;
+}
+
 .children {
   border: none;
   background-color: #fff;
-}
-
-.button:hover {
-  // color: #fff;
-  background-color: $primary-blue;
 }

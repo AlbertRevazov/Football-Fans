@@ -7,14 +7,22 @@ interface ICButtonProps {
   children?: ReactNode;
   type?: 'button' | 'submit' | 'reset' | undefined;
   disabled?: boolean;
+  minWidth?: string;
 }
 
-const CButton: FC<ICButtonProps> = ({ title, children, onClick, type, disabled }) => {
+const CButton: FC<ICButtonProps> = ({ title, children, onClick, type, disabled, minWidth }) => {
+  if (!!disabled)
+    return (
+      <button className={styles.disabled} style={{ minWidth }}>
+        {title}
+      </button>
+    );
+
   return (
     <button
       name="button"
       type={type ? type : 'button'}
-      disabled={disabled}
+      style={{ minWidth }}
       className={children ? styles.children : styles.button}
       onClick={onClick ? onClick : () => {}}
     >

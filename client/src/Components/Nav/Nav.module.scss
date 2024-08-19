@@ -16,15 +16,7 @@
   align-items: center;
   justify-content: center;
   gap: 10px;
-}
-
-.logo_img:hover {
-  transform: scale(1);
-  transition: all 3s ease-out;
-  animation-delay: 2s;
-  animation-name: logo_rotate;
-  animation-duration: 1s;
-  animation-direction: alternate;
+  position: relative;
 }
 
 .logoTitle {
@@ -53,16 +45,33 @@
   border-bottom: 22px solid gray;
 }
 
-@keyframes logo_rotate {
+.logoTitle::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0) 0%,
+    rgb(255, 255, 255) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transform: translateX(-100%);
+  animation: glitter 2s 2s;
+  opacity: 0;
+}
+
+.logoTitle:hover::after {
+  opacity: 1;
+}
+
+@keyframes glitter {
   0% {
-    transform: rotateX(0deg);
+    transform: translateX(-100%);
   }
-
-  50% {
-    transform: rotateX(180deg);
-  }
-
   100% {
-    transform: rotateX(0deg);
+    transform: translateX(100%);
   }
 }

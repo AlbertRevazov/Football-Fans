@@ -4,7 +4,7 @@ import FeaturesSection from './FeaturesSection';
 import LeaguesSection from './LeaguesSection/LeaguesSection';
 import DreamsSection from './DreamsSection';
 import TeamsSection from './TeamsSection';
-
+import WriteSection from './WriteSection';
 import styles from './Main.module.scss';
 
 const Main: FC = () => {
@@ -15,6 +15,7 @@ const Main: FC = () => {
       <LeaguesSection />
       <DreamsSection />
       <TeamsSection />
+      <WriteSection />
     </div>
   );
 };
