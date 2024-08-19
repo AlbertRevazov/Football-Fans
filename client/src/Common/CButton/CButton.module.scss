@@ -1,0 +1,22 @@
+@import '@/styles/mixin';
+
+.button {
+  font-size: 14px;
+  background-color: black;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 12px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.children {
+  border: none;
+  background-color: #fff;
+}
+
+.button:hover {
+  // color: #fff;
+  background-color: $primary-blue;
+}

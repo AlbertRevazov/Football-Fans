@@ -1,0 +1,19 @@
+@import '@/styles/mixin';
+
+.link {
+  text-decoration: none;
+  text-align: center;
+  background-color: black;
+  color: #fff;
+  padding: 10px;
+  border-radius: 8px;
+  border: none;
+  width: 80%;
+  max-width: 250px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.link:hover {
+  background-color: $primary-blue;
+}

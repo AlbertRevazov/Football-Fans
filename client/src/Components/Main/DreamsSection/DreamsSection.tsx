@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
+import CLink from '@/common/CLink/CLink';
 import styles from './DreamsSection.module.scss';
-import Link from 'next/link';
 
 const DreamsSection: FC = () => {
   return (
@@ -13,9 +13,7 @@ const DreamsSection: FC = () => {
             football, from the grassroots to the grand stages.
           </p>
           <nav>
-            <Link className={styles.link} href="/matches">
-              Explore
-            </Link>
+            <CLink title="Explore" link="/matches" />
           </nav>
         </header>
         <figure className={styles.imageContainer}>

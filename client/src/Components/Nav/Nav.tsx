@@ -7,6 +7,7 @@ import { useIsWideScreen } from '@/utils/useIsWideScreen';
 import BurgerSection from './BurgerSection';
 import DesktopSection from './DesktopSection';
 import Link from 'next/link';
+import Button from '../../common/CButton';
 import styles from './Nav.module.scss';
 
 const Nav: FC = () => {
@@ -34,7 +35,7 @@ const Nav: FC = () => {
   const filteredLinks = useMemo(() => getFilteredLinks(), [user]);
 
   return (
-    <section className={styles.nav_section}>
+    <section>
       <nav className={styles.nav_root}>
         <Link href="/" className={styles.logo}>
           <img className={styles.logo_img} src="/svg/logo.svg" width={80} loading="lazy" />
@@ -44,9 +45,9 @@ const Nav: FC = () => {
         {burger && <BurgerSection handleLogout={handleLogout} links={filteredLinks} user={user} />}
 
         {!isWide ? (
-          <button className={styles.menu} onClick={() => setBurger(!burger)}>
+          <Button onClick={() => setBurger(!burger)}>
             <img className={styles.menu} src="svg/menu.svg" alt="menu" loading="lazy" />
-          </button>
+          </Button>
         ) : (
           <DesktopSection handleLogout={handleLogout} user={user} links={filteredLinks} />
         )}

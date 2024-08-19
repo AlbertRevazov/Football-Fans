@@ -1,8 +1,8 @@
 import React, { FC } from 'react';
 import { Leagues } from '@/data';
 import Card from '@/common/Card';
-import styles from './LeaguesSection.module.scss';
 import Link from 'next/link';
+import styles from './LeaguesSection.module.scss';
 
 const LeaguesSection: FC = () => {
   return (
@@ -15,7 +15,7 @@ const LeaguesSection: FC = () => {
       </div>
       <div className={styles.leaguesList}>
         {Leagues.map((league) => (
-          <Card league={league} link={`/competitions/${league.apiId}`} key={league.id} />
+          <Card data={league} link={`/competitions/${league.apiId}`} key={league.id} />
         ))}
       </div>
     </div>

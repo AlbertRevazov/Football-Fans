@@ -3,13 +3,12 @@
 .features {
   @include container-sh();
   @include flex-center();
+  min-height: 250px;
   flex-direction: column;
   gap: 30px;
-  padding: 40px 20px;
-  margin: 20px auto;
+  padding: 20px 0;
 
   @media (min-width: 767.98px) {
-    padding: 0;
     justify-content: space-between;
     flex-direction: row;
   }
@@ -24,7 +23,8 @@
   align-items: center;
   padding: 0 20px;
   flex: 1;
-  
+  cursor: default;
+
   @media (min-width: 767.98px) {
     align-items: flex-start;
   }

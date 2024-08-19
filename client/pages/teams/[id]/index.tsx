@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import Layout from '../../../src/UI/Layout';
+import Layout from '../../../src/components/Layout';
 import TeamsDetail from '../../../src/components/TeamDetail';
 
 const TeamsDetailPage: FC = () => {

@@ -1,10 +1,11 @@
 import React, { FC, useState } from 'react';
 import { initialValues, validationSchema } from './data';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
-import { Field, Form, Formik } from 'formik';
+import { Form, Formik } from 'formik';
 import { getUserSign } from '@/redux/slices/Auth';
 import { useRouter } from 'next/router';
-import Label from '../../../ui/Label';
+import Label from '../../../common/Label';
+import Button from '@/common/CButton';
 import styles from '../Form.module.scss';
 
 const SignFormSection: FC = () => {
@@ -40,7 +41,7 @@ const SignFormSection: FC = () => {
               onClick={() => setIsPass(!isPass)}
             />
           </Label>
-          <Field name="button" type="submit" disabled={isSubmitting} className={styles.btn} />
+          <Button title="Создать" type="submit" disabled={isSubmitting} />
         </Form>
       )}
     </Formik>

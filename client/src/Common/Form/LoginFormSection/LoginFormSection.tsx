@@ -3,8 +3,9 @@ import { initialValues, validationSchema } from './data';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { useRouter } from 'next/router';
 import { getUserLogin } from '@/redux/slices/Auth';
-import { ErrorMessage, Field, Form, Formik } from 'formik';
-import Label from '../../../ui/Label';
+import { ErrorMessage, Form, Formik } from 'formik';
+import Label from '../../../common/Label';
+import Button from '@/common/CButton';
 import styles from '../Form.module.scss';
 
 const LoginFormSection: FC = () => {
@@ -50,7 +51,7 @@ const LoginFormSection: FC = () => {
             Запомнить меня
           </label> */}
           <ErrorMessage component="div" name="remember" className={styles.invalid} />
-          <Field name="button" type="submit" disabled={isSubmitting} className={styles.btn} />
+          <Button type="submit" disabled={isSubmitting} title="Войти" />
         </Form>
       )}
     </Formik>

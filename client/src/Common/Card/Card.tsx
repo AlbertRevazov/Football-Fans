@@ -3,7 +3,7 @@ import Link from 'next/link';
 import styles from './Card.module.scss';
 
 interface ICardProps {
-  league: {
+  data: {
     id: number;
     crest: string;
     title: string;
@@ -11,13 +11,13 @@ interface ICardProps {
   link: string;
 }
 
-const Card: FC<ICardProps> = ({ league, link }) => {
+const Card: FC<ICardProps> = ({ data, link }) => {
   return (
-    <Link href={link}>
-      <div className={styles.container}>
-        <img src={league.crest} alt={league.title} loading="lazy" className={styles.crest} />
-        <h3 className={styles.title}>{league.title}</h3>
+    <Link className={styles.container} href={link}>
+      <div className={styles.card}>
+        <img className={styles.crest} src={data?.crest} alt={data?.title} loading="lazy" />
       </div>
+      <h3 className={styles.title}>{data?.title}</h3>
     </Link>
   );
 };

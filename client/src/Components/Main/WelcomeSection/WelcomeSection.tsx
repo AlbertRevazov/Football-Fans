@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
+import CLink from '@/common/CLink/CLink';
 import styles from './WelcomeSection.module.scss';
-import Link from 'next/link';
 
 const WelcomeSection: FC = () => {
   return (
@@ -13,9 +13,7 @@ const WelcomeSection: FC = () => {
               From match highlights to player stats, we've got all the action covered.
             </h4>
           </header>
-            <Link className={styles.button} href="/favorites">
-              Go To Favorites
-            </Link>
+          <CLink link="/favorites" title="Go To Favorites"></CLink>
         </section>
         <figure className={styles.figure}>
           <img

@@ -6,9 +6,9 @@
   @media (min-width: 767.98px) {
     @include flex-center;
     flex-wrap: wrap;
-    align-items: unset;
+    align-items: center;
     flex-wrap: nowrap;
-    justify-content: space-around;
+    justify-content: center;
   }
 }
 
@@ -25,12 +25,14 @@
   }
 }
 
-.li:hover,
+.li:hover {
+  border-bottom: 3px solid black;
+}
+
 .li_active {
   border-bottom: 3px solid $primary-blue;
 }
 
-.btn,
 .link {
   display: none;
 

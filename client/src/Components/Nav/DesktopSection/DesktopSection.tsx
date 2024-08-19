@@ -1,7 +1,8 @@
 import React, { FC } from 'react';
 import { User } from '@/types/Auth';
 import { useRouter } from 'next/router';
-import Link from 'next/link';
+import CLink from '../../../common/CLink';
+import Button from '@/common/CButton';
 import styles from './DesktopSection.module.scss';
 
 interface DesktopSectionProps {
@@ -22,20 +23,16 @@ const DesktopSection: FC<DesktopSectionProps> = ({ handleLogout, links, user }) 
       {links.map((link) => {
         const isActiveUrl = link.url === router.pathname;
         return (
-          <Link key={link.id} href={link.url}>
+          <CLink key={link.id} link={link.url}>
             <li className={styles[isActiveUrl ? 'li_active' : 'li']}>{link.title}</li>
-          </Link>
+          </CLink>
         );
       })}
 
       {user ? (
-        <button type="button" className={styles.btn} onClick={handleLogout}>
-          Logout
-        </button>
+        <Button title="Logout" onClick={handleLogout} />
       ) : (
-        <Link href="/auth" className={styles.link}>
-          Sign Up
-        </Link>
+        <CLink link="/auth" title="Sign Up" />
       )}
     </ul>
   );

@@ -1,6 +1,7 @@
 import React, { FC } from 'react';
 import { User } from '@/types/Auth';
 import Link from 'next/link';
+import Button from '@/common/CButton';
 import styles from './BurgerSection.module.scss';
 
 interface BurgerSectionProps {
@@ -23,9 +24,7 @@ const BurgerSection: FC<BurgerSectionProps> = ({ links, handleLogout, user }) =>
         </Link>
       ))}
       {user ? (
-        <button type="button" className={styles.btn} onClick={handleLogout}>
-          Logout
-        </button>
+        <Button title={'Logout'} onClick={handleLogout} />
       ) : (
         <Link href="/auth" className={styles.link}>
           Sign Up
