@@ -1,5 +1,5 @@
 export type GamesState = {
-  games: IGames[] | null;
+  games: ISortedGames | null;
   isLoading: boolean;
   status: string | null;
   errorCode: number;
@@ -8,6 +8,10 @@ export type GamesState = {
     head: IHead2Head;
   } | null;
 };
+export interface ISortedGames {
+  [key: string]: IGames[];
+}
+
 export interface IGames {
   id: number;
   lastUpdated: string;

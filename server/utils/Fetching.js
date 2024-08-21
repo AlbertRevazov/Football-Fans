@@ -54,6 +54,22 @@ function filterMatchesByDate(matches, date) {
 	})
 }
 
+function groupMatchesByCompetition(matches) {
+	const groupedMatches = {}
+
+	matches.forEach(match => {
+		const competitionName = match.competition.name
+
+		if (!groupedMatches[competitionName]) {
+			groupedMatches[competitionName] = []
+		}
+
+		groupedMatches[competitionName].push(match)
+	})
+
+	return groupedMatches
+}
+
 async function fetchData(url) {
 	try {
 		const response = await fetch(url, options)
@@ -80,4 +96,5 @@ module.exports = {
 	filterMatchesByDate,
 	fetchData,
 	handleError,
+	groupMatchesByCompetition,
 }

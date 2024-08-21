@@ -9,6 +9,7 @@ const {
 	filterMatchesByDate,
 	fetchData,
 	handleError,
+	groupMatchesByCompetition,
 } = require('../../utils/Fetching')
 
 router.get('/list', async (req, res) => {
@@ -23,7 +24,8 @@ router.get('/list', async (req, res) => {
 
 		if (data.status === 200) {
 			const filteredMatches = filterMatchesByDate(data.data, moscowDate)
-			return res.send({ list: filteredMatches, status: data.status })
+			const groupedMatches = groupMatchesByCompetition(filteredMatches)
+			return res.send({ list: groupedMatches, status: data.status })
 		} else {
 			return res.status(data.status).send(data.error)
 		}
@@ -44,7 +46,8 @@ router.post('/date', async (req, res) => {
 
 		if (data.status === 200) {
 			const filteredMatches = filterMatchesByDate(data.data, moscowDate)
-			return res.send({ list: filteredMatches, status: data.status })
+			const groupedMatches = groupMatchesByCompetition(filteredMatches)
+			return res.send({ list: groupedMatches, status: data.status })
 		} else {
 			return res.status(data.status).send(data.error)
 		}

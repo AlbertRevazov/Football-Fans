@@ -46,7 +46,7 @@ const Nav: FC = () => {
 
         {!isWide ? (
           <Button onClick={() => setBurger(!burger)}>
-            <img className={styles.menu} src="svg/menu.svg" alt="menu" loading="lazy" />
+            <img className={styles.menu} src="/svg/menu.svg" alt="menu" loading="lazy" />
           </Button>
         ) : (
           <DesktopSection handleLogout={handleLogout} user={user} links={filteredLinks} />

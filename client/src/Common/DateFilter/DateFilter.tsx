@@ -2,6 +2,7 @@ import React, { FC } from 'react';
 import { useDateFilterHook } from './hooks';
 import { useRouter } from 'next/router';
 import { useAppSelector } from '@/redux/hooks';
+import { useIsWideScreen } from '@/utils/useIsWideScreen';
 import styles from './DateFilter.module.scss';
 
 interface IDateFilter {
@@ -11,6 +12,7 @@ interface IDateFilter {
 const DateFilter: FC<IDateFilter> = ({ isYear }) => {
   const router = useRouter();
   const { id } = router.query;
+  const isWide = useIsWideScreen();
   const { days, years, selected, handleYear, handleDays } = useDateFilterHook(isYear as boolean);
 
   const { data } = useAppSelector((s) => s.tournament);
@@ -52,7 +54,7 @@ const DateFilter: FC<IDateFilter> = ({ isYear }) => {
             }`}
             onClick={handleDays}
           >
-            {block.formattedDate}
+            {!isWide ? block.formattedDate.split(' ')[0] : block.formattedDate}
           </div>
         ))}
       </div>

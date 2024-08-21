@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { IGames } from '@/types/Games';
-import Link from 'next/link';
-import styles from './Card.module.scss';
+import { useIsWideScreen } from '@/utils/useIsWideScreen';
+import styles from './MatchesCard.module.scss';
 
 interface IMatchesCardProps {
   match: IGames;
@@ -11,13 +11,15 @@ interface IMatchesCardProps {
 const MatchCard: FC<IMatchesCardProps> = ({ match, isAway }) => {
   const { awayTeam, homeTeam, score } = match;
   const team = isAway ? awayTeam : homeTeam;
-  const currScore = isAway ? `${score.fullTime.away || 0}` : `${score.fullTime.home || 0}`;
+  const currScore = isAway ? score.fullTime.away ?? '' : score.fullTime.home ?? '';
+  const isWide = useIsWideScreen();
 
   return (
     <article className={styles[`${isAway ? 'away' : 'home'}Team`]}>
-      <Link href={`/teams/${team.id}`} className={isAway ? styles.awayLink : styles.homeLink}>
-        <h4>{team.shortName}</h4> <h3>{currScore}</h3>
-      </Link>
+      <div className={isAway ? styles.awayLink : styles.homeLink}>
+        {team.shortName}
+        {!isWide && match.status === 'FINISHED' ? ' -' : ''} {currScore}
+      </div>
       <figure className={styles.figure}>
         <img className={styles.img} src={team.crest} alt={'team emblem'} loading="lazy" />
       </figure>
