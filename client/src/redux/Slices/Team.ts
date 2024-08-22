@@ -9,13 +9,12 @@ const initialState: TeamsState = {
 
 export const getTeamById = createAsyncThunk(
   'team/id',
-  async (payload: { userId: string; id: string }) => {
+  async (payload: { id: string }) => {
     try {
       const response = await fetch(`http://localhost:4444/proxy/teams/${payload.id}`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: `Bearer ${payload.userId}`,
         },
       });
 
@@ -43,6 +42,7 @@ export const TeamSlice = createSlice({
       state.isLoading = false;
       state.team = action.payload;
       state.status = action.payload?.status;
+      console.log(action.payload);
     });
     builder.addCase(getTeamById.rejected, (state) => {
       state.isLoading = false;

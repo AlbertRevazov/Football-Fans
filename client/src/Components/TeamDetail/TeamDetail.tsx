@@ -1,16 +1,17 @@
 import React, { FC, useEffect, useMemo, useState } from 'react';
-import { useRouter } from 'next/router';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
-import { getTeamById } from '@/redux/slices/Team';
-import { ApiErrors } from '@/data';
 import { addToFavorites, removeFromFavorites } from '@/redux/slices/Auth';
-import SquadSection from './SquadSection';
-import InformationSection from './InformationSection';
+import { getTeamById } from '@/redux/slices/Team';
+import { useRouter } from 'next/router';
+import { ApiErrors } from '@/data';
+import dynamic from 'next/dynamic';
 import Loading from '@/common/Loading/Loading';
 import styles from './TeamsDetail.module.scss';
-// import CalendarSection from './CalendarSection';
-import dynamic from 'next/dynamic';
+
 const CalendarSection = dynamic(() => import('./CalendarSection'));
+const InformationSection = dynamic(() => import('./InformationSection'));
+const SquadSection = dynamic(() => import('./SquadSection'));
+
 const TeamsDetail: FC = () => {
   const dispatch = useAppDispatch();
   const router = useRouter();
@@ -22,10 +23,10 @@ const TeamsDetail: FC = () => {
   const userId = String(user?.id);
 
   useEffect(() => {
-    if (teamId && user?.id) {
-      dispatch(getTeamById({ userId, id: teamId }));
+    if (teamId && typeof teamId === 'string') {
+      dispatch(getTeamById({ id: teamId }));
     }
-  }, [teamId, user?.id, dispatch]);
+  }, [teamId, dispatch]);
 
   useEffect(() => {
     if (!!liked?.length) {
@@ -63,22 +64,33 @@ const TeamsDetail: FC = () => {
   };
 
   return (
-    <div className={styles.root}>
-      <div className={styles.container}>
-        <header className={styles.header}>
-          <h1>{team?.name}</h1>
-          <img loading="lazy" src={team?.crest} alt="team emblem" className={styles.emblem} />
-          <div onClick={handleFavoriteToggle} style={{ cursor: 'pointer' }}>
-            <img src={favoriteImage} alt="heart" loading="lazy" />
+    <>
+      {team && (
+        <div className={styles.root}>
+          <div className={styles.container}>
+            <header className={styles.header}>
+              <InformationSection team={team} />
+              <article className={styles.teamLogo}>
+                <h1>{team?.shortName}</h1>
+                <img
+                  className={styles.teamEmblem}
+                  loading="lazy"
+                  src={team?.crest}
+                  alt="team emblem"
+                />
+                <div onClick={handleFavoriteToggle}>
+                  <img src={favoriteImage} alt="heart" loading="lazy" />
+                </div>
+              </article>
+            </header>
+            <main className={styles.mainContent}>
+              <SquadSection team={team} />
+              <CalendarSection team={team} />
+            </main>
           </div>
-        </header>
-        <main className={styles.mainContent}>
-          <InformationSection />
-          <SquadSection />
-          <CalendarSection />
-        </main>
-      </div>
-    </div>
+        </div>
+      )}
+    </>
   );
 };
 export default TeamsDetail;

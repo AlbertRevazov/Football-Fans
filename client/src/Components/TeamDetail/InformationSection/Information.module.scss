@@ -1,15 +1,44 @@
+@import '@/styles/mixin';
 
-.runningCompetition{
-display: flex;
-gap: 5px;
+.teamInfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 0;
+
+  @media (min-width: 767.98px) {
+    align-items: flex-start;
+  }
+}
+
+.infoList {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+
+  @media (min-width: 767.98px) {
+    gap: 5px;
+    align-items: flex-start;
+  }
+}
+
+.infoList li {
+  flex: 1;
+}
+
+.runningCompetition {
+  display: flex;
+  gap: 5px;
+  flex-wrap: wrap;
+
+  @media (min-width: 767.98px) {
+    flex-wrap: nowrap;
+  }
 }
 
 .competition {
   display: flex;
   align-items: center;
   justify-content: flex-end;
-}
-
-.emblem {
-  width: 25px;
 }

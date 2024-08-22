@@ -1,5 +1,20 @@
 @import '@/styles/mixin';
 
+.root {
+  position: relative;
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    background-color: #f6f6f6;
+  }
+}
+
 .container {
   @include container-hh;
   @include flex-center;
@@ -9,22 +24,36 @@
   padding: 20px;
 }
 
-.wrap {
-  display: flex;
-  justify-content: space-around;
-  gap: 100px;
+.header {
   width: 100%;
-  padding: 20px;
-  border-bottom: 1px solid black;
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: center;
+  align-items: center;
+
+  @media (min-width: 767.98px) {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
 }
 
-.header {
+.teamLogo {
+  display: inherit;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.teamEmblem {
+  object-fit: cover;
+}
+
+.mainContent {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 0 40px;
-}
-
-.emblem {
-  max-width: 300px;
+  justify-content: flex-start;
+  gap: 25px;
+  height: auto;
 }

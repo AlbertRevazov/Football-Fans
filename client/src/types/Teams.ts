@@ -57,3 +57,7 @@ export interface ISquad {
 export interface IGroupSquad {
   [key: string]: ISquad[];
 }
+
+export interface ITeamSectionProps {
+  team: ITeam;
+}

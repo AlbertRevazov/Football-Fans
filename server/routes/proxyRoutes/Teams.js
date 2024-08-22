@@ -11,6 +11,7 @@ router.get('/:id', async (req, res) => {
 			fetchData(`${X_API_URL}/teams/${req.params.id}`),
 			fetchData(`${X_API_URL}/teams/${req.params.id}/matches`),
 		])
+
 		if (teamData.status === 200) {
 			const groupedPlayers = sortedSquad(teamData.squad)
 			return res.send({
@@ -21,7 +22,7 @@ router.get('/:id', async (req, res) => {
 				calendar: calendarData.matches,
 			})
 		} else {
-			return res.status(data.status).send(data.error)
+			return res.status(teamData.status).send(teamData.error)
 		}
 	} catch (error) {
 		return handleError(res, error)

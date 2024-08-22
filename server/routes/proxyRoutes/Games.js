@@ -6,11 +6,13 @@ const { X_API_URL } = process.env
 const { getMoscowDateString } = require('../../utils/FormatTime')
 const {
 	fetchAndSortMatches,
-	filterMatchesByDate,
 	fetchData,
 	handleError,
-	groupMatchesByCompetition,
 } = require('../../utils/Fetching')
+const {
+	filterMatchesByDate,
+	groupMatchesByCompetition,
+} = require('../../utils/sortedMatch')
 
 router.get('/list', async (req, res) => {
 	try {
