@@ -1,9 +1,10 @@
 {
   "name": "client",
   "version": "1.0.0",
+  "type": "module",
   "main": "next.config.js",
   "scripts": {
-    "dev": "next dev"
+    "dev": "ts-node --esm server.ts"
   },
   "keywords": [],
   "author": "",

@@ -10,7 +10,7 @@ const initialState: CompetitionsState = {
 
 export const getCompetitionsList = createAsyncThunk('competitions/list', async () => {
   try {
-    const response = await fetch('http://localhost:4444/proxy/competitions/list');
+    const response = await fetch('https://localhost:4444/proxy/competitions/list');
     if (response.status !== 200) {
       const error = await response.json();
       return error;
@@ -22,7 +22,7 @@ export const getCompetitionsList = createAsyncThunk('competitions/list', async (
 
 export const getCompetitionById = createAsyncThunk('competitions/id', async (payload: string) => {
   try {
-    const response = await fetch(`http://localhost:4444/proxy/competitions/${payload}`);
+    const response = await fetch(`https://localhost:4444/proxy/competitions/${payload}`);
 
     if (response.status !== 200) {
       const error = await response.json();
@@ -39,7 +39,7 @@ export const getCompetitionByYear = createAsyncThunk(
   'competitions/year',
   async (payload: { id: string; date: string }) => {
     try {
-      const response = await fetch(`http://localhost:4444/proxy/competitions/year/`, {
+      const response = await fetch(`https://localhost:4444/proxy/competitions/year/`, {
         method: 'POST',
         headers: {
           'Content-type': 'application/json',

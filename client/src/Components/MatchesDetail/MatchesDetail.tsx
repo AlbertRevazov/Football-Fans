@@ -2,7 +2,7 @@ import React, { FC, useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { useRouter } from 'next/router';
 import { getMatchById } from '@/redux/slices/Games';
-import HeaderDetailMatch from './MatchesDetailHeader/MatchesDetailHeader';
+import HeaderSection from './HeaderSection/HeaderSection';
 import Head2headSection from './Head2HeadSection/Head2HeadSection';
 import Loading from '@/common/Loading/Loading';
 import Error from '@/common/Error';
@@ -28,17 +28,19 @@ const MatchesDetail: FC = () => {
 
   return (
     <main className={styles.main}>
-      {head2head?.match && (
-        <section className={styles.matchSection}>
-          <HeaderDetailMatch data={head2head.match} />
-        </section>
-      )}
-      <div className={styles.divider} />
-      {head2head?.head && (
-        <section className={styles.headSection}>
-          <Head2headSection data={head2head.head} />
-        </section>
-      )}
+      <div className={styles.content}>
+        {head2head?.match && (
+          <section className={styles.matchSection}>
+            <HeaderSection data={head2head.match} />
+          </section>
+        )}
+        {/* <div className={styles.divider} /> */}
+        {head2head?.head && (
+          <section className={styles.headSection}>
+            <Head2headSection data={head2head.head} />
+          </section>
+        )}
+      </div>
     </main>
   );
 };

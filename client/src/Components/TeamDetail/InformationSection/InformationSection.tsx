@@ -1,6 +1,7 @@
 import React, { FC } from 'react';
 import { ITeamSectionProps } from '@/types/Teams';
 import Link from 'next/link';
+import CLink from '@/common/CLink';
 import styles from './Information.module.scss';
 
 const InformationSection: FC<ITeamSectionProps> = ({ team }) => {
@@ -32,7 +33,8 @@ const InformationSection: FC<ITeamSectionProps> = ({ team }) => {
             {runningCompetitions.map((competition, index) => (
               <span key={competition.id} className={styles.competition}>
                 <h5>
-                  {competition.name} {index < runningCompetitions.length - 1 ? ', ' : ''}
+                  <CLink link={`/competitions/${competition.id}`}>{competition.name}</CLink>{' '}
+                  {index < runningCompetitions.length - 1 ? ', ' : ''}
                 </h5>
               </span>
             ))}

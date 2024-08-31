@@ -1,12 +1,8 @@
 {
   "compilerOptions": {
-    "target": "es6",
-    "module": "esnext",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "target": "ESNext",
+    "module": "ESNext",
+    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
@@ -20,9 +16,7 @@
     "jsx": "preserve",
     "baseUrl": "src",
     "paths": {
-      "@/*": [
-        "./*"
-      ]
+      "@/*": ["./*"]
     },
     "experimentalDecorators": true,
     "incremental": true
@@ -31,7 +25,5 @@
     "src",
     "declaration.d.ts" // Configure .d.ts file
   ],
-  "exclude": [
-    "node_modules"
-  ]
+  "exclude": ["node_modules"]
 }

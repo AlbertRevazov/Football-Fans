@@ -3,26 +3,31 @@ import { IGames } from '@/types/Games';
 import { MatchStages } from '@/data';
 import { DateFormate } from '@/utils/Date';
 import Link from 'next/link';
-import styles from '../MatchesDetail.module.scss';
+import styles from './HeaderSection.module.scss';
 
 interface IHeaderProps {
   data: IGames;
 }
 
-const HeaderDetailMatch: FC<IHeaderProps> = ({ data }) => {
+const HeaderSection: FC<IHeaderProps> = ({ data }) => {
   const { awayTeam, homeTeam, competition, score } = data;
   const { fullTime } = score;
   return (
     <main className={styles.headerRoot}>
       <section className={styles.competitionInfo}>
-        <p>{competition.name}</p>
-        <time dateTime={data.utcDate}>{DateFormate(data.utcDate)}</time>
+        <h1>
+          {competition.name} Тур {data.matchday}
+        </h1>
+
+        <time className={styles.date} dateTime={data.utcDate}>
+          {DateFormate(data.utcDate)}
+        </time>
         <p>{MatchStages[data.stage as keyof typeof MatchStages]}</p>
       </section>
 
       <section className={styles.teamsWrapper}>
-        <div className={styles.team}>
-          <figure className={styles.figure}>
+        <div className={`${styles.team} ${styles.homeTeam}`}>
+          <figure className={`${styles.figure} ${styles.homeTeam}`}>
             <img
               className={styles.img}
               src={homeTeam.crest}
@@ -30,13 +35,15 @@ const HeaderDetailMatch: FC<IHeaderProps> = ({ data }) => {
               loading="lazy"
             />
             <figcaption>
-              <Link href={`/teams/${homeTeam.id}`}>{homeTeam.name}</Link>
+              <Link href={`/teams/${homeTeam.id}`}>
+                <h2>{homeTeam.shortName}</h2>
+              </Link>
             </figcaption>
           </figure>
         </div>
-        <span>
+        <h3>
           {fullTime.home || 0} - {fullTime.away || 0}
-        </span>
+        </h3>
         <div className={styles.team}>
           <figure className={styles.figure}>
             <img
@@ -46,7 +53,9 @@ const HeaderDetailMatch: FC<IHeaderProps> = ({ data }) => {
               loading="lazy"
             />
             <figcaption>
-              <Link href={`/teams/${awayTeam.id}`}>{awayTeam.name}</Link>
+              <Link href={`/teams/${awayTeam.id}`}>
+                <h2>{awayTeam.shortName}</h2>
+              </Link>
             </figcaption>
           </figure>
         </div>
@@ -61,4 +70,4 @@ const HeaderDetailMatch: FC<IHeaderProps> = ({ data }) => {
     </main>
   );
 };
-export default HeaderDetailMatch;
+export default HeaderSection;

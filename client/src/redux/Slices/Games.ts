@@ -10,7 +10,7 @@ const initialState: GamesState = {
 };
 
 export const getMatchesList = createAsyncThunk('matches/list', async () => {
-  const response = await fetch('http://localhost:4444/proxy/games/list');
+  const response = await fetch('https://localhost:4444/proxy/games/list');
 
   if (response.status !== 200) {
     const error = await response.json();
@@ -21,7 +21,7 @@ export const getMatchesList = createAsyncThunk('matches/list', async () => {
 });
 
 export const getMatchesListByDate = createAsyncThunk('matches/date', async (payload: string) => {
-  const response = await fetch('http://localhost:4444/proxy/games/date', {
+  const response = await fetch('https://localhost:4444/proxy/games/date', {
     method: 'POST',
     headers: {
       'Content-type': 'application/json',
@@ -38,7 +38,7 @@ export const getMatchesListByDate = createAsyncThunk('matches/date', async (payl
 });
 
 export const getMatchById = createAsyncThunk('matches/head2head', async (payload: string) => {
-  const response = await fetch(`http://localhost:4444/proxy/games/head2head/${payload}`, {
+  const response = await fetch(`https://localhost:4444/proxy/games/head2head/${payload}`, {
     method: 'GET',
     headers: {
       'Content-type': 'application/json',
