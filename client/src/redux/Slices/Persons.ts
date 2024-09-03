@@ -10,7 +10,7 @@ const initialState: PersonState = {
 
 export const getPersonById = createAsyncThunk('person/id', async (id: string) => {
   try {
-    const response = await fetch(`https://localhost:4444/proxy/persons/${id}`);
+    const response = await fetch(`http://localhost:4444/proxy/persons/${id}`);
 
     if (response.status !== 200) {
       const error = await response.json();

@@ -15,7 +15,7 @@ const MatchesDetail: FC = () => {
   const { id } = router.query;
 
   useEffect(() => {
-    dispatch(getMatchById(id as string));
+    if (id) dispatch(getMatchById(id as string));
   }, [dispatch, id]);
 
   if (!head2head && isLoading) {

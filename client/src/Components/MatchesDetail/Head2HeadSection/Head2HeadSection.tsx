@@ -16,10 +16,10 @@ const Head2headSection: FC<HeadSectionProps> = ({ data }) => {
           <h4>{homeTeam.wins}</h4> Побед <h4>{awayTeam.wins}</h4>
         </li>
         <li className={styles.listItem}>
-          <h4>{awayTeam.losses}</h4> Поражений <h4>{awayTeam.losses}</h4>
+          <h4>{homeTeam.losses}</h4> Поражений <h4>{awayTeam.losses}</h4>
         </li>
         <li className={styles.listItem}>
-          <h4>{awayTeam.draws}</h4> Ничьи <h4>{awayTeam.draws}</h4>
+          <h4>{homeTeam.draws}</h4> Ничьи <h4>{awayTeam.draws}</h4>
         </li>
         <li className={styles.total}>
           Всего забито голов <h4>{totalGoals}</h4>

@@ -22,15 +22,11 @@ const CalendarSection: FC<ITeamSectionProps> = ({ team }) => {
         return (
           <section key={match.id} className={styles.match}>
             <div className={styles.matchHeader}>
-              <p>
-                <Link href={`/competitions/${competition.id}`}>{competition.name}</Link>
-              </p>
+              <p>{competition.name}</p>
               <p>Тур {matchday}</p>
             </div>
-            <div className={styles.teams}>
-              <h4 className={styles.homeTeam}>
-                <Link href={`/teams/${homeTeam.id}`}>{homeTeam.shortName}</Link>
-              </h4>
+            <Link className={styles.teams} href={`/matches/${match.id}`}>
+              <h4 className={styles.homeTeam}>{homeTeam.shortName}</h4>
               {status === 'FINISHED' ? (
                 <>
                   <h4>{score.fullTime.home}</h4> - <h4>{score.fullTime.away}</h4>
@@ -38,10 +34,8 @@ const CalendarSection: FC<ITeamSectionProps> = ({ team }) => {
               ) : (
                 <>-</>
               )}
-              <h4 className={styles.awayTeam}>
-                <Link href={`/teams/${awayTeam.id}`}>{awayTeam.shortName}</Link>
-              </h4>
-            </div>
+              <h4 className={styles.awayTeam}>{awayTeam.shortName}</h4>
+            </Link>
             <div className={styles.matchDate}>{DateFormate(utcDate, true)}</div>
             <div>{MatchStatuses[status as keyof typeof MatchStatuses]}</div>
           </section>

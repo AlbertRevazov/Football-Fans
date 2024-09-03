@@ -13,7 +13,7 @@ export const getMe = createAsyncThunk('auth/me', async () => {
   try {
     const token = localStorage.getItem('token');
     if (token) {
-      const response = await fetch('https://localhost:4444/auth/me', {
+      const response = await fetch('http://localhost:4444/auth/me', {
         method: 'GET',
         headers: {
           authorization: token,
@@ -34,7 +34,7 @@ export const getMe = createAsyncThunk('auth/me', async () => {
 });
 
 export const getUserSign = createAsyncThunk('auth/sign', async (userData: SignUpData) => {
-  const response = await fetch('https://localhost:4444/auth/sign', {
+  const response = await fetch('http://localhost:4444/auth/sign', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -53,7 +53,7 @@ export const getUserLogin = createAsyncThunk('auth/login', async (userData: Logi
   try {
     const { email, password } = userData;
     const response = await fetch(
-      'https://localhost:4444/auth/login',
+      'http://localhost:4444/auth/login',
 
       {
         method: 'POST',
@@ -80,7 +80,7 @@ export const getUserLogin = createAsyncThunk('auth/login', async (userData: Logi
 export const addToFavorites = createAsyncThunk(
   'auth/favorites/add',
   async (payload: { userId: string; favorite: { id: string; name: string; crest: string } }) => {
-    const response = await fetch('https://localhost:4444/proxy/favorites/add', {
+    const response = await fetch('http://localhost:4444/proxy/favorites/add', {
       method: 'POST',
       headers: {
         'Content-type': 'application/json',
@@ -100,7 +100,7 @@ export const addToFavorites = createAsyncThunk(
 export const removeFromFavorites = createAsyncThunk(
   'auth/favorites/remove',
   async (payload: { userId: string; favorite: { id: string; name: string; crest: string } }) => {
-    const response = await fetch('https://localhost:4444/proxy/favorites/remove', {
+    const response = await fetch('http://localhost:4444/proxy/favorites/remove', {
       method: 'DELETE',
       headers: {
         'Content-type': 'application/json',

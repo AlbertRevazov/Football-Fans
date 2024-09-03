@@ -11,7 +11,6 @@ interface IHeaderProps {
 
 const HeaderSection: FC<IHeaderProps> = ({ data }) => {
   const { awayTeam, homeTeam, competition, score } = data;
-  const { fullTime } = score;
   return (
     <main className={styles.headerRoot}>
       <section className={styles.competitionInfo}>
@@ -42,7 +41,7 @@ const HeaderSection: FC<IHeaderProps> = ({ data }) => {
           </figure>
         </div>
         <h3>
-          {fullTime.home || 0} - {fullTime.away || 0}
+          {score.fullTime.home || 0} - {score.fullTime.away || 0}
         </h3>
         <div className={styles.team}>
           <figure className={styles.figure}>

@@ -11,7 +11,7 @@ export const getTeamById = createAsyncThunk(
   'team/id',
   async (payload: { id: string }) => {
     try {
-      const response = await fetch(`https://localhost:4444/proxy/teams/${payload.id}`, {
+      const response = await fetch(`http://localhost:4444/proxy/teams/${payload.id}`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
