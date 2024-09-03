@@ -33,30 +33,29 @@ const Persons: FC = () => {
   return (
     <main className={styles.main}>
       <section className={styles.section}>
-        <h2>Персональная информация</h2>
-        <ul>
+        <h2 className={styles.title}>Персональная информация</h2>
+        <ul className={styles.ul}>
           <li key="full-name">
-            Full Name - {person?.firstName} {person?.lastName}
+            Имя - {person?.firstName} {person?.lastName}
           </li>
-          <li key="birthday">BirthDay - {DateFormate(person?.dateOfBirth as string, true)}</li>
-          <li key="country">Country - {person?.nationality}</li>
-        </ul>
-        <ul>
+          <li key="birthday">Дата Рождения - {DateFormate(person?.dateOfBirth as string, true)}</li>
+          <li key="country">Страна - {person?.nationality}</li>
           <li key="position">
-            Position -{' '}
+            Позиция -{' '}
             {PersonPositions[person?.position as keyof typeof PersonPositions] || person?.position}
           </li>
-          {person?.shirtNumber && <li key="shirt-number">Shirt Number - {person.shirtNumber}</li>}
+          {person?.shirtNumber && (
+            <li key="shirt-number">Номер на футболке - {person.shirtNumber}</li>
+          )}
+          {currentTeam?.id && (
+            <li key="club">
+              <Link href={`/teams/${currentTeam.id}`}>Клуб - {currentTeam.name} </Link>
+            </li>
+          )}
+          {currentTeam?.contract.until && (
+            <li key="contract-until">Контракт истекает - {currentTeam.contract.until}</li>
+          )}
         </ul>
-        <ul>
-          <li key="club">
-            <Link href={`/teams/${currentTeam?.id}`}>Club - {currentTeam?.name} </Link>
-          </li>
-          <li key="contract-until">Contract until - {currentTeam?.contract.until}</li>
-        </ul>
-      </section>
-      <section>
-        <img src="/img/avatar.jpg" alt="player img" loading="lazy" className={styles.img} />
       </section>
     </main>
   );

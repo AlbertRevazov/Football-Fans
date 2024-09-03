@@ -1,22 +1,38 @@
 @import '@/styles/mixin';
 
 .main {
-  @include container-mh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-wrap: balance;
-  text-align: left;
-  overflow: hidden;
-  padding: 0px;
+  position: relative;
+}
+
+.main::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #f6f6f6;
+  z-index: -1;
 }
 
 .section {
-  margin: 0;
-  padding: 0 15px;
-  text-align: left;
+  min-height: 450px;
+  max-width: 1057px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  gap: 12px;
 }
 
-.img {
-  max-width: 300px;
+.ul,
+.title {
+  text-align: center;
+  text-wrap: balance;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin: 0;
+  padding: 0;
 }
