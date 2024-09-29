@@ -1,26 +1,97 @@
+@import '@/styles/mixin';
+
 .table {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  flex-direction: column;
+  @include container-sh();
+  padding: 0;
+  overflow: hidden;
+  box-sizing: border-box;
+  text-align: center;
 }
 
 .leagueList {
-  padding: 4px 10px;
+  list-style: none;
+  padding: 0;
+  width: 100%;
 }
 
+.leagueHeader,
 .leagueItem {
-  padding: 4px;
-  text-align: left;
   display: flex;
-  justify-content: space-between;
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+  align-items: center;
+}
+
+.leagueHeader {
+  font-weight: bold;
+  background-color: #f0f0f0;
+}
+
+.position,
+.team,
+.points,
+.games,
+.wins,
+.draws,
+.losses,
+.goalsFor,
+.goalsAgainst,
+.goalDifference {
+  flex: 0 0 auto;
+  text-align: center;
+}
+
+.position {
+  width: 50px;
+}
+
+.team {
+  width: 135px;
+  text-align: start;
+}
+
+.points,
+.games,
+.wins,
+.draws,
+.losses,
+.goalsFor,
+.goalsAgainst,
+.goalDifference {
+  width: 80px;
 }
 
 .teamLink {
-  transition: 0.2s ease-in;
-  padding: 0 3px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 4px;
+  text-decoration: none;
+  color: #007bff;
 }
 
-.teamLink:hover {
-  color: rgb(255, 5, 5);
+.crest {
+  width: 15px;
+}
+
+@media (max-width: 767.98px) {
+  .position,
+  .games,
+  .points {
+    width: 50px;
+  }
+
+  .wins,
+  .draws,
+  .losses {
+    display: none;
+  }
+}
+
+@media (max-width: 1023.98px) {
+  .goalsFor,
+  .goalsAgainst,
+  .goalDifference {
+    display: none;
+  }
 }

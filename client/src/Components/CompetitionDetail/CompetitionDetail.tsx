@@ -3,12 +3,12 @@ import { useRouter } from 'next/router';
 import { getCompetitionById } from '@/redux/slices/Competitions';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { getSeason } from '@/utils/Date';
-import Loading from '@/common/Loading/Loading';
-import Error from '@/common/Error';
-import styles from './CompetitionsDetail.module.scss';
 import CompetitionDetailGroup from './CompetitionDetailGroup';
 import CompetitionDetailLeague from './CompetitionDetailLeague';
 import CompetitionDetailScorers from './CompetitionDetailScorers';
+import Loading from '@/Common/Loader/Loading';
+import Error from '@/Common/ErrorComponent/Error';
+import styles from './CompetitionsDetail.module.scss';
 
 const CompetitionsDetail: FC = () => {
   const dispatch = useAppDispatch();
@@ -45,8 +45,12 @@ const CompetitionsDetail: FC = () => {
             className={styles.emblem}
           />
           <section className={styles.leagueStats}>
-            {!data?.table ? <CompetitionDetailGroup /> : <CompetitionDetailLeague />}
-            {!!data?.scorers?.length && <CompetitionDetailScorers data={data?.scorers} />}
+            {!data?.table ? (
+              <CompetitionDetailGroup />
+            ) : (
+              <CompetitionDetailLeague data={data.table} />
+            )}
+            {/* {!!data?.scorers?.length && <CompetitionDetailScorers data={data?.scorers} />} */}
           </section>
           {!data?.table && (
             <footer className={styles.footer}>

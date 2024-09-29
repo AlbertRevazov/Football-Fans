@@ -73,7 +73,6 @@ router.get('/head2head/:id', async (req, res) => {
 				status: headResponse.status,
 			})
 		} else {
-			console.log(headResponse.status, '============', headResponse.error)
 			return res.status(headResponse.status).send(headResponse.error)
 		}
 	} catch (error) {
