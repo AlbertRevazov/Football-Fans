@@ -1,4 +1,4 @@
-import React, { FC, useEffect } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { getCompetitionById } from '@/redux/slices/Competitions';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
@@ -15,6 +15,7 @@ const CompetitionsDetail: FC = () => {
   const router = useRouter();
   const { id } = router.query;
   const { data, isLoading, errorCode } = useAppSelector((state) => state.tournament);
+  const [toggle, setToggle] = useState<boolean>(false);
 
   useEffect(() => {
     if (id) {
@@ -27,7 +28,14 @@ const CompetitionsDetail: FC = () => {
   if (!!errorCode) {
     return <Error code={errorCode} />;
   }
-
+  const content = toggle ? (
+    !!data?.scorers?.length && <CompetitionDetailScorers data={data?.scorers} />
+  ) : (
+    <>
+      {data?.table && <CompetitionDetailLeague data={data.table} />}
+      {data?.group && <CompetitionDetailGroup data={data.group} />}
+    </>
+  );
   const currentSeason = data ? getSeason(data.season.startDate, data.season.endDate) : '';
 
   return (
@@ -35,23 +43,21 @@ const CompetitionsDetail: FC = () => {
       <div className={styles.container}>
         <main className={styles.content}>
           <header className={styles.header}>
-            <h1>{data?.competition.name}</h1>
-            <p>Season: {currentSeason}</p>
+            <div className={styles.title}>
+              <h1>{data?.competition.name}</h1>
+              <h4>Season: {currentSeason}</h4>
+            </div>
+            <img
+              loading="lazy"
+              src={data?.competition.emblem}
+              alt="competition emblem"
+              className={styles.emblem}
+            />
           </header>
-          <img
-            loading="lazy"
-            src={data?.competition.emblem}
-            alt="competition emblem"
-            className={styles.emblem}
-          />
-          <section className={styles.leagueStats}>
-            {!data?.table ? (
-              <CompetitionDetailGroup />
-            ) : (
-              <CompetitionDetailLeague data={data.table} />
-            )}
-            {/* {!!data?.scorers?.length && <CompetitionDetailScorers data={data?.scorers} />} */}
-          </section>
+          <button className={styles.toggleBtn} onClick={() => setToggle(!toggle)}>
+            View {toggle ? 'Table' : 'Scorers'}
+          </button>
+          <section className={styles.leagueStats}>{content}</section>
           {!data?.table && (
             <footer className={styles.footer}>
               <h6 className={styles.note}>

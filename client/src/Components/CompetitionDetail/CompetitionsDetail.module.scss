@@ -5,19 +5,73 @@
   @include container-hh;
 }
 
-.leagueStats {
-  display: flex;
-  justify-content: space-around;
-  gap: 20px;
-  width: 100%;
-}
-
 .content {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   gap: 30px;
+}
+
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.emblem {
+  max-width: 100px;
+}
+
+.toggleBtn {
+  background-color: black;
+  color: #fff;
+  padding: 15px;
+  border-radius: 8px;
+  border: none;
+  max-width: 250px;
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+
+  &:hover {
+    background-color: rgb(84, 84, 84);
+  }
+}
+
+.leagueStats {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  width: 100%;
+}
+
+.table,
+.group {
+  @include container-sh();
+  padding: 0;
+  overflow: hidden;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+.loadMoreButton {
+  text-decoration: none;
+  text-align: center;
+  background-color: black;
+  color: #fff;
+  padding: 10px;
+  border-radius: 8px;
+  border: none;
+  width: 80%;
+  max-width: 250px;
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+
+  &:hover {
+    background-color: $primary-blue;
+  }
 }
 
 .note {

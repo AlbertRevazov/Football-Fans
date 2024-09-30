@@ -1,29 +1,33 @@
 @import '@/styles/mixin';
 
-.table {
-  @include container-sh();
-  padding: 0;
-  overflow: hidden;
-  box-sizing: border-box;
-  text-align: center;
+.groupSection {
+  display: flex;
+  flex-direction: column;
 }
 
-.leagueList {
+.list {
   list-style: none;
   padding: 0;
   width: 100%;
 }
 
-.leagueHeader,
-.leagueItem {
+.groupName {
+  text-align: center;
+  font-size: 19px;
+  font-family: MontAlter;
+  margin-bottom: 12px;
+}
+
+.header,
+.item {
   display: flex;
   padding: 10px;
   border-bottom: 1px solid #ccc;
   align-items: center;
 }
 
-.leagueHeader {
-  font-weight: bold;
+.header {
+  font-weight: 800;
   background-color: #f0f0f0;
 }
 
@@ -61,13 +65,17 @@
   width: 80px;
 }
 
-.teamLink {
+.link {
   display: flex;
   align-items: center;
   justify-content: flex-start;
   gap: 4px;
   text-decoration: none;
-  color: #007bff;
+  transition: color 0.3s ease-in;
+
+  &:hover {
+    color: $primary-blue;
+  }
 }
 
 .crest {

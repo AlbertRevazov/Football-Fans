@@ -1,3 +1,5 @@
+@import '@/styles/mixin';
+
 .scorers {
   display: flex;
   align-items: center;
@@ -5,13 +7,66 @@
   flex-direction: column;
 }
 
-.scorersList {
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
   padding: 4px 10px;
 }
 
-.scorerItem {
-  padding: 4px;
-	text-align: end;
-	display: flex;
-	justify-content: space-between;
+.header,
+.man {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+  align-items: center;
+}
+
+.crest {
+  width: 15px;
+}
+
+.player,
+.goals,
+.assists,
+.played,
+.penalties {
+  flex: 0 0 auto;
+  text-align: center;
+  width: 80px;
+}
+
+.position {
+  width: 50px;
+}
+
+.link {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 4px;
+  text-decoration: none;
+  transition: color 0.3s ease-in;
+  width: 175px;
+  text-align: start;
+  text-wrap: balance;
+
+  &:hover {
+    color: $primary-blue;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .position,
+  .played,
+  .penalties {
+    display: none;
+  }
+
+  .goals,
+  .assists {
+    width: 50px;
+  }
 }

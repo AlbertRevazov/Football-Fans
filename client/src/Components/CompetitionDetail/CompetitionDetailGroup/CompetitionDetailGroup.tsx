@@ -1,36 +1,27 @@
-import React, { FC } from 'react';
-import { useAppSelector } from '@/redux/hooks';
-import Link from 'next/link';
-import styles from './GroupTable.module.scss';
+import React, { FC, useState } from 'react';
+import { Standings } from '@/types/Competitions';
+import CTable from '@/Common/Table/Table';
+import styles from '../CompetitionsDetail.module.scss';
+interface ICompetitionDetailGroupProps {
+  data: Standings[];
+}
 
-const CompetitionDetailGroup: FC = () => {
-  const { data } = useAppSelector((s) => s.tournament);
+const CompetitionDetailGroup: FC<ICompetitionDetailGroupProps> = ({ data }) => {
+  const middleIdx = data.length / 2;
+  const [list, setList] = useState<Standings[]>(data.slice(0, middleIdx));
+
+  const loadMoreHandle = () => {
+    setList((prev) => [...prev, ...data.slice(middleIdx, data.length)]);
+  };
 
   return (
-    <section className={styles.table}>
-      <h1>League Table</h1>
-      <ul className={styles.groupList}>
-        {data?.group?.map((basket) => (
-          <div key={basket.group} className={styles.groupSection}>
-            <p className={styles.groupName}>{basket.group}</p>
-            <ul className={styles.teamList}>
-              {basket.table.map((team) => (
-                <li key={team.team.id} className={styles.teamItem}>
-                  {team.position}
-                  <Link
-                    className={styles.teamLink}
-                    href={`/teams/${team.team.id}`}
-                    as={`/teams/${team.team.id}`}
-                  >
-                    {team.team.name}
-                  </Link>
-                  - {team.points} points
-                </li>
-              ))}
-            </ul>
-          </div>
-        ))}
-      </ul>
+    <section className={styles.group}>
+      <CTable group={list} />
+      {list.length <= middleIdx && (
+        <button onClick={loadMoreHandle} className={styles.loadMoreButton}>
+          Load More
+        </button>
+      )}
     </section>
   );
 };
