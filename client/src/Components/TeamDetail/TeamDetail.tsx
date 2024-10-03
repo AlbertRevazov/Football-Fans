@@ -5,7 +5,7 @@ import { getTeamById } from '@/redux/slices/Team';
 import { useRouter } from 'next/router';
 import { ApiErrors } from '@/data';
 import dynamic from 'next/dynamic';
-import Loading from '@/common/Loading/Loading';
+import Loading from '../../Common/Loader';
 import styles from './TeamsDetail.module.scss';
 
 const CalendarSection = dynamic(() => import('./CalendarSection'));
@@ -78,9 +78,11 @@ const TeamsDetail: FC = () => {
                   src={team?.crest}
                   alt="team emblem"
                 />
-                <div onClick={handleFavoriteToggle}>
-                  <img src={favoriteImage} alt="heart" loading="lazy" />
-                </div>
+                {!!user?.id && (
+                  <div onClick={handleFavoriteToggle}>
+                    <img src={favoriteImage} alt="heart" loading="lazy" />
+                  </div>
+                )}
               </article>
             </header>
             <main className={styles.mainContent}>

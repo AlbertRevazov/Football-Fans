@@ -24,17 +24,22 @@ router.get('/list', async (req, res) => {
 })
 
 router.get('/:id', async (req, res) => {
+	// const data = await fetchData(`${X_API_URL}/competitions/${id}/matches`)
+
 	try {
 		const { id } = req.params
-		const [standingsData, scorersData] = await Promise.all([
+		const [standingsData, scorersData, matchesData] = await Promise.all([
 			fetchData(`${X_API_URL}/competitions/${id}/standings`),
 			fetchData(`${X_API_URL}/competitions/${id}/scorers`),
+			fetchData(`${X_API_URL}/competitions/${id}/matches`),
 		])
 
 		if (standingsData.status === 200) {
 			const totalStandings = standingsData.standings.filter(
 				t => t.type === 'TOTAL'
 			)
+
+			const filteredMatches = matchesData.matches.filter(el => el.homeTeam.name)
 			const combinedData =
 				totalStandings.length > 1
 					? {
@@ -42,12 +47,14 @@ router.get('/:id', async (req, res) => {
 							competition: standingsData.competition,
 							season: standingsData.season,
 							scorers: scorersData.scorers,
+							matches: filteredMatches,
 					  }
 					: {
 							table: totalStandings[0].table,
 							competition: standingsData.competition,
 							season: standingsData.season,
 							scorers: scorersData.scorers,
+							matches: filteredMatches,
 					  }
 
 			return res.send({

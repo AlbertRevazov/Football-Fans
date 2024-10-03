@@ -4,8 +4,8 @@ import { useRouter } from 'next/router';
 import { getMatchById } from '@/redux/slices/Games';
 import HeaderSection from './HeaderSection/HeaderSection';
 import Head2headSection from './Head2HeadSection/Head2HeadSection';
-import Loading from '@/common/Loading/Loading';
-import Error from '@/common/Error';
+import Loading from '../../Common/Loader';
+import Error from '../../Common/ErrorComponent/Error';
 import styles from './MatchesDetail.module.scss';
 
 const MatchesDetail: FC = () => {
@@ -35,10 +35,12 @@ const MatchesDetail: FC = () => {
           </section>
         )}
         {/* <div className={styles.divider} /> */}
-        {head2head?.head && (
+        {head2head?.head ? (
           <section className={styles.headSection}>
             <Head2headSection data={head2head.head} />
           </section>
+        ) : (
+          <>Истории противостояний не найдено</>
         )}
       </div>
     </main>

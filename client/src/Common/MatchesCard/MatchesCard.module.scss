@@ -1,55 +1,35 @@
-.homeTeam a:hover {
-  color: red;
-}
 
-.awayTeam a:hover {
-  color: blue;
-}
-
-.awayTeam,
-.homeTeam {
+.homeTeam,
+.awayTeam {
   display: flex;
-  flex-direction: row-reverse;
-  transition: color 0.3s ease-in;
-
-  @media (min-width: 567.98px) {
-    flex-direction: row;
-  }
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
 }
 
-.homeTeam {
-  @media (min-width: 567.98px) {
-    flex-direction: row-reverse;
-  }
+.homeLink,
+.awayLink {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.homeLink p,
+.awayLink p {
+width: 120px;
+
 }
 
 .awayLink {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 5px;
-  flex-direction: row;
-  padding: 0;
+  flex-direction: row-reverse;
 }
 
-@media (min-width: 567.98px) {
-  .awayLink {
-    padding: 14px 0;
+@media (min-width: 767.98px) {
+  .awayTeam {
     flex-direction: row-reverse;
   }
-  .homeLink {
-    padding: 14px 0;
+  .awayLink {
+    flex-direction: row;
   }
-}
-
-.homeLink {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: row;
-  padding: 0;
-  text-align: start;
-  gap: 5px;
 }
 
 .figure {
@@ -64,4 +44,11 @@
   width: 15px;
   height: 15px;
   padding: 0 12px;
+}
+
+.row {
+  display: flex;
+  justify-content: center;
+  min-width: 40px;
+  width: 100%;
 }

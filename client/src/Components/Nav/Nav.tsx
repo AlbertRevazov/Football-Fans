@@ -7,7 +7,7 @@ import { useIsWideScreen } from '@/utils/useIsWideScreen';
 import BurgerSection from './BurgerSection';
 import DesktopSection from './DesktopSection';
 import Link from 'next/link';
-import Button from '../../common/CButton';
+import CButton from '@/Common/Button';
 import styles from './Nav.module.scss';
 
 const Nav: FC = () => {
@@ -21,7 +21,7 @@ const Nav: FC = () => {
     if (!user) {
       dispatch(getMe());
     }
-  }, [user, dispatch]);
+  }, [dispatch]);
 
   const getFilteredLinks = () => {
     return user ? Links : Links.filter((item) => item.isGuest);
@@ -45,9 +45,9 @@ const Nav: FC = () => {
         {burger && <BurgerSection handleLogout={handleLogout} links={filteredLinks} user={user} />}
 
         {!isWide ? (
-          <Button onClick={() => setBurger(!burger)}>
+          <CButton onClick={() => setBurger(!burger)}>
             <img className={styles.menu} src="/svg/menu.svg" alt="menu" loading="lazy" />
-          </Button>
+          </CButton>
         ) : (
           <DesktopSection handleLogout={handleLogout} user={user} links={filteredLinks} />
         )}

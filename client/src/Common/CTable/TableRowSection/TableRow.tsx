@@ -22,4 +22,5 @@ const TableRow: FC<{ el: Table }> = ({ el }) => (
     <span className={styles.goalDifference}>{el.goalDifference}</span>
   </li>
 );
+
 export default TableRow;

@@ -1,8 +1,24 @@
 @import '@/styles/mixin';
 
+.root {
+  position: relative;
+}
+
+.root::after {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  content: '';
+  background-color: #f6f6f6;
+}
+
 .container {
   @include flex-center;
-  @include container-hh;
+  @include container-sh;
+  padding: 20px;
 }
 
 .content {
@@ -79,4 +95,37 @@
   justify-content: center;
   text-align: center;
   padding: 0 30px;
+}
+
+.calendar {
+  @include container-sh();
+  padding: 40px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.teams {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 1px dotted;
+  gap: 10px;
+  padding: 0 20px;
+  @media (min-width: 767.98px) {
+    flex-direction: row;
+  }
+}
+
+.status,
+.date {
+  display: none;
+  @media (min-width: 767.98px) {
+    display: flex;
+    flex-wrap: nowrap;
+    min-width: max-content;
+  }
 }

@@ -5,7 +5,7 @@ import { useRouter } from 'next/router';
 import { getUserLogin } from '@/redux/slices/Auth';
 import { ErrorMessage, Form, Formik } from 'formik';
 import Label from '../../../common/Label';
-import Button from '@/common/CButton';
+import Button from '@/Common/Button';
 import styles from '../Form.module.scss';
 
 const LoginFormSection: FC = () => {

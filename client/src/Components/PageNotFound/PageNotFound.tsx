@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import Link from 'next/link';
-import Button from '@/common/CButton';
+import Button from '@/Common/Button';
 import styles from './PageNotFound.module.scss';
 
 const PageNotFound: FC = () => {

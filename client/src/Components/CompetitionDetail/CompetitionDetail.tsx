@@ -9,6 +9,7 @@ import CompetitionDetailScorers from './CompetitionDetailScorers';
 import Loading from '@/Common/Loader/Loading';
 import Error from '@/Common/ErrorComponent/Error';
 import styles from './CompetitionsDetail.module.scss';
+import CompetitionCalendar from './CompetitionCalendar/CompetitionCalendar';
 
 const CompetitionsDetail: FC = () => {
   const dispatch = useAppDispatch();
@@ -37,7 +38,6 @@ const CompetitionsDetail: FC = () => {
     </>
   );
   const currentSeason = data ? getSeason(data.season.startDate, data.season.endDate) : '';
-
   return (
     <div className={styles.root}>
       <div className={styles.container}>
@@ -58,6 +58,7 @@ const CompetitionsDetail: FC = () => {
             View {toggle ? 'Table' : 'Scorers'}
           </button>
           <section className={styles.leagueStats}>{content}</section>
+          {/* {data?.matches && <CompetitionCalendar data={data.matches} />} */}
           {!data?.table && (
             <footer className={styles.footer}>
               <h6 className={styles.note}>

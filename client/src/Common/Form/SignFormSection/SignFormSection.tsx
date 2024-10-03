@@ -5,7 +5,7 @@ import { Form, Formik } from 'formik';
 import { getUserSign } from '@/redux/slices/Auth';
 import { useRouter } from 'next/router';
 import Label from '../../../common/Label';
-import Button from '@/common/CButton';
+import Button from '@/Common/Button';
 import styles from '../Form.module.scss';
 
 const SignFormSection: FC = () => {

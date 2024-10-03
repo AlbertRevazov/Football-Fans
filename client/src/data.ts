@@ -41,6 +41,7 @@ export const Leagues = [
   { id: 3, crest: 'https://crests.football-data.org/PL.png', title: 'Premier League', apiId: 'PL' },
   { id: 4, crest: 'https://crests.football-data.org/BL1.png', title: 'Bundesliga', apiId: 'BL1' },
 ];
+
 export const TeamsForMain = [
   {
     id: 1,

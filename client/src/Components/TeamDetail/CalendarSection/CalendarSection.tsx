@@ -2,9 +2,9 @@ import React, { FC, useState } from 'react';
 import { MatchStatuses } from '@/data';
 import { DateFormate } from '@/utils/Date';
 import { ITeamSectionProps } from '@/types/Teams';
-import CButton from '@/common/CButton';
 import Link from 'next/link';
 import styles from './CalendarSection.module.scss';
+import CButton from '@/Common/Button';
 
 const CalendarSection: FC<ITeamSectionProps> = ({ team }) => {
   const [visibleCount, setVisibleCount] = useState<number>(12);

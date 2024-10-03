@@ -1,8 +1,11 @@
+import { IGames } from './Games';
+
 export type CompetitionsState = {
   competitionsList: Competitions[] | null;
   data: CompetitionData | null;
   isLoading: boolean;
   errorCode: number;
+  message?: string;
 };
 
 export type CompetitionData = {
@@ -17,6 +20,7 @@ export type CompetitionData = {
   };
   table: Table[];
   group?: Standings[];
+  matches: IGames[];
 };
 
 export type Competitions = {
