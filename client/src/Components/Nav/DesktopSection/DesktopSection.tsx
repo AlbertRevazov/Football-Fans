@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { User } from '@/types/Auth';
 import { useRouter } from 'next/router';
-import CLink from '../../../common/CLink';
+import CLink from '../../../Common/Link';
 import Button from '@/Common/Button';
 import styles from './DesktopSection.module.scss';
 

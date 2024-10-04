@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import CLink from '@/common/CLink/CLink';
+import CLink from '@/Common/Link/Link';
 import styles from './WelcomeSection.module.scss';
 
 const WelcomeSection: FC = () => {

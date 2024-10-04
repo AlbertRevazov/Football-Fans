@@ -6,7 +6,7 @@ import Matches from '../../src/components/Matches';
 const MatchesPage: FC = () => {
   return (
     <Layout>
-      <DateFilter />
+      <DateFilter isYear={false} />
       <Matches />
     </Layout>
   );

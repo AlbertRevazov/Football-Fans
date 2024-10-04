@@ -1,6 +1,6 @@
 import React, { FC, ReactNode } from 'react';
 import Link from 'next/link';
-import styles from './CLink.module.scss';
+import styles from './Link.module.scss';
 
 interface ICLinkProps {
   link: string;

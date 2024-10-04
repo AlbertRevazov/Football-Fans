@@ -3,7 +3,6 @@
 .main {
   @include container-mh();
   text-align: center;
-  box-sizing: border-box;
   padding: 20px; // Внутренние отступы
 }
 
@@ -24,7 +23,6 @@
   width: 100%; // Резиновая верстка
   max-width: 300px; // Максимальная ширина
   padding: 10px; // Внутренние отступы
-  box-sizing: border-box;
 }
 
 .team_name {
@@ -39,6 +37,5 @@
 }
 
 .remove {
-  box-sizing: border-box;
   cursor: pointer;
 }

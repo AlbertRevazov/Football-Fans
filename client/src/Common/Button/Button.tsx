@@ -1,5 +1,5 @@
 import React, { FC, ReactNode } from 'react';
-import styles from './CButton.module.scss';
+import styles from './Button.module.scss';
 
 interface ICButtonProps {
   title?: string;

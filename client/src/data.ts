@@ -63,6 +63,7 @@ export enum MatchStatuses {
   'POSTPONED' = 'Перенесён',
   'FINISHED' = 'Завершён',
   'TIMED' = 'Не начался',
+  'IN_PLAY' = 'Играется',
 }
 
 export enum MatchStages {

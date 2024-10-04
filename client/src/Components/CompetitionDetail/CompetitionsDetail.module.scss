@@ -12,7 +12,7 @@
   left: 0;
   z-index: -1;
   content: '';
-  background-color: #f6f6f6;
+  background-color: $light-grey;
 }
 
 .container {
@@ -64,7 +64,7 @@
 }
 
 .toggleBtn:disabled {
-  background-color: #f6f6f6;
+  background-color: $light-grey;
   color: #000;
   border: 1px solid #000;
   cursor: default;
@@ -84,7 +84,6 @@
   @include container-sh();
   padding: 0;
   overflow: hidden;
-  box-sizing: border-box;
   text-align: center;
 }
 
@@ -102,7 +101,7 @@
   cursor: pointer;
 
   &:hover {
-    background-color: $primary-blue;
+    background-color: $light-green;
   }
 }
 

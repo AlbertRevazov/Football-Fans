@@ -1,5 +1,6 @@
 *:where(:not(html, iframe, canvas, img, svg, video, audio):not(svg *, symbol *)) {
   display: revert;
+  box-sizing: border-box;
 }
 
 body {
