@@ -42,7 +42,6 @@ export const TeamSlice = createSlice({
       state.isLoading = false;
       state.team = action.payload;
       state.status = action.payload?.status;
-      console.log(action.payload);
     });
     builder.addCase(getTeamById.rejected, (state) => {
       state.isLoading = false;

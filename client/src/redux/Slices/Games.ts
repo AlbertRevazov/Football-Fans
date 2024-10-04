@@ -66,11 +66,9 @@ export const MatchesSlice = createSlice({
       state.games = action.payload?.list;
       state.status = action.payload?.message;
       state.errorCode = action.payload?.errorCode;
-      console.log(action.payload, '===');
     });
     builder.addCase(getMatchesList.rejected, (state, action) => {
       state.isLoading = false;
-      console.log(action, '===');
     });
     builder.addCase(getMatchesListByDate.pending, (state) => {
       state.isLoading = true;

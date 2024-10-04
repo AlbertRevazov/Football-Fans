@@ -39,19 +39,35 @@
   max-width: 100px;
 }
 
+.buttonsGroup {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  width: 100%;
+}
+
 .toggleBtn {
   background-color: black;
   color: #fff;
   padding: 15px;
   border-radius: 8px;
   border: none;
-  max-width: 250px;
+  min-width: 120px;
   transition: background-color 0.3s ease;
   cursor: pointer;
 
   &:hover {
     background-color: rgb(84, 84, 84);
   }
+}
+
+.toggleBtn:disabled {
+  background-color: #f6f6f6;
+  color: #000;
+  border: 1px solid #000;
+  cursor: default;
 }
 
 .leagueStats {

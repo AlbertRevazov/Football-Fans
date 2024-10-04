@@ -16,7 +16,6 @@ const {
 
 router.get('/list', async (req, res) => {
 	try {
-		console.log('meow')
 		const date = new Date()
 		const moscowDate = getMoscowDateString(date)
 		const newDate = new Date(date)

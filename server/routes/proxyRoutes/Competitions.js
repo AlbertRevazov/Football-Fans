@@ -24,42 +24,28 @@ router.get('/list', async (req, res) => {
 })
 
 router.get('/:id', async (req, res) => {
-	// const data = await fetchData(`${X_API_URL}/competitions/${id}/matches`)
-
 	try {
 		const { id } = req.params
-		const [standingsData, scorersData, matchesData] = await Promise.all([
-			fetchData(`${X_API_URL}/competitions/${id}/standings`),
-			fetchData(`${X_API_URL}/competitions/${id}/scorers`),
-			fetchData(`${X_API_URL}/competitions/${id}/matches`),
-		])
+		const data = await fetchData(`${X_API_URL}/competitions/${id}/standings`)
 
-		if (standingsData.status === 200) {
-			const totalStandings = standingsData.standings.filter(
-				t => t.type === 'TOTAL'
-			)
-
-			const filteredMatches = matchesData.matches.filter(el => el.homeTeam.name)
+		if (data.status === 200) {
+			const totalStandings = data.standings.filter(t => t.type === 'TOTAL')
 			const combinedData =
 				totalStandings.length > 1
 					? {
-							group: totalStandings,
-							competition: standingsData.competition,
-							season: standingsData.season,
-							scorers: scorersData.scorers,
-							matches: filteredMatches,
-					  }
+						group: totalStandings,
+						competition: data.competition,
+						season: data.season,
+					}
 					: {
-							table: totalStandings[0].table,
-							competition: standingsData.competition,
-							season: standingsData.season,
-							scorers: scorersData.scorers,
-							matches: filteredMatches,
-					  }
+						table: totalStandings[0].table,
+						competition: data.competition,
+						season: data.season,
+					}
 
 			return res.send({
 				list: combinedData,
-				status: standingsData.status,
+				status: data.status,
 			})
 		} else {
 			return res.status(standingsData.status).send(standingsData.error)
@@ -69,38 +55,73 @@ router.get('/:id', async (req, res) => {
 	}
 })
 
+router.post('/:id/scorers', async (req, res) => {
+	try {
+		const { id, date } = req.body
+		const data = await fetchData(
+			`${X_API_URL}/competitions/${id}/scorers?season=${date}`
+		)
+
+		if (data.status === 200) {
+			return res.send({
+				list: data.scorers,
+				status: data.status,
+			})
+		} else {
+			return res.status(data.status).send(data.error)
+		}
+	} catch (error) {
+		res.sendStatus(STATUS_CODES.INTERNAL_SERVER_ERROR)
+	}
+})
+
+router.post('/:id/calendar', async (req, res) => {
+	try {
+		const { id, date } = req.body
+		const data = await fetchData(
+			`${X_API_URL}/competitions/${id}/matches?season=${date}`
+		)
+
+		if (data.status === 200) {
+			return res.send({
+				list: data.matches,
+				status: data.status,
+			})
+		} else {
+			return res.status(data.status).send(data.error)
+		}
+	} catch (error) {
+		res.sendStatus(STATUS_CODES.INTERNAL_SERVER_ERROR)
+	}
+})
+
 router.post('/year', async (req, res) => {
 	try {
 		const { id, date } = req.body
-		const [standingsData, scorersData] = await Promise.all([
-			fetchData(`${X_API_URL}/competitions/${id}/standings?season=${date}`),
-			fetchData(`${X_API_URL}/competitions/${id}/scorers?season=${date}`),
-		])
+		const data = await fetchData(
+			`${X_API_URL}/competitions/${id}/standings?season=${date}`
+		)
 
-		if (standingsData.status === 200) {
-			const totalStandings = standingsData.standings.filter(
-				t => t.type === 'TOTAL'
-			)
+		if (data.status === 200) {
+			const totalStandings = data.standings.filter(t => t.type === 'TOTAL')
 			const combinedData =
 				totalStandings.length > 1
 					? {
-							group: totalStandings,
-							competition: standingsData.competition,
-							season: standingsData.season,
-							scorers: scorersData.scorers,
-					  }
+						group: totalStandings,
+						competition: data.competition,
+						season: data.season,
+					}
 					: {
-							table: totalStandings[0].table,
-							competition: standingsData.competition,
-							season: standingsData.season,
-							scorers: scorersData.scorers,
-					  }
+						table: totalStandings[0].table,
+						competition: data.competition,
+						season: data.season,
+					}
 			return res.send({
 				list: combinedData,
-				status: standingsData.status,
+				status: data.status,
 			})
 		} else {
-			return res.status(standingsData.status).send(standingsData.error)
+			return res.status(data.status).send(data.error)
 		}
 	} catch (error) {
 		res.sendStatus(STATUS_CODES.INTERNAL_SERVER_ERROR)

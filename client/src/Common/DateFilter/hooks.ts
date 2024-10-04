@@ -41,7 +41,7 @@ export const useDateFilterHook = (isSeason: boolean): IUseDateFilterHookReturn =
   };
 
   const getYearBlocks = () => {
-    const yearsRange = 5;
+    const yearsRange = 3;
     const yearBlocks: string[] = [];
 
     const currentDate = new Date();

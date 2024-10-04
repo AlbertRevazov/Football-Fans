@@ -6,11 +6,12 @@ export type CompetitionsState = {
   isLoading: boolean;
   errorCode: number;
   message?: string;
+  scorers: Scorers[] | null;
+  matches: IGames[] | null;
 };
 
 export type CompetitionData = {
   competition: Competitions;
-  scorers: Scorers[];
   season: {
     id: number;
     startDate: string;
@@ -20,7 +21,6 @@ export type CompetitionData = {
   };
   table: Table[];
   group?: Standings[];
-  matches: IGames[];
 };
 
 export type Competitions = {

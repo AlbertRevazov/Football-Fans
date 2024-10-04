@@ -22,9 +22,11 @@ const CompetitionCalendar: FC<ICompetitionCalendarProps> = ({ data }) => {
   return (
     <section className={styles.calendar}>
       {list.map((match) => (
-        <Link className={styles.teams} href={`/matches/${match.id}`}>
+        <Link key={match.id} className={styles.teams} href={`/matches/${match.id}`}>
           <MatchesCard match={match} />
-          <p className={styles.status}>{MatchStatuses[match.status as keyof typeof MatchStatuses]}</p>
+          <p className={styles.status}>
+            {MatchStatuses[match.status as keyof typeof MatchStatuses]}
+          </p>
           <p className={styles.date}>{DateFormate(match.utcDate, true)}</p>
         </Link>
       ))}
