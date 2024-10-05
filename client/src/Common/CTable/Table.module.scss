@@ -23,7 +23,16 @@
   display: flex;
   padding: 10px;
   border-bottom: 1px solid #ccc;
+  transition: all 0.1s ease-in;
   align-items: center;
+  cursor: default;
+}
+
+.item:hover {
+  transform: scale(1.01);
+  box-shadow: 2px 2px 12px #ccc;
+  border-bottom: 1px solid transparent;
+  border-radius: 6px;
 }
 
 .header {
@@ -72,10 +81,6 @@
   gap: 4px;
   text-decoration: none;
   transition: color 0.3s ease-in;
-
-  &:hover {
-    color: $light-green;
-  }
 }
 
 .crest {

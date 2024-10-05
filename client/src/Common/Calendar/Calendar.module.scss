@@ -1,0 +1,45 @@
+@import '@/styles/mixin';
+
+.calendar {
+  @include container-sh();
+  padding: 40px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.teams {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px dotted;
+  gap: 20px;
+  padding: 0;
+  transition: all 0.1s ease-in;
+  overflow: hidden;
+  width: 100%;
+
+  &:hover {
+    transform: scale(1.01);
+    box-shadow: 2px 2px 12px #ccc;
+    border-bottom: 1px solid transparent;
+    border-radius: 6px;
+  }
+
+  @media (min-width: 767.98px) {
+    flex-direction: row;
+  }
+}
+
+.status,
+.date {
+  display: none;
+  @media (min-width: 767.98px) {
+    display: flex;
+    flex-wrap: nowrap;
+    min-width: max-content;
+  }
+}

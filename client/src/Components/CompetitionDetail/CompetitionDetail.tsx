@@ -8,10 +8,10 @@ import {
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { getSeason } from '@/utils/Date';
 import { IGames } from '@/types/Games';
-import CompetitionDetailGroup from './CompetitionDetailGroup';
-import CompetitionDetailLeague from './CompetitionDetailLeague';
-import CompetitionDetailScorers from './CompetitionDetailScorers';
-import CompetitionCalendar from './CompetitionCalendar/CompetitionCalendar';
+import CompetitionGroup from './CompetitionGroup';
+import CompetitionLeague from './CompetitionLeague';
+import CompetitionScorers from './CompetitionScorers';
+import Calendar from '../../Common/Calendar/Calendar';
 import Loading from '@/Common/Loader/Loading';
 import Error from '@/Common/ErrorComponent/Error';
 import styles from './CompetitionsDetail.module.scss';
@@ -54,16 +54,16 @@ const CompetitionsDetail: FC = () => {
   const renderContent = () => {
     switch (block) {
       case 'scorers':
-        return !!scorers?.length && <CompetitionDetailScorers data={scorers} />;
+        return !!scorers?.length && <CompetitionScorers data={scorers} />;
       case 'table':
         return (
           <>
-            {data?.table && <CompetitionDetailLeague data={data.table} />}
-            {data?.group && <CompetitionDetailGroup data={data.group} />}
+            {data?.table && <CompetitionLeague data={data.table} />}
+            {data?.group && <CompetitionGroup data={data.group} />}
           </>
         );
       case 'calendar':
-        return matches && <CompetitionCalendar data={matches as IGames[]} />;
+        return matches && <Calendar data={matches as IGames[]} />;
       default:
         return null;
     }

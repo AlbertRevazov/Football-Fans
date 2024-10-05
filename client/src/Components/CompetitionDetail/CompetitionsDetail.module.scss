@@ -112,35 +112,3 @@
   padding: 0 30px;
 }
 
-.calendar {
-  @include container-sh();
-  padding: 40px 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  align-items: center;
-  gap: 10px;
-}
-
-.teams {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  border-bottom: 1px dotted;
-  gap: 10px;
-  padding: 0 20px;
-  @media (min-width: 767.98px) {
-    flex-direction: row;
-  }
-}
-
-.status,
-.date {
-  display: none;
-  @media (min-width: 767.98px) {
-    display: flex;
-    flex-wrap: nowrap;
-    min-width: max-content;
-  }
-}

@@ -7,8 +7,8 @@ import { ApiErrors } from '@/data';
 import dynamic from 'next/dynamic';
 import Loading from '../../Common/Loader';
 import styles from './TeamsDetail.module.scss';
+import Calendar from '@/Common/Calendar';
 
-const CalendarSection = dynamic(() => import('./CalendarSection'));
 const InformationSection = dynamic(() => import('./InformationSection'));
 const SquadSection = dynamic(() => import('./SquadSection'));
 
@@ -87,7 +87,9 @@ const TeamsDetail: FC = () => {
             </header>
             <main className={styles.mainContent}>
               <SquadSection team={team} />
-              <CalendarSection team={team} />
+              <section className={styles.matches}>
+                <Calendar data={team.calendar} />
+              </section>
             </main>
           </div>
         </div>

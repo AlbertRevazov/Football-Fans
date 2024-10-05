@@ -5,13 +5,13 @@ import { DateFormate } from '@/utils/Date';
 import MatchesCard from '@/Common/MatchesCard';
 import Link from 'next/link';
 import CButton from '@/Common/Button';
-import styles from '../CompetitionsDetail.module.scss';
+import styles from './Calendar.module.scss';
 
-interface ICompetitionCalendarProps {
+interface ICalendarProps {
   data: IGames[];
 }
 
-const CompetitionCalendar: FC<ICompetitionCalendarProps> = ({ data }) => {
+const Calendar: FC<ICalendarProps> = ({ data }) => {
   const [visibleCount, setVisibleCount] = useState<number>(12);
   const list = data.slice(0, visibleCount);
 
@@ -35,4 +35,4 @@ const CompetitionCalendar: FC<ICompetitionCalendarProps> = ({ data }) => {
   );
 };
 
-export default CompetitionCalendar;
+export default Calendar;

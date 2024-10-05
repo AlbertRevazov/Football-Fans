@@ -3,11 +3,11 @@ import { Table } from '@/types/Competitions';
 import CTable from '@/Common/CTable';
 import styles from '../CompetitionsDetail.module.scss';
 
-interface ICompetitionDetailLeagueProps {
+interface ICompetitionLeagueProps {
   data: Table[];
 }
 
-const CompetitionDetailLeague: FC<ICompetitionDetailLeagueProps> = ({ data }) => {
+const CompetitionLeague: FC<ICompetitionLeagueProps> = ({ data }) => {
   const middleIdx = data.length / 2;
   const [list, setList] = useState<Table[]>(data.slice(0, middleIdx));
 
@@ -26,4 +26,4 @@ const CompetitionDetailLeague: FC<ICompetitionDetailLeagueProps> = ({ data }) =>
     </section>
   );
 };
-export default CompetitionDetailLeague;
+export default CompetitionLeague;

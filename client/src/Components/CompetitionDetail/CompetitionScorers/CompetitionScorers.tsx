@@ -1,13 +1,13 @@
 import React, { FC } from 'react';
 import { Scorers } from '@/types/Competitions';
-import styles from './LeagueScorers.module.scss';
 import Link from 'next/link';
+import styles from './CompetitionScorers.module.scss';
 
 interface ILeagueScorersProps {
   data: Scorers[] | undefined;
 }
 
-const CompetitionDetailScorers: FC<ILeagueScorersProps> = ({ data }) => {
+const CompetitionScorers: FC<ILeagueScorersProps> = ({ data }) => {
   return (
     <section className={styles.scorers}>
       <ul className={styles.list}>
@@ -22,7 +22,7 @@ const CompetitionDetailScorers: FC<ILeagueScorersProps> = ({ data }) => {
         {data?.map((el, idx) => (
           <li key={el.player.id} className={styles.man}>
             <span className={styles.position}> {idx + 1}</span>
-            <Link href={`/persons/${el.player.id}`} className={styles.link}>
+            <Link className={styles.player} href={`/persons/${el.player.id}`}>
               <img className={styles.crest} src={el.team.crest} alt="team crest" />
               {el.player.name}
             </Link>
@@ -36,4 +36,4 @@ const CompetitionDetailScorers: FC<ILeagueScorersProps> = ({ data }) => {
     </section>
   );
 };
-export default CompetitionDetailScorers;
+export default CompetitionScorers;

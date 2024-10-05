@@ -2,11 +2,12 @@ import React, { FC, useState } from 'react';
 import { Standings } from '@/types/Competitions';
 import CTable from '@/Common/CTable';
 import styles from '../CompetitionsDetail.module.scss';
-interface ICompetitionDetailGroupProps {
+
+interface ICompetitionGroupProps {
   data: Standings[];
 }
 
-const CompetitionDetailGroup: FC<ICompetitionDetailGroupProps> = ({ data }) => {
+const CompetitionGroup: FC<ICompetitionGroupProps> = ({ data }) => {
   const middleIdx = data.length / 2;
   const [list, setList] = useState<Standings[]>(data.slice(0, middleIdx));
 
@@ -25,4 +26,4 @@ const CompetitionDetailGroup: FC<ICompetitionDetailGroupProps> = ({ data }) => {
     </section>
   );
 };
-export default CompetitionDetailGroup;
+export default CompetitionGroup;
