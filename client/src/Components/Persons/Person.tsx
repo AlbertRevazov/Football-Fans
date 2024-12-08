@@ -4,7 +4,7 @@ import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { getPersonById } from '@/redux/slices/Persons';
 import { ApiErrors, PersonPositions } from '@/data';
 import { DateFormate } from '@/utils/Date';
-import Loading from '@/Common/Loader';
+import Loading from '@/common/Loader';
 import Link from 'next/link';
 import styles from './Persons.module.scss';
 

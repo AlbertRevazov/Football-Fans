@@ -1,6 +1,6 @@
 import React, { FC, useState } from 'react';
 import { Standings } from '@/types/Competitions';
-import CTable from '@/Common/CTable';
+import CTable from '@/common/CTable';
 import styles from '../CompetitionsDetail.module.scss';
 
 interface ICompetitionGroupProps {

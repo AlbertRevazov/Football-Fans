@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { IGames } from '@/types/Games';
+import { IGames } from '@/Types/Games';
 import { useIsWideScreen } from '@/utils/useIsWideScreen';
 import styles from './MatchesCard.module.scss';
 

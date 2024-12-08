@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { IGames } from '@/types/Games';
+import { IGames } from '@/Types/Games';
 import { MatchStages } from '@/data';
 import { DateFormate } from '@/utils/Date';
 import Link from 'next/link';

@@ -7,13 +7,13 @@ import {
 } from '@/redux/slices/Competitions';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { getSeason } from '@/utils/Date';
-import { IGames } from '@/types/Games';
+import { IGames } from '@/Types/Games';
 import CompetitionGroup from './CompetitionGroup';
 import CompetitionLeague from './CompetitionLeague';
 import CompetitionScorers from './CompetitionScorers';
-import Calendar from '../../Common/Calendar/Calendar';
-import Loading from '@/Common/Loader/Loading';
-import Error from '@/Common/ErrorComponent/Error';
+import Calendar from '@/common/Calendar/Calendar';
+import Loading from '@/common/Loader/Loading';
+import Error from '@/common/ErrorComponent/Error';
 import styles from './CompetitionsDetail.module.scss';
 
 const CompetitionsDetail: FC = () => {

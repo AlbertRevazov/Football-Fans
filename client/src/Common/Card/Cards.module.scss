@@ -1,12 +1,11 @@
 @import '@/styles/mixin';
 
 .container {
-  transition: all 0.3s ease-in;
-  filter: grayscale(1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
-
-.container:hover {
-  filter: grayscale(0)}
 
 .card {
   display: none;
@@ -15,6 +14,7 @@
     @include flex-center();
     flex-direction: column;
     justify-content: space-between;
+    align-items: center;
     max-width: 200px;
     overflow: hidden;
     margin: 12px;
@@ -25,6 +25,7 @@
 
 .crest {
   display: block;
+  min-width: 50px;
   width: 300px;
 }
 

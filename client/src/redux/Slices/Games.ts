@@ -1,5 +1,5 @@
+import { GamesState } from '@/Types/Games';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { GamesState } from '../../types/Games';
 
 const initialState: GamesState = {
   games: null,

@@ -29,17 +29,17 @@ export const Leagues = [
   {
     id: 1,
     crest: 'https://crests.football-data.org/SA.png',
-    title: 'Serie A',
+    title: 'ITA',
     apiId: 'SA',
   },
   {
     id: 2,
     crest: 'https://crests.football-data.org/PD.png',
-    title: 'La Liga',
+    title: 'SPA',
     apiId: 'PD',
   },
-  { id: 3, crest: 'https://crests.football-data.org/PL.png', title: 'Premier League', apiId: 'PL' },
-  { id: 4, crest: 'https://crests.football-data.org/BL1.png', title: 'Bundesliga', apiId: 'BL1' },
+  { id: 3, crest: 'https://crests.football-data.org/PL.png', title: 'ENG', apiId: 'PL' },
+  { id: 4, crest: 'https://crests.football-data.org/BL1.png', title: 'GER', apiId: 'BL1' },
 ];
 
 export const TeamsForMain = [

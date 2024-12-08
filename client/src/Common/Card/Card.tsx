@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import Link from 'next/link';
-import styles from './Card.module.scss';
+import styles from './Cards.module.scss';
 
 interface ICardProps {
   data: {
@@ -8,16 +8,22 @@ interface ICardProps {
     crest: string;
     title: string;
   };
+  isActive: boolean;
   link: string;
 }
 
-const Card: FC<ICardProps> = ({ data, link }) => {
+const Card: FC<ICardProps> = ({ data, link, isActive }) => {
+  const isLeague = link.includes('competitions');
   return (
-    <Link className={styles.container} href={link}>
+    <Link
+      className={styles.container}
+      href={link}
+      style={{ pointerEvents: isActive ? 'auto' : 'none' }}
+    >
       <div className={styles.card}>
         <img className={styles.crest} src={data?.crest} alt={data?.title} loading="lazy" />
       </div>
-      <h3 className={styles.title}>{data?.title}</h3>
+      {!isLeague && <h3 className={styles.title}>{data?.title}</h3>}
     </Link>
   );
 };
