@@ -8,7 +8,11 @@
 }
 
 .card {
-  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 200px;
+  cursor: pointer;
 
   @media (min-width: 767.98px) {
     @include flex-center();
@@ -26,11 +30,14 @@
 .crest {
   display: block;
   min-width: 50px;
-  width: 300px;
+  width: 100px;
+
+  @media (min-width: 767.98px) {
+    width: 300px;
+  }
 }
 
 .title {
-  background-color: $light-grey;
   margin: 12px auto;
   padding: 12px;
   text-align: center;

@@ -48,15 +48,34 @@ export const TeamsForMain = [
     crest: '/img/main/juve.png',
     title: 'Juventus',
     apiId: '109',
+    background: 'linear-gradient(168deg, #bfb868 0%, #1f1f1f 31%, #333537 63%, #bfb868 100%)',
+    trophies: { league: 36, cup: 15, Ucl: 2 },
   },
   {
     id: 2,
     crest: '/img/main/barca.png',
-    title: 'Barça',
+    title: 'Barcelona',
     apiId: '81',
+    background: 'radial-gradient(circle, #ff0000 0%, #0023ff 100%)',
+    trophies: { league: 27, cup: 31, Ucl: 5 },
   },
-  { id: 3, crest: '/img/main/city.png', title: 'Man City', apiId: '65' },
-  { id: 4, crest: '/img/main/bayern.png', title: 'Bayern', apiId: '5' },
+
+  {
+    id: 3,
+    crest: '/img/main/city.png',
+    title: 'Manchester City',
+    apiId: '65',
+    background: 'radial-gradient(circle, #ffffff 0%, #2eb2ed 66%)',
+    trophies: { league: 10, cup: 7, Ucl: 1 },
+  },
+  {
+    id: 4,
+    crest: '/img/main/bayern.png',
+    title: 'Bayern Munich',
+    apiId: '5',
+    background: ' radial-gradient(circle, #ffffff 0%, #fe0000 66%)',
+    trophies: { league: 33, cup: 20, Ucl: 6 },
+  },
 ];
 
 export enum MatchStatuses {

@@ -6,22 +6,20 @@ import styles from './LeaguesSection.module.scss';
 
 const LeaguesSection = () => {
   const [activeIndex, setActiveIndex] = useState(0);
-  const directionRef = useRef(1); // 1 for increasing, -1 for decreasing
+  const directionRef = useRef(1);
 
   useEffect(() => {
-    if (Leagues.length <= 1) return; // No need to scroll if only one league
-
+    if (Leagues.length <= 1) return;
     const interval = setInterval(() => {
       let nextIndex = activeIndex + directionRef.current;
       if (nextIndex < 0 || nextIndex >= Leagues.length) {
-        directionRef.current *= -1; // Toggle direction
+        directionRef.current *= -1;
         nextIndex = activeIndex + directionRef.current;
       }
       setActiveIndex(nextIndex);
     }, 20000);
 
     return () => clearInterval(interval);
-    // Include activeIndex to ensure effect runs when it changes
   }, [Leagues.length, activeIndex]);
 
   const changeActiveItem: React.MouseEventHandler<HTMLDivElement> = (event) => {
@@ -42,9 +40,7 @@ const LeaguesSection = () => {
             onClick={changeActiveItem}
             key={league.id}
             id={`${index}`}
-            className={`${styles.leagueItem} ${
-              index === activeIndex ? styles.active : styles.inactive
-            }`}
+            className={`${index === activeIndex ? styles.active : styles.inactive}`}
           >
             <Card
               data={league}

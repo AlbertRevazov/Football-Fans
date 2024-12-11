@@ -8,7 +8,7 @@ interface ICardProps {
     crest: string;
     title: string;
   };
-  isActive: boolean;
+  isActive?: boolean;
   link: string;
 }
 

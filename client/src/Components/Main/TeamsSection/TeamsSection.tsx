@@ -1,18 +1,16 @@
-import React, { FC } from 'react';
+import React, { FC, useState } from 'react';
 import { TeamsForMain } from '@/data';
-import Card from '@/common/Card';
-import Link from 'next/link';
+import Slider from '@/components/Main/TeamsSection/Slider/Slider';
 import styles from './TeamsSection.module.scss';
 
 const TeamsSection: FC = () => {
+  const [currentIndex] = useState(0);
+
   return (
-    <div className={styles.container}>
-      <Link className={styles.link} href="/teams">
-        Choose your favorite team {'>'}
-      </Link>
-      <div className={styles.teamList}>
+    <div className={styles.sliderContainer}>
+      <div className={styles.slider} style={{ transform: `translateX(-${currentIndex * 100}%)` }}>
         {TeamsForMain.map((team) => (
-          <Card data={team} link={`/teams/${team.apiId}`} key={team.id} />
+          <Slider data={team} />
         ))}
       </div>
     </div>

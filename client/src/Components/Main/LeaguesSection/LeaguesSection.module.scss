@@ -9,7 +9,7 @@
   padding: 20px;
   min-height: 200px;
   position: relative;
-  overflow: hidden; 
+  overflow: hidden;
   cursor: default;
 }
 
@@ -17,7 +17,7 @@
   display: flex;
   overflow: hidden;
   padding: 20px;
-  white-space: nowrap; 
+  white-space: nowrap;
 }
 
 .active {
@@ -27,16 +27,19 @@
   background: radial-gradient(circle, #fff 32%, $light-green 100%);
   border-radius: 8px;
   box-shadow: 12px 8px 12px #b8b8b896;
+  flex-grow: 3; 
 }
 
 .inactive {
-  flex-basis: 5%;
+  flex-basis: 2%;
+  min-width: 25px;
   margin: 0 5px;
   filter: grayscale(1) blur(2px);
   background-color: $light-green;
   transition: all 0.8s ease, margin 0.8s ease;
   display: flex;
-  align-items: center;
-  object-fit: cover;
+  justify-content: flex-start;
+  padding: 0;
   border-radius: 8px;
+  overflow: hidden;
 }
