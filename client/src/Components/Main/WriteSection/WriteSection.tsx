@@ -1,5 +1,5 @@
 import React, { FC, useState } from 'react';
-import CButton from '@/Common/Button';
+import CButton from '@/common/CButton';
 import styles from './WriteSection.module.scss';
 
 const WriteSection: FC = () => {

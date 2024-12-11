@@ -1,7 +1,8 @@
 import React, { FC } from 'react';
-import { IGames } from '@/Types/Games';
+import { IGames } from '@/types/Games';
 import { useIsWideScreen } from '@/utils/useIsWideScreen';
 import styles from './MatchesCard.module.scss';
+import { MatchStatuses } from '@/data';
 
 interface IMatchesCardProps {
   match: IGames;
@@ -10,7 +11,7 @@ interface IMatchesCardProps {
 const MatchCard: FC<IMatchesCardProps> = ({ match }) => {
   const { awayTeam, homeTeam, score } = match;
   const isWide = useIsWideScreen();
-
+  const isFinished = match.status === 'FINISHED';
   return (
     <>
       <article className={styles.homeTeam}>
@@ -19,7 +20,7 @@ const MatchCard: FC<IMatchesCardProps> = ({ match }) => {
         </figure>
         <div className={styles.homeLink}>
           <p>{homeTeam.shortName}</p>
-          <h5>{score.fullTime.home || 0}</h5>
+          {isFinished && <h5> {score.fullTime.home || 0}</h5>}
         </div>
       </article>
       {isWide ? <span className={styles.row}>-</span> : null}
@@ -28,7 +29,7 @@ const MatchCard: FC<IMatchesCardProps> = ({ match }) => {
           <img className={styles.img} src={awayTeam.crest} alt={'team emblem'} loading="lazy" />
         </figure>
         <div className={styles.awayLink}>
-          <h5>{score.fullTime.away || 0}</h5>
+          {isFinished && <h5> {score.fullTime.away || 0}</h5>}
           <p>{awayTeam.shortName}</p>
         </div>
       </article>

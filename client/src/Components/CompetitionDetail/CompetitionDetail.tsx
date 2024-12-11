@@ -7,7 +7,7 @@ import {
 } from '@/redux/slices/Competitions';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { getSeason } from '@/utils/Date';
-import { IGames } from '@/Types/Games';
+import { IGames } from '@/types/Games';
 import CompetitionGroup from './CompetitionGroup';
 import CompetitionLeague from './CompetitionLeague';
 import CompetitionScorers from './CompetitionScorers';
@@ -68,7 +68,7 @@ const CompetitionsDetail: FC = () => {
         return null;
     }
   };
-
+  console.log(data?.competition.code === 'CL');
   return (
     <div className={styles.root}>
       <div className={styles.container}>
@@ -100,6 +100,12 @@ const CompetitionsDetail: FC = () => {
             ))}
           </div>
           <section className={styles.leagueStats}>{renderContent()}</section>
+          {data?.competition.code === 'CL' && (
+            <ul>
+              <li>Первые 8 мест, автоматически проходят в стадию 1/8 финала.</li>
+              <li>Места с 9 по 24, участвуют в раунде 1/16 финала.</li>
+            </ul>
+          )}
           {!data?.table && (
             <footer className={styles.footer}>
               <h6 className={styles.note}>

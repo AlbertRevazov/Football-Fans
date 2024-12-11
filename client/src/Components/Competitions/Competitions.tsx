@@ -1,8 +1,8 @@
 import React, { FC, useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { getCompetitionsList } from '@/redux/slices/Competitions';
-import Loading from '@/Common/Loader/Loading';
-import Error from '@/Common/ErrorComponent';
+import Loading from '@/common/Loader/Loading';
+import Error from '@/common/ErrorComponent';
 import Link from 'next/link';
 import styles from './Competitions.module.scss';
 

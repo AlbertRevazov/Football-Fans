@@ -137,7 +137,6 @@ export const AuthSlice = createSlice({
       state.isLoading = false;
       state.user = action.payload?.user;
       state.status = action.payload?.status;
-      state.message = action.payload?.message;
       state.liked = action.payload?.list;
     });
     builder.addCase(getMe.rejected, (state) => {

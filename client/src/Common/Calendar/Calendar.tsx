@@ -1,10 +1,10 @@
 import React, { FC, useState } from 'react';
-import { IGames } from '@/Types/Games';
+import { IGames } from '@/types/Games';
 import { MatchStatuses } from '@/data';
 import { DateFormate } from '@/utils/Date';
 import MatchesCard from '@/common/MatchesCard';
 import Link from 'next/link';
-import CButton from '@/common/Button';
+import CButton from '@/common/CButton';
 import styles from './Calendar.module.scss';
 
 interface ICalendarProps {

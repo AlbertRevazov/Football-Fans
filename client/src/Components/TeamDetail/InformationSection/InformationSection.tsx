@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { ITeamSectionProps } from '@/types/Teams';
 import Link from 'next/link';
-import CLink from '@/common/Link';
+import CLink from '@/common/CLink';
 import styles from './Information.module.scss';
 
 const InformationSection: FC<ITeamSectionProps> = ({ team }) => {

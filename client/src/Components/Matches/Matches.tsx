@@ -2,9 +2,9 @@ import React, { FC, useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { MatchStatuses } from '@/data';
 import { getMatchesList } from '@/redux/slices/Games';
-import Error from '@/Common/ErrorComponent/Error';
-import Loading from '@/Common/Loader/Loading';
-import MatchesCard from '@/Common/MatchesCard';
+import Error from '@/common/ErrorComponent/Error';
+import Loading from '@/common/Loader/Loading';
+import MatchesCard from '@/common/MatchesCard';
 import Link from 'next/link';
 import styles from './Matches.module.scss';
 

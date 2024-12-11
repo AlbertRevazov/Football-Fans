@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { User } from '@/types/Auth';
 import Link from 'next/link';
-import Button from '@/common/Button';
+import Button from '@/common/CButton';
 import styles from './BurgerSection.module.scss';
 
 interface BurgerSectionProps {

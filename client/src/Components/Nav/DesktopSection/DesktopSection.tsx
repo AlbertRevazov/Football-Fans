@@ -1,8 +1,8 @@
 import React, { FC } from 'react';
 import { User } from '@/types/Auth';
 import { useRouter } from 'next/router';
-import CLink from '@/common/Link';
-import Button from '@/common/Button';
+import CLink from '@/common/CLink';
+import Button from '@/common/CButton';
 import styles from './DesktopSection.module.scss';
 
 interface DesktopSectionProps {

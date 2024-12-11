@@ -7,7 +7,7 @@ import { useIsWideScreen } from '@/utils/useIsWideScreen';
 import BurgerSection from './BurgerSection';
 import DesktopSection from './DesktopSection';
 import Link from 'next/link';
-import CButton from '@/common/Button';
+import CButton from '@/common/CButton';
 import styles from './Nav.module.scss';
 
 const Nav: FC = () => {

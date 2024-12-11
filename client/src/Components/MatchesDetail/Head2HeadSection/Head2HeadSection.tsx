@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { IHead2Head } from '@/Types/Games';
+import { IHead2Head } from '@/types/Games';
 import styles from './Head2HeadSection.module.scss';
 
 interface HeadSectionProps {

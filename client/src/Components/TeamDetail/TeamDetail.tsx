@@ -5,9 +5,9 @@ import { getTeamById } from '@/redux/slices/Team';
 import { useRouter } from 'next/router';
 import { ApiErrors } from '@/data';
 import dynamic from 'next/dynamic';
-import Loading from '../../Common/Loader';
+import Loading from '@/common/Loader';
 import styles from './TeamsDetail.module.scss';
-import Calendar from '@/Common/Calendar';
+import Calendar from '@/common/Calendar';
 
 const InformationSection = dynamic(() => import('./InformationSection'));
 const SquadSection = dynamic(() => import('./SquadSection'));

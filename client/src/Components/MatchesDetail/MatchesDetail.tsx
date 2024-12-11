@@ -4,8 +4,8 @@ import { useRouter } from 'next/router';
 import { getMatchById } from '@/redux/slices/Games';
 import HeaderSection from './HeaderSection/HeaderSection';
 import Head2headSection from './Head2HeadSection/Head2HeadSection';
-import Loading from '../../Common/Loader';
-import Error from '../../Common/ErrorComponent/Error';
+import Loading from '@/common/Loader';
+import Error from '@/common/ErrorComponent/Error';
 import styles from './MatchesDetail.module.scss';
 
 const MatchesDetail: FC = () => {
