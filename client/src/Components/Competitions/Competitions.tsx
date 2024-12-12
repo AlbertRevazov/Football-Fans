@@ -1,10 +1,10 @@
 import React, { FC, useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { getCompetitionsList } from '@/redux/slices/Competitions';
-import Loading from '@/common/Loader/Loading';
-import Error from '@/common/ErrorComponent';
+import Loading from '@/components/ui/Loader/Loader';
+import Error from '@/components/ui/Error';
 import Link from 'next/link';
-import styles from './Competitions.module.scss';
+import styles from './competitions.module.scss';
 
 const Competitions: FC = () => {
   const dispatch = useAppDispatch();

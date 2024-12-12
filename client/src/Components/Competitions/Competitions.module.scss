@@ -1,4 +1,4 @@
-@import '@/styles/mixin';
+@import '@/assets/styles/mixin';
 
 .container {
   @include flex-center;
@@ -30,4 +30,37 @@
 
 .emblem {
   object-fit: cover;
+}
+
+.table,
+.group {
+  @include container-sh();
+  padding: 0;
+  overflow: hidden;
+  text-align: center;
+}
+.table,
+.group {
+  @include container-sh();
+  padding: 0;
+  overflow: hidden;
+  text-align: center;
+}
+
+.loadMoreButton {
+  text-decoration: none;
+  text-align: center;
+  background-color: black;
+  color: #fff;
+  padding: 10px;
+  border-radius: 8px;
+  border: none;
+  width: 80%;
+  max-width: 250px;
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+
+  &:hover {
+    background-color: $light-green;
+  }
 }

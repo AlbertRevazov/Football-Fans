@@ -1,4 +1,4 @@
-@import '@/styles/mixin';
+@import '@/assets/styles/mixin';
 
 .nav_root {
   @include flex-center;
@@ -54,9 +54,9 @@
   height: 100%;
   background: linear-gradient(
     to right,
-    rgba(255, 255, 255, 0) 0%,
-    rgb(255, 255, 255) 50%,
-    rgba(255, 255, 255, 0) 100%
+    #ffffff00 0%,
+    #ffffff 50%,
+    #ffffff00 100%
   );
   transform: translateX(-100%);
   animation: glitter 2s 2s;

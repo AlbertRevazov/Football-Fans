@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { TeamsState } from '@/types/Teams';
+import { TeamsState } from '@/types/TeamsTypes';
 
 const initialState: TeamsState = {
   team: null,

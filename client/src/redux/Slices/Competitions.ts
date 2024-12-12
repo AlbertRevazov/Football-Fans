@@ -1,4 +1,4 @@
-import { CompetitionsState } from '@/types/Competitions';
+import { CompetitionsState } from '@/types/CompetitionsTypes';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
 const initialState: CompetitionsState = {

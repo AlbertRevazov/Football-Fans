@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
-import Layout from '../../../src/components/Layout';
-import CompetitionsDetail from '../../../src/Components/CompetitionDetail';
-import DateFilter from '../../../src/Common/DateFilter';
+import Layout from '../../../src/pages/layout';
+import CompetitionsDetail from '../../../src/components/competitions/detail';
+import DateFilter from '../../../src/components/ui/DateFilter';
 
 const CompetitionsDetailPage: FC = () => {
   return (

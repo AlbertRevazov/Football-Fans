@@ -4,9 +4,9 @@ import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { getPersonById } from '@/redux/slices/Persons';
 import { ApiErrors, PersonPositions } from '@/data';
 import { DateFormate } from '@/utils/Date';
-import Loading from '@/common/Loader';
-import Link from 'next/link';
-import styles from './Persons.module.scss';
+import Loading from '@/components/ui/Loader';
+import Link from '../ui/Link';
+import styles from './persons.module.scss';
 
 const Persons: FC = () => {
   const dispatch = useAppDispatch();

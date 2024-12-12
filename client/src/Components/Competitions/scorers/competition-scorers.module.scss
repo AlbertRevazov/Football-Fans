@@ -1,0 +1,78 @@
+@import '@/assets/styles/mixin';
+
+.scorers {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: column;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 4px 10px;
+}
+
+.header,
+.man {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+  align-items: center;
+  cursor: default;
+}
+
+.crest {
+  width: 15px;
+}
+
+.player,
+.goals,
+.assists,
+.played,
+.penalties {
+  flex: 0 0 auto;
+  text-align: center;
+  width: 80px;
+}
+
+.position {
+  width: 50px;
+}
+
+.link,
+.player {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 4px;
+  text-decoration: none;
+  transition: all 0.1s ease-in;
+  width: 185px;
+  text-align: start;
+  text-wrap: balance;
+  overflow: hidden;
+}
+
+.man:hover {
+  transform: scale(1.01);
+  box-shadow: 2px 2px 12px #ccc;
+  border-bottom: 1px solid transparent;
+  border-radius: 6px;
+}
+
+@media (max-width: 767.98px) {
+  .position,
+  .played,
+  .penalties {
+    display: none;
+  }
+
+  .goals,
+  .assists {
+    width: 50px;
+  }
+}

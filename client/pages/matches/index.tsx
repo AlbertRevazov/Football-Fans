@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
-import Layout from '../../src/components/Layout';
-import DateFilter from '../../src/Common/DateFilter';
+import Layout from '../../src/pages/layout';
+import DateFilter from '../../src/components/ui/DateFilter';
 import Matches from '../../src/components/Matches';
 
 const MatchesPage: FC = () => {

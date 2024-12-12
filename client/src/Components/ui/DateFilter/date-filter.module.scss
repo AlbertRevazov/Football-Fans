@@ -1,0 +1,31 @@
+@import '@/assets/styles/mixin';
+
+.container {
+  @include container;
+  @include flex-center;
+  padding: 20px;
+}
+
+.datePicker {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.block,
+.selected {
+  padding: 5px 10px;
+  border: 1px dotted #000;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+.selected {
+  color: $light-green;
+  border: 1px dotted $light-green;
+}

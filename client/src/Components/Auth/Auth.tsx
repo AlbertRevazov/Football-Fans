@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import SignFormSection from '@/common/Form/SignFormSection/SignFormSection';
-import LoginFormSection from '@/common/Form/LoginFormSection';
-import styles from './Auth.module.scss';
+import SignFormSection from '@/components/ui/Form/SignFormSection';
+import LoginFormSection from '@/components/ui/Form/LoginFormSection';
+import styles from './auth.module.scss';
 
 const Auth = () => {
   const [toggle, setToggle] = useState<boolean>(false);

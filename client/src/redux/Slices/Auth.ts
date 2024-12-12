@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { LoginInput, SignUpData, AuthState } from '@/types/Auth';
+import { LoginInput, SignUpData, AuthState } from '@/types/AuthTypes';
 
 const initialState: AuthState = {
   user: null,

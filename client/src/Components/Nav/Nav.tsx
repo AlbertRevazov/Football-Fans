@@ -7,8 +7,9 @@ import { useIsWideScreen } from '@/utils/useIsWideScreen';
 import BurgerSection from './BurgerSection';
 import DesktopSection from './DesktopSection';
 import Link from 'next/link';
-import CButton from '@/common/CButton';
+import CButton from '@/components/ui/Button';
 import styles from './Nav.module.scss';
+import Button from '@/components/ui/Button';
 
 const Nav: FC = () => {
   const dispatch = useAppDispatch();
@@ -45,9 +46,9 @@ const Nav: FC = () => {
         {burger && <BurgerSection handleLogout={handleLogout} links={filteredLinks} user={user} />}
 
         {!isWide ? (
-          <CButton onClick={() => setBurger(!burger)}>
+          <Button onClick={() => setBurger(!burger)}>
             <img className={styles.menu} src="/svg/menu.svg" alt="menu" loading="lazy" />
-          </CButton>
+          </Button>
         ) : (
           <DesktopSection handleLogout={handleLogout} user={user} links={filteredLinks} />
         )}

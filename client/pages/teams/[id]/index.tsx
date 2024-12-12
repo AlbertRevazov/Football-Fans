@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
-import Layout from '../../../src/components/Layout';
-import TeamsDetail from '../../../src/components/TeamDetail';
+import Layout from '../../../src/pages/layout';
+import TeamsDetail from '../../../src/components/team-detail';
 
 const TeamsDetailPage: FC = () => {
   return (

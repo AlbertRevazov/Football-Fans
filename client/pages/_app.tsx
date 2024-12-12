@@ -3,8 +3,8 @@ import { Provider } from 'react-redux';
 import { AppProps } from 'next/app';
 import { store } from '../src/redux/store';
 import Head from 'next/head';
-import '../src/styles/_reset.scss';
-import '../src/styles/fonts.scss';
+import '../src/assets/styles/_reset.scss';
+import '../src/assets/styles/fonts.scss';
 
 const MyApp: FC<AppProps> = ({ Component, pageProps }) => {
   return (

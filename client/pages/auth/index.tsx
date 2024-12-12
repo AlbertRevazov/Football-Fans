@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import Layout from '../../src/components/Layout';
+import Layout from '../../src/pages/layout';
 import Auth from '../../src/Components/Auth';
 
 const AuthPage: FC = () => {

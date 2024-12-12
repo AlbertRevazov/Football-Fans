@@ -1,0 +1,29 @@
+import React, { FC, useState } from 'react';
+import { Standings } from '@/types/CompetitionsTypes';
+import CTable from '@/components/ui/Table';
+import styles from '../competitions.module.scss';
+
+interface ICompetitionGroupProps {
+  data: Standings[];
+}
+
+const CompetitionGroup: FC<ICompetitionGroupProps> = ({ data }) => {
+  const middleIdx = data.length / 2;
+  const [list, setList] = useState<Standings[]>(data.slice(0, middleIdx));
+
+  const loadMoreHandle = () => {
+    setList((prev) => [...prev, ...data.slice(middleIdx, data.length)]);
+  };
+
+  return (
+    <section className={styles.group}>
+      <CTable group={list} />
+      {list.length <= middleIdx && (
+        <button onClick={loadMoreHandle} className={styles.loadMoreButton}>
+          Load More
+        </button>
+      )}
+    </section>
+  );
+};
+export default CompetitionGroup;

@@ -1,0 +1,53 @@
+@import '@/assets/styles/mixin';
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.card {
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 200px;
+  cursor: pointer;
+
+  @media (min-width: 767.98px) {
+    @include flex-center();
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 200px;
+    overflow: hidden;
+    margin: 12px;
+    padding: 20px;
+    cursor: pointer;
+  }
+}
+
+.crest {
+  display: block;
+  min-width: 50px;
+  width: 100px;
+
+  @media (min-width: 767.98px) {
+    width: 300px;
+  }
+}
+
+.title {
+  margin: 12px auto;
+  padding: 12px;
+  text-align: center;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 24.5px;
+
+  @media (min-width: 767.98px) {
+    background-color: inherit;
+    margin: 0 12px;
+    padding: 0;
+  }
+}

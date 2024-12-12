@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { PersonState } from '@/types/Persons';
+import { PersonState } from '@/types/PersonsTypes';
 
 const initialState: PersonState = {
   person: null,
