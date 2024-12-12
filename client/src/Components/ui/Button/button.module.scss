@@ -3,7 +3,7 @@
 .button,
 .disabled {
   font-size: 14px;
-  background-color: black;
+  background-color: $c-dark;
   color: #fff;
   border: none;
   border-radius: 6px;
@@ -13,7 +13,7 @@
 }
 
 .button:hover {
-  background-color: $light-green;
+  background-color: $c-orange;
 }
 
 .disabled {

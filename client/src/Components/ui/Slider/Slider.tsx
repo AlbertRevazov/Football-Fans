@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import Link from 'next/link';
+import Link from '../Link';
 import styles from './slider.module.scss';
 
 interface ISliderProps {
@@ -8,14 +8,13 @@ interface ISliderProps {
     crest: string;
     title: string;
     apiId: string;
-    background: string;
     trophies: { league: number; cup: number; Ucl: number };
   };
 }
 
 const Slider: FC<ISliderProps> = ({ data }) => {
   return (
-    <div key={data.apiId} className={styles.slide} style={{ background: `${data.background}` }}>
+    <div key={data.apiId} className={styles.slide}>
       <div className={styles.content}>
         <img className={styles.crest} src={data.crest} alt={data.title} loading="lazy" />{' '}
         <Link href={`/teams/${data.apiId}`} className={styles.link}>

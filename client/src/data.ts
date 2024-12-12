@@ -48,7 +48,6 @@ export const TeamsForMain = [
     crest: '/img/main/city.png',
     title: 'Manchester City',
     apiId: '65',
-    background: 'linear-gradient(168deg, #2eb2ed 10%, #ffffff 50%, #2eb2ed 90%)',
     trophies: { league: 10, cup: 7, Ucl: 1 },
   },
   {
@@ -56,7 +55,6 @@ export const TeamsForMain = [
     crest: '/img/main/barca.png',
     title: 'Barcelona',
     apiId: '81',
-    background: 'linear-gradient(168deg, #ff0000 5%, #104faa 50%, #ff0000 90%)',
     trophies: { league: 27, cup: 31, Ucl: 5 },
   },
   {
@@ -64,7 +62,6 @@ export const TeamsForMain = [
     crest: '/img/main/juve.png',
     title: 'Juventus',
     apiId: '109',
-    background: 'linear-gradient(168deg, #000000 24%, #ffffff 50%, #000000 74%)',
     trophies: { league: 36, cup: 15, Ucl: 2 },
   },
   {
@@ -72,7 +69,6 @@ export const TeamsForMain = [
     crest: '/img/main/bayern.png',
     title: 'Bayern Munich',
     apiId: '5',
-    background: 'linear-gradient(168deg, #ff0000 24%, #ffffff 50%, #ff0000 74%)',
     trophies: { league: 33, cup: 20, Ucl: 6 },
   },
   {
@@ -80,7 +76,6 @@ export const TeamsForMain = [
     crest: '/img/main/psg.png',
     title: 'Paris Saint-Germain',
     apiId: '524',
-    background: 'linear-gradient(168deg, #004170 24%, #da291c 50%, #004170 74%)',
     trophies: { league: 11, cup: 14, Ucl: 0 },
   },
 ];

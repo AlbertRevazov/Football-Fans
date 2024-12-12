@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { Scorers } from '@/types/CompetitionsTypes';
-import Link from 'next/link';
+import Link from '@/components/ui/Link';
 import styles from './competition-scorers.module.scss';
 
 interface ILeagueScorersProps {

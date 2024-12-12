@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { ITeamSectionProps } from '@/types/TeamsTypes';
-import Link from 'next/link';
+import Link from '@/components/ui/Link';
 import styles from './squad.module.scss';
 
 const SquadSection: FC<ITeamSectionProps> = ({ team }) => {

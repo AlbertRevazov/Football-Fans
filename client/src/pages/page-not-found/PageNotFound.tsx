@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
-import Link from 'next/link';
 import Button from '@/components/ui/Button';
+import Link from '@/components/ui/Link';
 import styles from './page-not-found.module.scss';
 
 const PageNotFound: FC = () => {
@@ -18,7 +18,7 @@ const PageNotFound: FC = () => {
         </div>
 
         <nav className={styles.navigation}>
-          <Link href="/" passHref className={styles.link}>
+          <Link href="/"  className={styles.link}>
             <Button title="Вернуться на главную" />
           </Link>
         </nav>

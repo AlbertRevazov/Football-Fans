@@ -3,9 +3,9 @@ import { IGames } from '@/types/GamesTypes';
 import { MatchStatuses } from '@/data';
 import { DateFormate } from '@/utils/Date';
 import MatchesCard from '@/components/ui/MatchesCard';
-import Link from 'next/link';
 import Button from '@/components/ui/Button';
 import styles from './Calendar.module.scss';
+import Link from '../Link';
 
 interface ICalendarProps {
   data: IGames[];

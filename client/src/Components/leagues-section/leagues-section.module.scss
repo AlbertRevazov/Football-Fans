@@ -24,7 +24,7 @@
   flex-basis: 85%;
   margin: 0 10px;
   filter: grayscale(0) blur(0);
-  background: linear-gradient(130deg, #fffc00 0%, #ff0000 100%);
+  background: linear-gradient(130deg, #f78536 0%, #566683 100%);
   background-size: 200% 200%;
   border-radius: 8px;
   box-shadow: 12px 8px 12px #b8b8b896;
@@ -38,7 +38,7 @@
   min-width: 25px;
   margin: 0 5px;
   filter: grayscale(0) blur(3px);
-  background-color: #ff6600;
+  background-color: $c-dark;
   transition: all 0.8s ease, margin 0.8s ease;
   display: flex;
   justify-content: flex-start;

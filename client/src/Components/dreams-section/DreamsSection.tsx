@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
-import CLink from '@/components/ui/Link/Link';
-import styles from './DreamsSection.module.scss';
+import Link from '@/components/ui/Link/Link';
+import styles from './dreams-section.module.scss';
 
 const DreamsSection: FC = () => {
   return (
@@ -13,7 +13,7 @@ const DreamsSection: FC = () => {
             football, from the grassroots to the grand stages.
           </p>
           <nav>
-            <CLink title="Explore" link="/matches" />
+            <Link title="Explore" href="/matches" />
           </nav>
         </header>
         <figure className={styles.imageContainer}>

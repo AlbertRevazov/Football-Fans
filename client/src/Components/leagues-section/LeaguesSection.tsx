@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Leagues } from '@/data';
 import Card from '@/components/ui/Card';
-import Link from 'next/link';
 import styles from './leagues-section.module.scss';
+import Link from '../ui/Link';
 
 const LeaguesSection = () => {
   const [activeIndex, setActiveIndex] = useState(0);

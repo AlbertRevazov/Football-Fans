@@ -23,7 +23,7 @@
   gap: 30px;
   padding: 20px;
   border-radius: 24px;
-  background-color: #f5f5f5;
+  background-color: $c-primary;
   cursor: default;
 }
 
@@ -52,7 +52,7 @@
 }
 
 .link > h3:hover {
-  color: $light-green;
+  color: $c-orange;
 }
 
 .crest {

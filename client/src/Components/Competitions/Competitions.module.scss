@@ -50,7 +50,7 @@
 .loadMoreButton {
   text-decoration: none;
   text-align: center;
-  background-color: black;
+  background-color: $c-dark;
   color: #fff;
   padding: 10px;
   border-radius: 8px;
@@ -61,6 +61,6 @@
   cursor: pointer;
 
   &:hover {
-    background-color: $light-green;
+    background-color: $c-orange;
   }
 }
