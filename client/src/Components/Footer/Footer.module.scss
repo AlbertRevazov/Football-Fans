@@ -6,7 +6,7 @@
   background-color: #fff;
 }
 
-.footer_container {
+.container {
   @include container;
   @include flex-center;
   min-height: 100px;
@@ -18,10 +18,30 @@
 }
 
 .subTitle {
+  display: flex;
+  align-items: center;
+  gap: 5px;
   color: #000;
   margin: 0 4px;
 }
 
 .subTitle:hover {
   color: rgb(5, 202, 251);
+}
+
+.gear {
+  width: 20px;
+  animation-name: rotation;
+  animation-duration: 5s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
