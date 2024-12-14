@@ -15,6 +15,8 @@
 .li,
 .li_active {
   display: none;
+  font-family: Delius;
+  font-size: 18px;
 
   @media (min-width: 767.98px) {
     display: block;
@@ -31,4 +33,8 @@
 
 .li_active {
   border-bottom: 3px solid $c-orange;
+}
+
+.btn > button {
+  font-size: large;
 }

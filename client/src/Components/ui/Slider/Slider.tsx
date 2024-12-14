@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import Link from '../Link';
+import Link from 'next/link';
 import styles from './slider.module.scss';
 
 interface ISliderProps {

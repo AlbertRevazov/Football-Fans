@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import Link from '@/components/ui/Link/Link';
+import Link from 'next/link';
 import styles from './dreams-section.module.scss';
 
 const DreamsSection: FC = () => {

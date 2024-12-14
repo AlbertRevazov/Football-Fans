@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import { User } from '@/types/AuthTypes';
 import { useRouter } from 'next/router';
 import Button from '@/components/ui/Button';
-import Link from '@/components/ui/Link';
+import Link from 'next/link';
 import styles from './desktop-section.module.scss';
 
 interface DesktopSectionProps {
@@ -32,7 +32,9 @@ const DesktopSection: FC<DesktopSectionProps> = ({ handleLogout, links, user }) 
       {user ? (
         <Button title="Logout" onClick={handleLogout} />
       ) : (
-        <Link href="/auth" title="Sign Up" />
+        <Link href="/auth" className={styles.btn}>
+          <Button title="Sign Up" />
+        </Link>
       )}
     </ul>
   );

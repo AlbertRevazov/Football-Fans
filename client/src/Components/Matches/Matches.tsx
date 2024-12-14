@@ -5,7 +5,7 @@ import { getMatchesList } from '@/redux/slices/Games';
 import Error from '@/components/ui/Error/Error';
 import Loading from '@/components/ui/Loader/Loader';
 import MatchesCard from '@/components/ui/MatchesCard';
-import Link from '../ui/Link';
+import Link from 'next/link';
 import styles from './Matches.module.scss';
 
 const MatchSection: FC = () => {

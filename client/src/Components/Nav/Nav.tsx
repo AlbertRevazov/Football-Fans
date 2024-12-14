@@ -8,7 +8,7 @@ import BurgerSection from './BurgerSection';
 import DesktopSection from './DesktopSection';
 import Button from '@/components/ui/Button';
 import styles from './nav.module.scss';
-import Link from '../ui/Link';
+import Link from 'next/link';
 
 const Nav: FC = () => {
   const dispatch = useAppDispatch();

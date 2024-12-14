@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Leagues } from '@/data';
 import Card from '@/components/ui/Card';
-import Link from '../ui/Link';
+import Link from 'next/link';
 import styles from './leagues-section.module.scss';
 
 const LeaguesSection = () => {

@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { ITeamSectionProps } from '@/types/TeamsTypes';
+import Link from 'next/link';
 import styles from './information.module.scss';
-import Link from '@/components/ui/Link';
 
 const InformationSection: FC<ITeamSectionProps> = ({ team }) => {
   const { address, venue, runningCompetitions, website, founded, coach } = team;

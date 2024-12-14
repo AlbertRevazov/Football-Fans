@@ -81,7 +81,31 @@
   font-weight: 400;
   font-size: 18px;
   line-height: 1.25;
-  color: $c-gray
+  color: $c-gray;
+}
+
+.btn {
+  width: 100%;
+  padding: 20px;
+  @media (min-width: 767.98px) {
+    padding: 0;
+  }
+}
+
+.btn > button {
+  font-size: larger;
+  width: 100%;
+  background-color: #566683;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 12px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.btn > button:hover {
+  background-color: $c-orange;
 }
 
 .figure {

@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import { IGames } from '@/types/GamesTypes';
 import { MatchStages } from '@/data';
 import { DateFormate } from '@/utils/Date';
-import Link from '@/components/ui/Link';
+import Link from 'next/link';
 import styles from './header-section.module.scss';
 
 interface IHeaderProps {

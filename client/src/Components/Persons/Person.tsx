@@ -5,7 +5,7 @@ import { getPersonById } from '@/redux/slices/Persons';
 import { ApiErrors, PersonPositions } from '@/data';
 import { DateFormate } from '@/utils/Date';
 import Loading from '@/components/ui/Loader';
-import Link from '../ui/Link';
+import Link from 'next/link';
 import styles from './persons.module.scss';
 
 const Persons: FC = () => {
