@@ -1,19 +1,25 @@
 @import '@/assets/styles/mixin';
 
 .footer {
+  margin-top: 40px;
   padding: 30px 0px;
   text-align: center;
-  background-color: #fff;
+  background-color: $c-dark;
+
+  @media (min-width: 767.98px) {
+    margin-top: 0;
+  }
 }
 
 .container {
   @include container;
   @include flex-center;
-  min-height: 100px;
+  flex-wrap: wrap;
+  text-wrap: balance;
 }
 
 .title {
-  color: #000;
+  color: $c-light;
   cursor: default;
 }
 
@@ -21,12 +27,13 @@
   display: flex;
   align-items: center;
   gap: 5px;
-  color: #000;
   margin: 0 4px;
+  color: $c-primary;
+  transition: color 0.5s ease;
 }
 
 .subTitle:hover {
-  color: rgb(5, 202, 251);
+  color: $c-orange;
 }
 
 .gear {
@@ -35,6 +42,17 @@
   animation-duration: 5s;
   animation-iteration-count: infinite;
   animation-timing-function: linear;
+}
+
+.smLogo {
+  width: 44px;
+}
+
+.columns {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 22px;
 }
 
 @keyframes rotation {

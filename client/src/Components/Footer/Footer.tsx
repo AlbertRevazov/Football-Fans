@@ -5,14 +5,13 @@ const Footer: FC = () => {
   return (
     <footer className={styles.footer}>
       <div className={styles.container}>
-          <img className={styles.gear} src="/svg/gear.svg" alt="gear" loading="lazy" />
         <p className={styles.title}>
           © 2024 Copyright Football Fans || All Right Reserved || Powered by
         </p>
         <a className={styles.subTitle} href="http://revaz.vercel.app" target="_blank">
           A.Revazov
-          <img className={styles.gear} src="/svg/gear.svg" alt="gear" loading="lazy" />
         </a>
+        <img className={styles.gear} src="/svg/gear.svg" alt="gear" loading="lazy" />
       </div>
     </footer>
   );

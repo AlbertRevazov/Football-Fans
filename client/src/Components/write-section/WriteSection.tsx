@@ -10,7 +10,7 @@ const WriteSection: FC = () => {
       <div className={styles.content}>
         <header className={styles.header}>
           <h2 className={styles.title}>Write to Us</h2>
-          <p className={styles.description}>
+          <p className={styles.subtitle}>
             Your suggestions and comments are always welcome. Contact us to improve your experience.
           </p>
         </header>

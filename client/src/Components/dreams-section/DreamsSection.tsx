@@ -1,6 +1,7 @@
 import React, { FC } from 'react';
 import Link from 'next/link';
 import styles from './dreams-section.module.scss';
+import Button from '../ui/Button';
 
 const DreamsSection: FC = () => {
   return (
@@ -12,9 +13,10 @@ const DreamsSection: FC = () => {
             Step onto the green canvas of the world's most beloved sport and explore the essence of
             football, from the grassroots to the grand stages.
           </p>
-          <nav>
-            <Link title="Explore" href="/matches" />
-          </nav>
+
+          <Link href="/matches" className={styles.link}>
+            <Button title="Explore" />
+          </Link>
         </header>
         <figure className={styles.imageContainer}>
           <img

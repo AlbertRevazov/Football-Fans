@@ -38,7 +38,7 @@ const Nav: FC = () => {
     <section>
       <nav className={styles.nav_root}>
         <Link href="/" className={styles.logo}>
-          <img className={styles.logo_img} src="/svg/logo.svg" width={80} loading="lazy" />
+          <img src="/svg/logo.svg" width={80} loading="lazy" />
           <p className={styles.logoTitle}>Football Fans</p>
         </Link>
 

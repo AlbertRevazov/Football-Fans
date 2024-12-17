@@ -26,25 +26,6 @@
   font-size: 24px;
 }
 
-.logoTitle:hover,
-.logo_img:hover {
-  cursor: pointer;
-}
-
-.menu {
-  border: none;
-  background-color: #fff;
-  height: 50px;
-  width: 50px;
-  cursor: pointer;
-}
-
-.divider {
-  width: 100vw;
-  height: 2px;
-  border-bottom: 22px solid gray;
-}
-
 .logoTitle::after {
   content: '';
   position: absolute;
@@ -60,6 +41,14 @@
 
 .logoTitle:hover::after {
   opacity: 1;
+}
+
+.menu {
+  border: none;
+  background-color: #fff;
+  height: 50px;
+  width: 50px;
+  cursor: pointer;
 }
 
 @keyframes glitter {

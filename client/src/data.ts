@@ -26,20 +26,21 @@ export const Features = [
 ];
 
 export const Leagues = [
+  { id: 1, crest: 'https://crests.football-data.org/PL.png', title: 'ENG', apiId: 'PL' },
   {
-    id: 1,
+    id: 2,
     crest: 'https://crests.football-data.org/SA.png',
     title: 'ITA',
     apiId: 'SA',
   },
   {
-    id: 2,
+    id: 3,
     crest: 'https://crests.football-data.org/PD.png',
     title: 'SPA',
     apiId: 'PD',
   },
-  { id: 3, crest: 'https://crests.football-data.org/PL.png', title: 'ENG', apiId: 'PL' },
   { id: 4, crest: 'https://crests.football-data.org/BL1.png', title: 'GER', apiId: 'BL1' },
+  { id: 5, crest: 'https://crests.football-data.org/FL1.png', title: 'FRA', apiId: 'FL1' },
 ];
 
 export const TeamsForMain = [

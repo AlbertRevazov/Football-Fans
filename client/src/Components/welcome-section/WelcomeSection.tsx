@@ -23,7 +23,7 @@ const WelcomeSection: FC = () => {
             src="img/main/welcome.webp"
             alt="Newest collection"
             loading="lazy"
-            className={styles.firstImage}
+            className={styles.img}
           />
         </figure>
       </article>

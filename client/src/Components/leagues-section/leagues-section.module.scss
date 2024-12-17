@@ -1,68 +1,54 @@
 @import '@/assets/styles/mixin';
 
-.container {
+.popularCategories {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 10px;
+  gap: 30px;
   padding: 20px;
-  min-height: 200px;
-  position: relative;
-  overflow: hidden;
-  cursor: default;
+  margin: 20px auto;
+  text-align: center;
 }
 
-.leaguesList {
-  display: flex;
-  overflow: hidden;
-  padding: 20px;
-  white-space: nowrap;
-}
-
-.active {
-  flex-basis: 85%;
-  margin: 0 10px;
-  filter: grayscale(0) blur(0);
-  background: linear-gradient(130deg, #f78536 0%, #566683 100%);
-  background-size: 200% 200%;
-  border-radius: 8px;
-  box-shadow: 12px 8px 12px #b8b8b896;
-  flex-grow: 3;
-  overflow: hidden;
-  animation: gradientAnimation 5s infinite linear;
-}
-
-.inactive {
-  flex-basis: 5%;
-  min-width: 25px;
-  margin: 0 5px;
-  filter: grayscale(0) blur(3px);
-  background-color: $c-dark;
-  transition: all 0.8s ease, margin 0.8s ease;
-  display: flex;
-  justify-content: flex-start;
-  padding: 0;
-  border-radius: 8px;
-  overflow: hidden;
-  @media (min-width: 767.98px) {
-    flex-basis: 15%;
-  }
+.title {
+  font-size: large;
+  color: $c-dark;
+  text-transform: capitalize;
+  font-size: 22px;
+  margin: 8px 0;
 }
 
 .subtitle {
-  font-size: 19px;
   font-family: Delius;
+  font-size: 20px;
+  color: $c-gray;
+  margin-bottom: 20px;
+  transition: all 0.5s ease;
+  margin: 8px 0;
+  cursor: pointer;
 }
 
-@keyframes gradientAnimation {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
+.subtitle:hover {
+  color: $c-orange;
+}
+
+.categories {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 25px;
+  justify-content: center;
+}
+
+.emblem {
+  object-fit: cover;
+  width: 120px;
+  transition: all 0.5s ease;
+  padding: 10px 15px;
+  border-radius: 6px;
+}
+
+.emblem:hover {
+  transform: scale(1.2);
+  box-shadow: 12px 10px 4px $c-gray;
 }

@@ -16,7 +16,8 @@
 .li_active {
   display: none;
   font-family: Delius;
-  font-size: 18px;
+  font-size: larger;
+  color: $c-dark;
 
   @media (min-width: 767.98px) {
     display: block;
