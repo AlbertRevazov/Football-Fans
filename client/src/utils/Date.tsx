@@ -12,14 +12,15 @@ export const DateFormate = (props: string, withoutHours?: boolean) => {
     minute: '2-digit',
   });
 
-  const withoutTime = date.toLocaleString('ru-RU', {
+  const withoutYears = date.toLocaleString('ru-RU', {
     timeZone: 'Europe/Moscow',
-    year: 'numeric',
     month: 'long',
     day: 'numeric',
+    hour: '2-digit',
+    minute: '2-digit',
   });
 
-  return !withoutHours ? formattedDateTime : withoutTime;
+  return !withoutHours ? formattedDateTime : withoutYears;
 };
 
 export const getSeason = (startDate: string, endDate: string) => {

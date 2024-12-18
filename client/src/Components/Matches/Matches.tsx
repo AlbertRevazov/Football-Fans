@@ -7,6 +7,7 @@ import Loading from '@/components/ui/Loader/Loader';
 import MatchesCard from '@/components/ui/MatchesCard';
 import Link from 'next/link';
 import styles from './Matches.module.scss';
+import { DateFormate } from '@/utils/Date';
 
 const MatchSection: FC = () => {
   const [expandedCompetitions, setExpandedCompetitions] = useState<string[]>([]);
@@ -58,9 +59,11 @@ const MatchSection: FC = () => {
                   {isExpanded &&
                     games[competition].map((match) => (
                       <Link key={match.id} className={styles.card} href={`/matches/${match.id}`}>
+                        <div className={styles.matchDay}>Тур {match.matchday}</div>
                         <div className={styles.teams}>
                           <MatchesCard match={match} />
                         </div>
+                        <div className={styles.date}>{DateFormate(match.utcDate, true)}</div>
                         <div className={styles.status}>
                           {MatchStatuses[match.status as keyof typeof MatchStatuses]}
                         </div>

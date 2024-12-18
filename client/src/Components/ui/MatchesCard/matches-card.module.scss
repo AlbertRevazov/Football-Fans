@@ -1,10 +1,12 @@
+@import '@/assets/styles/mixin';
+
 .homeTeam,
 .awayTeam {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 5px;
-  width: 165px;
+  width: 163px;
 }
 
 .homeLink,
@@ -21,6 +23,7 @@
 .homeLink p,
 .awayLink p {
   width: 120px;
+  color: $c-dark;
 }
 
 .awayLink p {
@@ -60,6 +63,7 @@
 .row {
   display: flex;
   justify-content: center;
-  width: 40px;
   width: 100%;
 }
+
+

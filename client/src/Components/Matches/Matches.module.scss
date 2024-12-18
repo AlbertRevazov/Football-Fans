@@ -51,11 +51,11 @@
   gap: 5px;
   padding: 12px;
   cursor: pointer;
-  border-top: 1px dotted #000;
+  border-top: 1px solid $c-gray;
 }
 
 .close {
-  border: 1px solid #ccc;
+  border: 1px solid $c-dark;
   border-radius: 4px;
 }
 
@@ -83,7 +83,7 @@
   justify-content: flex-start;
   align-items: center;
   padding: 10px 20px;
-  border-bottom: 1px dotted #000;
+  border-bottom: 1px solid $c-gray;
   gap: 15px;
   cursor: pointer;
 
@@ -103,7 +103,6 @@
   gap: 10px;
   text-align: start;
   width: 100%;
-  // flex: 1;
 
   @media (min-width: 567.98px) {
     width: 444px;
@@ -114,12 +113,37 @@
   }
 }
 
+.matchDay,
+.date,
 .status {
-  text-align: end;
-  width: 100%;
-  @media (min-width: 567.98px) {
+  display: none;
+}
+
+@media (min-width: 989.98px) {
+  .status {
+    display: flex;
+    flex-wrap: nowrap;
+    font-family: Comfortaa;
+    color: $c-gray;
+    text-align: end;
     width: auto;
     text-align: left;
+  }
+}
+
+@media (min-width: 839.98px) {
+  .date {
+    display: block;
+    color: $c-gray;
+    font-family: Comfortaa;
+  }
+}
+
+@media (min-width: 669.98px) {
+  .matchDay {
+    display: block;
+    color: $c-gray;
+    font-family: Comfortaa;
   }
 }
 
