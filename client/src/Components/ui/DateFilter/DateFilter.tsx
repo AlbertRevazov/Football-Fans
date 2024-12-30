@@ -2,7 +2,6 @@ import React, { FC } from 'react';
 import { useDateFilterHook } from './hooks';
 import { useRouter } from 'next/router';
 import { useAppSelector } from '@/redux/hooks';
-import { useIsWideScreen } from '@/utils/useIsWideScreen';
 import styles from './date-filter.module.scss';
 
 interface IDateFilter {
@@ -11,10 +10,11 @@ interface IDateFilter {
 
 const DateFilter: FC<IDateFilter> = ({ isYear }) => {
   const router = useRouter();
-  const isWide = useIsWideScreen();
   const { id } = router.query;
   const { days, years, selected, handleYear, handleDays } = useDateFilterHook(isYear as boolean);
   const { data } = useAppSelector((s) => s.tournament);
+
+  // to do as a filter for mobile
 
   if (data?.competition.type === 'CUP') {
     return null;
@@ -30,7 +30,7 @@ const DateFilter: FC<IDateFilter> = ({ isYear }) => {
                 key={year}
                 data-date={year}
                 className={`${selected === year ? styles.selected : styles.block}`}
-                onClick={handleYear(id as string)}
+                onClick={selected === year ? () => {} : handleYear(id as string)}
               >
                 {`${year}/${+year + 1}`}
               </div>
@@ -47,12 +47,10 @@ const DateFilter: FC<IDateFilter> = ({ isYear }) => {
               <div
                 key={block.date}
                 data-date={block.date}
-                className={`${styles.dateBlock} ${
-                  selected === block.date ? styles.selected : styles.block
-                }`}
-                onClick={handleDays}
+                className={`${selected === block.date ? styles.selected : styles.block}`}
+                onClick={selected === block.date ? () => {} : handleDays}
               >
-                {!isWide ? block.formattedDate.split(' ')[0] : block.formattedDate}
+                {block.formattedDate}
               </div>
             ))}
           </div>

@@ -23,7 +23,7 @@
 .homeLink p,
 .awayLink p {
   width: 120px;
-  color: $c-dark;
+  cursor: pointer !important ;
 }
 
 .awayLink p {
@@ -65,5 +65,3 @@
   justify-content: center;
   width: 100%;
 }
-
-

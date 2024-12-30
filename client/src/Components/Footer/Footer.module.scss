@@ -28,12 +28,8 @@
   align-items: center;
   gap: 5px;
   margin: 0 4px;
-  color: $c-primary;
+  color: $c-light;
   transition: color 0.5s ease;
-}
-
-.subTitle:hover {
-  color: $c-orange;
 }
 
 .gear {

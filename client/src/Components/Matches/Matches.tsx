@@ -2,12 +2,12 @@ import React, { FC, useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { MatchStatuses } from '@/data';
 import { getMatchesList } from '@/redux/slices/Games';
+import { DateFormate } from '@/utils/Date';
 import Error from '@/components/ui/Error/Error';
 import Loading from '@/components/ui/Loader/Loader';
 import MatchesCard from '@/components/ui/MatchesCard';
 import Link from 'next/link';
 import styles from './Matches.module.scss';
-import { DateFormate } from '@/utils/Date';
 
 const MatchSection: FC = () => {
   const [expandedCompetitions, setExpandedCompetitions] = useState<string[]>([]);
@@ -37,7 +37,9 @@ const MatchSection: FC = () => {
   return (
     <section className={styles.section}>
       <div className={styles.container}>
-        <h2>{Object.keys(games || {}).length ? 'Ближайшие матчи' : 'Матчей не найдено'}</h2>
+        <h2 className={styles.title}>
+          {Object.keys(games || {}).length ? 'Ближайшие матчи' : 'Матчей не найдено'}
+        </h2>
         {games &&
           Object.keys(games).map((competition) => {
             const isExpanded = expandedCompetitions.includes(competition);
@@ -45,19 +47,15 @@ const MatchSection: FC = () => {
             return (
               <article key={competition} className={styles.competition}>
                 <header
-                  className={`${styles.header} ${!isExpanded && styles.close}`}
+                  className={`${styles.header} ${isExpanded ? styles.open : styles.close}`}
                   onClick={() => toggleCompetition(competition)}
                 >
                   {competition}
                   <img className={styles.icon} src={icon} alt="icon" loading="lazy" />
                 </header>
-                <div
-                  className={`${styles.matchesContainer} ${
-                    isExpanded ? styles.visible : styles.hidden
-                  }`}
-                >
-                  {isExpanded &&
-                    games[competition].map((match) => (
+                {isExpanded && (
+                  <div className={`${styles.matchesContainer} ${styles.visible}`}>
+                    {games[competition].map((match) => (
                       <Link key={match.id} className={styles.card} href={`/matches/${match.id}`}>
                         <div className={styles.matchDay}>Тур {match.matchday}</div>
                         <div className={styles.teams}>
@@ -69,7 +67,8 @@ const MatchSection: FC = () => {
                         </div>
                       </Link>
                     ))}
-                </div>
+                  </div>
+                )}
               </article>
             );
           })}

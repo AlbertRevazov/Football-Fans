@@ -18,14 +18,25 @@
 
 .block,
 .selected {
+  min-width: 110px;
+  text-align: center;
   padding: 5px 10px;
-  border: 1px dotted #000;
-  cursor: pointer;
   border-radius: 5px;
-  transition: background-color 0.3s;
+  background-color: $c-dark;
+  color: $c-light;
+  padding: 10px;
+  transition: all 0.5s ease;
+  border: 1px solid transparent;
+  cursor: pointer;
 }
 
 .selected {
-  color: $c-orange;
-  border: 1px dotted $c-orange;
+  background-color: $c-orange;
+  cursor: default;
+}
+
+.block:hover {
+  background-color: $c-light;
+  color: $c-dark;
+  border: 1px solid $c-dark;
 }
