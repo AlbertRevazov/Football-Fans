@@ -41,7 +41,7 @@ const Persons: FC = () => {
           <li key="birthday">Дата Рождения - {DateFormate(person?.dateOfBirth as string, true)}</li>
           <li key="country">Страна - {person?.nationality}</li>
           <li key="position">
-            Позиция -{' '}
+            Позиция -
             {PersonPositions[person?.position as keyof typeof PersonPositions] || person?.position}
           </li>
           {person?.shirtNumber && (
@@ -49,7 +49,10 @@ const Persons: FC = () => {
           )}
           {currentTeam?.id && (
             <li key="club">
-              <Link href={`/teams/${currentTeam.id}`}>Клуб - {currentTeam.name} </Link>
+              Клуб -
+              <Link className={styles.teamLink} href={`/teams/${currentTeam.id}`}>
+                {currentTeam.name}
+              </Link>
             </li>
           )}
           {currentTeam?.contract.until && (

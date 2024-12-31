@@ -14,14 +14,16 @@ const HeaderSection: FC<IHeaderProps> = ({ data }) => {
   return (
     <main className={styles.headerRoot}>
       <section className={styles.competitionInfo}>
-        <h1>
-          {competition.name} Тур {data.matchday}
-        </h1>
-
+        <h1 className={styles.title}>{competition.name}</h1>
+        <p className={styles.matchDay}>
+          ТУР {data.matchday}
+          <span className={styles.status}>
+            {MatchStages[data.stage as keyof typeof MatchStages]}
+          </span>
+        </p>
         <time className={styles.date} dateTime={data.utcDate}>
           {DateFormate(data.utcDate)}
         </time>
-        <p>{MatchStages[data.stage as keyof typeof MatchStages]}</p>
       </section>
 
       <section className={styles.teamsWrapper}>
@@ -33,14 +35,12 @@ const HeaderSection: FC<IHeaderProps> = ({ data }) => {
               alt="home team emblem"
               loading="lazy"
             />
-            <figcaption>
-              <Link href={`/teams/${homeTeam.id}`}>
-                <h2>{homeTeam.shortName}</h2>
-              </Link>
-            </figcaption>
           </figure>
+          <Link className={styles.teamName} href={`/teams/${homeTeam.id}`}>
+            {homeTeam.shortName}
+          </Link>
         </div>
-        <h3>
+        <h3 className={styles.score}>
           {score.fullTime.home || 0} - {score.fullTime.away || 0}
         </h3>
         <div className={styles.team}>
@@ -51,18 +51,16 @@ const HeaderSection: FC<IHeaderProps> = ({ data }) => {
               alt="away team emblem"
               loading="lazy"
             />
-            <figcaption>
-              <Link href={`/teams/${awayTeam.id}`}>
-                <h2>{awayTeam.shortName}</h2>
-              </Link>
-            </figcaption>
           </figure>
+          <Link className={styles.teamName} href={`/teams/${awayTeam.id}`}>
+            {awayTeam.shortName}
+          </Link>
         </div>
       </section>
 
       {data.venue && <p>Stadium - {data.venue}</p>}
       {data.referees[0]?.id && (
-        <p>
+        <p className={styles.ref}>
           Referee - {data.referees[0]?.name} ({data.referees[0]?.nationality})
         </p>
       )}

@@ -62,15 +62,7 @@
   border-radius: 4px;
   transition: all 0.5s ease;
   cursor: pointer;
-}
-
-.open {
-  background-color: $c-orange;
-}
-
-.close {
   background-color: $c-dark;
-  border: 1px solid $c-dark;
 }
 
 .matchesContainer {
@@ -176,8 +168,8 @@
 }
 
 .card:hover {
-  transform: scale(1.03);
-  background-color: $c-primary;
+  transform: scale(1.022);
+  background-color: $c-orange;
   .matchDay,
   .status,
   .date {

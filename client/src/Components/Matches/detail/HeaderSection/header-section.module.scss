@@ -1,3 +1,5 @@
+@import '@/assets/styles/mixin';
+
 .headerRoot {
   width: 100%;
   display: flex;
@@ -15,14 +17,30 @@
   gap: 15px;
 }
 
-.competitionInfo p {
-  margin: 0;
-  padding: 0;
+.title {
+  font-family: Delius;
+  font-size: x-large;
+  color: $c-dark;
+}
+
+.matchDay {
+  font-size: larger;
+  color: $c-dark;
+  font-family: Comfortaa;
+  font-weight: 600;
+  text-align: center;
+  text-wrap: balance;
+}
+
+.status {
+  margin-left: 8px;
 }
 
 .date {
+  font-style: italic;
   text-wrap: balance;
   text-align: center;
+  color: $c-gray;
 }
 
 .teamsWrapper {
@@ -38,10 +56,23 @@
 
 .team {
   display: flex;
-  // flex-direction: column;
   justify-content: center;
+  align-items: center;
+  flex-direction: column;
   margin: 0 auto;
   align-items: center;
+}
+
+.teamName {
+  font-size: x-large;
+  font-weight: 600;
+  color: $c-dark;
+  font-family: Comfortaa;
+  transition: color 0.5s ease;
+}
+
+.teamName:hover {
+  color: $c-orange;
 }
 
 .figure {
@@ -62,4 +93,13 @@
   width: 80px;
   height: 80px;
   margin: 0 20px;
+}
+
+.score {
+  color: $c-dark;
+}
+
+.ref {
+  color: $c-gray;
+  font-style: italic;
 }

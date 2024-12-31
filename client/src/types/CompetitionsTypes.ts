@@ -31,6 +31,12 @@ export type Competitions = {
   startDate: string;
   endDate: string;
   type: string;
+  area: {
+    id: number;
+    name: string;
+    code: string;
+    flag: string;
+  };
   currentSeason: {
     currentMatchday: number;
     winner: null;

@@ -2,65 +2,47 @@
 
 .container {
   @include flex-center;
-  @include container-hh;
+  @include container-mh;
   flex-wrap: wrap;
-  margin: 60px auto;
+  margin: 20px auto;
+  gap: 20px;
 }
 
 .cardItem {
   @include flex-center;
   flex-direction: column;
   justify-content: space-between;
-  max-width: 200px;
-  height: 270px;
+  align-items: center;
+  max-width: 160px;
+  height: 250px;
   overflow: hidden;
-  border: 1px solid rgb(255, 0, 0);
-  margin: 12px;
+  border-radius: 12px;
   padding: 20px;
-  cursor: pointer;
-}
-
-.competitionName {
-  text-align: center;
-  text-wrap: balance;
-  font-size: 16px;
-  line-height: 20px;
-  font-weight: 400;
-}
-
-.emblem {
-  object-fit: cover;
-}
-
-.table,
-.group {
-  @include container-sh();
-  padding: 0;
-  overflow: hidden;
-  text-align: center;
-}
-.table,
-.group {
-  @include container-sh();
-  padding: 0;
-  overflow: hidden;
-  text-align: center;
-}
-
-.loadMoreButton {
-  text-decoration: none;
-  text-align: center;
-  background-color: $c-dark;
-  color: #fff;
-  padding: 10px;
-  border-radius: 8px;
-  border: none;
-  width: 80%;
-  max-width: 250px;
-  transition: background-color 0.3s ease;
+  background-color: $light-grey;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 8px $c-orange(0, 0, 0, 0.1);
   cursor: pointer;
 
   &:hover {
-    background-color: $c-orange;
+    transform: translateY(-10px);
+    box-shadow: 0 8px 16px $c-dark;
   }
+}
+
+.cardImage {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+  margin-bottom: 15px;
+}
+
+.area {
+  width: 150%;
+  font-family: Delius;
+  font-style: italic;
+  color: $c-light;
+  background-color: $c-dark;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  padding: 4px 12px;
 }

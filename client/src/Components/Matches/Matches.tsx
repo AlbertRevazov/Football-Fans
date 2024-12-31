@@ -46,10 +46,7 @@ const MatchSection: FC = () => {
             const icon = isExpanded ? '/svg/arrow-up.svg' : '/svg/arrow-down.svg';
             return (
               <article key={competition} className={styles.competition}>
-                <header
-                  className={`${styles.header} ${isExpanded ? styles.open : styles.close}`}
-                  onClick={() => toggleCompetition(competition)}
-                >
+                <header className={styles.header} onClick={() => toggleCompetition(competition)}>
                   {competition}
                   <img className={styles.icon} src={icon} alt="icon" loading="lazy" />
                 </header>

@@ -17,17 +17,10 @@
 }
 
 .content {
-  @include container-sh();
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  @include container-mh();
+  @include flex-center();
   flex-direction: column;
   gap: 40px;
   overflow: hidden;
   padding: 20px;
-}
-
-.divider {
-  width: 100%;
-  border-bottom: 1px solid grey;
 }

@@ -40,7 +40,7 @@ const Competitions: FC = () => {
                 loading="lazy"
                 className={styles.emblem}
               />
-              <p className={styles.competitionName}>{competition.name}</p>
+            <p className={styles.area}>({competition.area.name})</p>
             </article>
           </Link>
         );

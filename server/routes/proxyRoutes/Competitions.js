@@ -11,8 +11,16 @@ router.get('/list', async (req, res) => {
 		const data = await fetchData(`${X_API_URL}/competitions`)
 
 		if (data.status === 200) {
+			const filteredData = data.competitions
+				.filter(
+					competition =>
+						competition.code !== 'WC' &&
+						competition.code !== 'EC' &&
+						competition.code !== 'BSA'
+				)
+
 			return res.send({
-				list: data,
+				list: { competitionsList: filteredData },
 				status: data.status,
 			})
 		} else {

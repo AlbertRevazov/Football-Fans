@@ -126,7 +126,7 @@ export const CompetitionsSlice = createSlice({
     });
     builder.addCase(getCompetitionsList.fulfilled, (state, action) => {
       state.isLoading = false;
-      state.competitionsList = action.payload?.list?.competitions;
+      state.competitionsList = action.payload?.list?.competitionsList;
       state.errorCode = action.payload?.errorCode;
     });
     builder.addCase(getCompetitionsList.rejected, (state) => {

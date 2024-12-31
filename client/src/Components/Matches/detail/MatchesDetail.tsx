@@ -3,7 +3,6 @@ import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { useRouter } from 'next/router';
 import { getMatchById } from '@/redux/slices/Games';
 import HeaderSection from './HeaderSection/HeaderSection';
-import Head2headSection from './Head2HeadSection/Head2HeadSection';
 import Loading from '@/components/ui/Loader';
 import Error from '@/components/ui/Error/Error';
 import styles from './matches-detail.module.scss';
@@ -34,14 +33,16 @@ const MatchesDetail: FC = () => {
             <HeaderSection data={head2head.match} />
           </section>
         )}
-        {/* <div className={styles.divider} /> */}
+        {/*
+        api does not return data properly
+        return it when it's fixed
         {head2head?.head ? (
           <section className={styles.headSection}>
             <Head2headSection data={head2head.head} />
           </section>
         ) : (
           <>Истории противостояний не найдено</>
-        )}
+        )} */}
       </div>
     </main>
   );
