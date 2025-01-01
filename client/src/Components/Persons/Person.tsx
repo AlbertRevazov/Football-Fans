@@ -15,9 +15,17 @@ const Persons: FC = () => {
   const { person, isLoading, status, errorCode } = useAppSelector((s) => s.player);
 
   useEffect(() => {
-    if (id) {
-      dispatch(getPersonById(id as string));
-    }
+    if (!id) return;
+
+    const fetchData = async () => {
+      await dispatch(getPersonById(id as string));
+    };
+
+    fetchData();
+
+    return () => {
+      // Очистка, если необходимо
+    };
   }, [id]);
 
   if (isLoading) {
@@ -28,35 +36,53 @@ const Persons: FC = () => {
     return <div className={styles.main}>Ошибка: {ApiErrors[errorCode]}</div>;
   }
 
+  if (!person) {
+    return <div className={styles.main}>Данные не найдены</div>;
+  }
+
   const { currentTeam } = person ?? {};
+  const { firstName, lastName, dateOfBirth, nationality, position, shirtNumber } = person;
+  const { id: teamId, name: teamName, contract } = currentTeam ?? {};
+  const birth = DateFormate(dateOfBirth as string);
 
   return (
     <main className={styles.main}>
       <section className={styles.section}>
-        <h2 className={styles.title}>Персональная информация</h2>
+        <h1 className={styles.title}>Персональная информация</h1>
         <ul className={styles.ul}>
-          <li key="full-name">
-            Имя - {person?.firstName} {person?.lastName}
+          <li key="full-name" className={styles.li}>
+            Имя
+            <span>
+              {firstName} {lastName}
+            </span>
           </li>
-          <li key="birthday">Дата Рождения - {DateFormate(person?.dateOfBirth as string, true)}</li>
-          <li key="country">Страна - {person?.nationality}</li>
-          <li key="position">
-            Позиция -
-            {PersonPositions[person?.position as keyof typeof PersonPositions] || person?.position}
+          <li key="birthday" className={styles.li}>
+            Родился <span>{birth.substring(0, birth.length - 8)}</span>
           </li>
-          {person?.shirtNumber && (
-            <li key="shirt-number">Номер на футболке - {person.shirtNumber}</li>
+          <li key="country" className={styles.li}>
+            Страна <span>{nationality}</span>
+          </li>
+          <li key="position" className={styles.li}>
+            Позиция
+            <span>{PersonPositions[position as keyof typeof PersonPositions] || position}</span>
+          </li>
+          {shirtNumber && (
+            <li key="shirt-number" className={styles.li}>
+              Номер  <span>{shirtNumber}</span>
+            </li>
           )}
           {currentTeam?.id && (
-            <li key="club">
-              Клуб -
-              <Link className={styles.teamLink} href={`/teams/${currentTeam.id}`}>
-                {currentTeam.name}
+            <li key="club" className={styles.li}>
+              Клуб
+              <Link className={styles.teamLink} href={`/teams/${teamId}`}>
+                {teamName}
               </Link>
             </li>
           )}
           {currentTeam?.contract.until && (
-            <li key="contract-until">Контракт истекает - {currentTeam.contract.until}</li>
+            <li key="contract-until" className={styles.li}>
+              Контракт до <span> {contract.until.split('-').reverse().join(' - ')}</span>
+            </li>
           )}
         </ul>
       </section>
@@ -64,3 +90,4 @@ const Persons: FC = () => {
   );
 };
 export default Persons;
+<span></span>;

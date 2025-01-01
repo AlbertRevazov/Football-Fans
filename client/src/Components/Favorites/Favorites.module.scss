@@ -3,39 +3,47 @@
 .main {
   @include container-mh();
   text-align: center;
-  padding: 20px; // Внутренние отступы
+  padding: 20px;
 }
 
 .list {
   display: flex;
   justify-content: center;
-  flex-wrap: wrap; // Резиновая верстка
-  gap: 20px; // Отступы между элементами
+  flex-wrap: wrap;
+  gap: 20px;
   padding: 0;
 }
 
-.links {
+.link {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  width: 60%;
   gap: 40px;
+  padding: 10px;
+  background-color: $light-grey;
+  color: $c-dark;
   text-align: start;
-  width: 100%; // Резиновая верстка
-  max-width: 300px; // Максимальная ширина
-  padding: 10px; // Внутренние отступы
+  transition: all 0.4s ease;
+
+  &:hover {
+    background-color: $c-orange;
+    color: $c-light;
+  }
 }
 
-.team_name {
+.title {
+  font-family: Comfortaa;
+  font-size: x-large;
   text-align: start;
-  font-size: 16px;
-  flex-grow: 1; // Растягивание текста
 }
 
-.team_pic {
-  max-width: 50px;
-  width: 100%; // Резиновая верстка
+.emblem {
+  max-width: 40px;
+  width: 100%;
 }
 
 .remove {
+  width: 25px;
   cursor: pointer;
 }

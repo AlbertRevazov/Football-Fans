@@ -6,12 +6,11 @@ import styles from './squad.module.scss';
 const SquadSection: FC<ITeamSectionProps> = ({ team }) => {
   return (
     <>
-      <h2>Squad</h2>
       <div className={styles.squadRoot}>
         {!!team &&
           Object.entries(team.squad).map(([position, players]) => (
             <section className={styles.positionSection} key={position}>
-              <h2>{position}</h2>
+              <h2 className={styles.positionTitle}>{position}</h2>
               <div className={styles.divider} />
               <ul className={styles.playerList}>
                 {players.map((player) => (
@@ -20,7 +19,7 @@ const SquadSection: FC<ITeamSectionProps> = ({ team }) => {
                     key={player.id}
                     className={styles.playerLink}
                   >
-                    <li>{player.name}</li>
+                    <li className={styles.player}>{player.name}</li>
                   </Link>
                 ))}
               </ul>

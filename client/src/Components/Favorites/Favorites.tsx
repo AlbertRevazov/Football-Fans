@@ -3,7 +3,7 @@ import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { removeFromFavorites } from '@/redux/slices/Auth';
 import Loading from '@/components/ui/Loader';
 import Link from 'next/link';
-import styles from './Favorites.module.scss';
+import styles from './favorites.module.scss';
 
 const Favorites: FC = () => {
   const dispatch = useAppDispatch();
@@ -28,20 +28,15 @@ const Favorites: FC = () => {
       {!!liked.length
         ? liked.map((team) => (
             <ul className={styles.list} key={team.favoriteApiId}>
-              <Link className={styles.links} href={`/teams/${team.favoriteApiId}`}>
-                <li className={styles.team_name}>{team.name}</li>
+              <Link className={styles.link} href={`/teams/${team.favoriteApiId}`}>
+                <li className={styles.title}>{team.name}</li>
                 <li>
-                  <img
-                    className={styles.team_pic}
-                    src={team.crest}
-                    alt="team logo"
-                    loading="lazy"
-                  />
+                  <img className={styles.emblem} src={team.crest} alt="team logo" loading="lazy" />
                 </li>
               </Link>
               <img
                 className={styles.remove}
-                src={'/svg/bxs-heart.svg'}
+                src={'/svg/trash.svg'}
                 onClick={() => handleRemoveFromFavorites(team.favoriteApiId, team.name, team.crest)}
               />
             </ul>

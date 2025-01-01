@@ -13,6 +13,7 @@ interface BurgerSectionProps {
   }[];
   handleLogout: () => void;
   user: User | null;
+  
 }
 
 const BurgerSection: FC<BurgerSectionProps> = ({ links, handleLogout, user }) => {
@@ -20,7 +21,7 @@ const BurgerSection: FC<BurgerSectionProps> = ({ links, handleLogout, user }) =>
     <ul className={styles.ul}>
       {links.map((link) => (
         <Link key={link.id} href={link.url}>
-          <li className={styles.li}>{link.title}</li>
+          <li className={styles.link}>{link.title}</li>
         </Link>
       ))}
       {user ? (
