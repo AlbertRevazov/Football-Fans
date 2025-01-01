@@ -3,9 +3,8 @@ import { IGames } from '@/types/GamesTypes';
 import { MatchStatuses } from '@/data';
 import { DateFormate } from '@/utils/Date';
 import MatchesCard from '@/components/ui/MatchesCard';
-import Button from '@/components/ui/Button';
 import Link from 'next/link';
-import styles from './Calendar.module.scss';
+import styles from './calendar.module.scss';
 
 interface ICalendarProps {
   data: IGames[];
@@ -30,7 +29,11 @@ const Calendar: FC<ICalendarProps> = ({ data }) => {
           <p className={styles.date}>{DateFormate(match.utcDate, true)}</p>
         </Link>
       ))}
-      {visibleCount < data.length && <Button onClick={loadMore} title="Загрузить ещё" />}
+      {visibleCount < data.length && (
+        <div className={styles.loadBtn} onClick={loadMore}>
+          Load More
+        </div>
+      )}
     </section>
   );
 };

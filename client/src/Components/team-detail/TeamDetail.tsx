@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useMemo, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { addToFavorites, removeFromFavorites } from '@/redux/slices/Auth';
 import { getTeamById } from '@/redux/slices/Team';
@@ -19,6 +19,7 @@ const TeamsDetail: FC = () => {
   const { team, isLoading, status } = useAppSelector((s) => s.team);
   const { user, liked } = useAppSelector((s) => s.auth);
   const [isFav, setIsFav] = useState(false);
+  const [toggleSection, setToggleSection] = useState<boolean>(false);
 
   const userId = String(user?.id);
 
@@ -34,10 +35,6 @@ const TeamsDetail: FC = () => {
     }
   }, [liked, teamId]);
 
-  const favoriteImage = useMemo(() => {
-    return isFav ? '/svg/bxs-heart.svg' : '/svg/bx-heart.svg';
-  }, [isFav]);
-
   if (isLoading) return <Loading />;
 
   if (status !== 200) {
@@ -49,7 +46,7 @@ const TeamsDetail: FC = () => {
     );
   }
 
-  const handleFavoriteToggle: React.MouseEventHandler<HTMLDivElement> = (e) => {
+  const handleFavoriteToggle: React.MouseEventHandler<HTMLParagraphElement> = (e) => {
     const action = isFav ? removeFromFavorites : addToFavorites;
 
     if (team && user?.id && teamId) {
@@ -70,26 +67,23 @@ const TeamsDetail: FC = () => {
           <div className={styles.container}>
             <header className={styles.header}>
               <InformationSection team={team} />
-              <article className={styles.teamLogo}>
-                <h1>{team?.shortName}</h1>
-                <img
-                  className={styles.teamEmblem}
-                  loading="lazy"
-                  src={team?.crest}
-                  alt="team emblem"
-                />
+              <article className={styles.logo}>
+                <img className={styles.emblem} loading="lazy" src={team?.crest} alt="team emblem" />
                 {!!user?.id && (
-                  <div onClick={handleFavoriteToggle}>
-                    <img src={favoriteImage} alt="heart" loading="lazy" />
-                  </div>
+                  <p
+                    className={styles[isFav ? 'liked' : 'notLiked']}
+                    onClick={handleFavoriteToggle}
+                  >
+                    {isFav ? 'Remove' : 'Add'}
+                  </p>
                 )}
               </article>
             </header>
+            <div className={styles.toggle_section} onClick={() => setToggleSection(!toggleSection)}>
+              {toggleSection ? 'Calendar' : 'Squad'}
+            </div>
             <main className={styles.mainContent}>
-              <SquadSection team={team} />
-              <section className={styles.matches}>
-                <Calendar data={team.calendar} />
-              </section>
+              {toggleSection ? <SquadSection team={team} /> : <Calendar data={team.calendar} />}
             </main>
           </div>
         </div>

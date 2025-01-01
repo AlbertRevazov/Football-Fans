@@ -21,30 +21,32 @@ const Competitions: FC = () => {
   }
 
   return (
-    <div className={styles.container}>
-      {competitionsList?.map((competition) => {
-        const slug = competition.code;
-        return (
-          <Link
-            key={competition.id}
-            href={{
-              pathname: 'competitions/[slug]',
-              query: { slug },
-            }}
-            className={styles.cardLink}
-          >
-            <article className={styles.cardItem}>
-              <img
-                src={competition.emblem}
-                alt="competition emblem"
-                loading="lazy"
-                className={styles.emblem}
-              />
-            <p className={styles.area}>({competition.area.name})</p>
-            </article>
-          </Link>
-        );
-      })}
+    <div className={styles.root}>
+      <div className={styles.container}>
+        {competitionsList?.map((competition) => {
+          const slug = competition.code;
+          return (
+            <Link
+              key={competition.id}
+              href={{
+                pathname: 'competitions/[slug]',
+                query: { slug },
+              }}
+              className={styles.cardLink}
+            >
+              <article className={styles.cardItem}>
+                <img
+                  src={competition.emblem}
+                  alt="competition emblem"
+                  loading="lazy"
+                  className={styles.emblem}
+                />
+                <p className={styles.area}>({competition.area.name})</p>
+              </article>
+            </Link>
+          );
+        })}
+      </div>
     </div>
   );
 };

@@ -1,26 +1,78 @@
 @import '@/assets/styles/mixin';
 
+.squadTitle {
+  font-size: 28px;
+  font-weight: bold;
+  color: $c-dark;
+  font-family: Delius;
+  font-size: x-large;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
 .squadRoot {
   display: flex;
   justify-content: center;
-  align-items: flex-start; 
+  align-items: flex-start;
   flex-wrap: wrap;
-  gap: 40px;
+  gap: 10px;
+  padding: 10px;
+  background-color: $c-light;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .positionSection {
   flex: 1;
+  min-width: 100%;
+  max-width: 300px;
+  background-color: $c-light;
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  @media (min-width: 767.98px) {
+    min-width: 230px;
+  }
 }
 
-.player {
-  text-align: end;
-}
-
-.player ul {
-  padding: 0;
+.positionTitle {
+  font-size: larger;
+  font-weight: bold;
+  color: $c-primary;
+  margin-bottom: 10px;
 }
 
 .divider {
   width: 100%;
-  border-bottom: 1px solid black;
+  border-bottom: 2px solid $c-primary;
+  margin-bottom: 15px;
+}
+
+.playerList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.playerLink {
+  text-decoration: none;
+  color: inherit;
+}
+
+.player {
+  padding: 10px;
+  background-color: $light-grey;
+  border-radius: 4px;
+  margin-bottom: 10px;
+  text-align: start;
+  text-wrap: balance;
+  font-size: medium;
+  color: $c-dark;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background-color: $c-primary;
+    color: #fff;
+    transform: translateY(-2px);
+  }
 }

@@ -7,41 +7,54 @@ const InformationSection: FC<ITeamSectionProps> = ({ team }) => {
   const { address, venue, runningCompetitions, website, founded, coach } = team;
 
   return (
-    <section className={styles.teamInfo}>
-      <h2>Information</h2>
-      <ul className={styles.infoList}>
-        {founded && <li>Основан в - {founded}</li>}
-        {address && <li>Адрес - {address}</li>}
-        {venue && <li>Домашний стадион - {venue}</li>}
+    <section className={styles.info}>
+      <h1 className={styles.title}>{team.name}</h1>
+      <ul className={styles.list}>
+        {founded && (
+          <li className={styles.li}>
+            Основан<span>{founded}</span>{' '}
+          </li>
+        )}
+        {address && (
+          <li className={styles.li}>
+            Адрес <span>{address}</span>{' '}
+          </li>
+        )}
+        {venue && (
+          <li className={styles.li}>
+            Стадион <span>{venue}</span>{' '}
+          </li>
+        )}
         {website && (
-          <li>
-            Вэб сайт -
-            <a
-              href={website}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={styles.websiteLink}
-            >
+          <li className={styles.li}>
+            Вэб сайт
+            <Link href={website} target="_blank" rel="noopener noreferrer" className={styles.link}>
               {website}
-            </a>
+            </Link>
           </li>
         )}
         {runningCompetitions && (
-          <li className={styles.runningCompetition}>
-            Участвует в -
-            {runningCompetitions.map((competition, index) => (
-              <span key={competition.id} className={styles.competition}>
-                <h5>
-                  <Link href={`/competitions/${competition.code}`}>{competition.name}</Link>{' '}
-                  {index < runningCompetitions.length - 1 ? ', ' : ''}
-                </h5>
-              </span>
-            ))}
+          <li className={styles.competitions}>
+            Участвует
+            <div className={styles.item}>
+              {runningCompetitions.map((competition) => (
+                <Link
+                  key={competition.id}
+                  href={`/competitions/${competition.code}`}
+                  className={styles.link}
+                >
+                  {competition.name}
+                </Link>
+              ))}
+            </div>
           </li>
         )}
         {coach?.name && (
-          <li>
-            Главный тренер - <Link href={`/persons/${coach.id}`}>{coach.name}</Link>
+          <li className={styles.li}>
+            Тренер
+            <Link href={`/persons/${coach.id}`} className={styles.link}>
+              {coach.name}
+            </Link>
           </li>
         )}
       </ul>

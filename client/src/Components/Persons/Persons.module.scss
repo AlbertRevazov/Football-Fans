@@ -2,6 +2,7 @@
 
 .main {
   position: relative;
+  padding: 20px;
 }
 
 .main::after {
@@ -16,42 +17,56 @@
 }
 
 .section {
-  min-height: 450px;
-  max-width: 1057px;
-  display: flex;
+  @include container-mh;
+  @include flex-center;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin: 0 auto;
   gap: 12px;
 }
 
-.ul {
-  width: 100%;
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
+.title {
+  text-align: center;
+  margin-bottom: 20px;
+  color: $c-dark;
+  font-family: Comfortaa;
+  text-transform: capitalize;
+  font-size: x-large;
 }
 
-// .ul,
-// .title {
-//   text-align: center;
-//   text-wrap: balance;
-//   display: flex;
-//   flex-direction: column;
-//   gap: 4px;
-//   margin: 0;
-//   padding: 0;
-// }
-
-.ul > li {
+.ul {
+  list-style: none;
+  padding: 0;
   width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.li {
   display: flex;
   justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px dotted $c-gray;
+  font-family: Comfortaa;
+  color: $c-dark;
+  text-align: start;
+  text-wrap: balance;
+  cursor: default;
+}
+
+.li > span {
+  color: $c-primary;
+  text-align: end;
+  text-wrap: balance;
 }
 
 .teamLink {
   margin-left: 14px;
-  color: $c-orange;
+  color: $c-primary;
   font-family: Delius;
+  text-decoration: none;
+  transition: all 0.3s ease;
+
+  &:hover {
+    text-decoration: underline;
+    color: $c-orange;
+  }
 }

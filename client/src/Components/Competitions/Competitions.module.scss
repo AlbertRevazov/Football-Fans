@@ -1,39 +1,93 @@
 @import '@/assets/styles/mixin';
 
+.root {
+  width: 100%;
+  position: relative;
+  z-index: 2;
+  margin: 40px auto;
+  overflow: hidden;
+  max-height: 650px;
+  overflow-y: scroll;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+
+  @media (min-width: 414.98px) {
+    max-height: none;
+    overflow-y: hidden;
+  }
+}
+
+.root::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 690px;
+  z-index: -1;
+  background-color: $light-grey;
+}
+
 .container {
   @include flex-center;
   @include container-mh;
   flex-wrap: wrap;
   margin: 20px auto;
+  background-color: $light-grey;
   gap: 20px;
+  padding: 40px 20px;
+
+  @media (min-width: 899.98px) {
+    background-color: transparent;
+  }
 }
 
 .cardItem {
   @include flex-center;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-  max-width: 160px;
-  height: 250px;
+  width: 260px;
+  height: 180px;
   overflow: hidden;
-  border-radius: 12px;
-  padding: 20px;
-  background-color: $light-grey;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border-radius: calc(16px + 14px);
+  padding: 18px 16px;
+  background-color: $c-dark;
+  transition: all 0.3s ease, box-shadow 0.3s ease;
   box-shadow: 0 4px 8px $c-orange(0, 0, 0, 0.1);
   cursor: pointer;
 
   &:hover {
     transform: translateY(-10px);
     box-shadow: 0 8px 16px $c-dark;
+    background-color: $c-orange;
+  }
+
+  @media (min-width: 414.98px) {
+    height: 220px;
+    width: 160px;
+  }
+
+  @media (min-width: 899.98px) {
+    height: 240px;
+    padding: 14px;
+    justify-content: flex-start;
   }
 }
 
-.cardImage {
-  width: 100px;
+.emblem {
+  width: 100%;
   height: 100px;
   object-fit: contain;
   margin-bottom: 15px;
+  border-radius: 14px;
+  background-color: $c-light;
+  padding: 6px 0;
+  
+  @media (min-width: 413.98px) {
+    padding: 20px 16px;
+    width: 100px;
+  }
 }
 
 .area {
@@ -41,7 +95,6 @@
   font-family: Delius;
   font-style: italic;
   color: $c-light;
-  background-color: $c-dark;
   text-align: center;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   padding: 4px 12px;

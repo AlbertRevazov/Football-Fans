@@ -1,44 +1,79 @@
 @import '@/assets/styles/mixin';
 
-.teamInfo {
+.info {
   display: flex;
+  width: 100%;
   flex-direction: column;
   align-items: center;
   padding: 40px 0;
 
   @media (min-width: 767.98px) {
+    width: 70%;
     align-items: flex-start;
   }
 }
 
-.infoList {
+.title {
+  font-family: Comfortaa;
+  font-size: x-large;
+  color: $c-dark;
+}
+
+.list {
+  width: 100%;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
+  justify-content: space-between;
   gap: 10px;
 
   @media (min-width: 767.98px) {
+    width: 80%;
     gap: 5px;
     align-items: flex-start;
   }
 }
 
-.infoList li {
-  flex: 1;
+.li {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  border-bottom: 1px dotted $c-gray;
+  padding: 6px 0;
+  color: $c-dark;
+  font-family: Comfortaa;
+  cursor: default;
 }
 
-.runningCompetition {
-  display: flex;
-  gap: 5px;
-  flex-wrap: wrap;
+.li > span,
+.link {
+  font-family: Comfortaa;
+  color: $c-primary;
+  text-align: end;
+  text-wrap: balance;
+}
 
-  @media (min-width: 767.98px) {
-    flex-wrap: nowrap;
+.link {
+  transition: color 0.3s ease;
+
+  &:hover {
+    color: $c-orange;
   }
 }
 
-.competition {
+.competitions {
+  width: 100%;
   display: flex;
-  align-items: center;
-  justify-content: flex-end;
+  justify-content: space-between;
+  color: $c-dark;
+
+  .item {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: center;
+    text-align: end;
+    text-wrap: balance;
+    gap: 4px;
+  }
 }
