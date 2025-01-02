@@ -20,22 +20,22 @@
 .selected {
   min-width: 110px;
   text-align: center;
-  padding: 5px 10px;
-  border-radius: 5px;
-  background-color: $c-dark;
-  color: $c-light;
+  color: $c-dark;
   padding: 10px;
-  transition: all 0.5s ease;
-  border: 1px solid transparent;
+  background-size: 300% 100%;
+  background-image: linear-gradient(to right, $light-grey, $light-grey, $c-primary, $c-primary);
+  border-radius: 12px;
+  transition: all 0.4s ease-in-out;
   cursor: pointer;
 }
 
-.selected {
-  background-color: $c-orange;
-  cursor: default;
+.block:hover {
+  background-position: 100% 0;
+  color: $c-light;
 }
 
-.block:hover {
-  background-color: $c-orange;
+.selected {
   color: $c-light;
+  background: $c-orange;
+  cursor: default;
 }

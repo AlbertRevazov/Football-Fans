@@ -29,47 +29,6 @@
   gap: 30px;
 }
 
-.header {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.emblem {
-  max-width: 100px;
-}
-
-.buttonsGroup {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 12px;
-  width: 100%;
-}
-
-.toggleBtn {
-  background-color: black;
-  color: #fff;
-  padding: 15px;
-  border-radius: 8px;
-  border: none;
-  min-width: 120px;
-  transition: background-color 0.3s ease;
-  cursor: pointer;
-
-  &:hover {
-    background-color: rgb(84, 84, 84);
-  }
-}
-
-.toggleBtn:disabled {
-  background-color: $light-grey;
-  color: #000;
-  border: 1px solid #000;
-  cursor: default;
-}
-
 .leagueStats {
   display: flex;
   flex-direction: column;
@@ -77,11 +36,4 @@
   align-items: center;
   gap: 20px;
   width: 100%;
-}
-
-.note {
-  display: flex;
-  justify-content: center;
-  text-align: center;
-  padding: 0 30px;
 }

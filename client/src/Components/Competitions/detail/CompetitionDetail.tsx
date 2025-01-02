@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC, useEffect, useState, useCallback } from 'react';
 import { useRouter } from 'next/router';
 import {
   getCalendarByCompetition,
@@ -7,113 +7,81 @@ import {
 } from '@/redux/slices/Competitions';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { getSeason } from '@/utils/Date';
-import { IGames } from '../../../types/GamesTypes';
-import CompetitionGroup from '../group';
-import CompetitionLeague from '../league';
-import CompetitionScorers from '@/components/competitions/scorers';
-import Calendar from '@/components/ui/Calendar/Calendar';
+import { renderBlockContent } from './renderBlockContent';
+import CompetitionFooter from './CompetitionFooter';
+import BlockToggleButtons from './BlockToggleButtons';
+import Header from './Header';
 import Loading from '@/components/ui/Loader/Loader';
 import Error from '@/components/ui/Error/Error';
 import styles from './competition-detail.module.scss';
 
 const CompetitionsDetail: FC = () => {
-  const { data, scorers, matches, isLoading, errorCode } = useAppSelector(
-    (state) => state.tournament
-  );
+  const {
+    data: competitionData,
+    scorers,
+    matches,
+    isLoading,
+    errorCode,
+  } = useAppSelector((state) => state.tournament);
   const dispatch = useAppDispatch();
   const router = useRouter();
-  const id = router.query.id as string;
-  const [block, setBlock] = useState<'table' | 'scorers' | 'calendar'>('table');
-  const date = data?.season.startDate.slice(0, 4);
-  const currentSeason = data ? getSeason(data.season.startDate, data.season.endDate) : '';
+  const competitionId = router.query.id as string;
+  const [activeBlock, setActiveBlock] = useState<'table' | 'scorers' | 'calendar'>('table');
+  const seasonYear = competitionData?.season.startDate.slice(0, 4);
+  const currentSeason = competitionData
+    ? getSeason(competitionData.season.startDate, competitionData.season.endDate)
+    : '';
 
-  const toggleHandler = (type: 'table' | 'scorers' | 'calendar', data: string) => {
-    setBlock(type);
-    switch (type) {
-      case 'table':
-        return dispatch(getCompetitionById(id));
-      case 'scorers':
-        return dispatch(getScorersByCompetition({ id, date: data }));
-      case 'calendar':
-        return dispatch(getCalendarByCompetition({ id, date: data }));
-      default:
-        return null;
-    }
-  };
+  const handleBlockChange = useCallback(
+    (type: 'table' | 'scorers' | 'calendar', season: string) => {
+      setActiveBlock(type);
+      switch (type) {
+        case 'table':
+          return dispatch(getCompetitionById(competitionId));
+        case 'scorers':
+          return dispatch(getScorersByCompetition({ id: competitionId, date: season }));
+        case 'calendar':
+          return dispatch(getCalendarByCompetition({ id: competitionId, date: season }));
+        default:
+          return null;
+      }
+    },
+    [dispatch, competitionId]
+  );
 
   useEffect(() => {
-    if (id && !data) {
-      dispatch(getCompetitionById(id));
+    if (competitionId && !competitionData) {
+      dispatch(getCompetitionById(competitionId));
     }
-    return setBlock('table');
-  }, [id, date, dispatch]);
+    return () => setActiveBlock('table');
+  }, [competitionId, competitionData, dispatch]);
 
   if (isLoading) return <Loading />;
   if (errorCode) return <Error code={errorCode} />;
-
-  const renderContent = () => {
-    switch (block) {
-      case 'scorers':
-        return !!scorers?.length && <CompetitionScorers data={scorers} />;
-      case 'table':
-        return (
-          <>
-            {data?.table && <CompetitionLeague data={data.table} />}
-            {data?.group && <CompetitionGroup data={data.group} />}
-          </>
-        );
-      case 'calendar':
-        return matches && <Calendar data={matches as IGames[]} />;
-      default:
-        return null;
-    }
-  };
 
   return (
     <div className={styles.root}>
       <div className={styles.container}>
         <main className={styles.content}>
-          <header className={styles.header}>
-            <div className={styles.title}>
-              <h1>{data?.competition.name}</h1>
-              <h4>Season: {currentSeason}</h4>
-            </div>
-            <img
-              loading="lazy"
-              src={data?.competition.emblem}
-              alt="competition emblem"
-              className={styles.emblem}
-            />
-          </header>
-          <div className={styles.buttonsGroup}>
-            {['table', 'scorers', 'calendar'].map((type) => (
-              <button
-                key={type}
-                className={styles.toggleBtn}
-                onClick={() =>
-                  toggleHandler(type as 'table' | 'scorers' | 'calendar', date as string)
-                }
-                disabled={block === type}
-              >
-                {type.charAt(0).toUpperCase() + type.slice(1)}
-              </button>
-            ))}
-          </div>
-          <section className={styles.leagueStats}>{renderContent()}</section>
-          {data?.competition.code === 'CL' && (
-            <ul>
-              <li>Первые 8 мест, автоматически проходят в стадию 1/8 финала.</li>
-              <li>Места с 9 по 24, участвуют в раунде 1/16 финала.</li>
-            </ul>
-          )}
-          {!data?.table && (
-            <footer className={styles.footer}>
-              <h6 className={styles.note}>
-                * Данные получены из бесплатного ресурса, который не предоставляет данные о сетке
-                плей офф, в будущем планируем масштабирование в том числе расширенную подписку
-              </h6>
-            </footer>
-          )}
+          <Header
+            name={competitionData?.competition.name || ''}
+            season={currentSeason}
+            emblem={competitionData?.competition.emblem || ''}
+          />
+          <BlockToggleButtons
+            activeBlock={activeBlock}
+            onBlockChange={(type) => handleBlockChange(type, seasonYear as string)}
+          />
+          <section className={styles.leagueStats}>
+            {renderBlockContent({
+              activeBlock,
+              scorers,
+              matches,
+              competitionData,
+            })}
+          </section>
+
+          <CompetitionFooter code={competitionData?.competition.code as string} />
         </main>
       </div>
     </div>

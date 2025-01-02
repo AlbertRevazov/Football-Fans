@@ -1,0 +1,24 @@
+@import '@/assets/styles/mixin';
+
+.header {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 100%;
+}
+
+.title {
+  font-family: Comfortaa;
+  font-size: xx-large;
+  color: $c-dark;
+}
+
+.season {
+  font-family: Delius;
+  font-size: x-large;
+  color: $c-primary;
+}
+
+.emblem {
+  max-width: 100px;
+}

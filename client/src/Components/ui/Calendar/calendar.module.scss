@@ -1,4 +1,5 @@
 @import '@/assets/styles/mixin';
+
 .calendar {
   @include container-sh();
   padding: 40px 0;
@@ -7,6 +8,7 @@
   justify-content: center;
   align-items: center;
   gap: 10px;
+  overflow: hidden;
 }
 
 .teams {
@@ -18,21 +20,24 @@
   gap: 20px;
   padding: 10px 20px;
   transition: box-shadow 0.5s ease, transform 0.3s ease;
-  overflow: hidden;
   width: 100%;
-  border-radius: 8px;
   box-shadow: 5px 2px 1px transparent, -5px -2px -1px transparent;
-
+  
   &:hover {
     transform: scale(1.009);
     border-color: transparent;
-    box-shadow: 250px 2px 1px $c-primary, -250px -2px 1px $c-orange;
+    box-shadow: 50px 2px 1px $c-orange, -50px -2px 1px $c-primary;
   }
 
   @media (min-width: 767.98px) {
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
+    &:hover {
+      transform: scale(1.009);
+      border-color: transparent;
+      box-shadow: 250px 2px 1px $c-primary, -250px -2px 1px $c-orange;
+    }
   }
 }
 

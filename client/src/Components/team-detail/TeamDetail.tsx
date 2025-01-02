@@ -80,9 +80,9 @@ const TeamsDetail: FC = () => {
               </article>
             </header>
             <div className={styles.toggle_section} onClick={() => setToggleSection(!toggleSection)}>
-              {toggleSection ? 'Calendar' : 'Squad'}
+              {toggleSection ? 'Squad' : 'Calendar'}
             </div>
-            <main className={styles.mainContent}>
+            <main className={styles[toggleSection ? 'calendar' : 'mainContent']}>
               {toggleSection ? <Calendar data={team.calendar} /> : <SquadSection team={team} />}
             </main>
           </div>
