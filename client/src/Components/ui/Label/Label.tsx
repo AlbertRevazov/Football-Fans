@@ -1,6 +1,6 @@
 import React from 'react';
 import { ErrorMessage, Field, FieldInputProps, FormikProps } from 'formik';
-import { labelPlaceholders } from '@/components/ui/Form/data';
+import { labelPlaceholders } from '@/common/form/data';
 import InputMask from 'react-input-mask';
 import styles from './label.module.scss';
 

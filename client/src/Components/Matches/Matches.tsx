@@ -3,11 +3,11 @@ import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { MatchStatuses } from '@/data';
 import { getMatchesList } from '@/redux/slices/Games';
 import { DateFormate } from '@/utils/Date';
-import Error from '@/components/ui/Error/Error';
-import Loading from '@/components/ui/Loader/Loader';
-import MatchesCard from '@/components/ui/MatchesCard';
 import Link from 'next/link';
 import styles from './Matches.module.scss';
+import Error from '@/common/error';
+import Loading from '@/common/loader';
+import MatchesCard from '@/common/matchesCard';
 
 const MatchSection: FC = () => {
   const [expandedCompetitions, setExpandedCompetitions] = useState<string[]>([]);

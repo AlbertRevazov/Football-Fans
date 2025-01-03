@@ -1,9 +1,9 @@
 import React, { FC, useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { getCompetitionsList } from '@/redux/slices/Competitions';
-import Loading from '@/components/ui/Loader/Loader';
-import Error from '@/components/ui/Error';
 import Link from 'next/link';
+import Error from '@/common/error';
+import Loading from '@/common/loader';
 import styles from './competitions.module.scss';
 
 const Competitions: FC = () => {

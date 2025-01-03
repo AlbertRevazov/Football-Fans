@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import SignFormSection from '@/components/ui/Form/SignFormSection';
-import LoginFormSection from '@/components/ui/Form/LoginFormSection';
+import SignFormSection from '@/common/form/signForm';
+import LoginFormSection from '@/common/form/loginForm';
 import styles from './auth.module.scss';
 
 const Auth = () => {

@@ -10,11 +10,11 @@ interface HeaderProps {
 const Header: React.FC<HeaderProps> = ({ name, season, emblem }) => {
   return (
     <header className={styles.header}>
+      <img loading="lazy" src={emblem} alt="competition emblem" className={styles.emblem} />
       <div className={styles.info}>
         <h1 className={styles.title}>{name}</h1>
         <h4 className={styles.season}>Season: {season}</h4>
       </div>
-      <img loading="lazy" src={emblem} alt="competition emblem" className={styles.emblem} />
     </header>
   );
 };

@@ -4,8 +4,8 @@ import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { getPersonById } from '@/redux/slices/Persons';
 import { ApiErrors, PersonPositions } from '@/data';
 import { DateFormate } from '@/utils/Date';
-import Loading from '@/components/ui/Loader';
 import Link from 'next/link';
+import Loading from '@/common/loader';
 import styles from './persons.module.scss';
 
 const Persons: FC = () => {
@@ -68,7 +68,7 @@ const Persons: FC = () => {
           </li>
           {shirtNumber && (
             <li key="shirt-number" className={styles.li}>
-              Номер  <span>{shirtNumber}</span>
+              Номер <span>{shirtNumber}</span>
             </li>
           )}
           {currentTeam?.id && (

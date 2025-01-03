@@ -8,11 +8,11 @@ import {
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { getSeason } from '@/utils/Date';
 import { renderBlockContent } from './renderBlockContent';
-import CompetitionFooter from './CompetitionFooter';
-import BlockToggleButtons from './BlockToggleButtons';
-import Header from './Header';
-import Loading from '@/components/ui/Loader/Loader';
-import Error from '@/components/ui/Error/Error';
+import Header from './header';
+import BlockToggleButtons from './blockToggleButtons';
+import CompetitionFooter from './competitionFooter';
+import Error from '@/common/error';
+import Loading from '@/common/loader';
 import styles from './competition-detail.module.scss';
 
 const CompetitionsDetail: FC = () => {

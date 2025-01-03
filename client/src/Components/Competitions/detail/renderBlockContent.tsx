@@ -1,9 +1,9 @@
 import { Scorers } from '@/types/CompetitionsTypes';
 import { IGames } from '../../../types/GamesTypes';
-import CompetitionGroup from '../group';
+import CompetitionScorers from '../scorers';
 import CompetitionLeague from '../league';
-import CompetitionScorers from '@/components/competitions/scorers';
-import Calendar from '@/components/ui/Calendar/Calendar';
+import CompetitionGroup from '../group';
+import Calendar from '@/common/calendar';
 
 type BlockType = 'table' | 'scorers' | 'calendar';
 

@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
-import Layout from '../../src/pages/layout';
-import Auth from '../../src/Components/Auth';
+import Layout from '../../src/components/ui/layout';
+import Auth from '../../src/components/auth';
 
 const AuthPage: FC = () => {
   return (

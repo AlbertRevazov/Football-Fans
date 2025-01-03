@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import Layout from '../../../src/pages/layout';
+import Layout from '../../../src/components/ui/layout';
 import Persons from '../../../src/components/persons';
 
 const PersonsDetailPage: FC = () => {

@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
-import Layout from '../../src/pages/layout';
-import DateFilter from '../../src/components/ui/DateFilter';
-import Matches from '../../src/components/Matches';
+import Layout from '../../src/components/ui/layout';
+import DateFilter from '../../src/common/dateFilter';
+import Matches from '../../src/components/matches';
 
 const MatchesPage: FC = () => {
   return (

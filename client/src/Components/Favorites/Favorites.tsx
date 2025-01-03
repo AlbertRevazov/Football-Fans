@@ -1,8 +1,8 @@
 import React, { FC } from 'react';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { removeFromFavorites } from '@/redux/slices/Auth';
-import Loading from '@/components/ui/Loader';
 import Link from 'next/link';
+import Loading from '@/common/loader';
 import styles from './favorites.module.scss';
 
 const Favorites: FC = () => {

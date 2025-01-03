@@ -1,8 +1,7 @@
 import React, { FC, useState } from 'react';
 import { Table } from '@/types/CompetitionsTypes';
-import CTable from '@/components/ui/Table';
+import CustomTable from '@/common/table';
 import styles from '../competitions.module.scss';
-import Button from '@/components/ui/Button';
 
 interface ICompetitionLeagueProps {
   data: Table[];
@@ -17,10 +16,14 @@ const CompetitionLeague: FC<ICompetitionLeagueProps> = ({ data }) => {
   };
 
   return (
-    <section className={styles.table}>
-      <CTable list={list} />
-      {list.length <= middleIdx && <Button onClick={loadMoreHandle} title="Загрузить ещё" />}
-    </section>
+    <>
+      <CustomTable list={list} />
+      {list.length <= middleIdx && (
+        <div className={styles.moreBtn} onClick={loadMoreHandle}>
+          Load More
+        </div>
+      )}
+    </>
   );
 };
 export default CompetitionLeague;

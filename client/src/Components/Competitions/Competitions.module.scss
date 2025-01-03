@@ -83,7 +83,7 @@
   border-radius: 14px;
   background-color: $c-light;
   padding: 6px 0;
-  
+
   @media (min-width: 413.98px) {
     padding: 20px 16px;
     width: 100px;
@@ -98,4 +98,18 @@
   text-align: center;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   padding: 4px 12px;
+}
+
+.moreBtn {
+  color: $c-dark;
+  background-color: $c-light;
+  padding: 12px;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+
+  &:hover {
+    color: $c-light;
+    background-color: $c-primary;
+  }
 }

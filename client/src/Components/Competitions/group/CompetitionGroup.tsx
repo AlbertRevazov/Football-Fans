@@ -1,7 +1,8 @@
 import React, { FC, useState } from 'react';
 import { Standings } from '@/types/CompetitionsTypes';
-import CTable from '@/components/ui/Table';
+import CTable from '@/common/table';
 import styles from '../competitions.module.scss';
+
 
 interface ICompetitionGroupProps {
   data: Standings[];

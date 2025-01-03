@@ -2,9 +2,9 @@ import React, { FC, useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { useRouter } from 'next/router';
 import { getMatchById } from '@/redux/slices/Games';
-import HeaderSection from './HeaderSection/HeaderSection';
-import Loading from '@/components/ui/Loader';
-import Error from '@/components/ui/Error/Error';
+import HeaderSection from './header';
+import Error from '@/common/error';
+import Loading from '@/common/loader';
 import styles from './matches-detail.module.scss';
 
 const MatchesDetail: FC = () => {
