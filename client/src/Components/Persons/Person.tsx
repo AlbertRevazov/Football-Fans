@@ -1,10 +1,11 @@
 import React, { FC, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
-import { getPersonById } from '@/redux/slices/Persons';
-import { ApiErrors, PersonPositions } from '@/data';
+import { getMatchesByPersonId, getPersonById } from '@/redux/slices/Persons';
+import { ApiErrors, listKeys } from '@/data';
 import { DateFormate } from '@/utils/Date';
-import Link from 'next/link';
+import Results from './Results';
+import ListItem from '@/common/listItem/ListItem';
 import Loading from '@/common/loader';
 import styles from './persons.module.scss';
 
@@ -12,20 +13,17 @@ const Persons: FC = () => {
   const dispatch = useAppDispatch();
   const router = useRouter();
   const { id } = router.query;
-  const { person, isLoading, status, errorCode } = useAppSelector((s) => s.player);
+  const { person, isLoading, status, personMatches, errorCode } = useAppSelector((s) => s.player);
 
   useEffect(() => {
     if (!id) return;
 
     const fetchData = async () => {
       await dispatch(getPersonById(id as string));
+      await dispatch(getMatchesByPersonId(id as string));
     };
 
     fetchData();
-
-    return () => {
-      // Очистка, если необходимо
-    };
   }, [id]);
 
   if (isLoading) {
@@ -42,52 +40,39 @@ const Persons: FC = () => {
 
   const { currentTeam } = person ?? {};
   const { firstName, lastName, dateOfBirth, nationality, position, shirtNumber } = person;
-  const { id: teamId, name: teamName, contract } = currentTeam ?? {};
+  const { id: teamId, shortName } = currentTeam ?? {};
   const birth = DateFormate(dateOfBirth as string);
+
+  const data = {
+    fullName: {
+      first: firstName,
+      last: lastName,
+    },
+    team: {
+      id: teamId,
+      name: shortName,
+    },
+    birth: birth.substring(0, birth.length - 8),
+    nationality,
+    position,
+    contract: currentTeam.contract.until,
+    cn: styles.teamLink,
+    playedMatches: personMatches,
+    shirtNumber,
+  };
 
   return (
     <main className={styles.main}>
       <section className={styles.section}>
-        <h1 className={styles.title}>Персональная информация</h1>
+        <h1 className={styles.title}>Personal Information</h1>
         <ul className={styles.ul}>
-          <li key="full-name" className={styles.li}>
-            Имя
-            <span>
-              {firstName} {lastName}
-            </span>
-          </li>
-          <li key="birthday" className={styles.li}>
-            Родился <span>{birth.substring(0, birth.length - 8)}</span>
-          </li>
-          <li key="country" className={styles.li}>
-            Страна <span>{nationality}</span>
-          </li>
-          <li key="position" className={styles.li}>
-            Позиция
-            <span>{PersonPositions[position as keyof typeof PersonPositions] || position}</span>
-          </li>
-          {shirtNumber && (
-            <li key="shirt-number" className={styles.li}>
-              Номер <span>{shirtNumber}</span>
-            </li>
-          )}
-          {currentTeam?.id && (
-            <li key="club" className={styles.li}>
-              Клуб
-              <Link className={styles.teamLink} href={`/teams/${teamId}`}>
-                {teamName}
-              </Link>
-            </li>
-          )}
-          {currentTeam?.contract.until && (
-            <li key="contract-until" className={styles.li}>
-              Контракт до <span> {contract.until.split('-').reverse().join(' - ')}</span>
-            </li>
-          )}
+          {listKeys.map((key) => (
+            <ListItem key={key} type={key} data={data} />
+          ))}
         </ul>
+        {personMatches && <Results data={personMatches} />}
       </section>
     </main>
   );
 };
 export default Persons;
-<span></span>;

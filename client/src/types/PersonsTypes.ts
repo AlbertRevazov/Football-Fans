@@ -2,6 +2,7 @@ import { IRunningCompetitions } from './TeamsTypes';
 
 export type PersonState = {
   person: IPerson | null;
+  personMatches: PMatches[] | null;
   isLoading: boolean;
   status: string;
   errorCode: string;
@@ -41,4 +42,11 @@ export type IPerson = {
       until: string;
     };
   };
+};
+
+export type PMatches = {
+  id: string;
+  name: string;
+  date: string;
+  score: string;
 };

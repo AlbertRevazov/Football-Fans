@@ -129,3 +129,13 @@ export enum PersonPositions {
   'Midfield' = 'Полузащитник',
   'Offence' = 'Нападающий',
 }
+export const listKeys = [
+  'fullName',
+  'birthday',
+  'country',
+  'position',
+  'shirt-Number',
+  'club',
+  'contract',
+  'matchesPlayed',
+];
