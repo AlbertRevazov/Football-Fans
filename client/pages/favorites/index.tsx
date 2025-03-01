@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
-import Layout from '../../src/components/ui/layout';
-import Favorites from '../../src/components/favorites';
+import Layout from '../../src/shared/ui/layout';
+import Favorites from '../../src/features/favorites';
 
 const FavoritesPage: FC = () => {
   return (

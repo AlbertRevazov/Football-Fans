@@ -1,6 +1,0 @@
-@import '@/assets/styles/mixin';
-
-.container {
-  @include container-mh();
-  @include flex-center();
-}

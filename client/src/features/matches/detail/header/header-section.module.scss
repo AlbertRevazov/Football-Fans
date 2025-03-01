@@ -1,0 +1,105 @@
+@import '@/styles/mixin';
+
+.headerRoot {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.competitionInfo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.title {
+  font-family: Delius;
+  font-size: x-large;
+  color: $c-dark;
+}
+
+.matchDay {
+  font-size: larger;
+  color: $c-dark;
+  font-family: Comfortaa;
+  font-weight: 600;
+  text-align: center;
+  text-wrap: balance;
+}
+
+.status {
+  margin-left: 8px;
+}
+
+.date {
+  font-style: italic;
+  text-wrap: balance;
+  text-align: center;
+  color: $c-gray;
+}
+
+.teamsWrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  @media (min-width: 697.98px) {
+    flex-direction: row;
+  }
+}
+
+.team {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin: 0 auto;
+  align-items: center;
+}
+
+.teamName {
+  font-size: x-large;
+  font-weight: 600;
+  color: $c-dark;
+  font-family: Comfortaa;
+  transition: color 0.5s ease;
+}
+
+.teamName:hover {
+  color: $c-orange;
+}
+
+.figure {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.homeTeam {
+  display: flex;
+  flex-direction: column-reverse;
+  @media (min-width: 697.98px) {
+    flex-direction: column;
+  }
+}
+
+.img {
+  width: 80px;
+  height: 80px;
+  margin: 0 20px;
+}
+
+.score {
+  color: $c-dark;
+}
+
+.ref {
+  color: $c-gray;
+  font-style: italic;
+}

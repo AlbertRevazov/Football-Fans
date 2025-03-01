@@ -40,7 +40,7 @@ export const getCompetitionById = createAsyncThunk('competitions/id', async (pay
 
 export const getScorersByCompetition = createAsyncThunk(
   'scorers',
-  async (payload: { id: string; date?: string }) => {
+  async (payload: { id: string; date?: string;  }) => {
     try {
       const response = await fetch(
         `http://localhost:4444/proxy/competitions/${payload.id}/scorers`,
@@ -67,7 +67,7 @@ export const getScorersByCompetition = createAsyncThunk(
 
 export const getCalendarByCompetition = createAsyncThunk(
   'calendar',
-  async (payload: { id: string; date?: string }) => {
+  async (payload: { id: string; date?: string; day?: string }) => {
     try {
       const response = await fetch(
         `http://localhost:4444/proxy/competitions/${payload.id}/calendar`,
@@ -96,7 +96,31 @@ export const getCompetitionByYear = createAsyncThunk(
   'competitions/year',
   async (payload: { id: string; date: string }) => {
     try {
-      const response = await fetch(`http://localhost:4444/proxy/competitions/year/`, {
+      const response = await fetch('http://localhost:4444/proxy/competitions/year', {
+        method: 'POST',
+        headers: {
+          'Content-type': 'application/json',
+        },
+        body: JSON.stringify(payload),
+      });
+
+      if (response.status !== 200) {
+        const error = await response.json();
+        return error;
+      }
+
+      return await response.json();
+    } catch (error) {
+      throw new Error('Network response was not ok');
+    }
+  }
+);
+
+export const getCompetitionByMatchDay = createAsyncThunk(
+  'competitions/matchDay',
+  async (payload: { id: string; season: string; day: string; type: string }) => {
+    try {
+      const response = await fetch('http://localhost:4444/proxy/competitions/matchDay', {
         method: 'POST',
         headers: {
           'Content-type': 'application/json',
@@ -137,7 +161,7 @@ export const CompetitionsSlice = createSlice({
     });
     builder.addCase(getCompetitionById.fulfilled, (state, action) => {
       state.isLoading = false;
-      state.data = action.payload?.list;
+      state.data = { ...action.payload?.list, ...action.payload.season };
       state.errorCode = action.payload?.errorCode;
       state.message = action.payload?.message;
     });
@@ -176,6 +200,17 @@ export const CompetitionsSlice = createSlice({
       state.data = action.payload?.list;
     });
     builder.addCase(getCompetitionByYear.rejected, (state) => {
+      state.isLoading = false;
+    });
+    builder.addCase(getCompetitionByMatchDay.pending, (state) => {
+      state.isLoading = true;
+    });
+    builder.addCase(getCompetitionByMatchDay.fulfilled, (state, action) => {
+      state.isLoading = false;
+      state.matches = action.payload?.matches;
+      state.data = action.payload.standings;
+    });
+    builder.addCase(getCompetitionByMatchDay.rejected, (state) => {
       state.isLoading = false;
     });
   },

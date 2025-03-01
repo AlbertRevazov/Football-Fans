@@ -1,0 +1,62 @@
+@import '@/styles/mixin';
+
+.slide {
+  flex: 0 0 100%;
+  min-height: 350px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  gap: 12px;
+  scroll-snap-align: start;
+  border-radius: calc(24px + 2px);
+  background-size: 100%;
+  background-position: center;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-width: 250px;
+  gap: 30px;
+  padding: 20px;
+  border-radius: 24px;
+  background-color: $c-primary;
+  cursor: default;
+}
+
+.trophiesList {
+  text-align: center;
+  margin: 0 auto;
+  width: 100%;
+  font-family: Delius;
+}
+
+.trophy {
+  display: flex;
+  justify-content: space-between;
+  word-spacing: 0px;
+  margin-bottom: 5px;
+}
+
+.link > h3 {
+  text-transform: uppercase;
+  word-spacing: 10px;
+  text-align: start;
+  transition: color 0.3s ease;
+  font-size: 20px;
+  text-shadow: 6px 8px 4px rgba(0, 0, 0, 0.2);
+  color: #333;
+}
+
+.link > h3:hover {
+  color: $c-orange;
+}
+
+.crest {
+  width: 100px;
+  height: 100px;
+  padding: 0;
+}

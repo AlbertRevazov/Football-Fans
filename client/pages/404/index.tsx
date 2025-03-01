@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
-import Layout from '../../src/components/ui/layout';
-import PageNotFound from '../../src/components/pageNotFound';
+import Layout from '../../src/shared/ui/layout';
+import PageNotFound from '../../src/pages/pageNotFound';
 
 const NotFoundPage: FC = () => {
   return (

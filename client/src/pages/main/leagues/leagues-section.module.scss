@@ -1,0 +1,54 @@
+@import '@/styles/mixin';
+
+.popularCategories {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  padding: 20px;
+  margin: 20px auto;
+  text-align: center;
+}
+
+.title {
+  font-size: large;
+  color: $c-dark;
+  text-transform: capitalize;
+  font-size: 22px;
+  margin: 8px 0;
+}
+
+.subtitle {
+  font-family: Delius;
+  font-size: 20px;
+  color: $c-gray;
+  margin-bottom: 20px;
+  transition: all 0.5s ease;
+  margin: 8px 0;
+  cursor: pointer;
+}
+
+.subtitle:hover {
+  color: $c-orange;
+}
+
+.categories {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 25px;
+  justify-content: center;
+}
+
+.emblem {
+  object-fit: cover;
+  width: 120px;
+  transition: all 0.5s ease;
+  padding: 10px 15px;
+  border-radius: 6px;
+}
+
+.emblem:hover {
+  transform: scale(1.2);
+  box-shadow: 12px 10px 4px $c-gray;
+}

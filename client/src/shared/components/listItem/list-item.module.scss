@@ -1,0 +1,19 @@
+@import '@/styles/mixin';
+
+.li {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px dotted $c-gray;
+  font-family: Comfortaa;
+  color: $c-dark;
+  text-align: start;
+  text-wrap: balance;
+  cursor: default;
+}
+
+.li > span {
+  color: $c-primary;
+  text-align: end;
+  text-wrap: balance;
+}

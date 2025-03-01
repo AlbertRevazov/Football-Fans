@@ -1,0 +1,26 @@
+@import '@/styles/mixin';
+
+.button,
+.disabled {
+  font-size: 14px;
+  background-color: $c-dark;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 12px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.button:hover {
+  background-color: $c-orange;
+}
+
+.disabled {
+  background-color: darkgrey;
+}
+
+.children {
+  border: none;
+  background-color: #fff;
+}

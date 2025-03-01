@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
-import Layout from '../../../src/components/ui/layout';
-import Persons from '../../../src/components/persons';
+import Layout from '../../../src/shared/ui/layout';
+import Persons from '../../../src/features/persons';
 
 const PersonsDetailPage: FC = () => {
   return (

@@ -1,0 +1,59 @@
+@import '@/styles/mixin';
+
+.results {
+  max-width: 350px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 20px auto;
+  gap: 20px;
+}
+
+.title {
+  margin-bottom: 20px;
+  color: $c-dark;
+  font-family: Comfortaa;
+  font-size: x-large;
+  text-align: center;
+  text-wrap: balance;
+
+  @media (min-width: 767.98) {
+    text-align: start;
+  }
+}
+
+.list {
+  list-style: none;
+  padding: 0;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.li {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  margin: 12px auto;
+  background-color: $c-light;
+  font-family: Comfortaa;
+  color: $c-dark;
+  text-align: start;
+  text-wrap: balance;
+  cursor: default;
+}
+
+.team {
+  color: $c-primary;
+  transition: color 0.3s ease;
+  text-align: start;
+  width: 50%;
+  cursor: pointer;
+  &:hover {
+    color: $c-orange;
+  }
+}
+
+.score {
+  color: $c-dark;
+}

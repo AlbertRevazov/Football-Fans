@@ -1,6 +1,6 @@
 import React from 'react';
-import Layout from '../src/components/ui/layout';
-import Main from '../src/components/main';
+import Layout from '../src/shared/ui/layout';
+import Main from '../src/pages/main';
 
 const Index = () => {
   return (
