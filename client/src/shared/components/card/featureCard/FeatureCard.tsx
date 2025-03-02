@@ -1,8 +1,15 @@
 import React, { FC } from 'react'
 import styles from './feature-card.module.scss'
 
+export type FeatureType = {
+  id: number
+  title: string
+  description: string
+  icon: string
+}
+
 interface IFeatureCardProps {
-  feature: { id: number; title: string; description: string; icon: string }
+  feature: FeatureType
 }
 
 const FeatureCard: FC<IFeatureCardProps> = ({ feature }) => {

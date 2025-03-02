@@ -7,7 +7,7 @@ import Link from 'next/link'
 import styles from './Matches.module.scss'
 import Error from '@/shared/components/error'
 import Loading from '@/shared/components/loader'
-import MatchesCard from '@/shared/components/matchesCard'
+import Card from '@/shared/components/card'
 
 const MatchSection: FC = () => {
   const [expandedCompetitions, setExpandedCompetitions] = useState<string[]>([])
@@ -56,7 +56,7 @@ const MatchSection: FC = () => {
                       <Link key={match.id} className={styles.card} href={`/matches/${match.id}`}>
                         <div className={styles.matchDay}>Тур {match.matchday}</div>
                         <div className={styles.teams}>
-                          <MatchesCard match={match} />
+                          <Card type="match" data={match} />
                         </div>
                         <div className={styles.date}>{DateFormate(match.utcDate, true)}</div>
                         <div className={styles.status}>

@@ -1,29 +1,23 @@
 import React, { FC } from 'react'
-import Link from 'next/link'
-import styles from './card.module.scss'
+import FeatureCard from './featureCard'
+import MatchesCard from './matchesCard'
+import { IGames } from '@/types/GamesTypes'
+import { FeatureType } from './featureCard/FeatureCard'
 
 interface ICardProps {
-  data: {
-    id: number
-    crest: string
-    title: string
-  }
-  isActive?: boolean
-  link: string
+  type: 'feature' | 'match'
+  data: FeatureType | IGames
 }
 
-const Card: FC<ICardProps> = ({ data, link, isActive }) => {
-  const isLeague = link.includes('competitions')
+const Card: FC<ICardProps> = ({ type, data }) => {
   return (
-    <Link
-      className={styles.container}
-      href={link}
-      style={{ pointerEvents: isActive ? 'auto' : 'none' }}>
-      <div className={styles.card}>
-        <img className={styles.crest} src={data?.crest} alt={data?.title} loading="lazy" />
-      </div>
-      {!isLeague && <h3 className={styles.title}>{data?.title}</h3>}
-    </Link>
+    <>
+      {type === 'feature' ? (
+        <FeatureCard feature={data as FeatureType} />
+      ) : (
+        <MatchesCard match={data as IGames} />
+      )}
+    </>
   )
 }
 

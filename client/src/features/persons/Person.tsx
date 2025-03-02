@@ -5,7 +5,7 @@ import { getMatchesByPersonId, getPersonById } from '@/redux/Slices/Persons'
 import { ApiErrors, listKeys } from '@/shared/data'
 import { DateFormate } from '@/shared/utils/Date'
 import Results from './Results'
-import ListItem from '@/shared/components/listItem/ListItem'
+import ListItem from '@/features/persons/listItem/ListItem'
 import Loading from '@/shared/components/loader'
 import styles from './persons.module.scss'
 

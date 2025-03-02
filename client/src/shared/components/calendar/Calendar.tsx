@@ -3,8 +3,8 @@ import { IGames } from '@/types/GamesTypes'
 import { MatchStatuses } from '@/shared/data'
 import { DateFormate } from '@/shared/utils/Date'
 import Link from 'next/link'
-import MatchesCard from '@/shared/components/matchesCard'
 import styles from './calendar.module.scss'
+import Card from '../card'
 
 interface ICalendarProps {
   data: IGames[]
@@ -22,7 +22,7 @@ const Calendar: FC<ICalendarProps> = ({ data }) => {
     <section className={styles.calendar}>
       {list.map(match => (
         <Link key={match.id} className={styles.teams} href={`/matches/${match.id}`}>
-          <MatchesCard match={match} />
+          <Card type='match' data={match} />
           <p className={styles.status}>
             {MatchStatuses[match.status as keyof typeof MatchStatuses]}
           </p>
