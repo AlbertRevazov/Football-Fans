@@ -1,22 +1,22 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react'
 
 export const useIsWideScreen = () => {
-  const [isWide, setIsWide] = useState(false);
+  const [isWide, setIsWide] = useState(false)
 
   useEffect(() => {
     const handleResize = () => {
-      setIsWide(window.innerWidth > 768);
-    };
+      setIsWide(window.innerWidth > 768)
+    }
 
     if (typeof window !== 'undefined') {
-      setIsWide(window.innerWidth > 768);
-      window.addEventListener('resize', handleResize);
+      setIsWide(window.innerWidth > 768)
+      window.addEventListener('resize', handleResize)
 
       return () => {
-        window.removeEventListener('resize', handleResize);
-      };
+        window.removeEventListener('resize', handleResize)
+      }
     }
-  }, []);
+  }, [])
 
-  return isWide;
-};
+  return isWide
+}

@@ -1,92 +1,92 @@
-import { IGames } from './GamesTypes';
+import { IGames } from './GamesTypes'
 
 export type CompetitionsState = {
-  competitionsList: Competitions[] | null;
-  data: CompetitionData | null;
-  isLoading: boolean;
-  errorCode: number;
-  message?: string;
-  scorers: Scorers[] | null;
-  matches: IGames[] | null;
-};
+  competitionsList: Competitions[] | null
+  data: CompetitionData | null
+  isLoading: boolean
+  errorCode: number
+  message?: string
+  scorers: Scorers[] | null
+  matches: IGames[] | null
+}
 
 export type CompetitionData = {
-  competition: Competitions;
+  competition: Competitions
   season: {
-    id: number;
-    startDate: string;
-    endDate: string;
-    currentMatchday: number;
-    winner: null;
-  };
-  table: Table[];
-  group?: Standings[];
-};
+    id: number
+    startDate: string
+    endDate: string
+    currentMatchday: number
+    winner: null
+  }
+  table: Table[]
+  group?: Standings[]
+}
 
 export type Competitions = {
-  id: number;
-  name: string;
-  code: string;
-  emblem: string;
-  startDate: string;
-  endDate: string;
-  type: string;
+  id: number
+  name: string
+  code: string
+  emblem: string
+  startDate: string
+  endDate: string
+  type: string
   area: {
-    id: number;
-    name: string;
-    code: string;
-    flag: string;
-  };
+    id: number
+    name: string
+    code: string
+    flag: string
+  }
   currentSeason: {
-    currentMatchday: number;
-    winner: null;
-  };
-};
+    currentMatchday: number
+    winner: null
+  }
+}
 
 export type Table = {
   team: {
-    id: number;
-    name: string;
-    shortName: string;
-    tla: string;
-    crest: string;
-  };
-  position: number;
-  playedGames: number;
-  form: null;
-  won: number;
-  draw: number;
-  lost: number;
-  points: number;
-  goalsFor: number;
-  goalsAgainst: number;
-  goalDifference: number;
-};
+    id: number
+    name: string
+    shortName: string
+    tla: string
+    crest: string
+  }
+  position: number
+  playedGames: number
+  form: null
+  won: number
+  draw: number
+  lost: number
+  points: number
+  goalsFor: number
+  goalsAgainst: number
+  goalDifference: number
+}
 
 export type Standings = {
-  group: string;
-  stage: string;
-  table: Table[];
-  type: string;
-};
+  group: string
+  stage: string
+  table: Table[]
+  type: string
+}
 
 export type Scorers = {
-  assists: number;
-  goals: number;
-  penalties: number;
-  playedMatches: number;
+  assists: number
+  goals: number
+  penalties: number
+  playedMatches: number
   player: {
-    id: number;
-    name: string;
-    nationality: string;
-    position: null;
-    section: string;
-    shirtNumber: null;
-  };
+    id: number
+    name: string
+    nationality: string
+    position: null
+    section: string
+    shirtNumber: null
+  }
   team: {
-    crest: string;
-    id: number;
-    name: string;
-    shortName: string;
-  };
-};
+    crest: string
+    id: number
+    name: string
+    shortName: string
+  }
+}

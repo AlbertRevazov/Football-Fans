@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
-import SignFormSection from '@/shared/components/form/signForm';
-import LoginFormSection from '@/shared/components/form/loginForm';
-import styles from './auth.module.scss';
+import React, { useState } from 'react'
+import SignFormSection from '@/shared/components/form/sign'
+import LoginFormSection from '@/shared/components/form/login'
+import styles from './auth.module.scss'
 
 const Auth = () => {
-  const [toggle, setToggle] = useState<boolean>(false);
+  const [toggle, setToggle] = useState<boolean>(false)
 
   return (
     <section className={styles.container}>
@@ -16,6 +16,6 @@ const Auth = () => {
         </span>
       </div>
     </section>
-  );
-};
-export default Auth;
+  )
+}
+export default Auth

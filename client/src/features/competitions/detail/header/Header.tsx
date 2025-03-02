@@ -1,10 +1,10 @@
-import React from 'react';
-import styles from './header.module.scss';
+import React from 'react'
+import styles from './header.module.scss'
 
 interface HeaderProps {
-  name: string;
-  season: string;
-  emblem: string;
+  name: string
+  season: string
+  emblem: string
 }
 
 const Header: React.FC<HeaderProps> = ({ name, season, emblem }) => {
@@ -16,7 +16,7 @@ const Header: React.FC<HeaderProps> = ({ name, season, emblem }) => {
         <h4 className={styles.season}>Season: {season}</h4>
       </div>
     </header>
-  );
-};
+  )
+}
 
-export default Header;
+export default Header

@@ -1,1 +1,1 @@
-export { default } from './MatchesCard';
+export { default } from './MatchesCard'

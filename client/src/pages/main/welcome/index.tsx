@@ -1,1 +1,1 @@
-export { default } from './WelcomeSection';
+export { default } from './WelcomeSection'

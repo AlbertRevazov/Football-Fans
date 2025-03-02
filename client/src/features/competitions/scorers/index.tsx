@@ -1,1 +1,1 @@
-export { default } from './CompetitionScorers';
+export { default } from './CompetitionScorers'

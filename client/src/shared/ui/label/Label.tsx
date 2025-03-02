@@ -1,14 +1,14 @@
-import React from 'react';
-import { ErrorMessage, Field, FieldInputProps, FormikProps } from 'formik';
-import { labelPlaceholders } from '@/shared/components/form/data';
-import InputMask from 'react-input-mask';
-import styles from './label.module.scss';
+import React from 'react'
+import { ErrorMessage, Field, FieldInputProps, FormikProps } from 'formik'
+import { labelPlaceholders } from '@/shared/components/form/data'
+import InputMask from 'react-input-mask'
+import styles from './label.module.scss'
 
 type LabelProps = {
-  title: string;
-  type: string;
-  children?: React.ReactNode;
-};
+  title: string
+  type: string
+  children?: React.ReactNode
+}
 
 const Label = ({ title, type, children }: LabelProps) => {
   return (
@@ -22,9 +22,9 @@ const Label = ({ title, type, children }: LabelProps) => {
               mask="+7 (999) 999-99-99"
               maskChar=" "
               {...field}
-              onChange={(e) => {
-                const value = e.target.value.replace(/[^\d]/g, '');
-                form.setFieldValue(field.name, value);
+              onChange={e => {
+                const value = e.target.value.replace(/[^\d]/g, '')
+                form.setFieldValue(field.name, value)
               }}
               className={styles.field}
               placeholder="8 (999) 999-99-99"
@@ -42,6 +42,6 @@ const Label = ({ title, type, children }: LabelProps) => {
       )}
       <ErrorMessage component="div" name={title} className={styles.invalid} />
     </label>
-  );
-};
-export default Label;
+  )
+}
+export default Label

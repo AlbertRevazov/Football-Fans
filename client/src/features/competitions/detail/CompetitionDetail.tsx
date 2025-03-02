@@ -1,21 +1,21 @@
-import React, { FC, useEffect, useState, useCallback } from 'react';
-import { useRouter } from 'next/router';
+import React, { FC, useEffect, useState, useCallback } from 'react'
+import { useRouter } from 'next/router'
 import {
   getCalendarByCompetition,
   getCompetitionById,
   getCompetitionByMatchDay,
-  getScorersByCompetition,
-} from '@/redux/slices/Competitions';
-import { useAppDispatch, useAppSelector } from '@/redux/hooks';
-import { getSeason } from '@/shared/utils/Date';
-import { renderBlockContent } from './renderBlockContent';
-import Header from './header';
-import BlockToggleButtons from './blockToggleButtons';
-import CompetitionFooter from './competitionFooter';
-import Error from '@/shared/components/error';
-import Loading from '@/shared/components/loader';
-import styles from './competition-detail.module.scss';
-import { CompetitionRequestTypes } from '@/shared/data';
+  getScorersByCompetition
+} from '@/redux/Slices/Competitions'
+import { useAppDispatch, useAppSelector } from '@/redux/hooks'
+import { getSeason } from '@/shared/utils/Date'
+import { renderBlockContent } from './renderBlockContent'
+import Header from './header'
+import BlockToggleButtons from './blockToggleButtons'
+import CompetitionFooter from './competitionFooter'
+import Error from '@/shared/components/error'
+import Loading from '@/shared/components/loader'
+import styles from './competition-detail.module.scss'
+import { CompetitionRequestTypes } from '@/shared/data'
 
 const CompetitionsDetail: FC = () => {
   const {
@@ -23,42 +23,42 @@ const CompetitionsDetail: FC = () => {
     scorers,
     matches,
     isLoading,
-    errorCode,
-  } = useAppSelector((state) => state.tournament);
-  const dispatch = useAppDispatch();
-  const router = useRouter();
-  const competitionId = router.query.id as string;
-  const [activeBlock, setActiveBlock] = useState<'table' | 'scorers' | 'calendar'>('table');
-  const seasonYear = competitionData?.season.startDate.slice(0, 4);
+    errorCode
+  } = useAppSelector(state => state.tournament)
+  const dispatch = useAppDispatch()
+  const router = useRouter()
+  const competitionId = router.query.id as string
+  const [activeBlock, setActiveBlock] = useState<'table' | 'scorers' | 'calendar'>('table')
+  const seasonYear = competitionData?.season.startDate.slice(0, 4)
   const currentSeason = competitionData
     ? getSeason(competitionData.season.startDate, competitionData.season.endDate)
-    : '';
-  const [selectedMatchDay, setSelectedMatchDay] = useState(competitionData?.season.currentMatchday);
+    : ''
+  const [selectedMatchDay, setSelectedMatchDay] = useState(competitionData?.season.currentMatchday)
 
   const handleBlockChange = useCallback(
     (type: 'table' | 'scorers' | 'calendar', season: string) => {
-      setActiveBlock(type);
+      setActiveBlock(type)
       switch (type) {
         case 'table':
-          return dispatch(getCompetitionById(competitionId));
+          return dispatch(getCompetitionById(competitionId))
         case 'scorers':
-          return dispatch(getScorersByCompetition({ id: competitionId, date: season }));
+          return dispatch(getScorersByCompetition({ id: competitionId, date: season }))
         case 'calendar':
-          return dispatch(getCalendarByCompetition({ id: competitionId, date: season }));
+          return dispatch(getCalendarByCompetition({ id: competitionId, date: season }))
         default:
-          return null;
+          return null
       }
     },
     [dispatch, competitionId]
-  );
+  )
 
   useEffect(() => {
     if (competitionId && !competitionData) {
-      dispatch(getCompetitionById(competitionId));
+      dispatch(getCompetitionById(competitionId))
     }
-  }, [competitionId, competitionData, dispatch]);
+  }, [competitionId, competitionData, dispatch])
 
-  if (errorCode) return <Error code={errorCode} />;
+  if (errorCode) return <Error code={errorCode} />
 
   return (
     <div className={styles.root}>
@@ -71,9 +71,9 @@ const CompetitionsDetail: FC = () => {
           />
           <BlockToggleButtons
             activeBlock={activeBlock}
-            onBlockChange={(type) => {
-              handleBlockChange(type, seasonYear as string);
-              setSelectedMatchDay(competitionData?.season.currentMatchday);
+            onBlockChange={type => {
+              handleBlockChange(type, seasonYear as string)
+              setSelectedMatchDay(competitionData?.season.currentMatchday)
             }}
           />
           {activeBlock !== 'scorers' && (
@@ -82,18 +82,17 @@ const CompetitionsDetail: FC = () => {
               <select
                 className={styles.dayList}
                 value={selectedMatchDay}
-                onChange={(e) => {
-                  setSelectedMatchDay(+e.target.value);
+                onChange={e => {
+                  setSelectedMatchDay(+e.target.value)
                   dispatch(
                     getCompetitionByMatchDay({
                       id: competitionId,
                       day: String(e.target.value),
                       season: currentSeason.split('/')[0],
-                      type: CompetitionRequestTypes[activeBlock],
+                      type: CompetitionRequestTypes[activeBlock]
                     })
-                  );
-                }}
-              >
+                  )
+                }}>
                 {Array.from({ length: competitionData?.season.currentMatchday || 0 }, (_, i) => (
                   <option className={styles.day} key={i + 1} value={i + 1}>
                     {i + 1}
@@ -110,7 +109,7 @@ const CompetitionsDetail: FC = () => {
                 activeBlock,
                 scorers,
                 matches,
-                competitionData,
+                competitionData
               })}
             </section>
           )}
@@ -118,7 +117,7 @@ const CompetitionsDetail: FC = () => {
         </main>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default CompetitionsDetail;
+export default CompetitionsDetail

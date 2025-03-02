@@ -1,18 +1,18 @@
-import React, { FC, useState } from 'react';
-import { initialValues, validationSchema } from './data';
-import { useAppDispatch, useAppSelector } from '@/redux/hooks';
-import { Form, Formik } from 'formik';
-import { getUserSign } from '@/redux/slices/Auth';
-import { useRouter } from 'next/router';
-import styles from '../form.module.scss';
-import Label from '@/shared/ui/label';
-import Button from '@/shared/ui/button';
+import React, { FC, useState } from 'react'
+import { initialValues, validationSchema } from './data'
+import { useAppDispatch, useAppSelector } from '@/redux/hooks'
+import { Form, Formik } from 'formik'
+import { getUserSign } from '@/redux/Slices/Auth'
+import { useRouter } from 'next/router'
+import styles from '../form.module.scss'
+import Label from '@/shared/ui/label'
+import Button from '@/shared/ui/button'
 
 const SignFormSection: FC = () => {
-  const { message } = useAppSelector((s) => s.auth);
-  const [isPass, setIsPass] = useState<boolean>(false);
-  const dispatch = useAppDispatch();
-  const router = useRouter();
+  const { message } = useAppSelector(s => s.auth)
+  const [isPass, setIsPass] = useState<boolean>(false)
+  const dispatch = useAppDispatch()
+  const router = useRouter()
 
   return (
     <Formik
@@ -20,12 +20,11 @@ const SignFormSection: FC = () => {
       validationSchema={validationSchema}
       onSubmit={(values, { setSubmitting }) => {
         setTimeout(() => {
-          dispatch(getUserSign(values));
-          setSubmitting(false);
-          router.push('/auth/login');
-        }, 400);
-      }}
-    >
+          dispatch(getUserSign(values))
+          setSubmitting(false)
+          router.push('/auth/login')
+        }, 400)
+      }}>
       {({ isSubmitting }) => (
         <Form className={styles.form}>
           {!!message && <div style={{ color: 'red' }}> {message}</div>}
@@ -45,6 +44,6 @@ const SignFormSection: FC = () => {
         </Form>
       )}
     </Formik>
-  );
-};
-export default SignFormSection;
+  )
+}
+export default SignFormSection

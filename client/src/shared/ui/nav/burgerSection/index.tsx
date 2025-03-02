@@ -1,1 +1,1 @@
-export { default } from './BurgerSection';
+export { default } from './BurgerSection'

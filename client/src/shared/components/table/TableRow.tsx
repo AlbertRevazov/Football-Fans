@@ -1,7 +1,7 @@
-import React, { FC } from 'react';
-import { Table } from '@/types/CompetitionsTypes';
-import Link from 'next/link';
-import styles from './table.module.scss';
+import React, { FC } from 'react'
+import { Table } from '@/types/CompetitionsTypes'
+import Link from 'next/link'
+import styles from './table.module.scss'
 
 const TableRow: FC<{ el: Table }> = ({ el }) => (
   <li key={el.team.id} className={styles.item}>
@@ -21,6 +21,6 @@ const TableRow: FC<{ el: Table }> = ({ el }) => (
     <span className={styles.goalsAgainst}>{el.goalsAgainst}</span>
     <span className={styles.goalDifference}>{el.goalDifference}</span>
   </li>
-);
+)
 
-export default TableRow;
+export default TableRow

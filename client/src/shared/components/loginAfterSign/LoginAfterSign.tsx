@@ -1,12 +1,12 @@
-import React, { FC } from 'react';
-import styles from './login-after-sig.module.scss';
-import LoginFormSection from '@/shared/components/form/loginForm';
+import React, { FC } from 'react'
+import styles from './login-after-sig.module.scss'
+import Login from '@/shared/components/form'
 
 const LoginAfterSign: FC = () => {
   return (
     <main className={styles.main}>
-      <LoginFormSection />
+      <Login />
     </main>
-  );
-};
-export default LoginAfterSign;
+  )
+}
+export default LoginAfterSign

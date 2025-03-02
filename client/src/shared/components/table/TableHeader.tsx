@@ -1,5 +1,5 @@
-import React, { FC } from 'react';
-import styles from './table.module.scss';
+import React, { FC } from 'react'
+import styles from './table.module.scss'
 
 const TableHeader: FC = () => {
   return (
@@ -15,7 +15,7 @@ const TableHeader: FC = () => {
       <span className={styles.goalsAgainst}>LG</span>
       <span className={styles.goalDifference}>GD</span>
     </>
-  );
-};
+  )
+}
 
-export default TableHeader;
+export default TableHeader

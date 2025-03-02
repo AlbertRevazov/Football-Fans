@@ -1,7 +1,7 @@
-import React from 'react';
-import { Leagues } from '@/shared/data';
-import Link from 'next/link';
-import styles from './leagues-section.module.scss';
+import React from 'react'
+import { Leagues } from '@/shared/data'
+import Link from 'next/link'
+import styles from './leagues-section.module.scss'
 
 const LeaguesSection = () => {
   return (
@@ -24,7 +24,7 @@ const LeaguesSection = () => {
         ))}
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default LeaguesSection;
+export default LeaguesSection

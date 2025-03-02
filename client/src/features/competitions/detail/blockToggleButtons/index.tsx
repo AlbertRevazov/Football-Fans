@@ -1,1 +1,1 @@
-export { default } from './BlockToggle';
+export { default } from './BlockToggle'

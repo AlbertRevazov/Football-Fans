@@ -1,19 +1,19 @@
-import React, { FC, useState } from 'react';
-import { Table } from '@/types/CompetitionsTypes';
-import CustomTable from '@/shared/components/table';
-import styles from '../competitions.module.scss';
+import React, { FC, useState } from 'react'
+import { Table } from '@/types/CompetitionsTypes'
+import CustomTable from '@/shared/components/table'
+import styles from '../competitions.module.scss'
 
 interface ICompetitionLeagueProps {
-  data: Table[];
+  data: Table[]
 }
 
 const CompetitionLeague: FC<ICompetitionLeagueProps> = ({ data }) => {
-  const middleIdx = data.length / 2;
-  const [list, setList] = useState<Table[]>(data.slice(0, middleIdx));
+  const middleIdx = data.length / 2
+  const [list, setList] = useState<Table[]>(data.slice(0, middleIdx))
 
   const loadMoreHandle = () => {
-    setList((prev) => [...prev, ...data.slice(middleIdx, data.length)]);
-  };
+    setList(prev => [...prev, ...data.slice(middleIdx, data.length)])
+  }
 
   return (
     <>
@@ -24,6 +24,6 @@ const CompetitionLeague: FC<ICompetitionLeagueProps> = ({ data }) => {
         </div>
       )}
     </>
-  );
-};
-export default CompetitionLeague;
+  )
+}
+export default CompetitionLeague

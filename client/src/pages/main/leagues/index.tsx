@@ -1,1 +1,1 @@
-export { default } from './LeaguesSection';
+export { default } from './LeaguesSection'

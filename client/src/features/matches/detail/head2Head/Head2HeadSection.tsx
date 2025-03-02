@@ -1,13 +1,13 @@
-import React, { FC } from 'react';
-import { IHead2Head } from '@/types/GamesTypes';
-import styles from './head-2-head-section.module.scss';
+import React, { FC } from 'react'
+import { IHead2Head } from '@/types/GamesTypes'
+import styles from './head-2-head-section.module.scss'
 
 interface HeadSectionProps {
-  data: IHead2Head;
+  data: IHead2Head
 }
 
 const Head2headSection: FC<HeadSectionProps> = ({ data }) => {
-  const { awayTeam, homeTeam, numberOfMatches, totalGoals } = data;
+  const { awayTeam, homeTeam, numberOfMatches, totalGoals } = data
   return (
     <section className={styles.head2head}>
       <h3>История противостояний в последних {numberOfMatches} матчах</h3>
@@ -26,7 +26,7 @@ const Head2headSection: FC<HeadSectionProps> = ({ data }) => {
         </li>
       </ul>
     </section>
-  );
-};
+  )
+}
 
-export default Head2headSection;
+export default Head2headSection

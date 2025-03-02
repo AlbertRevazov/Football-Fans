@@ -1,15 +1,15 @@
-import React, { FC } from 'react';
-import Link from 'next/link';
-import styles from './slider.module.scss';
+import React, { FC } from 'react'
+import Link from 'next/link'
+import styles from './slider.module.scss'
 
 interface ISliderProps {
   data: {
-    id: number;
-    crest: string;
-    title: string;
-    apiId: string;
-    trophies: { league: number; cup: number; Ucl: number };
-  };
+    id: number
+    crest: string
+    title: string
+    apiId: string
+    trophies: { league: number; cup: number; Ucl: number }
+  }
 }
 
 const Slider: FC<ISliderProps> = ({ data }) => {
@@ -33,7 +33,7 @@ const Slider: FC<ISliderProps> = ({ data }) => {
         </ul>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Slider;
+export default Slider

@@ -1,5 +1,5 @@
-import { FC } from 'react';
-import styles from './footer.module.scss';
+import { FC } from 'react'
+import styles from './footer.module.scss'
 
 const Footer: FC = () => {
   return (
@@ -14,6 +14,6 @@ const Footer: FC = () => {
         <img className={styles.gear} src="/svg/gear.svg" alt="gear" loading="lazy" />
       </div>
     </footer>
-  );
-};
-export default Footer;
+  )
+}
+export default Footer

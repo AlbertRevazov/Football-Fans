@@ -1,39 +1,39 @@
-import { IPerson, PMatches } from '@/types/PersonsTypes';
-import { DateFormate } from '@/utils/Date';
-import Link from 'next/link';
-import React, { FC } from 'react';
-import styles from './list-item.module.scss';
+import { IPerson, PMatches } from '@/types/PersonsTypes'
+import { DateFormate } from '@/shared/utils/Date'
+import Link from 'next/link'
+import React, { FC } from 'react'
+import styles from './list-item.module.scss'
 
 interface IFullName {
-  first: string;
-  last: string;
+  first: string
+  last: string
 }
 
 interface ITeam {
-  id: number;
-  name: string;
+  id: number
+  name: string
 }
 
 interface IListItemData {
-  fullName: IFullName;
-  team: ITeam;
-  birth: string;
-  nationality: string;
-  position: string;
-  contract: string;
-  cn: string;
-  playedMatches: PMatches[] | null;
-  shirtNumber: number;
+  fullName: IFullName
+  team: ITeam
+  birth: string
+  nationality: string
+  position: string
+  contract: string
+  cn: string
+  playedMatches: PMatches[] | null
+  shirtNumber: number
 }
 
 interface IListItemProps {
-  data: IListItemData;
-  type: string;
-  className?: string;
+  data: IListItemData
+  type: string
+  className?: string
 }
 
 interface IListItemReturn {
-  [key: string]: React.JSX.Element | null;
+  [key: string]: React.JSX.Element | null
 }
 
 const ListItem: FC<IListItemProps> = ({ type, data, className = styles.li }) => {
@@ -92,10 +92,10 @@ const ListItem: FC<IListItemProps> = ({ type, data, className = styles.li }) => 
       <li className={className}>
         Matches played <span>{data.playedMatches.length}</span>
       </li>
-    ) : null,
-  };
+    ) : null
+  }
 
-  return components[type] || null;
-};
+  return components[type] || null
+}
 
-export default React.memo(ListItem);
+export default React.memo(ListItem)

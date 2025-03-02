@@ -1,9 +1,9 @@
-import React, { FC, useState } from 'react';
-import styles from './write-section.module.scss';
-import Button from '@/shared/ui/button';
+import React, { FC, useState } from 'react'
+import styles from './write-section.module.scss'
+import Button from '@/shared/ui/button'
 
 const WriteSection: FC = () => {
-  const [message, setMessage] = useState<string>('');
+  const [message, setMessage] = useState<string>('')
 
   return (
     <section className={styles.container}>
@@ -19,12 +19,12 @@ const WriteSection: FC = () => {
           type="text"
           placeholder="Your message..."
           value={message}
-          onChange={(e) => setMessage(e.target.value)}
+          onChange={e => setMessage(e.target.value)}
         />
         <Button title="Send" type="submit" minWidth="115px" disabled={!message} />
       </div>
     </section>
-  );
-};
+  )
+}
 
-export default WriteSection;
+export default WriteSection

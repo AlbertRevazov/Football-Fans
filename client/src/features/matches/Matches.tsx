@@ -1,38 +1,38 @@
-import React, { FC, useEffect, useState } from 'react';
-import { useAppDispatch, useAppSelector } from '@/redux/hooks';
-import { MatchStatuses } from '@/shared/data';
-import { getMatchesList } from '@/redux/slices/Games';
-import { DateFormate } from '@/shared/utils/Date';
-import Link from 'next/link';
-import styles from './Matches.module.scss';
-import Error from '@/shared/components/error';
-import Loading from '@/shared/components/loader';
-import MatchesCard from '@/shared/components/matchesCard';
+import React, { FC, useEffect, useState } from 'react'
+import { useAppDispatch, useAppSelector } from '@/redux/hooks'
+import { MatchStatuses } from '@/shared/data'
+import { getMatchesList } from '@/redux/Slices/Games'
+import { DateFormate } from '@/shared/utils/Date'
+import Link from 'next/link'
+import styles from './Matches.module.scss'
+import Error from '@/shared/components/error'
+import Loading from '@/shared/components/loader'
+import MatchesCard from '@/shared/components/matchesCard'
 
 const MatchSection: FC = () => {
-  const [expandedCompetitions, setExpandedCompetitions] = useState<string[]>([]);
-  const { games, isLoading, errorCode } = useAppSelector((s) => s.matches);
-  const dispatch = useAppDispatch();
+  const [expandedCompetitions, setExpandedCompetitions] = useState<string[]>([])
+  const { games, isLoading, errorCode } = useAppSelector(s => s.matches)
+  const dispatch = useAppDispatch()
 
   useEffect(() => {
-    dispatch(getMatchesList());
-  }, [dispatch]);
+    dispatch(getMatchesList())
+  }, [dispatch])
 
   if (isLoading) {
-    return <Loading />;
+    return <Loading />
   }
 
   if (errorCode) {
-    return <Error code={errorCode} />;
+    return <Error code={errorCode} />
   }
 
   const toggleCompetition = (competition: string) => {
-    setExpandedCompetitions((prev) =>
+    setExpandedCompetitions(prev =>
       prev.includes(competition)
-        ? prev.filter((comp) => comp !== competition)
+        ? prev.filter(comp => comp !== competition)
         : [...prev, competition]
-    );
-  };
+    )
+  }
 
   return (
     <section className={styles.section}>
@@ -41,9 +41,9 @@ const MatchSection: FC = () => {
           {Object.keys(games || {}).length ? 'Ближайшие матчи' : 'Матчей не найдено'}
         </h2>
         {games &&
-          Object.keys(games).map((competition) => {
-            const isExpanded = expandedCompetitions.includes(competition);
-            const icon = isExpanded ? '/svg/arrow-up.svg' : '/svg/arrow-down.svg';
+          Object.keys(games).map(competition => {
+            const isExpanded = expandedCompetitions.includes(competition)
+            const icon = isExpanded ? '/svg/arrow-up.svg' : '/svg/arrow-down.svg'
             return (
               <article key={competition} className={styles.competition}>
                 <header className={styles.header} onClick={() => toggleCompetition(competition)}>
@@ -52,7 +52,7 @@ const MatchSection: FC = () => {
                 </header>
                 {isExpanded && (
                   <div className={`${styles.matchesContainer} ${styles.visible}`}>
-                    {games[competition].map((match) => (
+                    {games[competition].map(match => (
                       <Link key={match.id} className={styles.card} href={`/matches/${match.id}`}>
                         <div className={styles.matchDay}>Тур {match.matchday}</div>
                         <div className={styles.teams}>
@@ -67,14 +67,14 @@ const MatchSection: FC = () => {
                   </div>
                 )}
               </article>
-            );
+            )
           })}
       </div>
       <footer className={styles.note}>
         * Не всегда корректно отображается день игры из-за часовых поясов
       </footer>
     </section>
-  );
-};
+  )
+}
 
-export default MatchSection;
+export default MatchSection

@@ -1,7 +1,7 @@
-import React, { FC } from 'react';
-import Link from 'next/link';
-import Button from '@/shared/ui/button';
-import styles from './welcome-section.module.scss';
+import React, { FC } from 'react'
+import Link from 'next/link'
+import Button from '@/shared/ui/button'
+import styles from './welcome-section.module.scss'
 
 const WelcomeSection: FC = () => {
   return (
@@ -28,7 +28,7 @@ const WelcomeSection: FC = () => {
         </figure>
       </article>
     </div>
-  );
-};
+  )
+}
 
-export default WelcomeSection;
+export default WelcomeSection

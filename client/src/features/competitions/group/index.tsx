@@ -1,1 +1,1 @@
-export { default } from './CompetitionGroup';
+export { default } from './CompetitionGroup'

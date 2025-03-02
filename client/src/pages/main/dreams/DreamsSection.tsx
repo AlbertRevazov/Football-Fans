@@ -1,7 +1,7 @@
-import React, { FC } from 'react';
-import Link from 'next/link';
-import Button from '@/shared/ui/button';
-import styles from './dreams-section.module.scss';
+import React, { FC } from 'react'
+import Link from 'next/link'
+import Button from '@/shared/ui/button'
+import styles from './dreams-section.module.scss'
 
 const DreamsSection: FC = () => {
   return (
@@ -28,7 +28,7 @@ const DreamsSection: FC = () => {
         </figure>
       </article>
     </section>
-  );
-};
+  )
+}
 
-export default DreamsSection;
+export default DreamsSection

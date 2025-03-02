@@ -1,7 +1,7 @@
-import React from 'react';
+import React from 'react'
 
 interface CompetitionFooterProps {
-  code: string;
+  code: string
 }
 
 const CompetitionFooter: React.FC<CompetitionFooterProps> = ({ code }) => {
@@ -14,7 +14,7 @@ const CompetitionFooter: React.FC<CompetitionFooterProps> = ({ code }) => {
         </ul>
       )}
     </>
-  );
-};
+  )
+}
 
-export default CompetitionFooter;
+export default CompetitionFooter

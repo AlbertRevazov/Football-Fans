@@ -1,10 +1,10 @@
-import React, { FC } from 'react';
-import { ITeamSectionProps } from '@/types/TeamsTypes';
-import Link from 'next/link';
-import styles from './information.module.scss';
+import React, { FC } from 'react'
+import { ITeamSectionProps } from '@/types/TeamsTypes'
+import Link from 'next/link'
+import styles from './information.module.scss'
 
 const InformationSection: FC<ITeamSectionProps> = ({ team }) => {
-  const { address, venue, runningCompetitions, website, founded, coach } = team;
+  const { address, venue, runningCompetitions, website, founded, coach } = team
 
   return (
     <section className={styles.info}>
@@ -37,12 +37,11 @@ const InformationSection: FC<ITeamSectionProps> = ({ team }) => {
           <li className={styles.competitions}>
             Участвует
             <div className={styles.item}>
-              {runningCompetitions.map((competition) => (
+              {runningCompetitions.map(competition => (
                 <Link
                   key={competition.id}
                   href={`/competitions/${competition.code}`}
-                  className={styles.link}
-                >
+                  className={styles.link}>
                   {competition.name}
                 </Link>
               ))}
@@ -59,7 +58,7 @@ const InformationSection: FC<ITeamSectionProps> = ({ team }) => {
         )}
       </ul>
     </section>
-  );
-};
+  )
+}
 
-export default InformationSection;
+export default InformationSection

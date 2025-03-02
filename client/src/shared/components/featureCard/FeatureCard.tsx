@@ -1,8 +1,8 @@
-import React, { FC } from 'react';
-import styles from './feature-card.module.scss';
+import React, { FC } from 'react'
+import styles from './feature-card.module.scss'
 
 interface IFeatureCardProps {
-  feature: { id: number; title: string; description: string; icon: string };
+  feature: { id: number; title: string; description: string; icon: string }
 }
 
 const FeatureCard: FC<IFeatureCardProps> = ({ feature }) => {
@@ -15,7 +15,7 @@ const FeatureCard: FC<IFeatureCardProps> = ({ feature }) => {
         <p className={styles.description}>{feature.description}</p>
       </article>
     </div>
-  );
-};
+  )
+}
 
-export default FeatureCard;
+export default FeatureCard

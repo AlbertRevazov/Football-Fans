@@ -1,1 +1,1 @@
-export { default } from './MatchesDetail';
+export { default } from './MatchesDetail'

@@ -1,16 +1,16 @@
-import React, { FC } from 'react';
-import { IGames } from '@/types/GamesTypes';
-import { MatchStages } from '@/shared/data';
-import { DateFormate } from '@/shared/utils/Date';
-import Link from 'next/link';
-import styles from './header-section.module.scss';
+import React, { FC } from 'react'
+import { IGames } from '@/types/GamesTypes'
+import { MatchStages } from '@/shared/data'
+import { DateFormate } from '@/shared/utils/Date'
+import Link from 'next/link'
+import styles from './header-section.module.scss'
 
 interface IHeaderProps {
-  data: IGames;
+  data: IGames
 }
 
 const HeaderSection: FC<IHeaderProps> = ({ data }) => {
-  const { awayTeam, homeTeam, competition, score } = data;
+  const { awayTeam, homeTeam, competition, score } = data
   return (
     <main className={styles.headerRoot}>
       <section className={styles.competitionInfo}>
@@ -65,6 +65,6 @@ const HeaderSection: FC<IHeaderProps> = ({ data }) => {
         </p>
       )}
     </main>
-  );
-};
-export default HeaderSection;
+  )
+}
+export default HeaderSection

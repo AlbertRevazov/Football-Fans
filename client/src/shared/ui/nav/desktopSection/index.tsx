@@ -1,1 +1,1 @@
-export { default } from './DesktopSection';
+export { default } from './DesktopSection'

@@ -1,15 +1,15 @@
-import React, { FC, useState } from 'react';
-import { PMatches } from '@/types/PersonsTypes';
-import Button from '@/shared/ui/button';
-import Link from 'next/link';
-import styles from './results.module.scss';
+import React, { FC, useState } from 'react'
+import { PMatches } from '@/types/PersonsTypes'
+import Button from '@/shared/ui/button'
+import Link from 'next/link'
+import styles from './results.module.scss'
 
 interface IResultsProps {
-  data: PMatches[];
+  data: PMatches[]
 }
 
 const Results: FC<IResultsProps> = ({ data }) => {
-  const [open, setOpen] = useState<boolean>(false);
+  const [open, setOpen] = useState<boolean>(false)
   return (
     <div className={styles.results}>
       <Button title={open ? 'Hide games list' : 'Show games list'} onClick={() => setOpen(!open)} />
@@ -31,7 +31,7 @@ const Results: FC<IResultsProps> = ({ data }) => {
         </>
       )}
     </div>
-  );
-};
+  )
+}
 
-export default Results;
+export default Results

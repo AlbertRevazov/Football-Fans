@@ -1,10 +1,10 @@
-import { FC, ReactNode } from 'react';
-import Footer from '@/shared/components/footer';
-import Nav from '../nav';
+import { FC, ReactNode } from 'react'
+import Footer from '@/shared/components/footer'
+import Nav from '../nav'
 
 type LayoutProps = {
-  children: ReactNode;
-};
+  children: ReactNode
+}
 
 const Layout: FC<LayoutProps> = ({ children }) => {
   return (
@@ -13,7 +13,7 @@ const Layout: FC<LayoutProps> = ({ children }) => {
       {children}
       <Footer />
     </>
-  );
-};
+  )
+}
 
-export default Layout;
+export default Layout

@@ -1,17 +1,17 @@
-import React, { FC } from 'react';
-import { useIsWideScreen } from '@/shared/utils/useIsWideScreen';
-import { IGames } from '@/types/GamesTypes';
-import styles from './matches-card.module.scss';
+import React, { FC } from 'react'
+import { useIsWideScreen } from '@/shared/utils/useIsWideScreen'
+import { IGames } from '@/types/GamesTypes'
+import styles from './matches-card.module.scss'
 
 interface IMatchesCardProps {
-  match: IGames;
+  match: IGames
 }
 
 const MatchCard: FC<IMatchesCardProps> = ({ match }) => {
-  const { awayTeam, homeTeam, score } = match;
-  const isWide = useIsWideScreen();
-  const isFinished = match.status === 'FINISHED';
-  const isCorrectScore = (n: number | null) => (n === null ? '' : n);
+  const { awayTeam, homeTeam, score } = match
+  const isWide = useIsWideScreen()
+  const isFinished = match.status === 'FINISHED'
+  const isCorrectScore = (n: number | null) => (n === null ? '' : n)
   return (
     <>
       <article className={styles.homeTeam}>
@@ -38,6 +38,6 @@ const MatchCard: FC<IMatchesCardProps> = ({ match }) => {
         </div>
       </article>
     </>
-  );
-};
-export default MatchCard;
+  )
+}
+export default MatchCard

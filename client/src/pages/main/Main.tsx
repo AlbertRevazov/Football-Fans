@@ -1,10 +1,10 @@
-import React, { FC } from 'react';
-import WelcomeSection from './welcome';
-import FeaturesSection from './features';
-import DreamsSection from './dreams';
-import LeaguesSection from './leagues';
-import WriteSection from './write';
-import styles from './main.module.scss';
+import React, { FC } from 'react'
+import WelcomeSection from './welcome'
+import FeaturesSection from './features'
+import DreamsSection from './dreams'
+import LeaguesSection from './leagues'
+import WriteSection from './write'
+import styles from './main.module.scss'
 
 const Main: FC = () => {
   return (
@@ -15,6 +15,6 @@ const Main: FC = () => {
       <LeaguesSection />
       <WriteSection />
     </div>
-  );
-};
-export default Main;
+  )
+}
+export default Main

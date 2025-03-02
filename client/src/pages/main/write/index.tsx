@@ -1,1 +1,1 @@
-export { default } from './WriteSection';
+export { default } from './WriteSection'

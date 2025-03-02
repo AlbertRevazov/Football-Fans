@@ -1,26 +1,26 @@
-import React, { FC, useState } from 'react';
-import { IGames } from '@/types/GamesTypes';
-import { MatchStatuses } from '@/shared/data';
-import { DateFormate } from '@/shared/utils/Date';
-import Link from 'next/link';
-import MatchesCard from '@/shared/components/matchesCard';
-import styles from './calendar.module.scss';
+import React, { FC, useState } from 'react'
+import { IGames } from '@/types/GamesTypes'
+import { MatchStatuses } from '@/shared/data'
+import { DateFormate } from '@/shared/utils/Date'
+import Link from 'next/link'
+import MatchesCard from '@/shared/components/matchesCard'
+import styles from './calendar.module.scss'
 
 interface ICalendarProps {
-  data: IGames[];
+  data: IGames[]
 }
 
 const Calendar: FC<ICalendarProps> = ({ data }) => {
-  const [visibleCount, setVisibleCount] = useState<number>(12);
-  const list = data.slice(0, visibleCount);
+  const [visibleCount, setVisibleCount] = useState<number>(12)
+  const list = data.slice(0, visibleCount)
 
   const loadMore = () => {
-    setVisibleCount((prevCount) => prevCount + 12);
-  };
+    setVisibleCount(prevCount => prevCount + 12)
+  }
 
   return (
     <section className={styles.calendar}>
-      {list.map((match) => (
+      {list.map(match => (
         <Link key={match.id} className={styles.teams} href={`/matches/${match.id}`}>
           <MatchesCard match={match} />
           <p className={styles.status}>
@@ -36,7 +36,7 @@ const Calendar: FC<ICalendarProps> = ({ data }) => {
         </div>
       )}
     </section>
-  );
-};
+  )
+}
 
-export default Calendar;
+export default Calendar

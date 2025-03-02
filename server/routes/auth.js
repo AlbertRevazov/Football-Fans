@@ -9,16 +9,24 @@ const jwt = require('jsonwebtoken')
 
 router.get('/me', jwtVerify, async (req, res) => {
 	try {
-		const user = await Users.findOne({ where: { id: req.userId } })
+		const user = await Users.findOne({
+			where: { id: req.userId },
+		})
 		if (!user) {
 			return res
 				.status(STATUS_CODES.NOT_FOUND)
-				.json({ message: 'Нет такого аккаунта' })
+				.json({
+					message: 'Нет такого аккаунта',
+				})
 		}
 
-		const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET_KEY, {
-			expiresIn: '30d',
-		})
+		const token = jwt.sign(
+			{ id: user.id },
+			process.env.SECRET,
+			{
+				expiresIn: '30d',
+			}
+		)
 		const list = await getUserFavorites(req.userId)
 
 		return res.status(STATUS_CODES.SUCCESS).send({
@@ -38,13 +46,24 @@ router.get('/me', jwtVerify, async (req, res) => {
 
 router.post('/sign', async (req, res) => {
 	try {
-		const { email, password, name, lastName, phone, image } = req.body
+		const {
+			email,
+			password,
+			name,
+			lastName,
+			phone,
+			image,
+		} = req.body
 
 		const isUsed = await Users.findOne({ where: { email } })
 		if (isUsed) {
 			return res
-				.status(STATUS_CODES.BAD_REQUEST)
-				.json({ message: 'Такой пользователь уже существует!' })
+				.status(
+					STATUS_CODES.BAD_REQUEST
+				)
+				.json({
+					message: 'Такой пользователь уже существует!',
+				})
 		}
 
 		const hashedPassword = await bcrypt.hash(
@@ -61,9 +80,13 @@ router.post('/sign', async (req, res) => {
 			image: image || '',
 		})
 
-		const token = jwt.sign({ id: newUser.id }, process.env.JWT_SECRET_KEY, {
-			expiresIn: '30d',
-		})
+		const token = jwt.sign(
+			{ id: newUser.id },
+			process.env.SECRET,
+			{
+				expiresIn: '30d',
+			}
+		)
 
 		return res.status(STATUS_CODES.SUCCESS).json({
 			newUser,
@@ -75,7 +98,9 @@ router.post('/sign', async (req, res) => {
 		console.error(error)
 		return res
 			.status(STATUS_CODES.INTERNAL_SERVER_ERROR)
-			.json({ message: 'Ошибка при создании пользователя!' })
+			.json({
+				message: 'Ошибка при создании пользователя!',
+			})
 	}
 })
 
@@ -87,19 +112,32 @@ router.post('/login', async (req, res) => {
 		if (!user) {
 			return res
 				.status(STATUS_CODES.NOT_FOUND)
-				.json({ message: 'Такой пользователь не существует' })
+				.json({
+					message: 'Такой пользователь не существует',
+				})
 		}
 
-		const correctPass = await bcrypt.compare(password, user.password)
+		const correctPass = await bcrypt.compare(
+			password,
+			user.password
+		)
 		if (!correctPass) {
 			return res
-				.status(STATUS_CODES.UNAUTHORIZED)
-				.json({ message: 'Неверный пароль.' })
+				.status(
+					STATUS_CODES.UNAUTHORIZED
+				)
+				.json({
+					message: 'Неверный пароль.',
+				})
 		}
 
-		const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET_KEY, {
-			expiresIn: '30d',
-		})
+		const token = jwt.sign(
+			{ id: user.id },
+			process.env.SECRET,
+			{
+				expiresIn: '30d',
+			}
+		)
 
 		return res.status(STATUS_CODES.SUCCESS).json({
 			token,
@@ -111,7 +149,9 @@ router.post('/login', async (req, res) => {
 		console.error(error)
 		return res
 			.status(STATUS_CODES.INTERNAL_SERVER_ERROR)
-			.json({ message: 'Ошибка при входе в систему!' })
+			.json({
+				message: 'Ошибка при входе в систему!',
+			})
 	}
 })
 

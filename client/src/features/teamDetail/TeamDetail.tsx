@@ -1,39 +1,39 @@
-import React, { FC, useEffect, useState } from 'react';
-import { useAppDispatch, useAppSelector } from '@/redux/hooks';
-import { addToFavorites, removeFromFavorites } from '@/redux/slices/Auth';
-import { getTeamById } from '@/redux/slices/Team';
-import { useRouter } from 'next/router';
-import { ApiErrors } from '@/shared/data';
-import InformationSection from './information';
-import Calendar from '@/shared/components/calendar';
-import SquadSection from './squad';
-import Loading from '@/shared/components/loader';
-import styles from './teams-detail.module.scss';
+import React, { FC, useEffect, useState } from 'react'
+import { useAppDispatch, useAppSelector } from '@/redux/hooks'
+import { addToFavorites, removeFromFavorites } from '@/redux/Slices/Auth'
+import { getTeamById } from '@/redux/Slices/Team'
+import { useRouter } from 'next/router'
+import { ApiErrors } from '@/shared/data'
+import InformationSection from './information'
+import Calendar from '@/shared/components/calendar'
+import SquadSection from './squad'
+import Loading from '@/shared/components/loader'
+import styles from './teams-detail.module.scss'
 
 const TeamsDetail: FC = () => {
-  const dispatch = useAppDispatch();
-  const router = useRouter();
-  const teamId = router.query.id as string;
-  const { team, isLoading, status } = useAppSelector((s) => s.team);
-  const { user, liked } = useAppSelector((s) => s.auth);
-  const [isFav, setIsFav] = useState(false);
-  const [toggleSection, setToggleSection] = useState<boolean>(false);
+  const dispatch = useAppDispatch()
+  const router = useRouter()
+  const teamId = router.query.id as string
+  const { team, isLoading, status } = useAppSelector(s => s.team)
+  const { user, liked } = useAppSelector(s => s.auth)
+  const [isFav, setIsFav] = useState(false)
+  const [toggleSection, setToggleSection] = useState<boolean>(false)
 
-  const userId = String(user?.id);
+  const userId = String(user?.id)
 
   useEffect(() => {
     if (teamId && typeof teamId === 'string') {
-      dispatch(getTeamById({ id: teamId }));
+      dispatch(getTeamById({ id: teamId }))
     }
-  }, [teamId, dispatch]);
+  }, [teamId, dispatch])
 
   useEffect(() => {
     if (!!liked?.length) {
-      setIsFav(liked?.some((item) => item.favoriteApiId === teamId) || false);
+      setIsFav(liked?.some(item => item.favoriteApiId === teamId) || false)
     }
-  }, [liked, teamId]);
+  }, [liked, teamId])
 
-  if (isLoading) return <Loading />;
+  if (isLoading) return <Loading />
 
   if (status !== 200) {
     return (
@@ -41,22 +41,22 @@ const TeamsDetail: FC = () => {
         Error: {ApiErrors[team?.errorCode as string]}
         {team?.errorCode}
       </div>
-    );
+    )
   }
 
-  const handleFavoriteToggle: React.MouseEventHandler<HTMLParagraphElement> = (e) => {
-    const action = isFav ? removeFromFavorites : addToFavorites;
+  const handleFavoriteToggle: React.MouseEventHandler<HTMLParagraphElement> = e => {
+    const action = isFav ? removeFromFavorites : addToFavorites
 
     if (team && user?.id && teamId) {
       dispatch(
         action({
           userId,
-          favorite: { id: teamId, name: team.shortName, crest: team.crest },
+          favorite: { id: teamId, name: team.shortName, crest: team.crest }
         })
-      );
-      setIsFav(!isFav);
+      )
+      setIsFav(!isFav)
     }
-  };
+  }
 
   return (
     <>
@@ -70,8 +70,7 @@ const TeamsDetail: FC = () => {
                 {!!user?.id && (
                   <p
                     className={styles[isFav ? 'liked' : 'notLiked']}
-                    onClick={handleFavoriteToggle}
-                  >
+                    onClick={handleFavoriteToggle}>
                     {isFav ? 'Remove' : 'Add'}
                   </p>
                 )}
@@ -87,6 +86,6 @@ const TeamsDetail: FC = () => {
         </div>
       )}
     </>
-  );
-};
-export default TeamsDetail;
+  )
+}
+export default TeamsDetail

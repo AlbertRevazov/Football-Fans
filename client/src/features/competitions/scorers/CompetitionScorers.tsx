@@ -1,10 +1,10 @@
-import React, { FC } from 'react';
-import { Scorers } from '@/types/CompetitionsTypes';
-import Link from 'next/link';
-import styles from './competition-scorers.module.scss';
+import React, { FC } from 'react'
+import { Scorers } from '@/types/CompetitionsTypes'
+import Link from 'next/link'
+import styles from './competition-scorers.module.scss'
 
 interface ILeagueScorersProps {
-  data: Scorers[] | undefined;
+  data: Scorers[] | undefined
 }
 
 const CompetitionScorers: FC<ILeagueScorersProps> = ({ data }) => {
@@ -34,6 +34,6 @@ const CompetitionScorers: FC<ILeagueScorersProps> = ({ data }) => {
         ))}
       </ul>
     </section>
-  );
-};
-export default CompetitionScorers;
+  )
+}
+export default CompetitionScorers

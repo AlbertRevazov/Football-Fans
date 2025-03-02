@@ -1,7 +1,7 @@
-import React, { FC } from 'react';
-import Button from '@/shared/ui/button';
-import Link from 'next/link';
-import styles from './page-not-found.module.scss';
+import React, { FC } from 'react'
+import Button from '@/shared/ui/button'
+import Link from 'next/link'
+import styles from './page-not-found.module.scss'
 
 const PageNotFound: FC = () => {
   return (
@@ -24,6 +24,6 @@ const PageNotFound: FC = () => {
         </nav>
       </section>
     </main>
-  );
-};
-export default PageNotFound;
+  )
+}
+export default PageNotFound
