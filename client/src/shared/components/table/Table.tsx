@@ -4,16 +4,16 @@ import TableHeader from './TableHeader'
 import TableRow from './TableRow'
 import styles from './table.module.scss'
 
-interface ICustomTableProps {
-  group?: Standings[]
-  list?: Table[]
+interface ICustomTableProps<T> {
+  data: T[]
+  type: 'league' | 'group'
 }
 
-const CustomTable: FC<ICustomTableProps> = ({ group, list }) => {
-  return group ? (
+const CustomTable = <T,>({ data, type }: ICustomTableProps<T>) => {
+  return type === 'group' ? (
     <section className={styles.groupSection}>
-      {group.map(basket => (
-        <ul className={styles.list}>
+      {(data as Standings[]).map(basket => (
+        <ul className={styles.list} key={basket.group}>
           <p className={styles.groupName}>{basket.group}</p>
           <li className={styles.header}>
             <TableHeader />
@@ -29,7 +29,9 @@ const CustomTable: FC<ICustomTableProps> = ({ group, list }) => {
       <li className={styles.header}>
         <TableHeader />
       </li>
-      {list?.map(team => <TableRow key={team.team.id} el={team} />)}
+      {(data as Table[]).map(team => (
+        <TableRow key={team.team.id} el={team} />
+      ))}
     </ul>
   )
 }

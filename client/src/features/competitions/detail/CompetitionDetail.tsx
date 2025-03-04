@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState, useCallback } from 'react'
+import React, { useState, useEffect, useCallback, FC } from 'react'
 import { useRouter } from 'next/router'
 import {
   getCalendarByCompetition,
@@ -7,19 +7,19 @@ import {
   getScorersByCompetition
 } from '@/redux/Slices/Competitions'
 import { useAppDispatch, useAppSelector } from '@/redux/hooks'
-import { getSeason } from '@/shared/utils/Date'
-import { renderBlockContent } from './renderBlockContent'
-import Header from './header'
-import BlockToggleButtons from './blockToggleButtons'
-import CompetitionFooter from './competitionFooter'
-import Error from '@/shared/components/error'
-import Loading from '@/shared/components/loader'
-import styles from './competition-detail.module.scss'
 import { CompetitionRequestTypes } from '@/shared/data'
+import { RenderBlockContent } from '../renderGroup/renderBlockContent'
+import { getSeason } from '@/shared/utils/Date'
+import CompetitionHeader from './header'
+import CompetitionTabButtons from './blockToggleButtons'
+import CompetitionFooter from './competitionFooter'
+import ErrorMessage from '@/shared/components/error'
+import LoadingSpinner from '@/shared/components/loader'
+import styles from './competition-detail.module.scss'
 
 const CompetitionsDetail: FC = () => {
   const {
-    data: competitionData,
+    data: competitionDetails,
     scorers,
     matches,
     isLoading,
@@ -28,73 +28,95 @@ const CompetitionsDetail: FC = () => {
   const dispatch = useAppDispatch()
   const router = useRouter()
   const competitionId = router.query.id as string
-  const [activeBlock, setActiveBlock] = useState<'table' | 'scorers' | 'calendar'>('table')
-  const seasonYear = competitionData?.season.startDate.slice(0, 4)
-  const currentSeason = competitionData
-    ? getSeason(competitionData.season.startDate, competitionData.season.endDate)
-    : ''
-  const [selectedMatchDay, setSelectedMatchDay] = useState(competitionData?.season.currentMatchday)
 
-  const handleBlockChange = useCallback(
-    (type: 'table' | 'scorers' | 'calendar', season: string) => {
-      setActiveBlock(type)
-      switch (type) {
-        case 'table':
-          return dispatch(getCompetitionById(competitionId))
-        case 'scorers':
-          return dispatch(getScorersByCompetition({ id: competitionId, date: season }))
-        case 'calendar':
-          return dispatch(getCalendarByCompetition({ id: competitionId, date: season }))
-        default:
-          return null
-      }
-    },
-    [dispatch, competitionId]
+  const [activeTab, setActiveTab] = useState<'table' | 'scorers' | 'calendar'>('table')
+  const seasonYear = competitionDetails?.season.startDate.slice(0, 4)
+  const currentSeason = competitionDetails
+    ? getSeason(competitionDetails.season.startDate, competitionDetails.season.endDate)
+    : ''
+  const [selectedMatchDay, setSelectedMatchDay] = useState(
+    competitionDetails?.season.currentMatchday
   )
 
+  // Загрузка данных при монтировании компонента
   useEffect(() => {
-    if (competitionId && !competitionData) {
+    if (competitionId && !competitionDetails) {
       dispatch(getCompetitionById(competitionId))
     }
-  }, [competitionId, competitionData, dispatch])
+  }, [competitionId, competitionDetails, dispatch])
 
-  if (errorCode) return <Error code={errorCode} />
+  // Обработчик изменения MatchDay
+  const handleMatchDayChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    const newMatchDay = +event.target.value
+    setSelectedMatchDay(newMatchDay)
+    dispatch(
+      getCompetitionByMatchDay({
+        id: competitionId,
+        day: String(newMatchDay),
+        season: currentSeason.split('/')[0],
+        type: CompetitionRequestTypes[activeTab]
+      })
+    )
+  }
+
+  // Обработчик переключения вкладок
+  const handleTabChange = useCallback(
+    (tab: 'table' | 'scorers' | 'calendar', season?: string) => {
+      console.log(matches, 'season', scorers)
+      setActiveTab(tab)
+      switch (tab) {
+        case 'table':
+          dispatch(getCompetitionById(competitionId))
+          break
+        case 'scorers':
+          if (!scorers?.length) {
+            dispatch(
+              getScorersByCompetition({
+                id: competitionId,
+                date: seasonYear
+              })
+            )
+          }
+          break
+        case 'calendar':
+          if (matches?.length === 0) {
+            dispatch(
+              getCalendarByCompetition({
+                id: competitionId,
+                date: seasonYear,
+                day: String(selectedMatchDay)
+              })
+            )
+          }
+          break
+        default:
+          break
+      }
+    },
+    [dispatch, competitionId, seasonYear]
+  )
+
+  if (errorCode) return <ErrorMessage code={errorCode} />
 
   return (
     <div className={styles.root}>
       <div className={styles.container}>
         <main className={styles.content}>
-          <Header
-            name={competitionData?.competition.name || ''}
+          <CompetitionHeader
+            name={competitionDetails?.competition.name || ''}
             season={currentSeason}
-            emblem={competitionData?.competition.emblem || ''}
+            emblem={competitionDetails?.competition.emblem || ''}
           />
-          <BlockToggleButtons
-            activeBlock={activeBlock}
-            onBlockChange={type => {
-              handleBlockChange(type, seasonYear as string)
-              setSelectedMatchDay(competitionData?.season.currentMatchday)
-            }}
-          />
-          {activeBlock !== 'scorers' && (
-            <section className={styles.matchDay}>
-              <h4 className={styles.dayTitle}>Sort by MatchDay</h4>
+          <CompetitionTabButtons activeBlock={activeTab} onBlockChange={handleTabChange} />
+          {activeTab !== 'scorers' && (
+            <section className={styles.matchDaySelector}>
+              <h4 className={styles.matchDayTitle}>Sort by MatchDay</h4>
               <select
-                className={styles.dayList}
+                className={styles.matchDayList}
                 value={selectedMatchDay}
-                onChange={e => {
-                  setSelectedMatchDay(+e.target.value)
-                  dispatch(
-                    getCompetitionByMatchDay({
-                      id: competitionId,
-                      day: String(e.target.value),
-                      season: currentSeason.split('/')[0],
-                      type: CompetitionRequestTypes[activeBlock]
-                    })
-                  )
-                }}>
-                {Array.from({ length: competitionData?.season.currentMatchday || 0 }, (_, i) => (
-                  <option className={styles.day} key={i + 1} value={i + 1}>
+                onChange={handleMatchDayChange}>
+                {Array.from({ length: competitionDetails?.season.currentMatchday || 0 }, (_, i) => (
+                  <option className={styles.matchDayOption} key={i + 1} value={i + 1}>
                     {i + 1}
                   </option>
                 ))}
@@ -102,18 +124,18 @@ const CompetitionsDetail: FC = () => {
             </section>
           )}
           {isLoading ? (
-            <Loading />
+            <LoadingSpinner />
           ) : (
             <section className={styles.leagueStats}>
-              {renderBlockContent({
-                activeBlock,
-                scorers,
-                matches,
-                competitionData
-              })}
+              <RenderBlockContent
+                activeBlock={activeTab}
+                scorers={scorers}
+                matches={matches}
+                competitionData={competitionDetails}
+              />
             </section>
           )}
-          <CompetitionFooter code={competitionData?.competition.code as string} />
+          <CompetitionFooter code={competitionDetails?.competition.code as string} />
         </main>
       </div>
     </div>
